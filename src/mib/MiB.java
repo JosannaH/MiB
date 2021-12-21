@@ -17,4 +17,6 @@ public class MiB {
         // TODO code application logic here
     }
     //Hello world!
+    
+    //Vi är ändå väldigt bra
 }
