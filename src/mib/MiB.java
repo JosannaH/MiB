@@ -3,11 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package mib;
-//testlinda
-//testjosanna
+
 /**
  *
- * @author Lisa
+ * @author Josanna, Linda & Lisa
  */
 public class MiB {
 
