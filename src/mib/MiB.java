@@ -4,17 +4,30 @@
  */
 package mib;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
  * @author Josanna, Linda & Lisa
  */
 public class MiB {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
     
+    private static InfDB idb;    
+    
+    public static void main(String[] args) {
+        try {
+            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+            System.out.println("Databasen startade");
+        }
+        catch (InfException ex) {
+            Logger.getLogger(MiB.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + ex.getMessage());
+        }
+        new Inloggning(idb).setVisible(true);
+    }
 }

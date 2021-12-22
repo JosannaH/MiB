@@ -4,10 +4,27 @@
  */
 package mib;
 
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
- * @author Lisa
+ * @author Josanna, Linda & Lisa
  */
 public class Validering {
+    
+    public static boolean textFaltHarVarde(JTextField rutaAttKolla)
+    {
+        boolean resultat = true;
+        
+        if(rutaAttKolla.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Inmatningsrutan är tom!");
+            resultat = false;
+            rutaAttKolla.requestFocus();
+        }       
+        
+        return resultat;
+    }
+    
     
 }
