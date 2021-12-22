@@ -4,7 +4,9 @@
  */
 package mib;
 
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -124,12 +126,28 @@ public class Inloggning extends javax.swing.JFrame {
 
     private void btnLoggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggainActionPerformed
         // TODO add your handling code here:
-        
-        if(Validering.textFaltHarVarde(txtAnvandare)){
-            
-        }
-        if(Validering.textFaltHarVarde(pswlosen)){
-            
+
+        //Kontrollera om användarnamn och lösenord fylls i. 
+        //Om ifyllt så kontrollerar man att användare/lösenord stämmer överens.
+        if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
+
+            try {
+                String anvandarNamn = txtAnvandare.getText();
+                String losen = String.valueOf(pswlosen.getPassword());
+                String agentLosen = "SELECT Losenord FROM agent WHERE Agent_ID=" + anvandarNamn;
+                String anvandare = idb.fetchSingle(agentLosen);
+                String resultat = anvandare;
+                    if (agentLosen.equals(losen)) {
+                           //Här ska koden för att komma till nästa fönster, startsidan, finnas.
+                           JOptionPane.showMessageDialog(null, "Det funkar!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Lösenordet är fel!");
+                    }
+            } 
+            catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Något gick fel!");
+                System.out.println("Internt felmeddelande" + e.getMessage());
+            }
         }
     }//GEN-LAST:event_btnLoggainActionPerformed
 
