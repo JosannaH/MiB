@@ -129,26 +129,40 @@ public class Inloggning extends javax.swing.JFrame {
 
         //Kontrollera om användarnamn och lösenord fylls i. 
         //Om ifyllt så kontrollerar man att användare/lösenord stämmer överens.
-        if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
+        String anvandarText = txtAnvandare.getText();
+        String losenText = pswlosen.getText();
+        String selectAgent = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
+        String selectAlien = "SELECT Alien_ID FROM alien WHERE Alien_ID=";
+        String inloggTyp = "";
+        String losenTyp = "";
+        //Hämta värde från rullist.
+        
+        if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {   
+            if(){
+                //Om värdet är agent är inloggtyp = selectAgent else inloggningstyp = selectAlien
+            }
+            else{
+                
+            }
+                try {
 
-            try {
-                String anvandarNamn = txtAnvandare.getText();
-                String losen = String.valueOf(pswlosen.getPassword());
-                String agentLosen = "SELECT Losenord FROM agent WHERE Agent_ID=" + anvandarNamn;
-                String anvandare = idb.fetchSingle(agentLosen);
-                String resultat = anvandare;
-                    if (agentLosen.equals(losen)) {
-                           //Här ska koden för att komma till nästa fönster, startsidan, finnas.
-                           JOptionPane.showMessageDialog(null, "Det funkar!");
+                    String anvandare = idb.fetchSingle(inloggTyp + anvandarText);
+                    String losen = idb.fetchSingle("SELECT Losenord FROM agent WHERE Agent_ID=" + losenText);
+                    if (anvandarText.equals(anvandare) && losenText.equals(losen)) {
+                        //Här ska koden för att komma till nästa fönster, startsidan, finnas.
+                        if () {
+
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Lösenordet är fel!");
                     }
-            } 
-            catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-                System.out.println("Internt felmeddelande" + e.getMessage());
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande" + e.getMessage());
+                }
+            } else { //Alien
+
             }
-        }
     }//GEN-LAST:event_btnLoggainActionPerformed
 
     private void cmbListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbListActionPerformed
