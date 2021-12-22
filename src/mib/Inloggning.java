@@ -24,7 +24,7 @@ public class Inloggning extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Inloggning(InfDB db){
+    public Inloggning(InfDB idb){
         initComponents();
         this.idb = idb;
     }
@@ -125,44 +125,45 @@ public class Inloggning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggainActionPerformed
-        // TODO add your handling code here:
-
-        //Kontrollera om användarnamn och lösenord fylls i. 
-        //Om ifyllt så kontrollerar man att användare/lösenord stämmer överens.
+               
+        
         String anvandarText = txtAnvandare.getText();
         String losenText = pswlosen.getText();
-        String selectAgent = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
-        String selectAlien = "SELECT Alien_ID FROM alien WHERE Alien_ID=";
         String inloggTyp = "";
         String losenTyp = "";
         //Hämta värde från rullist.
+        String typVal = cmbList.getSelectedItem().toString();
         
-        if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {   
-            if(){
-                //Om värdet är agent är inloggtyp = selectAgent else inloggningstyp = selectAlien
+        //Kontrollera om användarnamn och lösenord fylls i. 
+        if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
+            if (typVal.equals("Agent")) {
+                inloggTyp = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
+                losenTyp = "SELECT Losenord FROM agent WHERE Agent_ID=";
+            } else {
+                inloggTyp = "SELECT Alien_ID FROM alien WHERE Alien_ID=";
+                losenTyp = "SELECT Losenord FROM alien WHERE Alien_ID=";
             }
-            else{
-                
-            }
-                try {
+            try {
 
-                    String anvandare = idb.fetchSingle(inloggTyp + anvandarText);
-                    String losen = idb.fetchSingle("SELECT Losenord FROM agent WHERE Agent_ID=" + losenText);
-                    if (anvandarText.equals(anvandare) && losenText.equals(losen)) {
-                        //Här ska koden för att komma till nästa fönster, startsidan, finnas.
-                        if () {
+                String anvandare = idb.fetchSingle(inloggTyp + anvandarText);
+                String losen = idb.fetchSingle(losenTyp + losenText);
+                //Kontrollerar man att användare/lösenord stämmer överens.
+                if (anvandarText.equals(anvandare) && losenText.equals(losen)) {
+                    //Här ska koden för att komma till nästa fönster, startsidan, finnas.
+                     JOptionPane.showMessageDialog(null, "Inloggning lyckades!");
+                    //if (ADMINISTRATÖR) {
 
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Lösenordet är fel!");
-                    }
-                } catch (InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    System.out.println("Internt felmeddelande" + e.getMessage());
+                    //}
+                } else {
+                    JOptionPane.showMessageDialog(null, "Lösenordet är fel!");
                 }
-            } else { //Alien
-
+            } catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Något gick fel!");
+                System.out.println("Internt felmeddelande" + e.getMessage());
             }
+        } else { //Alien
+
+        }
     }//GEN-LAST:event_btnLoggainActionPerformed
 
     private void cmbListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbListActionPerformed
