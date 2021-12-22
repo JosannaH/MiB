@@ -134,6 +134,7 @@ public class Inloggning extends javax.swing.JFrame {
         //Hämta värde från rullist.
         String typVal = cmbList.getSelectedItem().toString();
         
+        
         //Kontrollera om användarnamn och lösenord fylls i. 
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
             if (typVal.equals("Agent")) {
@@ -145,8 +146,14 @@ public class Inloggning extends javax.swing.JFrame {
             }
             try {
 
+                //String test = idb.fetchSingle(inloggTyp + anvandarText);
+                //System.out.println(test);
+                //String test = idb.fetchSingle(losenTyp + anvandarText);
+                //System.out.println(test);
                 String anvandare = idb.fetchSingle(inloggTyp + anvandarText);
+                //System.out.println(anvandare);
                 String losen = idb.fetchSingle(losenTyp + losenText);
+                System.out.println(losen);
                 //Kontrollerar man att användare/lösenord stämmer överens.
                 if (anvandarText.equals(anvandare) && losenText.equals(losen)) {
                     //Här ska koden för att komma till nästa fönster, startsidan, finnas.
