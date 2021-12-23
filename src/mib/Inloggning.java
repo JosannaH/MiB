@@ -18,10 +18,16 @@ public class Inloggning extends javax.swing.JFrame {
      * Creates new form Inloggning
      */
     private InfDB idb;
+    private String getAnvandare;
+    private String getTyp;
 
     public Inloggning(InfDB idb) {
         initComponents();
         this.idb = idb;
+    }
+    // konstruktor utan parametrar
+     public Inloggning() {
+        initComponents();
     }
 
     /**
@@ -128,6 +134,7 @@ public class Inloggning extends javax.swing.JFrame {
         String losenTyp = "";
         //Hämta värde från comboBox/rullist.
         String typVal = cmbList.getSelectedItem().toString();
+        getTyp = typVal;
 
         //Kontrollera om användarnamn och lösenord fylls i. 
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
@@ -143,7 +150,10 @@ public class Inloggning extends javax.swing.JFrame {
             try {
 
                 String anvandare = idb.fetchSingle(inloggTyp + anvandarText);
+                //används som return value i getAnvandarID()
+                getAnvandare = anvandare;
                 String losen = idb.fetchSingle(losenTyp + anvandarText);
+           
                 String admin = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvandarText);
 
                 System.out.println("Fetch anv: " + anvandare); //test
@@ -199,4 +209,14 @@ public class Inloggning extends javax.swing.JFrame {
     private javax.swing.JPasswordField pswlosen;
     private javax.swing.JTextField txtAnvandare;
     // End of variables declaration//GEN-END:variables
+
+//Metoder
+    public String getAnvandarID(){
+        return getAnvandare;
+    }
+    
+    public String getAnvandarTyp(){
+        return getTyp;
+    }
+
 }

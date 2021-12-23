@@ -16,8 +16,7 @@ public class AndraLosenord extends javax.swing.JFrame {
      * Creates new form StartsidaAgent
      */
     private InfDB idb;
-    
-    
+
     public AndraLosenord(InfDB idb) {
         initComponents();
         this.idb = idb;
@@ -42,6 +41,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         pwNuvLosen = new javax.swing.JPasswordField();
         pwNyttLosen = new javax.swing.JPasswordField();
         txtAnvandare = new javax.swing.JTextField();
+        lblMeddelande = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -115,8 +115,13 @@ public class AndraLosenord extends javax.swing.JFrame {
                         .addGap(63, 63, 63))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAndraLosen)
-                        .addGap(47, 47, 47)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnAndraLosen)
+                                .addGap(43, 43, 43))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblMeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(100, 100, 100)))))
                 .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton1)
@@ -154,14 +159,17 @@ public class AndraLosenord extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNyttLosen)
                                     .addComponent(pwNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(41, 41, 41)
-                                .addComponent(btnAndraLosen)))
+                                .addGap(26, 26, 26)
+                                .addComponent(btnAndraLosen)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblMeddelande)))
                         .addContainerGap(30, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //gör tillbakaknapp
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
@@ -170,7 +178,31 @@ public class AndraLosenord extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
-        // TODO add your handling code here:
+        String anvandare = txtAnvandare.getText();
+        String nuvLosen = pwNuvLosen.getText();
+        String nyttLosen = pwNyttLosen.getText();
+        String getLosen = "";
+        Inloggning inlogg = new Inloggning();
+        
+        String anvandarTyp = inlogg.getAnvandarTyp();
+     
+        //Kollar att alla fält är ifyllda
+        if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pwNuvLosen) && Validering.textFaltHarVarde(pwNyttLosen)) {
+       
+                // Lösen för individen hämtas ur databasen
+                getLosen = "SELECT Losenord FROM " + anvandarTyp + " WHERE " + anvandarTyp + "_ID=" + anvandare;
+                //jämför inmatat lösenord med lösenord från databas
+                if(nuvLosen.equals(getLosen)){
+                    // TODO query för att ändra lösenordet i databasen
+                    lblAnvandare.setText("Ditt lösenord är ändrat");
+                }
+                else{
+                    lblAnvandare.setText("Användare och nuvarande lösenord sstämmer inte överens");
+                }
+        }
+        else{
+            lblAnvandare.setText("Alla fält måste fyllas i");
+        }
     }//GEN-LAST:event_btnAndraLosenActionPerformed
 
     /**
@@ -189,6 +221,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblAgentBild;
     private javax.swing.JLabel lblAnvandare;
+    private javax.swing.JLabel lblMeddelande;
     private javax.swing.JLabel lblNuvLosen;
     private javax.swing.JLabel lblNyttLosen;
     private javax.swing.JPasswordField pwNuvLosen;
