@@ -17,10 +17,9 @@ public class Inloggning extends javax.swing.JFrame {
     /**
      * Creates new form Inloggning
      */
-    
     private InfDB idb;
-        
-    public Inloggning(InfDB idb){
+
+    public Inloggning(InfDB idb) {
         initComponents();
         this.idb = idb;
     }
@@ -67,8 +66,6 @@ public class Inloggning extends javax.swing.JFrame {
                 btnLoggainActionPerformed(evt);
             }
         });
-
-        pswlosen.setText("jPasswordField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,18 +118,19 @@ public class Inloggning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggainActionPerformed
-               
-        
+
+        // Hämtar värden från textFields
         String anvandarText = txtAnvandare.getText();
         String losenText = pswlosen.getText();
+        //Variabler att spara SQL frågor i
         String inloggTyp = "";
         String losenTyp = "";
-        //Hämta värde från rullist.
+        //Hämta värde från comboBox/rullist.
         String typVal = cmbList.getSelectedItem().toString();
-        
-        
+
         //Kontrollera om användarnamn och lösenord fylls i. 
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
+            //Kontrollera om anv valt Agent eller Alien i comboBox
             if (typVal.equals("Agent")) {
                 inloggTyp = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
                 losenTyp = "SELECT Losenord FROM agent WHERE Agent_ID=";
@@ -142,18 +140,16 @@ public class Inloggning extends javax.swing.JFrame {
             }
             try {
 
-                //String test = idb.fetchSingle(inloggTyp + anvandarText);
-                //System.out.println(test);
-                //String test = idb.fetchSingle(losenTyp + anvandarText);
-                //System.out.println(test);
                 String anvandare = idb.fetchSingle(inloggTyp + anvandarText);
-                //System.out.println(anvandare);
-                String losen = idb.fetchSingle(losenTyp + losenText);
-                System.out.println(losen);
+                String losen = idb.fetchSingle(losenTyp + anvandarText);
+
+                System.out.println("Fetch anv: " + anvandare); //test
+                System.out.println("Fetch losen: " + losen); // test
+
                 //Kontrollerar man att användare/lösenord stämmer överens.
                 if (anvandarText.equals(anvandare) && losenText.equals(losen)) {
                     //Här ska koden för att komma till nästa fönster, startsidan, finnas.
-                     JOptionPane.showMessageDialog(null, "Inloggning lyckades!");
+                    JOptionPane.showMessageDialog(null, "Inloggning lyckades!");
                     //if (ADMINISTRATÖR) {
 
                     //}
@@ -176,8 +172,6 @@ public class Inloggning extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-         
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel RubrikAgentInlogg;
