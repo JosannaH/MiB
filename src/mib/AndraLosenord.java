@@ -10,7 +10,7 @@ import oru.inf.InfException;
 
 /**
  *
- * @author luna
+ * @author Josanna
  */
 public class AndraLosenord extends javax.swing.JFrame {
 
@@ -39,7 +39,7 @@ public class AndraLosenord extends javax.swing.JFrame {
 
         lblAgentBild = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnLoggaUt = new javax.swing.JToggleButton();
         lblAnvandare = new javax.swing.JLabel();
         lblNuvLosen = new javax.swing.JLabel();
         lblNyttLosen = new javax.swing.JLabel();
@@ -62,10 +62,10 @@ public class AndraLosenord extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel2.setText("Ändra lösenord");
 
-        jToggleButton1.setText("Logga ut");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLoggaUt.setText("Logga ut");
+        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                btnLoggaUtActionPerformed(evt);
             }
         });
 
@@ -130,7 +130,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                                 .addGap(100, 100, 100)))))
                 .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton1)
+                .addComponent(btnLoggaUt)
                 .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
                 .addGap(186, 186, 186)
@@ -145,7 +145,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1)
+                        .addComponent(btnLoggaUt)
                         .addGap(14, 14, 14))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,44 +175,37 @@ public class AndraLosenord extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //gör tillbakaknapp
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+
+    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
+        
         String anvandare = txtAnvandare.getText();
         String nuvLosen = pwNuvLosen.getText();
         String nyttLosen = pwNyttLosen.getText();
-        String getLosen = "";
-        Inloggning inlogg = new Inloggning();
-        
-        String anvandarTyp = inlogg.getAnvandarTyp();
-        System.out.println("Användartyp: " + anvTyp);
+        String losenFranDB = "";
      
         //Kollar att alla fält är ifyllda
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pwNuvLosen) && Validering.textFaltHarVarde(pwNyttLosen)) {
        
             try{
                 // Lösen för individen hämtas ur databasen
-                getLosen = idb.fetchSingle("SELECT Losenord FROM " + anvTyp + " WHERE " + anvTyp + "_ID=" + anvandare);
-                System.out.println("Lösen från användare = " + nuvLosen);
-                System.out.println("Lösen från databas = " + getLosen);
-                
-                       
-                //jämför inmatat lösenord med lösenord från databas
-                if(nuvLosen.equals(getLosen)){
+                losenFranDB = idb.fetchSingle("SELECT Losenord FROM " + anvTyp + " WHERE " + anvTyp + "_ID=" + anvandare);
+       
+                //jämför inmatat nuvarande lösenord med lösenord från databas
+                if(nuvLosen.equals(losenFranDB)){
                     // ändrar lösenordet i databasen
                     idb.fetchSingle("UPDATE " + anvTyp + " SET Losenord = '" + nyttLosen + "' where " + anvTyp + "_ID=" + anvandare);
-                    btnAndraLosen.setText("Ditt lösenord är ändrat");
+                    JOptionPane.showMessageDialog(null, "Ditt lösenord är ändrat!");
                 }
                 else{
-                    lblAnvandare.setText("Användare och nuvarande lösenord sstämmer inte överens");
+                    JOptionPane.showMessageDialog(null, "Användare och nuvarande lösenord stämmer inte överens");
                 }
-                
             }
             catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -220,7 +213,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                     }
         }
         else{
-            lblAnvandare.setText("Alla fält måste fyllas i");
+            JOptionPane.showMessageDialog(null, "Alla fält måste fyllas i");
         }
     }//GEN-LAST:event_btnAndraLosenActionPerformed
 
@@ -231,13 +224,13 @@ public class AndraLosenord extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosen;
+    private javax.swing.JToggleButton btnLoggaUt;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblAgentBild;
     private javax.swing.JLabel lblAnvandare;
     private javax.swing.JLabel lblMeddelande;

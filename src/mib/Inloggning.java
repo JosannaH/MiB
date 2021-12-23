@@ -18,11 +18,10 @@ public class Inloggning extends javax.swing.JFrame {
      * Creates new form Inloggning
      */
     private InfDB idb;
+    // Att spara ID och typ i, för att skicka med till andra klasser
+    private String anvTyp;
+    private String anvID;
     
-    //sparar värden som kan hämtas med getters
-    private String getAnvandare;
-    private String getTyp;
-
     public Inloggning(InfDB idb) {
         initComponents();
         this.idb = idb;
@@ -31,16 +30,6 @@ public class Inloggning extends javax.swing.JFrame {
      public Inloggning() {
         initComponents();
     }
-  /*
-    private String anvId;
-    private String anvTyp;
-
-    public Inloggning(InfDB idb, String anvId, String anvTyp) {
-        initComponents();
-        this.idb = idb;
-        this.anvId = anvId;
-        this.anvTyp = anvTyp;
-    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -139,19 +128,19 @@ public class Inloggning extends javax.swing.JFrame {
     private void btnLoggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggainActionPerformed
 
         // Hämtar värden från textFields
-        String anvandarText = txtAnvandare.getText();
+        anvID = txtAnvandare.getText();
         String losenText = pswlosen.getText();
         //Variabler att spara SQL frågor i
         String inloggTyp = "";
         String losenTyp = "";
         //Hämta värde från comboBox/rullist.
-        String typVal = cmbList.getSelectedItem().toString();
-        getTyp = typVal;
+        anvTyp = cmbList.getSelectedItem().toString();
+       // getTyp = anvTyp;
 
         //Kontrollera om användarnamn och lösenord fylls i. 
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
-            //Kontrollera om anv valt Agent eller Alien i comboBox
-            if (typVal.equals("Agent")) {
+            //Kontrollera om anv valt Agent eller Alien i comboBox och spara SQL frågor utifrån det
+            if (anvTyp.equals("Agent")) {
                 inloggTyp = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
                 losenTyp = "SELECT Losenord FROM agent WHERE Agent_ID=";
             } 
@@ -161,29 +150,28 @@ public class Inloggning extends javax.swing.JFrame {
             }
             try {
 
-                String anvandare = idb.fetchSingle(inloggTyp + anvandarText);
+                String anvandare = idb.fetchSingle(inloggTyp + anvID);
                 //används som return value i getAnvandarID()
-                getAnvandare = anvandare;
-                String losen = idb.fetchSingle(losenTyp + anvandarText);
-           
-                String admin = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvandarText);
+               // getAnvandare = anvandare;
+                String losen = idb.fetchSingle(losenTyp + anvID);
+                String admin = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvID);
 
-                System.out.println("Fetch anv: " + anvandare); //test
-                System.out.println("Fetch losen: " + losen); // test
+               // System.out.println("Fetch anv: " + anvandare); //test
+                //System.out.println("Fetch losen: " + losen); // test
 
                 //Kontrollerar man att användare/lösenord stämmer överens.
-                if (anvandarText.equals(anvandare) && losenText.equals(losen)) {
+                if (anvID.equals(anvandare) && losenText.equals(losen)) {
                     //Här ska koden för att komma till nästa fönster, startsidan, finnas.
                     JOptionPane.showMessageDialog(null, "Inloggning lyckades!");
                     //Här kontrolleras om man är alien/agent/admin och startsida skapas baserat på detta.
-                    if (admin.equals("J") && typVal.equals("Agent")) {
+                    if (admin.equals("J") && anvTyp.equals("Agent")) {
                         setVisible(false);
                         StartsidaAdmin startAdmin = new StartsidaAdmin(idb);
                         startAdmin.setVisible(true);
                     }
-                    else if (typVal.equals("Agent")){
+                    else if (anvTyp.equals("Agent")){
                         setVisible(false);
-                        StartsidaAgent startAgent= new StartsidaAgent(idb, getAnvandare, getTyp);
+                        StartsidaAgent startAgent= new StartsidaAgent(idb, anvID, anvTyp);
                         startAgent.setVisible(true);
                     }
                     else{
@@ -223,6 +211,7 @@ public class Inloggning extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 //Metoder
+    /*
     public String getAnvandarID(){
         return getAnvandare;
     }
@@ -230,5 +219,6 @@ public class Inloggning extends javax.swing.JFrame {
     public String getAnvandarTyp(){
         return getTyp;
     }
+    */
 
 }
