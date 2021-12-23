@@ -4,7 +4,9 @@
  */
 package mib;
 
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -189,16 +191,24 @@ public class AndraLosenord extends javax.swing.JFrame {
         //Kollar att alla fält är ifyllda
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pwNuvLosen) && Validering.textFaltHarVarde(pwNyttLosen)) {
        
+            try{
                 // Lösen för individen hämtas ur databasen
-                getLosen = "SELECT Losenord FROM " + anvandarTyp + " WHERE " + anvandarTyp + "_ID=" + anvandare;
+                getLosen = idb.fetchSingle("SELECT Losenord FROM " + anvandarTyp + " WHERE " + anvandarTyp + "_ID=" + anvandare);
                 //jämför inmatat lösenord med lösenord från databas
                 if(nuvLosen.equals(getLosen)){
-                    // TODO query för att ändra lösenordet i databasen
+                    // ändrar lösenordet i databasen
+                    idb.fetchSingle("update " + anvandarTyp + " set losenord =" + nyttLosen+ " where " + anvandarTyp + "_ID=" + anvandare);
                     lblAnvandare.setText("Ditt lösenord är ändrat");
                 }
                 else{
                     lblAnvandare.setText("Användare och nuvarande lösenord sstämmer inte överens");
                 }
+                
+            }
+            catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage());
+                    }
         }
         else{
             lblAnvandare.setText("Alla fält måste fyllas i");
