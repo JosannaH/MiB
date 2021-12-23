@@ -26,7 +26,7 @@ public class Inloggning extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
     }
-    // konstruktor utan parametrar
+
      public Inloggning() {
         initComponents();
     }
@@ -127,18 +127,18 @@ public class Inloggning extends javax.swing.JFrame {
 
     private void btnLoggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggainActionPerformed
 
-        // Hämtar värden från textFields
+        // Hämtar värden som användaren matat in
         anvID = txtAnvandare.getText();
-        String losenText = pswlosen.getText();
+        String losenord = pswlosen.getText();
         //Variabler att spara SQL frågor i
         String inloggTyp = "";
         String losenTyp = "";
         //Hämta värde från comboBox/rullist.
         anvTyp = cmbList.getSelectedItem().toString();
-       // getTyp = anvTyp;
 
         //Kontrollera om användarnamn och lösenord fylls i. 
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
+            
             //Kontrollera om anv valt Agent eller Alien i comboBox och spara SQL frågor utifrån det
             if (anvTyp.equals("Agent")) {
                 inloggTyp = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
@@ -150,21 +150,15 @@ public class Inloggning extends javax.swing.JFrame {
             }
             try {
 
-                String anvandare = idb.fetchSingle(inloggTyp + anvID);
-                //används som return value i getAnvandarID()
-               // getAnvandare = anvandare;
-                String losen = idb.fetchSingle(losenTyp + anvID);
-                String admin = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvID);
+                String anvFranDatabas = idb.fetchSingle(inloggTyp + anvID);
+                String losenFranDatabas = idb.fetchSingle(losenTyp + anvID);
+                String adminStatus = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvID);
 
-               // System.out.println("Fetch anv: " + anvandare); //test
-                //System.out.println("Fetch losen: " + losen); // test
+                //Kontrollerar att användare/lösenord stämmer överens.
+                if (anvID.equals(anvFranDatabas) && losenord.equals(losenFranDatabas)) {
 
-                //Kontrollerar man att användare/lösenord stämmer överens.
-                if (anvID.equals(anvandare) && losenText.equals(losen)) {
-                    //Här ska koden för att komma till nästa fönster, startsidan, finnas.
-                    JOptionPane.showMessageDialog(null, "Inloggning lyckades!");
                     //Här kontrolleras om man är alien/agent/admin och startsida skapas baserat på detta.
-                    if (admin.equals("J") && anvTyp.equals("Agent")) {
+                    if (adminStatus.equals("J") && anvTyp.equals("Agent")) {
                         setVisible(false);
                         StartsidaAdmin startAdmin = new StartsidaAdmin(idb);
                         startAdmin.setVisible(true);
@@ -186,8 +180,8 @@ public class Inloggning extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
-        } else { //Alien
-
+        } else { 
+                 JOptionPane.showMessageDialog(null, "Fyll i användarnamn och lösenord");
         }
     }//GEN-LAST:event_btnLoggainActionPerformed
 
