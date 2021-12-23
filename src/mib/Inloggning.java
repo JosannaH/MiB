@@ -40,7 +40,7 @@ public class Inloggning extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        RubrikAgentInlogg = new javax.swing.JLabel();
+        rubrikAgentInlogg = new javax.swing.JLabel();
         lblInlogg = new javax.swing.JLabel();
         lblAnvandare = new javax.swing.JLabel();
         lblLosen = new javax.swing.JLabel();
@@ -52,8 +52,8 @@ public class Inloggning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Inlogg"); // NOI18N
 
-        RubrikAgentInlogg.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        RubrikAgentInlogg.setText("Välkommen till MiB Service System");
+        rubrikAgentInlogg.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        rubrikAgentInlogg.setText("Välkommen till MiB Service System");
 
         lblInlogg.setText("Inloggningstyp");
 
@@ -97,14 +97,14 @@ public class Inloggning extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(pswlosen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                     .addComponent(txtAnvandare, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(RubrikAgentInlogg)))
+                        .addComponent(rubrikAgentInlogg)))
                 .addGap(223, 223, 223))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(97, 97, 97)
-                .addComponent(RubrikAgentInlogg)
+                .addComponent(rubrikAgentInlogg)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblInlogg)
@@ -194,13 +194,13 @@ public class Inloggning extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel RubrikAgentInlogg;
     private javax.swing.JToggleButton btnLoggain;
     private javax.swing.JComboBox<String> cmbList;
     private javax.swing.JLabel lblAnvandare;
     private javax.swing.JLabel lblInlogg;
     private javax.swing.JLabel lblLosen;
     private javax.swing.JPasswordField pswlosen;
+    private javax.swing.JLabel rubrikAgentInlogg;
     private javax.swing.JTextField txtAnvandare;
     // End of variables declaration//GEN-END:variables
 

@@ -38,7 +38,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     private void initComponents() {
 
         lblAgentBild = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblRubrik = new javax.swing.JLabel();
         btnLoggaUt = new javax.swing.JToggleButton();
         lblAnvandare = new javax.swing.JLabel();
         lblNuvLosen = new javax.swing.JLabel();
@@ -59,8 +59,8 @@ public class AndraLosenord extends javax.swing.JFrame {
         lblAgentBild.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAgentBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/losenord.png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jLabel2.setText("Ändra lösenord");
+        lblRubrik.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        lblRubrik.setText("Ändra lösenord");
 
         btnLoggaUt.setText("Logga ut");
         btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
@@ -134,14 +134,14 @@ public class AndraLosenord extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
                 .addGap(186, 186, 186)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -225,7 +225,6 @@ public class AndraLosenord extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosen;
     private javax.swing.JToggleButton btnLoggaUt;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -236,6 +235,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     private javax.swing.JLabel lblMeddelande;
     private javax.swing.JLabel lblNuvLosen;
     private javax.swing.JLabel lblNyttLosen;
+    private javax.swing.JLabel lblRubrik;
     private javax.swing.JPasswordField pwNuvLosen;
     private javax.swing.JPasswordField pwNyttLosen;
     private javax.swing.JTextField txtAnvandare;

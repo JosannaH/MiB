@@ -47,7 +47,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <Component id="RubrikAgentInlogg" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="rubrikAgentInlogg" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
@@ -58,7 +58,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-              <Component id="RubrikAgentInlogg" min="-2" max="-2" attributes="0"/>
+              <Component id="rubrikAgentInlogg" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblInlogg" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -82,7 +82,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="RubrikAgentInlogg">
+    <Component class="javax.swing.JLabel" name="rubrikAgentInlogg">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="0"/>
