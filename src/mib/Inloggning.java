@@ -160,7 +160,7 @@ public class Inloggning extends javax.swing.JFrame {
                     //Här kontrolleras om man är alien/agent/admin och startsida skapas baserat på detta.
                     if (adminStatus.equals("J") && anvTyp.equals("Agent")) {
                         setVisible(false);
-                        StartsidaAdmin startAdmin = new StartsidaAdmin(idb);
+                        StartsidaAdmin startAdmin = new StartsidaAdmin(idb, anvID, anvTyp);
                         startAdmin.setVisible(true);
                     }
                     else if (anvTyp.equals("Agent")){
@@ -170,7 +170,7 @@ public class Inloggning extends javax.swing.JFrame {
                     }
                     else{
                         setVisible(false);
-                        StartsidaAlien startAlien= new StartsidaAlien(idb);
+                        StartsidaAlien startAlien= new StartsidaAlien(idb, anvID, anvTyp);
                         startAlien.setVisible(true);
                     }
                 } else {

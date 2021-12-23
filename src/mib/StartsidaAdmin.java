@@ -16,10 +16,19 @@ public class StartsidaAdmin extends javax.swing.JFrame {
      * Creates new form StartsidaAgent
      */
     private InfDB idb;
+    private String anvId;
+    private String anvTyp;
     
     public StartsidaAdmin(InfDB idb) {
         initComponents();
         this.idb = idb;
+    }
+    
+        public StartsidaAdmin(InfDB idb, String anvId, String anvTyp) {
+        initComponents();
+        this.idb = idb;
+        this.anvId = anvId;
+        this.anvTyp = anvTyp;
     }
 
     /**
