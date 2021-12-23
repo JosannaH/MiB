@@ -17,6 +17,7 @@ public class StartsidaAgent extends javax.swing.JFrame {
      */
     private InfDB idb;
     
+    
     public StartsidaAgent(InfDB idb) {
         initComponents();
         this.idb = idb;
@@ -55,7 +56,7 @@ public class StartsidaAgent extends javax.swing.JFrame {
         lblAgentBild.setText("pew pew pew");
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jLabel2.setText("Välkommen Agent XXX!");
+        jLabel2.setText("Välkommen Agent!");
 
         jToggleButton1.setText("Logga ut");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +74,7 @@ public class StartsidaAgent extends javax.swing.JFrame {
         jMenu5.setText("                                                                                                    ");
         jMenuBar1.add(jMenu5);
 
-        jMenu3.setText("Inloggad som");
+        jMenu3.setText("Inloggad som Agent");
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
