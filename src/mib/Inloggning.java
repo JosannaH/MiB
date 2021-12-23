@@ -45,6 +45,7 @@ public class Inloggning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Inlogg"); // NOI18N
 
+        RubrikAgentInlogg.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         RubrikAgentInlogg.setText("Välkommen till MiB Service System");
 
         lblInlogg.setText("Inloggningstyp");
@@ -72,7 +73,7 @@ public class Inloggning extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(247, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
@@ -111,7 +112,7 @@ public class Inloggning extends javax.swing.JFrame {
                     .addComponent(pswlosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnLoggain)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,7 +135,8 @@ public class Inloggning extends javax.swing.JFrame {
             if (typVal.equals("Agent")) {
                 inloggTyp = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
                 losenTyp = "SELECT Losenord FROM agent WHERE Agent_ID=";
-            } else {
+            } 
+            else {
                 inloggTyp = "SELECT Alien_ID FROM alien WHERE Alien_ID=";
                 losenTyp = "SELECT Losenord FROM alien WHERE Alien_ID=";
             }
@@ -142,6 +144,7 @@ public class Inloggning extends javax.swing.JFrame {
 
                 String anvandare = idb.fetchSingle(inloggTyp + anvandarText);
                 String losen = idb.fetchSingle(losenTyp + anvandarText);
+                String admin = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvandarText);
 
                 System.out.println("Fetch anv: " + anvandare); //test
                 System.out.println("Fetch losen: " + losen); // test
@@ -150,9 +153,22 @@ public class Inloggning extends javax.swing.JFrame {
                 if (anvandarText.equals(anvandare) && losenText.equals(losen)) {
                     //Här ska koden för att komma till nästa fönster, startsidan, finnas.
                     JOptionPane.showMessageDialog(null, "Inloggning lyckades!");
-                    //if (ADMINISTRATÖR) {
-
-                    //}
+                    //Här kontrolleras om man är alien/agent/admin och startsida skapas baserat på detta.
+                    if (admin.equals("J") && typVal.equals("Agent")) {
+                        setVisible(false);
+                        StartsidaAdmin startAdmin = new StartsidaAdmin(idb);
+                        startAdmin.setVisible(true);
+                    }
+                    else if (typVal.equals("Agent")){
+                        setVisible(false);
+                        StartsidaAgent startAgent= new StartsidaAgent(idb);
+                        startAgent.setVisible(true);
+                    }
+                    else{
+                        setVisible(false);
+                        StartsidaAlien startAlien= new StartsidaAlien(idb);
+                        startAlien.setVisible(true);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Lösenordet är fel!");
                 }
