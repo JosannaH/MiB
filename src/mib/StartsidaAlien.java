@@ -54,7 +54,7 @@ public class StartsidaAlien extends javax.swing.JFrame {
         lblAlienBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/delfin.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jLabel2.setText("Välkommen Agent XXX!");
+        jLabel2.setText("Välkommen Alien!");
 
         jToggleButton1.setText("Logga ut");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -69,10 +69,10 @@ public class StartsidaAlien extends javax.swing.JFrame {
         jMenu2.setText("Funktioner");
         jMenuBar1.add(jMenu2);
 
-        jMenu5.setText("                                                                               ");
+        jMenu5.setText("                                                                                         ");
         jMenuBar1.add(jMenu5);
 
-        jMenu3.setText("Inloggad som");
+        jMenu3.setText("Inloggad som Alien");
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
