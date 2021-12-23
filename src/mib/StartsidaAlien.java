@@ -10,14 +10,14 @@ import oru.inf.InfDB;
  *
  * @author luna
  */
-public class StartsidaAgent extends javax.swing.JFrame {
+public class StartsidaAlien extends javax.swing.JFrame {
 
     /**
      * Creates new form StartsidaAgent
      */
     private InfDB idb;
     
-    public StartsidaAgent(InfDB idb) {
+    public StartsidaAlien(InfDB idb) {
         initComponents();
         this.idb = idb;
     }
@@ -45,14 +45,14 @@ public class StartsidaAgent extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Ändra lösenord", "", "Hantera aliens", "", "Registrera ny utrustning", "", "Visa områdeschef" };
+            String[] strings = { "Ändra lösenord", "", "Visa min områdeschef" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(jList1);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/agentMedPistolLiten.png"))); // NOI18N
-        jLabel1.setText("pew pew pew");
+        jLabel1.setText("<------ DELFIN");
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel2.setText("Välkommen Agent XXX!");

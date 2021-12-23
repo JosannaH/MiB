@@ -155,7 +155,9 @@ public class Inloggning extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Inloggning lyckades!");
                     //Här kontrolleras om man är alien/agent/admin och startsida skapas baserat på detta.
                     if (admin.equals("J") && typVal.equals("Agent")) {
-                        
+                        setVisible(false);
+                        StartsidaAdmin startAdmin = new StartsidaAdmin(idb);
+                        startAdmin.setVisible(true);
                     }
                     else if (typVal.equals("Agent")){
                         setVisible(false);
@@ -163,7 +165,9 @@ public class Inloggning extends javax.swing.JFrame {
                         startAgent.setVisible(true);
                     }
                     else{
-                        
+                        setVisible(false);
+                        StartsidaAlien startAlien= new StartsidaAlien(idb);
+                        startAlien.setVisible(true);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Lösenordet är fel!");

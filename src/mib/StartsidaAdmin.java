@@ -10,14 +10,14 @@ import oru.inf.InfDB;
  *
  * @author luna
  */
-public class StartsidaAgent extends javax.swing.JFrame {
+public class StartsidaAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form StartsidaAgent
      */
     private InfDB idb;
     
-    public StartsidaAgent(InfDB idb) {
+    public StartsidaAdmin(InfDB idb) {
         initComponents();
         this.idb = idb;
     }
@@ -45,7 +45,7 @@ public class StartsidaAgent extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Ändra lösenord", "", "Hantera aliens", "", "Registrera ny utrustning", "", "Visa områdeschef" };
+            String[] strings = { "Ändra lösenord", "", "Hantera aliens", "", "Hantera agenter", "", "Hantera utrustning", "", "Hantera områdeschef" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -69,7 +69,7 @@ public class StartsidaAgent extends javax.swing.JFrame {
         jMenu4.setText("Logga ut");
         jMenuBar1.add(jMenu4);
 
-        jMenu3.setText("Inloggad som");
+        jMenu3.setText("Inloggad som Admin");
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
