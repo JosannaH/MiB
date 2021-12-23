@@ -18,10 +18,14 @@ public class AndraLosenord extends javax.swing.JFrame {
      * Creates new form StartsidaAgent
      */
     private InfDB idb;
+    private String anvId;
+    private String anvTyp;
 
-    public AndraLosenord(InfDB idb) {
+    public AndraLosenord(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
+        this.anvId = anvId;
+        this.anvTyp = anvTyp;
     }
 
     /**
@@ -187,18 +191,23 @@ public class AndraLosenord extends javax.swing.JFrame {
         Inloggning inlogg = new Inloggning();
         
         String anvandarTyp = inlogg.getAnvandarTyp();
+        System.out.println("Användartyp: " + anvTyp);
      
         //Kollar att alla fält är ifyllda
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pwNuvLosen) && Validering.textFaltHarVarde(pwNyttLosen)) {
        
             try{
                 // Lösen för individen hämtas ur databasen
-                getLosen = idb.fetchSingle("SELECT Losenord FROM " + anvandarTyp + " WHERE " + anvandarTyp + "_ID=" + anvandare);
+                getLosen = idb.fetchSingle("SELECT Losenord FROM " + anvTyp + " WHERE " + anvTyp + "_ID=" + anvandare);
+                System.out.println("Lösen från användare = " + nuvLosen);
+                System.out.println("Lösen från databas = " + getLosen);
+                
+                       
                 //jämför inmatat lösenord med lösenord från databas
                 if(nuvLosen.equals(getLosen)){
                     // ändrar lösenordet i databasen
-                    idb.fetchSingle("update " + anvandarTyp + " set losenord =" + nyttLosen+ " where " + anvandarTyp + "_ID=" + anvandare);
-                    lblAnvandare.setText("Ditt lösenord är ändrat");
+                    idb.fetchSingle("UPDATE " + anvTyp + " SET Losenord = '" + nyttLosen + "' where " + anvTyp + "_ID=" + anvandare);
+                    btnAndraLosen.setText("Ditt lösenord är ändrat");
                 }
                 else{
                     lblAnvandare.setText("Användare och nuvarande lösenord sstämmer inte överens");

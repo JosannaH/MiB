@@ -18,6 +18,8 @@ public class Inloggning extends javax.swing.JFrame {
      * Creates new form Inloggning
      */
     private InfDB idb;
+    
+    //sparar värden som kan hämtas med getters
     private String getAnvandare;
     private String getTyp;
 
@@ -29,6 +31,16 @@ public class Inloggning extends javax.swing.JFrame {
      public Inloggning() {
         initComponents();
     }
+  /*
+    private String anvId;
+    private String anvTyp;
+
+    public Inloggning(InfDB idb, String anvId, String anvTyp) {
+        initComponents();
+        this.idb = idb;
+        this.anvId = anvId;
+        this.anvTyp = anvTyp;
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -171,7 +183,7 @@ public class Inloggning extends javax.swing.JFrame {
                     }
                     else if (typVal.equals("Agent")){
                         setVisible(false);
-                        StartsidaAgent startAgent= new StartsidaAgent(idb);
+                        StartsidaAgent startAgent= new StartsidaAgent(idb, getAnvandare, getTyp);
                         startAgent.setVisible(true);
                     }
                     else{

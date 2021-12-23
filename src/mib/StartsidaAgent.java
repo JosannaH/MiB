@@ -16,11 +16,19 @@ public class StartsidaAgent extends javax.swing.JFrame {
      * Creates new form StartsidaAgent
      */
     private InfDB idb;
+    private String anvId;
+    private String anvTyp;
     
     
     public StartsidaAgent(InfDB idb) {
         initComponents();
         this.idb = idb;
+    }
+    public StartsidaAgent(InfDB idb, String anvId, String anvTyp) {
+        initComponents();
+        this.idb = idb;
+        this.anvId = anvId;
+        this.anvTyp = anvTyp;
     }
 
     /**
@@ -49,6 +57,11 @@ public class StartsidaAgent extends javax.swing.JFrame {
             String[] strings = { "Ändra lösenord", "", "Hantera aliens", "", "Registrera ny utrustning", "", "Visa områdeschef" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(jList1);
 
@@ -123,6 +136,12 @@ public class StartsidaAgent extends javax.swing.JFrame {
         inlogg.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+            setVisible(false);
+            AndraLosenord andraLosen = new AndraLosenord(idb, anvId, anvTyp);
+            andraLosen.setVisible(true);
+    }//GEN-LAST:event_jList1MouseClicked
 
     /**
      * @param args the command line arguments
