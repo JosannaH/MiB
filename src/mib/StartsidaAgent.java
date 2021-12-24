@@ -45,6 +45,7 @@ public class StartsidaAgent extends javax.swing.JFrame {
         lblAgentBild = new javax.swing.JLabel();
         lblRubrik = new javax.swing.JLabel();
         btnLoggaUt = new javax.swing.JToggleButton();
+        btnTestHanteraAliens = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -58,6 +59,8 @@ public class StartsidaAgent extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        menyLista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        menyLista.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menyLista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menyListaMouseClicked(evt);
@@ -75,6 +78,18 @@ public class StartsidaAgent extends javax.swing.JFrame {
         btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoggaUtActionPerformed(evt);
+            }
+        });
+
+        btnTestHanteraAliens.setText("Testknapp Hantera aliens");
+        btnTestHanteraAliens.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTestHanteraAliensMouseClicked(evt);
+            }
+        });
+        btnTestHanteraAliens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestHanteraAliensActionPerformed(evt);
             }
         });
 
@@ -98,7 +113,9 @@ public class StartsidaAgent extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTestHanteraAliens))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,9 +134,12 @@ public class StartsidaAgent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                            .addComponent(lblAgentBild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(btnTestHanteraAliens)))
                         .addContainerGap(30, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -143,6 +163,20 @@ public class StartsidaAgent extends javax.swing.JFrame {
             andraLosen.setVisible(true);
     }//GEN-LAST:event_menyListaMouseClicked
 
+    private void btnTestHanteraAliensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestHanteraAliensActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTestHanteraAliensActionPerformed
+
+    // Hittade inte hur man ger varje val i menyn olika länkar till andra sidor
+    // oavsett vart i menyn man klickar så kommer man till Ändra lösenord
+    // så jag gjorde en knapp så att jag kan nå Hantera aliens, för att kunna testa sidan Hantera aliens
+    // och även Lista aliens
+    private void btnTestHanteraAliensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTestHanteraAliensMouseClicked
+        setVisible(false);
+        HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
+        hanteraAliens.setVisible(true);
+    }//GEN-LAST:event_btnTestHanteraAliensMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -150,6 +184,7 @@ public class StartsidaAgent extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnLoggaUt;
+    private javax.swing.JButton btnTestHanteraAliens;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
