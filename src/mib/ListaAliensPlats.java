@@ -114,11 +114,15 @@ public class ListaAliensPlats extends javax.swing.JFrame {
             tblTabell.getColumnModel().getColumn(4).setHeaderValue("Reg. datum");
         }
 
+        cmBoxOmrade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmBoxOmradeMouseClicked(evt);
+            }
+        });
+
         lblFilterVal.setText("Välj område:");
 
         lblPlats.setText("Välj plats:");
-
-        cmBoxPlats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jMenu1.setText("Mitt konto");
         menuBar.add(jMenu1);
@@ -193,40 +197,75 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // Logga ut högst upp i MenuBar
+    /**
+     * Logga ut högst upp i MenuBar
+     * @param evt 
+     */
     private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
-    // Gå tillbaka till föregående sida
+    /**
+     * Gå tillbaka till föregående sida
+     * @param evt 
+     */
     private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
          setVisible(false);
         HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
         hanteraAliens.setVisible(true);
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
 
-    // Lägg till alla områden i combobox
-    private void getOmraden() {
-    
-        try {
+    /**
+     * Körs när användaren valt ett område
+     * @param evt 
+     */
+    private void cmBoxOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmBoxOmradeMouseClicked
+        getPlatser();
+    }//GEN-LAST:event_cmBoxOmradeMouseClicked
 
+    /**
+     * Lägger till alla områden i drop-down-listan
+     */
+    private void getOmraden() {
+        try {
             // Hämta alla områden, spara i hashmap i bokstavsordning
              ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade ORDER BY Benamning ASC");
              
+             // loopa igenom lista och lägg till alla områden i drop down menyn 
                for (int i = 0; i < listaOmraden.size(); i++) {
+                   
                 String omrade = listaOmraden.get(i).get("Benamning");
-
                 cmBoxOmrade.addItem(omrade);
                }
-
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
-        
-       
+    }
+    
+    /**
+     * Hämtar platser utifrån vilket område användaren valt
+     * och lägger till dom i drop-down-listan
+     */
+    // TODO Denna metod funkar ej
+    private void getPlatser(){
+        // Sparar det område som amvändaren valt
+        String val = cmBoxOmrade.getSelectedItem().toString();
+
+        try{
+            ArrayList<HashMap<String, String>> listaPlatser = idb.fetchRows("SELECT Benamning FROM plats WHERE Finns_I = " + val + " ORDER BY Benamning ASC");
+            // loopa igenom lista och lägg till alla områden i drop down menyn 
+               for (int i = 0; i < listaPlatser.size(); i++) {
+                   
+                String plats = listaPlatser.get(i).get("Benamning");
+                cmBoxPlats.addItem(plats);
+               }
+        }catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
     }
     /**
      * @param args the command line arguments
