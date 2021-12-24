@@ -46,6 +46,7 @@ public class HanteraAliens extends javax.swing.JFrame {
         lblAgentBild = new javax.swing.JLabel();
         lblRubrik = new javax.swing.JLabel();
         btnLoggaUt = new javax.swing.JToggleButton();
+        btnListaAliens = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -78,6 +79,13 @@ public class HanteraAliens extends javax.swing.JFrame {
             }
         });
 
+        btnListaAliens.setText("Lista aliens");
+        btnListaAliens.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnListaAliensMouseClicked(evt);
+            }
+        });
+
         jMenu1.setText("Mitt konto");
         menuBar.add(jMenu1);
 
@@ -96,7 +104,9 @@ public class HanteraAliens extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnListaAliens))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -115,9 +125,12 @@ public class HanteraAliens extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                            .addComponent(lblAgentBild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(btnListaAliens)))
                         .addContainerGap(30, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -136,10 +149,14 @@ public class HanteraAliens extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     private void menyListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menyListaMouseClicked
-            setVisible(false);
-            AndraLosenord andraLosen = new AndraLosenord(idb, anvId, anvTyp);
-            andraLosen.setVisible(true);
+            
     }//GEN-LAST:event_menyListaMouseClicked
+
+    private void btnListaAliensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaAliensMouseClicked
+        setVisible(false);
+        ListaAliensPlats listaAlien = new ListaAliensPlats(idb, anvId, anvTyp);
+        listaAlien.setVisible(true);
+    }//GEN-LAST:event_btnListaAliensMouseClicked
 
     /**
      * @param args the command line arguments
@@ -147,6 +164,7 @@ public class HanteraAliens extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnListaAliens;
     private javax.swing.JToggleButton btnLoggaUt;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
