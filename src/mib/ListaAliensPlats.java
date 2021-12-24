@@ -4,7 +4,11 @@
  */
 package mib;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -23,13 +27,17 @@ public class ListaAliensPlats extends javax.swing.JFrame {
     public ListaAliensPlats(InfDB idb) {
         initComponents();
         this.idb = idb;
+  
     }
+
     public ListaAliensPlats(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
+        //Hämta alla områden så dom finns i Combobox från början
+        getOmraden();
     }
 
     /**
@@ -41,43 +49,78 @@ public class ListaAliensPlats extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblListaAliens = new javax.swing.JLabel();
+        btnGaTillbaka = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        menyLista = new javax.swing.JList<>();
-        lblAgentBild = new javax.swing.JLabel();
-        lblRubrik = new javax.swing.JLabel();
-        btnLoggaUt = new javax.swing.JToggleButton();
+        tblTabell = new javax.swing.JTable();
+        cmBoxOmrade = new javax.swing.JComboBox<>();
+        lblFilterVal = new javax.swing.JLabel();
+        lblPlats = new javax.swing.JLabel();
+        cmBoxPlats = new javax.swing.JComboBox<>();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         menuBarInloggadSom = new javax.swing.JMenu();
+        menuBarLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        menyLista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Ändra lösenord", "", "Hantera aliens", "", "Registrera ny utrustning", "", "Visa områdeschef" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        menyLista.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblListaAliens.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        lblListaAliens.setText("Lista aliens efter plats");
+
+        btnGaTillbaka.setText("Gå tillbaka");
+        btnGaTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menyListaMouseClicked(evt);
+                btnGaTillbakaMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(menyLista);
 
-        lblAgentBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/agent200.png"))); // NOI18N
-        lblAgentBild.setText("pew pew pew");
+        tblTabell.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Alien ID", "Namn", "Telefon", "Ras", "Reg. datum"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, false
+            };
 
-        lblRubrik.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        lblRubrik.setText("Välkommen Agent!");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
-        btnLoggaUt.setText("Logga ut");
-        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoggaUtActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        tblTabell.setColumnSelectionAllowed(true);
+        tblTabell.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tblTabell);
+        tblTabell.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tblTabell.getColumnModel().getColumnCount() > 0) {
+            tblTabell.getColumnModel().getColumn(0).setHeaderValue("Alien ID");
+            tblTabell.getColumnModel().getColumn(1).setHeaderValue("Namn");
+            tblTabell.getColumnModel().getColumn(2).setHeaderValue("Telefon");
+            tblTabell.getColumnModel().getColumn(3).setHeaderValue("Ras");
+            tblTabell.getColumnModel().getColumn(4).setHeaderValue("Reg. datum");
+        }
+
+        cmBoxOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2" }));
+
+        lblFilterVal.setText("Välj område:");
+
+        lblPlats.setText("Välj plats:");
+
+        cmBoxPlats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jMenu1.setText("Mitt konto");
         menuBar.add(jMenu1);
@@ -85,9 +128,19 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         jMenu2.setText("Funktioner");
         menuBar.add(jMenu2);
 
-        jMenu5.setText("                                                                                                    ");
+        jMenu5.setText("                                                                                 ");
         menuBar.add(jMenu5);
+
+        menuBarInloggadSom.setText("Inloggad som XXX");
         menuBar.add(menuBarInloggadSom);
+
+        menuBarLoggaUt.setText("Logga ut");
+        menuBarLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarLoggaUtMouseClicked(evt);
+            }
+        });
+        menuBar.add(menuBarLoggaUt);
 
         setJMenuBar(menuBar);
 
@@ -95,68 +148,107 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLoggaUt)
-                .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnGaTillbaka))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblFilterVal, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cmBoxOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                            .addComponent(lblAgentBild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(30, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLoggaUt)
-                        .addGap(14, 14, 14))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cmBoxOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblFilterVal))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblPlats)
+                        .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnGaTillbaka)
+                .addGap(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
+    // Logga ut högst upp i MenuBar
+    private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoggaUtActionPerformed
+    }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
-    private void menyListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menyListaMouseClicked
-            setVisible(false);
-            AndraLosenord andraLosen = new AndraLosenord(idb, anvId, anvTyp);
-            andraLosen.setVisible(true);
-    }//GEN-LAST:event_menyListaMouseClicked
+    // Gå tillbaka till föregående sida
+    private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
+         setVisible(false);
+        HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
+        hanteraAliens.setVisible(true);
+    }//GEN-LAST:event_btnGaTillbakaMouseClicked
 
+    // Lägg till alla områden i combobox
+    private void getOmraden() {
+    
+        try {
+
+            // Hämta alla områden, spara i hashmap i bokstavsordning
+             ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade BY Benamning ASC");
+             
+               for (int i = 0; i < listaOmraden.size(); i++) {
+                String omrade = listaOmraden.get(i).get("Benamning");
+
+                cmBoxOmrade.addItem(omrade);
+               }
+
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+        
+       
+    }
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnLoggaUt;
+    private javax.swing.JButton btnGaTillbaka;
+    private javax.swing.JComboBox<String> cmBoxOmrade;
+    private javax.swing.JComboBox<String> cmBoxPlats;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAgentBild;
-    private javax.swing.JLabel lblRubrik;
+    private javax.swing.JLabel lblFilterVal;
+    private javax.swing.JLabel lblListaAliens;
+    private javax.swing.JLabel lblPlats;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuBarInloggadSom;
-    private javax.swing.JList<String> menyLista;
+    private javax.swing.JMenu menuBarLoggaUt;
+    private javax.swing.JTable tblTabell;
     // End of variables declaration//GEN-END:variables
 }
