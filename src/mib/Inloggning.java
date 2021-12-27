@@ -18,10 +18,17 @@ public class Inloggning extends javax.swing.JFrame {
      * Creates new form Inloggning
      */
     private InfDB idb;
-
+    // Att spara ID och typ i, för att skicka med till andra klasser
+    private String anvTyp;
+    private String anvID;
+    
     public Inloggning(InfDB idb) {
         initComponents();
         this.idb = idb;
+    }
+
+     public Inloggning() {
+        initComponents();
     }
 
     /**
@@ -33,7 +40,7 @@ public class Inloggning extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        RubrikAgentInlogg = new javax.swing.JLabel();
+        rubrikAgentInlogg = new javax.swing.JLabel();
         lblInlogg = new javax.swing.JLabel();
         lblAnvandare = new javax.swing.JLabel();
         lblLosen = new javax.swing.JLabel();
@@ -45,7 +52,8 @@ public class Inloggning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Inlogg"); // NOI18N
 
-        RubrikAgentInlogg.setText("Välkommen till MiB Service System");
+        rubrikAgentInlogg.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        rubrikAgentInlogg.setText("Välkommen till MiB Service System");
 
         lblInlogg.setText("Inloggningstyp");
 
@@ -72,7 +80,7 @@ public class Inloggning extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(247, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
@@ -89,14 +97,14 @@ public class Inloggning extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(pswlosen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                     .addComponent(txtAnvandare, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(RubrikAgentInlogg)))
+                        .addComponent(rubrikAgentInlogg)))
                 .addGap(223, 223, 223))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(97, 97, 97)
-                .addComponent(RubrikAgentInlogg)
+                .addComponent(rubrikAgentInlogg)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblInlogg)
@@ -111,7 +119,7 @@ public class Inloggning extends javax.swing.JFrame {
                     .addComponent(pswlosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnLoggain)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,40 +127,52 @@ public class Inloggning extends javax.swing.JFrame {
 
     private void btnLoggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggainActionPerformed
 
-        // Hämtar värden från textFields
-        String anvandarText = txtAnvandare.getText();
-        String losenText = pswlosen.getText();
+        // Hämtar värden som användaren matat in
+        anvID = txtAnvandare.getText();
+        String losenord = pswlosen.getText();
         //Variabler att spara SQL frågor i
         String inloggTyp = "";
         String losenTyp = "";
         //Hämta värde från comboBox/rullist.
-        String typVal = cmbList.getSelectedItem().toString();
+        anvTyp = cmbList.getSelectedItem().toString();
 
         //Kontrollera om användarnamn och lösenord fylls i. 
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
-            //Kontrollera om anv valt Agent eller Alien i comboBox
-            if (typVal.equals("Agent")) {
+            
+            //Kontrollera om anv valt Agent eller Alien i comboBox och spara SQL frågor utifrån det
+            if (anvTyp.equals("Agent")) {
                 inloggTyp = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
                 losenTyp = "SELECT Losenord FROM agent WHERE Agent_ID=";
-            } else {
+            } 
+            else {
                 inloggTyp = "SELECT Alien_ID FROM alien WHERE Alien_ID=";
                 losenTyp = "SELECT Losenord FROM alien WHERE Alien_ID=";
             }
             try {
 
-                String anvandare = idb.fetchSingle(inloggTyp + anvandarText);
-                String losen = idb.fetchSingle(losenTyp + anvandarText);
+                String anvFranDatabas = idb.fetchSingle(inloggTyp + anvID);
+                String losenFranDatabas = idb.fetchSingle(losenTyp + anvID);
+                String adminStatus = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvID);
 
-                System.out.println("Fetch anv: " + anvandare); //test
-                System.out.println("Fetch losen: " + losen); // test
+                //Kontrollerar att användare/lösenord stämmer överens.
+                if (anvID.equals(anvFranDatabas) && losenord.equals(losenFranDatabas)) {
 
-                //Kontrollerar man att användare/lösenord stämmer överens.
-                if (anvandarText.equals(anvandare) && losenText.equals(losen)) {
-                    //Här ska koden för att komma till nästa fönster, startsidan, finnas.
-                    JOptionPane.showMessageDialog(null, "Inloggning lyckades!");
-                    //if (ADMINISTRATÖR) {
-
-                    //}
+                    //Här kontrolleras om man är alien/agent/admin och startsida skapas baserat på detta.
+                    if (adminStatus.equals("J") && anvTyp.equals("Agent")) {
+                        setVisible(false);
+                        StartsidaAdmin startAdmin = new StartsidaAdmin(idb, anvID, anvTyp);
+                        startAdmin.setVisible(true);
+                    }
+                    else if (anvTyp.equals("Agent")){
+                        setVisible(false);
+                        StartsidaAgent startAgent= new StartsidaAgent(idb, anvID, anvTyp);
+                        startAgent.setVisible(true);
+                    }
+                    else{
+                        setVisible(false);
+                        StartsidaAlien startAlien= new StartsidaAlien(idb, anvID, anvTyp);
+                        startAlien.setVisible(true);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Lösenordet är fel!");
                 }
@@ -160,8 +180,8 @@ public class Inloggning extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
-        } else { //Alien
-
+        } else { 
+                 JOptionPane.showMessageDialog(null, "Fyll i användarnamn och lösenord");
         }
     }//GEN-LAST:event_btnLoggainActionPerformed
 
@@ -174,13 +194,25 @@ public class Inloggning extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel RubrikAgentInlogg;
     private javax.swing.JToggleButton btnLoggain;
     private javax.swing.JComboBox<String> cmbList;
     private javax.swing.JLabel lblAnvandare;
     private javax.swing.JLabel lblInlogg;
     private javax.swing.JLabel lblLosen;
     private javax.swing.JPasswordField pswlosen;
+    private javax.swing.JLabel rubrikAgentInlogg;
     private javax.swing.JTextField txtAnvandare;
     // End of variables declaration//GEN-END:variables
+
+//Metoder
+    /*
+    public String getAnvandarID(){
+        return getAnvandare;
+    }
+    
+    public String getAnvandarTyp(){
+        return getTyp;
+    }
+    */
+
 }
