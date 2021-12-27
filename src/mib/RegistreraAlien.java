@@ -12,6 +12,7 @@ import oru.inf.InfDB;
  */
 public class RegistreraAlien extends javax.swing.JFrame {
     
+    // används till konstruktorn
     private InfDB idb;
     private String anvId;
     private String anvTyp;
@@ -23,6 +24,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
         initComponents();
     }
     
+    // kontruktor som tar in information som bland annat används till den översta MenuBar
     public RegistreraAlien(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
