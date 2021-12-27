@@ -49,7 +49,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblTelefon" min="-2" pref="55" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txt" min="-2" pref="144" max="-2" attributes="0"/>
+                                      <Component id="txtTelefon" min="-2" pref="144" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="lblPersInfo" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -124,7 +124,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txt" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cmbPlats" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -190,7 +190,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSparaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt">
+    <Component class="javax.swing.JTextField" name="txtTelefon">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTelefonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTelefon">
       <Properties>
@@ -212,6 +215,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbRasActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -260,6 +266,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbOmradeActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -327,6 +336,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jPasswordField2"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="psw2ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

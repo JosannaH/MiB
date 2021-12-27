@@ -45,7 +45,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
         txtNamn = new javax.swing.JTextField();
         lblNamn = new javax.swing.JLabel();
         btnSpara = new javax.swing.JButton();
-        txt = new javax.swing.JTextField();
+        txtTelefon = new javax.swing.JTextField();
         lblTelefon = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cmbRas = new javax.swing.JComboBox<>();
@@ -84,11 +84,22 @@ public class RegistreraAlien extends javax.swing.JFrame {
             }
         });
 
+        txtTelefon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonActionPerformed(evt);
+            }
+        });
+
         lblTelefon.setText("Telefon");
 
         jLabel2.setText("Ras");
 
         cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Worm", "Squid" }));
+        cmbRas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRasActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Plats");
 
@@ -100,6 +111,11 @@ public class RegistreraAlien extends javax.swing.JFrame {
         jLabel5.setText("Ansvarig agent");
 
         cmbOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbOmrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbOmradeActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Lösenord");
 
@@ -129,6 +145,11 @@ public class RegistreraAlien extends javax.swing.JFrame {
         jLabel11.setText("Upprepa lösenord");
 
         psw2.setText("jPasswordField2");
+        psw2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                psw2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,7 +178,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(lblPersInfo))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -212,7 +233,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblTelefon)
-                                    .addComponent(txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)
                                     .addComponent(cmbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
@@ -245,21 +266,39 @@ public class RegistreraAlien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-        // TODO add your handling code here:
+        // Utgår ifrån att det är klicket på sparaknappen som gör att all info sparas i DG
+        
     }//GEN-LAST:event_btnSparaActionPerformed
 
     private void txtNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamnActionPerformed
-        // TODO add your handling code here:
+      String regNamn = txtNamn.getText();
     }//GEN-LAST:event_txtNamnActionPerformed
 
     private void psw1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psw1ActionPerformed
-        // TODO add your handling code here:
+       String regPassword = psw1.getText();
     }//GEN-LAST:event_psw1ActionPerformed
 
     private void cmbPlatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPlatsActionPerformed
-        // TODO add your handling code here:
+        String regPlats = cmbPlats.getSelectedItem().toString();
     }//GEN-LAST:event_cmbPlatsActionPerformed
 
+    private void psw2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psw2ActionPerformed
+       String regPasswordCheck = psw2.getText();
+    }//GEN-LAST:event_psw2ActionPerformed
+
+    private void cmbRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRasActionPerformed
+        String regRas = cmbRas.getSelectedItem().toString();
+    }//GEN-LAST:event_cmbRasActionPerformed
+
+    private void txtTelefonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonActionPerformed
+        String regTelefon = txtTelefon.getText();
+    }//GEN-LAST:event_txtTelefonActionPerformed
+
+    private void cmbOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOmradeActionPerformed
+        String regOmrande = cmbOmrade.getSelectedItem().toString();
+        int regOmradeInt = Integer.parseInt(regOmrande);
+    }//GEN-LAST:event_cmbOmradeActionPerformed
+       
     /**
      * @param args the command line arguments
      */
@@ -316,7 +355,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitel;
     private javax.swing.JPasswordField psw1;
     private javax.swing.JPasswordField psw2;
-    private javax.swing.JTextField txt;
     private javax.swing.JTextField txtNamn;
+    private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
 }
