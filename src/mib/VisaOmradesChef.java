@@ -5,10 +5,10 @@
 package mib;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import java.util.HashMap;
 
 /**
  *
@@ -20,11 +20,17 @@ public class VisaOmradesChef extends javax.swing.JFrame {
      * Creates new form StartsidaAgent
      */
     private InfDB idb;
+    private String anvId;
+    private String anvTyp;
     
     
-    public VisaOmradesChef(InfDB idb) {
+    public VisaOmradesChef(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
+        this.anvId = anvId;
+        this.anvTyp = anvTyp;
+        
+        omraden();
     }
 
     /**
@@ -36,14 +42,14 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        lblRubrikOmrade = new javax.swing.JLabel();
+        btnLoggaUtOmrade = new javax.swing.JToggleButton();
+        cmbOmrade = new javax.swing.JComboBox<>();
+        lblOmrade = new javax.swing.JLabel();
+        btnSokOmrade = new javax.swing.JToggleButton();
+        lblNorden = new javax.swing.JLabel();
+        lblChef = new javax.swing.JLabel();
+        menuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -51,44 +57,48 @@ public class VisaOmradesChef extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jLabel2.setText("Visa Områdeschef");
+        lblRubrikOmrade.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        lblRubrikOmrade.setText("Visa Områdeschef");
 
-        jToggleButton1.setText("Logga ut");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLoggaUtOmrade.setText("Logga ut");
+        btnLoggaUtOmrade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                btnLoggaUtOmradeActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmbOmrade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmbOmradeActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Område");
+        lblOmrade.setText("Område");
 
-        jToggleButton2.setText("Sök");
+        btnSokOmrade.setText("Sök");
+        btnSokOmrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSokOmradeActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/norden_karta.png"))); // NOI18N
+        lblNorden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/norden_karta.png"))); // NOI18N
 
-        jLabel4.setText("Chef för område XXX är XXX");
+        lblChef.setText("Chef för område XXX är XXX");
 
         jMenu1.setText("Mitt konto");
-        jMenuBar1.add(jMenu1);
+        menuBar1.add(jMenu1);
 
         jMenu2.setText("Funktioner");
-        jMenuBar1.add(jMenu2);
+        menuBar1.add(jMenu2);
 
         jMenu5.setText("                                                                                                    ");
-        jMenuBar1.add(jMenu5);
+        menuBar1.add(jMenu5);
 
         jMenu3.setText("Inloggad som Agent");
-        jMenuBar1.add(jMenu3);
+        menuBar1.add(jMenu3);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,47 +106,47 @@ public class VisaOmradesChef extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToggleButton1)
+                .addComponent(btnLoggaUtOmrade)
                 .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(192, 192, 192)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblRubrikOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(111, 111, 111)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(lblOmrade)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(71, 71, 71)
-                                .addComponent(jToggleButton2))
-                            .addComponent(jLabel4))
+                                .addComponent(btnSokOmrade))
+                            .addComponent(lblChef))
                         .addGap(38, 38, 38)
-                        .addComponent(jLabel3)))
+                        .addComponent(lblNorden)))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblRubrikOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(lblNorden)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jToggleButton1)
+                .addComponent(btnLoggaUtOmrade)
                 .addGap(14, 14, 14))
             .addGroup(layout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblOmrade))
                 .addGap(18, 18, 18)
-                .addComponent(jToggleButton2)
+                .addComponent(btnSokOmrade)
                 .addGap(45, 45, 45)
-                .addComponent(jLabel4)
+                .addComponent(lblChef)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -144,31 +154,43 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //Skapar en metod som man sen använder för att fylla rullisten med information. 
-    public void omraden()
+    private void omraden()
     {
         try{
-            HashMap<String, String> omradesLista = idb.fetchRow("SELECT Benamning FROM omrade ORDER BY Benamning");
-            for(String omrade : omradesLista.keySet()){
-                String omradesNamn = omradesLista.get(omrade);
-                jComboBox1.addItem(omradesNamn);
+            ArrayList<String> omradeLista = idb.fetchColumn("SELECT Benamning FROM omrade ORDER BY Benamning");
+            for(int i = 0; i < omradeLista.size(); i++){
+                String omradesNamn = omradeLista.get(i);
+                cmbOmrade.addItem(omradesNamn);
             }
         }
         catch(InfException e){
-             JOptionPane.showMessageDialog(null, "Något gick fel!");
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
     
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void btnLoggaUtOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtOmradeActionPerformed
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_btnLoggaUtOmradeActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmbOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOmradeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmbOmradeActionPerformed
+
+    private void btnSokOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokOmradeActionPerformed
+        String omraden = cmbOmrade.getSelectedItem().toString();
+        //try{
+             //String id = "" + omraden + "))";
+        //}
+        //catch(InfException e){
+             //JOptionPane.showMessageDialog(null, "Något gick fel!");
+            //System.out.println("Internt felmeddelande:" + e.getMessage());
+        //}
+        
+    }//GEN-LAST:event_btnSokOmradeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,17 +198,17 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JToggleButton btnLoggaUtOmrade;
+    private javax.swing.JToggleButton btnSokOmrade;
+    private javax.swing.JComboBox<String> cmbOmrade;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JLabel lblChef;
+    private javax.swing.JLabel lblNorden;
+    private javax.swing.JLabel lblOmrade;
+    private javax.swing.JLabel lblRubrikOmrade;
+    private javax.swing.JMenuBar menuBar1;
     // End of variables declaration//GEN-END:variables
 }
