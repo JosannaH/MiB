@@ -4,17 +4,30 @@
  */
 package mib;
 
+import oru.inf.InfDB;
+
 /**
  *
  * @author luna
  */
 public class RegistreraAlien extends javax.swing.JFrame {
+    
+    private InfDB idb;
+    private String anvId;
+    private String anvTyp;
 
     /**
      * Creates new form RegistreraAlien
      */
     public RegistreraAlien() {
         initComponents();
+    }
+    
+    public RegistreraAlien(InfDB idb, String anvId, String anvTyp) {
+        initComponents();
+        this.idb = idb;
+        this.anvId = anvId;
+        this.anvTyp = anvTyp;
     }
 
     /**

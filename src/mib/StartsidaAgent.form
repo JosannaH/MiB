@@ -50,22 +50,30 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="191" max="-2" attributes="0"/>
-                  <Component id="btnTestHanteraAliens" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="lblAgentBild" min="-2" pref="241" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnLoggaUt" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
               <Component id="lblRubrik" min="-2" pref="306" max="-2" attributes="0"/>
               <EmptySpace pref="126" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnUtrustning" max="32767" attributes="0"/>
+                  <Component id="btnAndraLosenord" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnHanteraAliens" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnChef" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnLoggaUt" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblAgentBild" min="-2" pref="241" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,23 +82,23 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Component id="lblRubrik" min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblAgentBild" min="-2" pref="280" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="125" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="btnTestHanteraAliens" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="lblAgentBild" min="-2" pref="280" max="-2" attributes="0"/>
+                      <EmptySpace pref="78" max="32767" attributes="0"/>
                       <Component id="btnLoggaUt" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="btnAndraLosenord" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="btnHanteraAliens" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="btnUtrustning" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="btnChef" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -98,40 +106,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JList" name="menyLista">
-          <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="7">
-                <StringItem index="0" value="&#xc4;ndra l&#xf6;senord"/>
-                <StringItem index="1" value=""/>
-                <StringItem index="2" value="Hantera aliens"/>
-                <StringItem index="3" value=""/>
-                <StringItem index="4" value="Registrera ny utrustning"/>
-                <StringItem index="5" value=""/>
-                <StringItem index="6" value="Visa omr&#xe5;deschef"/>
-              </StringArray>
-            </Property>
-            <Property name="selectionMode" type="int" value="0"/>
-            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menyListaMouseClicked"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JLabel" name="lblAgentBild">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -156,14 +130,31 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoggaUtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnTestHanteraAliens">
+    <Component class="javax.swing.JButton" name="btnHanteraAliens">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Testknapp Hantera aliens"/>
+        <Property name="text" type="java.lang.String" value="Hantera aliens"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTestHanteraAliensMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTestHanteraAliensActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnHanteraAliensMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAndraLosenord">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xc4;ndra l&#xf6;senord"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAndraLosenordMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnUtrustning">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrera ny utrustning"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnChef">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Visa omr&#xe5;deschef"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

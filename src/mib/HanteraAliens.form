@@ -48,12 +48,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnListaAliens" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="59" pref="276" max="32767" attributes="0"/>
               <Component id="lblAgentBild" min="-2" pref="241" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnLoggaUt" min="-2" max="-2" attributes="0"/>
@@ -63,6 +58,16 @@
               <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
               <Component id="lblRubrik" min="-2" pref="306" max="-2" attributes="0"/>
               <EmptySpace pref="126" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnListaPlats" max="32767" attributes="0"/>
+                  <Component id="btnRegistreraNyAlien" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,15 +79,17 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblAgentBild" min="-2" pref="280" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jScrollPane1" min="-2" pref="133" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="133" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="btnListaAliens" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRegistreraNyAlien" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnListaPlats" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblAgentBild" min="-2" pref="280" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -147,12 +154,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoggaUtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnListaAliens">
+    <Component class="javax.swing.JButton" name="btnListaPlats">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lista aliens"/>
+        <Property name="text" type="java.lang.String" value="Lista aliens utifr&#xe5;n plats"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnListaAliensMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnListaPlatsMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnRegistreraNyAlien">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrera ny alien"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnRegistreraNyAlienMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>
