@@ -50,7 +50,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
         psw2 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(688, 414));
 
         lblTitel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblTitel.setText("Registrera ny alien");
