@@ -85,6 +85,11 @@ public class StartsidaAgent extends javax.swing.JFrame {
         btnUtrustning.setText("Registrera ny utrustning");
 
         btnChef.setText("Visa områdeschef");
+        btnChef.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnChefMouseClicked(evt);
+            }
+        });
 
         jMenu1.setText("Mitt konto");
         menuBar.add(jMenu1);
@@ -172,6 +177,12 @@ public class StartsidaAgent extends javax.swing.JFrame {
         AndraLosenord andraLosenord = new AndraLosenord(idb, anvId, anvTyp);
         andraLosenord.setVisible(true);
     }//GEN-LAST:event_btnAndraLosenordMouseClicked
+
+    private void btnChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChefMouseClicked
+        setVisible(false);
+        VisaOmradesChef omradesChef = new VisaOmradesChef(idb, anvId, anvTyp);
+        omradesChef.setVisible(true);
+    }//GEN-LAST:event_btnChefMouseClicked
 
     /**
      * @param args the command line arguments
