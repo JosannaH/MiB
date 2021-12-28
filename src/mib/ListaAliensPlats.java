@@ -37,8 +37,8 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
         //Hämta alla områden så dom finns i Combobox från början
-        getOmraden();
-        getPlatser();
+        listaOmraden();
+        listaPlatserIOmrade();
     }
 
     /**
@@ -297,7 +297,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
      * @param evt 
      */
     private void cmBoxOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmBoxOmradeMouseClicked
-        getPlatser();
+        listaPlatserIOmrade();
     }//GEN-LAST:event_cmBoxOmradeMouseClicked
 
     private void menuBarRegNyAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarRegNyAlienMouseClicked
@@ -341,7 +341,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
     /**
      * Lägger till alla områden i drop-down-listan
      */
-    private void getOmraden() {
+    private void listaOmraden() {
         try {
             // Hämta alla områden, spara i hashmap i bokstavsordning
              ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade ORDER BY Benamning ASC");
@@ -363,7 +363,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
      * och lägger till dom i drop-down-listan
      */
     // TODO Denna metod funkar ej
-    private void getPlatser(){
+    private void listaPlatserIOmrade(){
         // Sparar det område som amvändaren valt
         String val = cmBoxOmrade.getSelectedItem().toString();
 
@@ -384,6 +384,10 @@ public class ListaAliensPlats extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
+    }
+    
+    public void hamtaAlienPlats(){
+        
     }
     /**
      * @param args the command line arguments
