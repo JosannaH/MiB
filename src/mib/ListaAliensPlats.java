@@ -60,6 +60,14 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        menuBarAndraLosen = new javax.swing.JMenuItem();
+        menuBarHanteraAlien = new javax.swing.JMenu();
+        menuBarRegNyAlien = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        menyBarListaPlats = new javax.swing.JMenuItem();
+        menuBarListaRas = new javax.swing.JMenuItem();
+        menuBarListaDatum = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuBarInloggadSom = new javax.swing.JMenu();
         menuBarLoggaUt = new javax.swing.JMenu();
@@ -128,6 +136,72 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         menuBar.add(jMenu1);
 
         jMenu2.setText("Funktioner");
+
+        menuBarAndraLosen.setText("Ändra lösenord");
+        menuBarAndraLosen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarAndraLosenMouseClicked(evt);
+            }
+        });
+        jMenu2.add(menuBarAndraLosen);
+
+        menuBarHanteraAlien.setText("Hantera alien");
+        menuBarHanteraAlien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarHanteraAlienMouseClicked(evt);
+            }
+        });
+
+        menuBarRegNyAlien.setText("Registrera ny alien");
+        menuBarRegNyAlien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarRegNyAlienMouseClicked(evt);
+            }
+        });
+        menuBarHanteraAlien.add(menuBarRegNyAlien);
+
+        jMenuItem2.setText("Uppdatera alien");
+        jMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem2MouseClicked(evt);
+            }
+        });
+        menuBarHanteraAlien.add(jMenuItem2);
+
+        jMenuItem5.setText("Sök alien");
+        jMenuItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem5MouseClicked(evt);
+            }
+        });
+        menuBarHanteraAlien.add(jMenuItem5);
+
+        menyBarListaPlats.setText("Lista alien utifrån plats");
+        menyBarListaPlats.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menyBarListaPlatsMouseClicked(evt);
+            }
+        });
+        menuBarHanteraAlien.add(menyBarListaPlats);
+
+        menuBarListaRas.setText("Lista alien utifrån ras");
+        menuBarListaRas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarListaRasMouseClicked(evt);
+            }
+        });
+        menuBarHanteraAlien.add(menuBarListaRas);
+
+        menuBarListaDatum.setText("Lista alien efter reg.datum");
+        menuBarListaDatum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarListaDatumMouseClicked(evt);
+            }
+        });
+        menuBarHanteraAlien.add(menuBarListaDatum);
+
+        jMenu2.add(menuBarHanteraAlien);
+
         menuBar.add(jMenu2);
 
         jMenu5.setText("                                                                                 ");
@@ -225,6 +299,40 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         getPlatser();
     }//GEN-LAST:event_cmBoxOmradeMouseClicked
 
+    private void menuBarRegNyAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarRegNyAlienMouseClicked
+        setVisible(false);
+        RegistreraAlien registreraAlien = new RegistreraAlien(idb, anvId, anvTyp);
+        registreraAlien.setVisible(true);
+    }//GEN-LAST:event_menuBarRegNyAlienMouseClicked
+
+    private void menuBarListaRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarListaRasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuBarListaRasMouseClicked
+
+    private void menuBarListaDatumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarListaDatumMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuBarListaDatumMouseClicked
+
+    private void menuBarHanteraAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarHanteraAlienMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuBarHanteraAlienMouseClicked
+
+    private void jMenuItem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2MouseClicked
+
+    private void jMenuItem5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5MouseClicked
+
+    private void menyBarListaPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menyBarListaPlatsMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menyBarListaPlatsMouseClicked
+
+    private void menuBarAndraLosenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarAndraLosenMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuBarAndraLosenMouseClicked
+
     /**
      * Lägger till alla områden i drop-down-listan
      */
@@ -279,13 +387,21 @@ public class ListaAliensPlats extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFilterVal;
     private javax.swing.JLabel lblListaAliens;
     private javax.swing.JLabel lblPlats;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem menuBarAndraLosen;
+    private javax.swing.JMenu menuBarHanteraAlien;
     private javax.swing.JMenu menuBarInloggadSom;
+    private javax.swing.JMenuItem menuBarListaDatum;
+    private javax.swing.JMenuItem menuBarListaRas;
     private javax.swing.JMenu menuBarLoggaUt;
+    private javax.swing.JMenuItem menuBarRegNyAlien;
+    private javax.swing.JMenuItem menyBarListaPlats;
     private javax.swing.JTable tblTabell;
     // End of variables declaration//GEN-END:variables
 }
