@@ -2,6 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
+// TODO Lägg till fler val vid registrering beroende på ras. Tex antal armar för Squid
+// TODO sätt alienID automatiskt -> räkna uppåt från senaste inlagda (Rosa har nummer 4)
+
 package mib;
 
 import java.time.LocalDateTime;
@@ -279,16 +283,15 @@ public class RegistreraAlien extends javax.swing.JFrame {
                 try {
 
                     String platsID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning = '" + regPlats + "'");
-                    System.out.println("PlatsID: " + platsID);
                     String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn = '" + regAnsAgent + "'");
-                    System.out.println("regAgentID: " + regAgentID);
 
                     // lägger till alien i databasen
                     idb.insert("INSERT INTO Alien VALUES (" + regAlienID + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
+                    
+                    // TODO lägg till alien i tabellen för rätt ras, uppdatera den tabellen med hur många aliens det finns av den rasen
+                    
+                    
                     JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
-                    //test
-                    String inlagdAlien = idb.fetchSingle("select namn from alien where alien_id =" + regAlienID);
-                    System.out.println("inlagd alien: " + inlagdAlien);
 
                 } catch (InfException e) {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
