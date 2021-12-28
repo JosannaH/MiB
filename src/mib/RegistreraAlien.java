@@ -102,7 +102,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
         jLabel6.setText("Lösenord");
 
-        psw1.setText("jPasswordField1");
         psw1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 psw1ActionPerformed(evt);
@@ -118,7 +117,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
         jLabel11.setText("Upprepa lösenord");
 
-        psw2.setText("jPasswordField2");
         psw2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 psw2ActionPerformed(evt);
@@ -184,10 +182,11 @@ public class RegistreraAlien extends javax.swing.JFrame {
                                 .addGap(36, 36, 36)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addComponent(psw1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel11)
-                                    .addComponent(psw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(psw2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                                        .addComponent(psw1, javax.swing.GroupLayout.Alignment.LEADING)))))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -264,19 +263,44 @@ public class RegistreraAlien extends javax.swing.JFrame {
        String regPasswordCheck = psw2.getText();
        
        String regPlats = cmbPlats.getSelectedItem().toString();
-       int regPlatsint = Integer.parseInt(regPlats);
+      // int regPlatsint = Integer.parseInt(regPlats);
        
        String regRas = cmbRas.getSelectedItem().toString();
        
        String regAnsAgent = cmbAnsAgent.getSelectedItem().toString();
        
        String regAlienID = txtAlienID.getText();
-       int regAlienIDint = Integer.parseInt(regAlienID);
+      // int regAlienIDint = Integer.parseInt(regAlienID);
        
        String dagensDatum = txtDatum.getText();
        
        if(regPassword.equals(regPasswordCheck)){
-           idb.insert(regRas);
+           
+           try{
+               
+               String platsID = idb.fetchSingle("SELECT plats_ID FROM plats where Benamning = " + regPlats);
+               
+               System.out.println("platsID: " + platsID); //test
+               
+               String agentID = idb.fetchSingle("SELECT agent_ID FROM agent where Namn = " + regPlats);
+               
+               System.out.println("agentID: " + agentID); //test
+               
+               // lägger till alien i databasen
+               idb.insert("INSERT INTO Alien (Alien_ID, Registreringsdatum, Losenord, Namn, Telefon, Plats, Ansvarig_agent)"
+                  + " VALUES " + regAlienID + "," + dagensDatum + "," + regPassword + "," + regNamn + "," + regTelefon + "," + platsID + "," + agentID);
+               
+ 
+               //test
+               String inlagdAlien = idb.fetchSingle("select namn from alien where alien_id =" + regAlienID);
+               System.out.println("inlagd alien: " + inlagdAlien);
+               
+           }
+           catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage());
+           }
+           
        }
        
        }

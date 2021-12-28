@@ -88,10 +88,12 @@
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                  <Component id="psw1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                  <Component id="psw2" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnSpara" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="psw2" alignment="0" pref="104" max="32767" attributes="0"/>
+                                      <Component id="psw1" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -256,9 +258,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="psw1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="psw1ActionPerformed"/>
       </Events>
@@ -297,9 +296,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="psw2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField2"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="psw2ActionPerformed"/>
       </Events>
