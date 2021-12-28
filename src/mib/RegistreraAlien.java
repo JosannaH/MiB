@@ -252,7 +252,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
         // Utgår ifrån att det är klicket på sparaknappen som gör att all info sparas i DG
         if (Validering.textFaltHarVarde(txtNamn) && Validering.textFaltHarVarde(txtAlienID) && Validering.textFaltHarVarde(txtDatum)
                 && Validering.comboHarVarde(cmbAnsAgent) && Validering.comboHarVarde(cmbRas) && Validering.comboHarVarde(cmbPlats) && Validering.passwordHarVarde(psw1) && Validering.passwordHarVarde(psw2)) {
-            try{
+
             String regNamn = txtNamn.getText();
 
             String regTelefon = txtTelefon.getText();
@@ -262,26 +262,27 @@ public class RegistreraAlien extends javax.swing.JFrame {
             String regPasswordCheck = psw2.getText();
 
             String regPlats = cmbPlats.getSelectedItem().toString();
-            String regPlatsID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning =" + regPlats);
 
             String regRas = cmbRas.getSelectedItem().toString();
+            //System.out.println(regRas);
 
             String regAnsAgent = cmbAnsAgent.getSelectedItem().toString();
             //Här behöver vi hämta Agent_ID baserat på namnet
-            String regAnsAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn =" + regAnsAgent);
 
             String regAlienID = txtAlienID.getText();
             int regAlienIDint = Integer.parseInt(regAlienID);
 
             String dagensDatum = txtDatum.getText();
-            
+
             if (regPassword.equals(regPasswordCheck)) {
 
                 try {
 
-                    
+                    String regID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning =" + regPlats);
+                    String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn =" + regAnsAgent);
+
                     // lägger till alien i databasen
-                    idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn +  regTelefon + "','" + regPlatsID + "','" + regAnsAgentID +"')");
+                    idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + regPlats + "','" + regAgentID + "')");
                     JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
                     //test
                     //String inlagdAlien = idb.fetchSingle("select namn from alien where alien_id =" + regAlienID);
@@ -291,20 +292,11 @@ public class RegistreraAlien extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
                     System.out.println("Internt felmeddelande" + e.getMessage());
                 }
-
             }
+            } else {
+                JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
             }
-                    
-            catch(InfException e){
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    System.out.println("Internt felmeddelande" + e.getMessage());
-            }
-
-            
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
-        }
+        
 
         //"INSERT INTO Alien VALUES (regAlienID, dagensDatum, regLosenord, regNamn, regTelefon, regPlats, regAnsvarigAgent)";
     }//GEN-LAST:event_btnSparaActionPerformed
