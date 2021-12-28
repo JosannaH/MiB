@@ -22,15 +22,16 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     private InfDB idb;
     private String anvId;
     private String anvTyp;
-    
-    
+     
+   
     public VisaOmradesChef(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         
-        omraden();
+        SQL s = new SQL(idb, cmbOmrade);
+        s.omraden();
     }
 
     /**
@@ -154,20 +155,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //Skapar en metod som man sen använder för att fylla rullisten med information. 
-    private void omraden()
-    {
-        try{
-            ArrayList<String> omradeLista = idb.fetchColumn("SELECT Benamning FROM omrade ORDER BY Benamning");
-            for(int i = 0; i < omradeLista.size(); i++){
-                String omradesNamn = omradeLista.get(i);
-                cmbOmrade.addItem(omradesNamn);
-            }
-        }
-        catch(InfException e){
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());
-        }
-    }
+    
     
     private void btnLoggaUtOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtOmradeActionPerformed
         setVisible(false);

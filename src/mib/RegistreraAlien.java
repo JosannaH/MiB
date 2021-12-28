@@ -4,12 +4,11 @@
  */
 package mib;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -36,6 +35,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         nyttDatum();
+        SQL s = new SQL(idb, cmbPlats, cmbAnsAgent);
+        s.plats();
+        s.agent();
     }
 
     /**
@@ -90,13 +92,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
         jLabel2.setText("Ras");
 
-        cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Worm", "Squid" }));
-
         jLabel3.setText("Plats");
 
         lblConfirm.setForeground(new java.awt.Color(0, 204, 0));
-
-        cmbAnsAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("Ansvarig agent");
 
@@ -111,8 +109,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
         jLabel7.setText("MiB REGISTRERINGSSERVICE");
-
-        cmbPlats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         lblPersInfo.setText("Personlig information");
 
@@ -231,12 +227,11 @@ public class RegistreraAlien extends javax.swing.JFrame {
                                 .addComponent(jLabel11)
                                 .addGap(8, 8, 8)
                                 .addComponent(psw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 6, Short.MAX_VALUE))))
+                                .addGap(0, 24, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTitel)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAlienID)
                     .addComponent(txtAlienID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -256,7 +251,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
         // Utgår ifrån att det är klicket på sparaknappen som gör att all info sparas i DG
-       if (Validering.textFaltHarVarde(txtNamn) && Validering.textFaltHarVarde(txtTelefon) && Validering.textFaltHarVarde (txtAlienID) && Validering.textFaltHarVarde (txtDatum)
+       if (Validering.textFaltHarVarde(txtNamn) && Validering.textFaltHarVarde (txtAlienID) && Validering.textFaltHarVarde (txtDatum)
                && Validering.comboHarVarde(cmbAnsAgent) && Validering.comboHarVarde(cmbRas) && Validering.comboHarVarde(cmbPlats) && Validering.passwordHarVarde(psw1) && Validering.passwordHarVarde(psw2))
        {   
        String regNamn = txtNamn.getText();
@@ -268,7 +263,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
        String regPasswordCheck = psw2.getText();
        
        String regPlats = cmbPlats.getSelectedItem().toString();
-       int regPlatsint = Integer.ParseInt(regPlats);
+       int regPlatsint = Integer.parseInt(regPlats);
        
        String regRas = cmbRas.getSelectedItem().toString();
        
@@ -285,9 +280,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
        }
        
        
-       if () {
+       
                lblConfirm.setText("Registreringen lyckades!");
-       }
+       
        
        
         //"INSERT INTO Alien VALUES (regAlienID, dagensDatum, regLosenord, regNamn, regTelefon, regPlats, regAnsvarigAgent)";
@@ -309,6 +304,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
     txtDatum.setText(date);
     
     }
+    
+    
+   
     /**
      * @param args the command line arguments
      */
