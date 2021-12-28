@@ -278,15 +278,17 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
                 try {
 
-                    String regID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning =" + regPlats);
-                    String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn =" + regAnsAgent);
+                    String platsID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning = '" + regPlats + "'");
+                    System.out.println("PlatsID: " + platsID);
+                    String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn = '" + regAnsAgent + "'");
+                    System.out.println("regAgentID: " + regAgentID);
 
                     // lägger till alien i databasen
-                    idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + regPlats + "','" + regAgentID + "')");
+                    idb.insert("INSERT INTO Alien VALUES (" + regAlienID + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
                     JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
                     //test
-                    //String inlagdAlien = idb.fetchSingle("select namn from alien where alien_id =" + regAlienID);
-                    //System.out.println("inlagd alien: " + inlagdAlien);
+                    String inlagdAlien = idb.fetchSingle("select namn from alien where alien_id =" + regAlienID);
+                    System.out.println("inlagd alien: " + inlagdAlien);
 
                 } catch (InfException e) {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
