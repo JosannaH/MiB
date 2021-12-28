@@ -155,6 +155,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Visa omr&#xe5;deschef"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnChefMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
