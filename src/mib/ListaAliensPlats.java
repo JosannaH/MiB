@@ -37,8 +37,8 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
         //Hämta alla områden så dom finns i Combobox från början
-        listaOmraden();
-        listaPlatserIOmrade();
+        SQL s = new SQL(idb, cmBoxPlats);
+        s.plats();
     }
 
     /**
@@ -54,21 +54,10 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         btnGaTillbaka = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTabell = new javax.swing.JTable();
-        cmBoxOmrade = new javax.swing.JComboBox<>();
-        lblFilterVal = new javax.swing.JLabel();
         lblPlats = new javax.swing.JLabel();
         cmBoxPlats = new javax.swing.JComboBox<>();
         menuBar = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        menuBarAndraLosen = new javax.swing.JMenuItem();
-        menuBarHanteraAlien = new javax.swing.JMenu();
-        menuBarRegNyAlien = new javax.swing.JMenuItem();
-        menuBarUppdateraAlien = new javax.swing.JMenuItem();
-        menuBarSokAlien = new javax.swing.JMenuItem();
-        menyBarListaPlats = new javax.swing.JMenuItem();
-        menuBarListaRas = new javax.swing.JMenuItem();
-        menuBarListaDatum = new javax.swing.JMenuItem();
+        menuBarTillStartsida = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         menuBarInloggadSom = new javax.swing.JMenu();
         menuBarLoggaUt = new javax.swing.JMenu();
@@ -123,87 +112,15 @@ public class ListaAliensPlats extends javax.swing.JFrame {
             tblTabell.getColumnModel().getColumn(4).setHeaderValue("Reg. datum");
         }
 
-        cmBoxOmrade.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmBoxOmradeMouseClicked(evt);
-            }
-        });
-
-        lblFilterVal.setText("Välj område:");
-
         lblPlats.setText("Välj plats:");
 
-        jMenu1.setText("Mitt konto");
-        menuBar.add(jMenu1);
-
-        jMenu2.setText("Funktioner");
-
-        menuBarAndraLosen.setText("Ändra lösenord");
-        menuBarAndraLosen.addMouseListener(new java.awt.event.MouseAdapter() {
+        menuBarTillStartsida.setText("Gå till Startsida");
+        menuBarTillStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuBarAndraLosenMouseClicked(evt);
+                menuBarTillStartsidaMouseClicked(evt);
             }
         });
-        jMenu2.add(menuBarAndraLosen);
-
-        menuBarHanteraAlien.setText("Hantera alien");
-        menuBarHanteraAlien.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuBarHanteraAlienMouseClicked(evt);
-            }
-        });
-
-        menuBarRegNyAlien.setText("Registrera ny alien");
-        menuBarRegNyAlien.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuBarRegNyAlienMouseClicked(evt);
-            }
-        });
-        menuBarHanteraAlien.add(menuBarRegNyAlien);
-
-        menuBarUppdateraAlien.setText("Uppdatera alien");
-        menuBarUppdateraAlien.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuBarUppdateraAlienMouseClicked(evt);
-            }
-        });
-        menuBarHanteraAlien.add(menuBarUppdateraAlien);
-
-        menuBarSokAlien.setText("Sök alien");
-        menuBarSokAlien.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuBarSokAlienMouseClicked(evt);
-            }
-        });
-        menuBarHanteraAlien.add(menuBarSokAlien);
-
-        menyBarListaPlats.setText("Lista alien utifrån plats");
-        menyBarListaPlats.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menyBarListaPlatsMouseClicked(evt);
-            }
-        });
-        menuBarHanteraAlien.add(menyBarListaPlats);
-
-        menuBarListaRas.setText("Lista alien utifrån ras");
-        menuBarListaRas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuBarListaRasMouseClicked(evt);
-            }
-        });
-        menuBarHanteraAlien.add(menuBarListaRas);
-
-        menuBarListaDatum.setText("Lista alien efter reg.datum");
-        menuBarListaDatum.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuBarListaDatumMouseClicked(evt);
-            }
-        });
-        menuBarHanteraAlien.add(menuBarListaDatum);
-
-        jMenu2.add(menuBarHanteraAlien);
-
-        menuBar.add(jMenu2);
+        menuBar.add(menuBarTillStartsida);
 
         jMenu5.setText("                                                                                 ");
         menuBar.add(jMenu5);
@@ -235,18 +152,13 @@ public class ListaAliensPlats extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblFilterVal, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(29, 29, 29)
-                                        .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmBoxOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(37, 37, 37)
-                                        .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                .addGap(118, 118, 118)
+                                .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -255,13 +167,9 @@ public class ListaAliensPlats extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cmBoxOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblFilterVal))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblPlats)
-                        .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPlats)
+                    .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -292,103 +200,12 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         hanteraAliens.setVisible(true);
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
 
-    /**
-     * Körs när användaren valt ett område
-     * @param evt 
-     */
-    private void cmBoxOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmBoxOmradeMouseClicked
-        listaPlatserIOmrade();
-    }//GEN-LAST:event_cmBoxOmradeMouseClicked
-
-    private void menuBarRegNyAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarRegNyAlienMouseClicked
+    private void menuBarTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarTillStartsidaMouseClicked
         setVisible(false);
-        RegistreraAlien registreraAlien = new RegistreraAlien(idb, anvId, anvTyp);
-        registreraAlien.setVisible(true);
-    }//GEN-LAST:event_menuBarRegNyAlienMouseClicked
+        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
+        startsidaAgent.setVisible(true);
+    }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
-    private void menuBarListaRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarListaRasMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuBarListaRasMouseClicked
-
-    private void menuBarListaDatumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarListaDatumMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuBarListaDatumMouseClicked
-
-    private void menuBarHanteraAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarHanteraAlienMouseClicked
-        setVisible(false);
-        HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
-        hanteraAliens.setVisible(true);
-    }//GEN-LAST:event_menuBarHanteraAlienMouseClicked
-
-    private void menuBarUppdateraAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarUppdateraAlienMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuBarUppdateraAlienMouseClicked
-
-    private void menuBarSokAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarSokAlienMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuBarSokAlienMouseClicked
-
-    private void menyBarListaPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menyBarListaPlatsMouseClicked
-        setVisible(false);
-        ListaAliensPlats listaAlien = new ListaAliensPlats(idb, anvId, anvTyp);
-        listaAlien.setVisible(true);
-    }//GEN-LAST:event_menyBarListaPlatsMouseClicked
-
-    private void menuBarAndraLosenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarAndraLosenMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuBarAndraLosenMouseClicked
-
-    /**
-     * Lägger till alla områden i drop-down-listan
-     */
-    private void listaOmraden() {
-        try {
-            // Hämta alla områden, spara i hashmap i bokstavsordning
-             ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade ORDER BY Benamning ASC");
-             
-             // loopa igenom lista och lägg till alla områden i drop down menyn 
-               for (int i = 0; i < listaOmraden.size(); i++) {
-                   
-                String omrade = listaOmraden.get(i).get("Benamning");
-                cmBoxOmrade.addItem(omrade);
-               }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());
-        }
-    }
-    
-    /**
-     * Hämtar platser utifrån vilket område användaren valt
-     * och lägger till dom i drop-down-listan
-     */
-    // TODO Denna metod funkar ej
-    private void listaPlatserIOmrade(){
-        // Sparar det område som amvändaren valt
-        String val = cmBoxOmrade.getSelectedItem().toString();
-
-        try{
-            //Hämtar platser inom valt område
-            //ArrayList<HashMap<String, String>> listaPlatser = idb.fetchRows("SELECT Benamning FROM plats WHERE Finns_I = " + val + " ORDER BY Benamning ASC");
-            
-            //Hämtar alla platser
-            ArrayList<HashMap<String, String>> listaPlatser = idb.fetchRows("SELECT Benamning FROM plats ORDER BY Benamning ASC");
-            
-            // loopa igenom lista och lägg till alla områden i drop down menyn 
-               for (int i = 0; i < listaPlatser.size(); i++) {
-                   
-                String plats = listaPlatser.get(i).get("Benamning");
-                cmBoxPlats.addItem(plats);
-               }
-        }catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());
-        }
-    }
-    
-    public void hamtaAlienPlats(){
-        
-    }
     /**
      * @param args the command line arguments
      */
@@ -396,26 +213,15 @@ public class ListaAliensPlats extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGaTillbaka;
-    private javax.swing.JComboBox<String> cmBoxOmrade;
     private javax.swing.JComboBox<String> cmBoxPlats;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblFilterVal;
     private javax.swing.JLabel lblListaAliens;
     private javax.swing.JLabel lblPlats;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem menuBarAndraLosen;
-    private javax.swing.JMenu menuBarHanteraAlien;
     private javax.swing.JMenu menuBarInloggadSom;
-    private javax.swing.JMenuItem menuBarListaDatum;
-    private javax.swing.JMenuItem menuBarListaRas;
     private javax.swing.JMenu menuBarLoggaUt;
-    private javax.swing.JMenuItem menuBarRegNyAlien;
-    private javax.swing.JMenuItem menuBarSokAlien;
-    private javax.swing.JMenuItem menuBarUppdateraAlien;
-    private javax.swing.JMenuItem menyBarListaPlats;
+    private javax.swing.JMenu menuBarTillStartsida;
     private javax.swing.JTable tblTabell;
     // End of variables declaration//GEN-END:variables
 }

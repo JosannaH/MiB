@@ -4,83 +4,13 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="menuBarTillStartsida">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mitt konto"/>
+            <Property name="text" type="java.lang.String" value="G&#xe5; till Startsida"/>
           </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Funktioner"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuBarAndraLosen">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="&#xc4;ndra l&#xf6;senord"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarAndraLosenMouseClicked"/>
-              </Events>
-            </MenuItem>
-            <Menu class="javax.swing.JMenu" name="menuBarHanteraAlien">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Hantera alien"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarHanteraAlienMouseClicked"/>
-              </Events>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="menuBarRegNyAlien">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Registrera ny alien"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarRegNyAlienMouseClicked"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuBarUppdateraAlien">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Uppdatera alien"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarUppdateraAlienMouseClicked"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuBarSokAlien">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="S&#xf6;k alien"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarSokAlienMouseClicked"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menyBarListaPlats">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Lista alien utifr&#xe5;n plats"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menyBarListaPlatsMouseClicked"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuBarListaRas">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Lista alien utifr&#xe5;n ras"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarListaRasMouseClicked"/>
-                  </Events>
-                </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="menuBarListaDatum">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Lista alien efter reg.datum"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarListaDatumMouseClicked"/>
-                  </Events>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
-          </SubComponents>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarTillStartsidaMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
@@ -137,21 +67,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="452" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="lblFilterVal" min="-2" pref="89" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="lblListaAliens" min="-2" pref="306" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cmBoxOmrade" min="-2" pref="61" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Component id="lblPlats" min="-2" pref="67" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="cmBoxPlats" min="-2" pref="61" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                              <Component id="lblListaAliens" min="-2" pref="306" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                              <Component id="lblPlats" min="-2" pref="67" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cmBoxPlats" min="-2" pref="118" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -166,15 +89,9 @@
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Component id="lblListaAliens" min="-2" pref="37" max="-2" attributes="0"/>
               <EmptySpace pref="24" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="cmBoxOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblFilterVal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="lblPlats" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmBoxPlats" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblPlats" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmBoxPlats" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="273" max="-2" attributes="0"/>
@@ -257,24 +174,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JComboBox" name="cmBoxOmrade">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cmBoxOmradeMouseClicked"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblFilterVal">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="V&#xe4;lj omr&#xe5;de:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblPlats">
       <Properties>
         <Property name="text" type="java.lang.String" value="V&#xe4;lj plats:"/>
