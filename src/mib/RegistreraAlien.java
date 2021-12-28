@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 
 /**
@@ -255,18 +256,33 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
         // Utgår ifrån att det är klicket på sparaknappen som gör att all info sparas i DG
-       if (Validering.textFaltHarVarde()) {}
-         
+       if (Validering.textFaltHarVarde(txtNamn) && Validering.textFaltHarVarde(txtTelefon) && Validering.textFaltHarVarde (txtAlienID) && Validering.textFaltHarVarde (txtDatum)
+               && Validering.comboHarVarde(cmbAnsAgent) && Validering.comboHarVarde(cmbRas) && Validering.comboHarVarde(cmbPlats) && Validering.passwordHarVarde(psw1) && Validering.passwordHarVarde(psw2))
+       {   
        String regNamn = txtNamn.getText();
+       
        String regTelefon = txtTelefon.getText();
+       
        String regPassword = psw1.getText();
+       
        String regPasswordCheck = psw2.getText();
+       
        String regPlats = cmbPlats.getSelectedItem().toString();
+       int regPlatsint = Integer.ParseInt(regPlats);
+       
        String regRas = cmbRas.getSelectedItem().toString();
+       
+       String regAnsAgent = cmbAnsAgent.getSelectedItem().toString();
        
        String regAlienID = txtAlienID.getText();
        int regAlienIDint = Integer.parseInt(regAlienID);
        
+       String dagensDatum = txtDatum.getText();
+       }
+       
+       else {
+       JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+       }
        
        
        if () {
