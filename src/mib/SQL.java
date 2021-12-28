@@ -15,7 +15,7 @@ public class SQL extends javax.swing.JFrame {
 
     private InfDB idb;
     private JComboBox cb;
-    private JComboBox cbA;
+    private JComboBox cb2;
 
 
     public SQL(InfDB idb) {
@@ -28,13 +28,16 @@ public class SQL extends javax.swing.JFrame {
         
     }
     
-    public SQL(InfDB idb, JComboBox cb, JComboBox cbA){
+    public SQL(InfDB idb, JComboBox cb1, JComboBox cb2){
         this.idb = idb;
-        this.cb = cb;
-        this.cbA = cbA;
+        this.cb = cb1;
+        this.cb2 = cb2;
         
     }
 
+    /**
+     * Hämta alla områden och lägg till dom i en combobox
+     */
     public void omraden()
         {
             try{
@@ -50,6 +53,9 @@ public class SQL extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Hämta alla platser och lägg till dem i en combobox
+     */
     public void plats()
         {
             try{
@@ -65,13 +71,35 @@ public class SQL extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Hämta alla agenter och lägg till dem i en combobox
+     */
     public void agent()
         {
             try{
                 ArrayList<String> agentLista = idb.fetchColumn("SELECT namn FROM agent ORDER BY namn");
                 for(int i = 0; i < agentLista.size(); i++){
                     String agentNamn = agentLista.get(i);
-                    cbA.addItem(agentNamn);
+                    cb2.addItem(agentNamn);
+            }
+        }
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+    }
+
+    /**
+     * Hämta alla aliens utifrån plats
+     */
+    
+    public void getAlienFranPlats(int platsID){
+        try{
+                ArrayList<String> alienLista = idb.fetchColumn("SELECT namn FROM alien WHERE plats = " + platsID);
+                for(int i = 0; i < alienLista.size(); i++){
+                    String alienNamn = alienLista.get(i);
+                    // TODO referera till kolumn 1
+                    //cb.addItem(agentNamn);
             }
         }
         catch(InfException e){
