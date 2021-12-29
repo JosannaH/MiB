@@ -40,7 +40,12 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         SQL s = new SQL(idb, cmBoxPlats);
         s.plats();
     }
-
+    
+    /**
+     * Hämta alla aliens utifrån plats
+     */
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +61,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         tblTabell = new javax.swing.JTable();
         lblPlats = new javax.swing.JLabel();
         cmBoxPlats = new javax.swing.JComboBox<>();
+        btnSok = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menuBarTillStartsida = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -76,20 +82,17 @@ public class ListaAliensPlats extends javax.swing.JFrame {
 
         tblTabell.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Alien ID", "Namn", "Telefon", "Ras", "Reg. datum"
+                "Alien ID", "Namn", "Ras", "Reg. datum"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, true, true, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -114,7 +117,17 @@ public class ListaAliensPlats extends javax.swing.JFrame {
 
         lblPlats.setText("Välj plats:");
 
+        cmBoxPlats.setToolTipText("");
+
+        btnSok.setText("Sök");
+        btnSok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSokMouseClicked(evt);
+            }
+        });
+
         menuBarTillStartsida.setText("Gå till Startsida");
+        menuBarTillStartsida.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuBarTillStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuBarTillStartsidaMouseClicked(evt);
@@ -158,7 +171,9 @@ public class ListaAliensPlats extends javax.swing.JFrame {
                                 .addGap(69, 69, 69)
                                 .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(btnSok)))))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -169,7 +184,8 @@ public class ListaAliensPlats extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPlats)
-                    .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSok))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -200,11 +216,23 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         hanteraAliens.setVisible(true);
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
 
+    /**
+     * Gå till startsidan i MenuBar
+     * @param evt 
+     */
     private void menuBarTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarTillStartsidaMouseClicked
         setVisible(false);
         StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
         startsidaAgent.setVisible(true);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
+
+    /**
+     * Sök efter aliens
+     * @param evt 
+     */
+    private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
+      
+    }//GEN-LAST:event_btnSokMouseClicked
 
     /**
      * @param args the command line arguments
@@ -213,6 +241,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGaTillbaka;
+    private javax.swing.JButton btnSok;
     private javax.swing.JComboBox<String> cmBoxPlats;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JScrollPane jScrollPane1;
