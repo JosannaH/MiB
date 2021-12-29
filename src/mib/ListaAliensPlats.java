@@ -40,11 +40,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         SQL s = new SQL(idb, cmBoxPlats);
         s.plats();
     }
-    
-    /**
-     * Hämta alla aliens utifrån plats
-     */
-    
+  
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -231,7 +227,20 @@ public class ListaAliensPlats extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
+      String cmbSok = cmBoxPlats.getSelectedItem().toString();
+      String platsID = "";
       
+      try{
+      platsID = idb.fetchSingle("SELECT plats_ID from plats WHERE benamning = '" + cmbSok + "'");
+          System.out.println("fetch platsID: " + platsID);
+      }
+      catch(InfException e){
+           JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage() + " fetch platsID");
+      }
+      int platsIDint = Integer.parseInt(platsID);
+      SQL sql = new SQL(idb);
+      sql.getAlienFranPlats(platsIDint);
     }//GEN-LAST:event_btnSokMouseClicked
 
     /**

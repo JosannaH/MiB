@@ -96,16 +96,18 @@ public class SQL extends javax.swing.JFrame {
     public void getAlienFranPlats(int platsID){
       
         try{
-                ArrayList<String> alienLista = idb.fetchColumn("SELECT namn FROM alien WHERE plats = " + platsID);
+                ArrayList<String> alienLista = idb.fetchColumn("SELECT alien_ID, namn, registreringsdatum FROM alien WHERE plats = " + platsID);
                 for(int i = 0; i < alienLista.size(); i++){
                     String alienNamn = alienLista.get(i);
+                    System.out.println("Aliennamn: " + alienNamn);
+                            
                     // TODO referera till kolumn 1
                     //cb.addItem(agentNamn);
                 }
         }
         catch(InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());
+            System.out.println("Internt felmeddelande:" + e.getMessage() + "getAlienFranPlats()");
         }
     }
 }
