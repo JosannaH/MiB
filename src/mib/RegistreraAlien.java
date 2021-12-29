@@ -10,7 +10,9 @@ package mib;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -25,6 +27,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
     private String anvId;
     private String anvTyp;
     private String regAlienID;
+
 
     /**
      * Creates new form RegistreraAlien
@@ -44,6 +47,8 @@ public class RegistreraAlien extends javax.swing.JFrame {
         s.plats();
         s.agent();
         hamtaAlienID(regAlienID);
+        doljText(txtRasInfo);
+        doljLabel(lblRasInfo);
     }
 
     /**
@@ -79,6 +84,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtDatum = new javax.swing.JTextField();
         lblAlienID2 = new javax.swing.JLabel();
+        txtRasInfo = new javax.swing.JTextField();
+        lblRasInfo = new javax.swing.JLabel();
+        tbValjRas = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +107,11 @@ public class RegistreraAlien extends javax.swing.JFrame {
         jLabel2.setText("Ras");
 
         cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Squid", "Worm" }));
+        cmbRas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRasActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Plats");
 
@@ -135,6 +148,26 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
         lblAlienID2.setText("ID");
 
+        txtRasInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRasInfoActionPerformed(evt);
+            }
+        });
+
+        lblRasInfo.setText("Rasinfo");
+
+        tbValjRas.setText("Välj ras");
+        tbValjRas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbValjRasMouseClicked(evt);
+            }
+        });
+        tbValjRas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbValjRasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -165,7 +198,8 @@ public class RegistreraAlien extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblAlienID2)
-                                    .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tbValjRas))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(79, 79, 79)
@@ -191,7 +225,11 @@ public class RegistreraAlien extends javax.swing.JFrame {
                                     .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(psw2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                                        .addComponent(psw1, javax.swing.GroupLayout.Alignment.LEADING)))))))
+                                        .addComponent(psw1, javax.swing.GroupLayout.Alignment.LEADING))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblRasInfo)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtRasInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -236,7 +274,13 @@ public class RegistreraAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(115, 115, 115)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tbValjRas)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRasInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRasInfo))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblConfirm)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -319,6 +363,15 @@ public class RegistreraAlien extends javax.swing.JFrame {
         }
     }
     
+    private void doljText(JTextField textAttDolja){
+        textAttDolja.setVisible(false);
+    }
+    
+    private void doljLabel(JLabel labelAttDolja){
+        labelAttDolja.setVisible(false);
+    }
+    
+    
     private void psw1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psw1ActionPerformed
 
     }//GEN-LAST:event_psw1ActionPerformed
@@ -326,6 +379,38 @@ public class RegistreraAlien extends javax.swing.JFrame {
     private void psw2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psw2ActionPerformed
 
     }//GEN-LAST:event_psw2ActionPerformed
+
+    private void txtRasInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRasInfoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRasInfoActionPerformed
+
+    private void tbValjRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbValjRasActionPerformed
+            // TODO add your handling code here:
+    }//GEN-LAST:event_tbValjRasActionPerformed
+
+    private void tbValjRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbValjRasMouseClicked
+        String ras = cmbRas.getSelectedItem().toString();
+        
+        if(ras.equals("Boglodite")){
+            txtRasInfo.setVisible(true);
+            lblRasInfo.setVisible(true);
+            lblRasInfo.setText("Antal Boogies");
+            
+        }
+        else if(ras.equals("Squid")){
+            txtRasInfo.setVisible(true);
+            lblRasInfo.setVisible(true);
+            lblRasInfo.setText("Antal Armar");
+        }
+        else{
+            doljText(txtRasInfo);
+            doljLabel(lblRasInfo);
+        }
+    }//GEN-LAST:event_tbValjRasMouseClicked
+
+    private void cmbRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbRasActionPerformed
 
     private void nyttDatum() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
@@ -354,12 +439,15 @@ public class RegistreraAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblConfirm;
     private javax.swing.JLabel lblNamn;
     private javax.swing.JLabel lblPersInfo;
+    private javax.swing.JLabel lblRasInfo;
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTitel;
     private javax.swing.JPasswordField psw1;
     private javax.swing.JPasswordField psw2;
+    private javax.swing.JToggleButton tbValjRas;
     private javax.swing.JTextField txtDatum;
     private javax.swing.JTextField txtNamn;
+    private javax.swing.JTextField txtRasInfo;
     private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
 }
