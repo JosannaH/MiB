@@ -247,7 +247,6 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         }
         int valdPlatsIDint = Integer.parseInt(valdPlatsID);
         fyllLista(valdPlatsIDint);
-        //fyllTabell(valdPlatsIDint);
     }//GEN-LAST:event_btnPlatsMouseClicked
 
     /**
@@ -274,44 +273,11 @@ public class ListaAliensPlats extends javax.swing.JFrame {
             String t = telefonLista.get(i).get("telefon");
             
             txtLista.append(a + " \t " + n + " \t\t" + t + "\n");
-
+            // TODO visar bara en alien i listan
         }
 
     }
-    
-    /**
-     * Fyll tabell
-     */
-    /*
-    private void fyllTabell(int valdPlatsIDint){
-       DefaultTableModel tableModel = new DefaultTableModel();
-       tblPlats.setModel(tableModel);
-        
-        try{
-        String q = "SELECT Alien_ID, Namn FROM alien WHERE plats = " + valdPlatsIDint +"";
-        ArrayList<HashMap<String, String>> listaAliens = idb.fetchRows(q);
-        
-        for (HashMap<String, String> loop : listaAliens){
-            String alienID = loop.get("Alien_ID");
-            String namn = loop.get("Namn");
-          //  String telefon = loop.get("Telefon");
-            
-            Vector<Object> vo = new Vector<Object>();
-            vo.addElement(alienID);
-            vo.addElement(namn);
-           // vo.addElement(telefon);
-           tableModel.addRow(vo);
- 
-        }
-        }
-        catch(InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: String q i fyllTabell() " + e.getMessage());
-        }
-        
-       // tblPlats.addRow( );
-    }
-    */
+
     
     
     /**
