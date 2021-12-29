@@ -10,6 +10,7 @@ package mib;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -42,7 +43,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        nyttDatum();
         SQL s = new SQL(idb, cmbOmrade, cmbPlats, cmbAnsAgent);
         s.plats();
         s.agent();
@@ -77,8 +77,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
         cmbPlats = new javax.swing.JComboBox<>();
         lblPersInfo = new javax.swing.JLabel();
         lblAlienID = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        txtDatum = new javax.swing.JTextField();
         txtRasInfo = new javax.swing.JTextField();
         lblRasInfo = new javax.swing.JLabel();
         btnValjRas = new javax.swing.JToggleButton();
@@ -99,7 +97,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
 
         lblRas.setText("Ras");
 
-        cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Squid", "Worm" }));
+        cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Squid", "Worm", "Ingen" }));
         cmbRas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbRasActionPerformed(evt);
@@ -124,8 +122,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
         jLabel7.setText("MiB REGISTRERINGSSERVICE");
 
         lblAlienID.setText("AlienID");
-
-        jLabel1.setText("Dagens datum");
 
         txtRasInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,25 +188,19 @@ public class UppdateraAlien extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(cmbOmrade, javax.swing.GroupLayout.Alignment.LEADING, 0, 150, Short.MAX_VALUE)
                                 .addComponent(cmbAnsAgent, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cmbPlats, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 268, Short.MAX_VALUE))
-                    .addComponent(lblConfirm)
+                                .addComponent(cmbPlats, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblPersInfo)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblConfirm)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPersInfo)
                                 .addGap(290, 290, 290)
-                                .addComponent(lblTitel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(288, 288, 288)
-                                .addComponent(jLabel1)
-                                .addGap(29, 29, 29)
-                                .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(126, 126, 126))
+                                .addComponent(lblTitel)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(182, 182, 182)
                 .addComponent(jLabel7)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 179, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,12 +252,8 @@ public class UppdateraAlien extends javax.swing.JFrame {
                     .addComponent(lblRasInfo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSpara)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblConfirm)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addComponent(lblConfirm)
                 .addContainerGap())
         );
 
@@ -348,8 +334,44 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + agent + "'");
                 cmbAnsAgent.setSelectedItem(agentNamn);
                 
+                ArrayList<String> squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+                for(int i = 0; i < squidLista.size(); i++){
+                    String squid = squidLista.get(i);}
                 
+                ArrayList<String> bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+                for(int i = 0; i < bogloditeLista.size(); i++){
+                    String boglodite = bogloditeLista.get(i);}
                 
+                ArrayList<String> wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+                for(int i = 0; i < wormLista.size(); i++){
+                    String worm = wormLista.get(i);}
+                
+                if(squidLista.contains(idText)){
+                    cmbRas.setSelectedItem("Squid");
+                    
+                    String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + idText + "'");
+                    txtRasInfo.setText(antalArmar);
+                    txtRasInfo.setVisible(true);
+                                        
+                    lblRasInfo.setVisible(true);
+                    lblRasInfo.setText("Antal Armar");
+                }
+                else if(bogloditeLista.contains(idText)){
+                    cmbRas.setSelectedItem("Boglodite");
+                    
+                    String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + idText + "'");
+                    txtRasInfo.setText(antalBoogies);
+                    txtRasInfo.setVisible(true);
+                    
+                    lblRasInfo.setVisible(true);
+                    lblRasInfo.setText("Antal Boogies");
+                }
+                else if(wormLista.contains(idText)){
+                    cmbRas.setSelectedItem("Worm");
+                }
+                else{
+                    cmbRas.setSelectedItem("Ingen");
+                }
                 
                 
             }
@@ -362,15 +384,8 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "AgentID måste vara ifyllt!");
         }
     }//GEN-LAST:event_jToggleButton1MouseClicked
-
-    private void nyttDatum() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDateTime time = LocalDateTime.now();
-        String date = dtf.format(time);
-        txtDatum.setText(date);
-
-    }
-
+  
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnSpara;
@@ -379,7 +394,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbOmrade;
     private javax.swing.JComboBox<String> cmbPlats;
     private javax.swing.JComboBox<String> cmbRas;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblAlienID;
@@ -396,7 +410,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitel;
     private javax.swing.JPasswordField pswLosen;
     private javax.swing.JTextField txtAlienID;
-    private javax.swing.JTextField txtDatum;
     private javax.swing.JTextField txtNamn;
     private javax.swing.JTextField txtRasInfo;
     private javax.swing.JTextField txtTelefon;
