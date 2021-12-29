@@ -36,9 +36,11 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
+        getOmraden();
+        
         //Hämta alla områden så dom finns i Combobox från början
-        SQL s = new SQL(idb, cmBoxPlats);
-        s.plats();
+       // SQL s = new SQL(idb, cmBoxPlats);
+      //  s.plats();
     }
   
     
@@ -58,6 +60,8 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         lblPlats = new javax.swing.JLabel();
         cmBoxPlats = new javax.swing.JComboBox<>();
         btnSok = new javax.swing.JButton();
+        lblOmrade = new javax.swing.JLabel();
+        cmbOmrade = new javax.swing.JComboBox<>();
         menuBar = new javax.swing.JMenuBar();
         menuBarTillStartsida = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -122,6 +126,8 @@ public class ListaAliensPlats extends javax.swing.JFrame {
             }
         });
 
+        lblOmrade.setText("Välj område:");
+
         menuBarTillStartsida.setText("Gå till Startsida");
         menuBarTillStartsida.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuBarTillStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -152,40 +158,45 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addComponent(btnGaTillbaka)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSok)
+                .addGap(34, 34, 34))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 82, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnGaTillbaka))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(118, 118, 118)
-                                .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
+                                .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(btnSok)))))
-                .addContainerGap(84, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPlats)
                     .addComponent(cmBoxPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSok))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(lblOmrade)
+                    .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnGaTillbaka)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGaTillbaka)
+                    .addComponent(btnSok))
                 .addGap(32, 32, 32))
         );
 
@@ -243,6 +254,22 @@ public class ListaAliensPlats extends javax.swing.JFrame {
       sql.getAlienFranPlats(platsIDint);
     }//GEN-LAST:event_btnSokMouseClicked
 
+    private void getOmraden() {
+        try {
+            // Hämta alla områden, spara i hashmap i bokstavsordning
+             ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade ORDER BY Benamning ASC");
+             
+             // loopa igenom lista och lägg till alla områden i drop down menyn 
+               for (int i = 0; i < listaOmraden.size(); i++) {
+                   
+                String omrade = listaOmraden.get(i).get("Benamning");
+                cmbOmrade.addItem(omrade);
+               }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -252,9 +279,11 @@ public class ListaAliensPlats extends javax.swing.JFrame {
     private javax.swing.JButton btnGaTillbaka;
     private javax.swing.JButton btnSok;
     private javax.swing.JComboBox<String> cmBoxPlats;
+    private javax.swing.JComboBox<String> cmbOmrade;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblListaAliens;
+    private javax.swing.JLabel lblOmrade;
     private javax.swing.JLabel lblPlats;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuBarInloggadSom;
