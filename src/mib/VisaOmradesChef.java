@@ -85,7 +85,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
 
         lblNorden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/norden_karta.png"))); // NOI18N
 
-        lblChef.setText("Chef för område XXX är XXX");
+        lblChef.setText("                    ");
 
         jMenu1.setText("Mitt konto");
         menuBar1.add(jMenu1);
@@ -115,19 +115,23 @@ public class VisaOmradesChef extends javax.swing.JFrame {
                         .addGap(192, 192, 192)
                         .addComponent(lblRubrikOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblOmrade)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(111, 111, 111)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(71, 71, 71)
+                                        .addComponent(btnSokOmrade))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblOmrade)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addComponent(btnSokOmrade))
-                            .addComponent(lblChef))
+                                .addGap(35, 35, 35)
+                                .addComponent(lblChef)))
                         .addGap(38, 38, 38)
                         .addComponent(lblNorden)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +150,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
                     .addComponent(lblOmrade))
                 .addGap(18, 18, 18)
                 .addComponent(btnSokOmrade)
-                .addGap(45, 45, 45)
+                .addGap(46, 46, 46)
                 .addComponent(lblChef)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -170,13 +174,17 @@ public class VisaOmradesChef extends javax.swing.JFrame {
 
     private void btnSokOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokOmradeActionPerformed
         String omraden = cmbOmrade.getSelectedItem().toString();
-        //try{
-             //String id = "" + omraden + "))";
-        //}
-        //catch(InfException e){
-             //JOptionPane.showMessageDialog(null, "Något gick fel!");
-            //System.out.println("Internt felmeddelande:" + e.getMessage());
-        //}
+        try{
+             String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + omraden + "'");
+             String agentID = idb.fetchSingle("SELECT Agent_ID FROM omradeschef WHERE Omrade =" + omradesID);
+             String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID =" + agentID);
+             
+             lblChef.setText("Områdeschef för " + omraden + " är " + agentNamn + "");
+        }
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
         
     }//GEN-LAST:event_btnSokOmradeActionPerformed
 
