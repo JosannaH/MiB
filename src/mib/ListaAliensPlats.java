@@ -206,12 +206,14 @@ public class ListaAliensPlats extends javax.swing.JFrame {
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
     /**
-     * Bekräfta valt område
+     * Bekräfta valt område och hämta dess platser
      * @param evt 
      */
     private void btnOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOmradeMouseClicked
-      
-      String valtOmrade = cmbPlats.getSelectedItem().toString();
+      // Gör så att anv kan trycka på Välj område flera gånger utan att fler och fler
+      // platser läggs till i cmbPlats
+      cmbPlats.removeAllItems();
+      String valtOmrade = cmbOmrade.getSelectedItem().toString();
       getPlatser(valtOmrade);
     }//GEN-LAST:event_btnOmradeMouseClicked
 
@@ -219,6 +221,9 @@ public class ListaAliensPlats extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnPlatsMouseClicked
 
+    /**
+     * Hämta alla områden och lägg till dom i ComboBox
+     */
     private void getOmraden() {
         try {
             // Hämta alla områden, spara i hashmap i bokstavsordning
@@ -238,12 +243,15 @@ public class ListaAliensPlats extends javax.swing.JFrame {
     
      /**
      * Hämtar platser utifrån vilket område användaren valt
-     * och lägger till dom i drop-down-listan
+     * och lägger till dom i ComboBox
      */
     private void getPlatser(String valtOmrade){
 
         try{
-            ArrayList<HashMap<String, String>> listaPlatser = idb.fetchRows("SELECT Benamning FROM plats WHERE Finns_I = '" + valtOmrade + "'");
+            String valtOmradeID = idb.fetchSingle("SELECT omrades_ID FROM omrade WHERE benamning = '" + valtOmrade + "'");
+            
+            System.out.println("Valt Område ID: " + valtOmradeID);
+            ArrayList<HashMap<String, String>> listaPlatser = idb.fetchRows("SELECT Benamning FROM plats WHERE Finns_I = " + valtOmradeID+ "");
             // loopa igenom lista och lägg till alla områden i drop down menyn 
                for (int i = 0; i < listaPlatser.size(); i++) {
                    
