@@ -289,12 +289,14 @@ public class UppdateraAlien extends javax.swing.JFrame {
             txtRasInfo.setVisible(true);
             lblRasInfo.setVisible(true);
             lblRasInfo.setText("Antal Boogies");
+            txtRasInfo.setText("");
             
         }
         else if(ras.equals("Squid")){
             txtRasInfo.setVisible(true);
             lblRasInfo.setVisible(true);
             lblRasInfo.setText("Antal Armar");
+            txtRasInfo.setText("");
         }
         else{
             doljText(txtRasInfo);
