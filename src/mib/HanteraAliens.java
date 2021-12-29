@@ -41,13 +41,15 @@ public class HanteraAliens extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        menyLista = new javax.swing.JList<>();
         lblAgentBild = new javax.swing.JLabel();
         lblRubrik = new javax.swing.JLabel();
         btnLoggaUt = new javax.swing.JToggleButton();
         btnListaPlats = new javax.swing.JButton();
         btnRegistreraNyAlien = new javax.swing.JButton();
+        btnUppdatera = new javax.swing.JToggleButton();
+        btnSok = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -55,18 +57,6 @@ public class HanteraAliens extends javax.swing.JFrame {
         menuBarInloggadSom = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        menyLista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Registrera ny alien", "Uppdatera alien", "Sök alien", "Lista alien utifrån plats", "Lista alien utifrån ras", "Lista alien utifrån registreringsdatum" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        menyLista.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menyListaMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(menyLista);
 
         lblAgentBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/BlueAlien.png"))); // NOI18N
 
@@ -80,7 +70,7 @@ public class HanteraAliens extends javax.swing.JFrame {
             }
         });
 
-        btnListaPlats.setText("Lista aliens utifrån plats");
+        btnListaPlats.setText("Lista alien utifrån plats");
         btnListaPlats.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnListaPlatsMouseClicked(evt);
@@ -93,6 +83,24 @@ public class HanteraAliens extends javax.swing.JFrame {
                 btnRegistreraNyAlienMouseClicked(evt);
             }
         });
+
+        btnUppdatera.setText("Uppdatera alien");
+        btnUppdatera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUppdateraMouseClicked(evt);
+            }
+        });
+        btnUppdatera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUppdateraActionPerformed(evt);
+            }
+        });
+
+        btnSok.setText("Sök alien");
+
+        jToggleButton3.setText("Lista alien utifrån ras");
+
+        jToggleButton4.setText("Lista alien utifrån registreringsdatum");
 
         jMenu1.setText("Mitt konto");
         menuBar.add(jMenu1);
@@ -110,44 +118,52 @@ public class HanteraAliens extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(59, 276, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnListaPlats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUppdatera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRegistreraNyAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(58, 58, 58))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLoggaUt)
                 .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnListaPlats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegistreraNyAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117))
+                .addGap(242, 242, 242)
+                .addComponent(lblRubrik)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(27, 27, 27)
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnRegistreraNyAlien)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnListaPlats)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnRegistreraNyAlien)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUppdatera)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSok)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnListaPlats)
+                        .addGap(18, 18, 18)
+                        .addComponent(jToggleButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jToggleButton4)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                         .addComponent(btnLoggaUt)
                         .addGap(14, 14, 14))))
         );
@@ -162,10 +178,6 @@ public class HanteraAliens extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
-    private void menyListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menyListaMouseClicked
-            
-    }//GEN-LAST:event_menyListaMouseClicked
-
     private void btnListaPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaPlatsMouseClicked
         setVisible(false);
         ListaAliensPlats listaAlien = new ListaAliensPlats(idb, anvId, anvTyp);
@@ -178,6 +190,16 @@ public class HanteraAliens extends javax.swing.JFrame {
         registreraAlien.setVisible(true);
     }//GEN-LAST:event_btnRegistreraNyAlienMouseClicked
 
+    private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUppdateraActionPerformed
+
+    private void btnUppdateraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUppdateraMouseClicked
+        setVisible(false);
+        UppdateraAlien uppdateraAlien = new UppdateraAlien(idb, anvId, anvTyp);
+        uppdateraAlien.setVisible(true);
+    }//GEN-LAST:event_btnUppdateraMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -187,14 +209,16 @@ public class HanteraAliens extends javax.swing.JFrame {
     private javax.swing.JButton btnListaPlats;
     private javax.swing.JToggleButton btnLoggaUt;
     private javax.swing.JButton btnRegistreraNyAlien;
+    private javax.swing.JToggleButton btnSok;
+    private javax.swing.JToggleButton btnUppdatera;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JLabel lblAgentBild;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuBarInloggadSom;
-    private javax.swing.JList<String> menyLista;
     // End of variables declaration//GEN-END:variables
 }
