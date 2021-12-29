@@ -247,11 +247,11 @@ public class ListaAliensPlats extends javax.swing.JFrame {
       }
       catch(InfException e){
            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage() + " fetch platsID");
+           System.out.println("Internt felmeddelande:" + e.getMessage() + " fetch platsID");
       }
       int platsIDint = Integer.parseInt(platsID);
       SQL sql = new SQL(idb);
-      sql.getAlienFranPlats(platsIDint);
+      //sql.getAlienFranPlats(platsIDint);
     }//GEN-LAST:event_btnSokMouseClicked
 
     private void getOmraden() {
