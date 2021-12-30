@@ -59,15 +59,11 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblConfirm" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblPersInfo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="290" max="-2" attributes="0"/>
-                              <Component id="lblTitel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Component id="lblConfirm" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblPersInfo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="290" max="-2" attributes="0"/>
+                      <Component id="lblTitel" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -291,6 +287,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Spara &#xe4;ndringar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSparaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbOmrade">
       <Properties>
