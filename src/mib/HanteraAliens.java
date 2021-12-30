@@ -48,7 +48,7 @@ public class HanteraAliens extends javax.swing.JFrame {
         btnRegistreraNyAlien = new javax.swing.JButton();
         btnUppdatera = new javax.swing.JToggleButton();
         btnSok = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
+        btnListaAlienRas = new javax.swing.JToggleButton();
         jToggleButton4 = new javax.swing.JToggleButton();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -103,7 +103,12 @@ public class HanteraAliens extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton3.setText("Lista alien utifrån ras");
+        btnListaAlienRas.setText("Lista alien utifrån ras");
+        btnListaAlienRas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnListaAlienRasMouseClicked(evt);
+            }
+        });
 
         jToggleButton4.setText("Lista alien utifrån registreringsdatum");
 
@@ -127,7 +132,7 @@ public class HanteraAliens extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnListaAlienRas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnListaPlats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUppdatera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -160,7 +165,7 @@ public class HanteraAliens extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnListaPlats)
                         .addGap(18, 18, 18)
-                        .addComponent(jToggleButton3)
+                        .addComponent(btnListaAlienRas)
                         .addGap(18, 18, 18)
                         .addComponent(jToggleButton4)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -209,12 +214,19 @@ public class HanteraAliens extends javax.swing.JFrame {
         SokAlien sokAlien = new SokAlien (idb);
         sokAlien.setVisible(true);    }//GEN-LAST:event_btnSokMouseClicked
 
+    private void btnListaAlienRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaAlienRasMouseClicked
+        setVisible(false);
+        ListaAliensRas lista = new ListaAliensRas(idb, anvId, anvTyp);
+        lista.setVisible(true);
+    }//GEN-LAST:event_btnListaAlienRasMouseClicked
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnListaAlienRas;
     private javax.swing.JButton btnListaPlats;
     private javax.swing.JToggleButton btnLoggaUt;
     private javax.swing.JButton btnRegistreraNyAlien;
@@ -223,7 +235,6 @@ public class HanteraAliens extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JLabel lblAgentBild;
     private javax.swing.JLabel lblRubrik;

@@ -51,7 +51,7 @@
               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jToggleButton4" max="32767" attributes="0"/>
-                  <Component id="jToggleButton3" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnListaAlienRas" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnListaPlats" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnSok" max="32767" attributes="0"/>
                   <Component id="btnUppdatera" max="32767" attributes="0"/>
@@ -89,7 +89,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnListaPlats" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jToggleButton3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnListaAlienRas" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jToggleButton4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -163,10 +163,13 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSokMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton3">
+    <Component class="javax.swing.JToggleButton" name="btnListaAlienRas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Lista alien utifr&#xe5;n ras"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnListaAlienRasMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButton4">
       <Properties>
