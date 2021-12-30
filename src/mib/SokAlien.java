@@ -19,7 +19,7 @@ public class SokAlien extends javax.swing.JFrame {
     /**
      * Creates new form SokAlien
      */
-    public SokAlien() {
+    public SokAlien(InfDB idb) {
         initComponents();
     }
 
@@ -82,6 +82,11 @@ public class SokAlien extends javax.swing.JFrame {
         jLabel10.setText("Ansvarig agent:");
 
         jButton1.setText("SÖK");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -182,23 +187,24 @@ public class SokAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSokIDActionPerformed
 
      //För att öppna den här rutan, flytta till agentrutan.
-    setVisible(false);
-        SokAlien sokAlien = new SokAlien (idb);
-        sokAlien.setVisible(true);
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        try {
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+try {
             
            //Lokala variabler för fälten
         String soktID = txtSokID.getText();
         int soktIDint = Integer.parseInt(soktID);
         
-        String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktIDint + "");
-        String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktIDint + "");
-        String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktIDint + "");
-        String alienRas = idb.fetchSingle("SELECT Ras FROM Alien where Alien_ID = " + soktIDint + "");
+        String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktIDint +"");
+        String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktIDint +"");
+        String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktIDint +"");
+        String alienRas = idb.fetchSingle("SELECT Ras FROM Alien where Alien_ID = " + soktIDint +"");
         String alienPlats = idb.fetchSingle("SELECT Plats FROM Alien where Alien_ID = " + soktIDint +"");
         
         //Reminder: skapa variabel query som hämtar namnet på agenten istället
@@ -216,43 +222,12 @@ public class SokAlien extends javax.swing.JFrame {
         catch (InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        }    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SokAlien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SokAlien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SokAlien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SokAlien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SokAlien().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
