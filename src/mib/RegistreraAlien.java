@@ -106,7 +106,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
         jLabel2.setText("Ras");
 
-        cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Squid", "Worm" }));
+        cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Squid", "Worm", "Ingen" }));
         cmbRas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbRasActionPerformed(evt);

@@ -16,23 +16,31 @@ public class SQL extends javax.swing.JFrame {
     private InfDB idb;
     private JComboBox cb;
     private JComboBox cb2;
+    private JComboBox cb3;
 
 
     public SQL(InfDB idb) {
         this.idb = idb;
     }
-    
+
     public SQL(InfDB idb, JComboBox cb){
         this.idb = idb;
         this.cb = cb;
-        
+
     }
-    
+
     public SQL(InfDB idb, JComboBox cb1, JComboBox cb2){
         this.idb = idb;
         this.cb = cb1;
         this.cb2 = cb2;
-        
+
+    }
+
+    public SQL(InfDB idb, JComboBox cb1, JComboBox cb2, JComboBox cb3){
+        this.idb = idb;
+        this.cb = cb1;
+        this.cb2 = cb2;
+        this.cb3 = cb3;
     }
 
     /**
@@ -52,7 +60,7 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
-    
+
     /**
      * Hämta alla platser och lägg till dem i en combobox
      */
@@ -62,7 +70,7 @@ public class SQL extends javax.swing.JFrame {
                 ArrayList<String> platsLista = idb.fetchColumn("SELECT Benamning FROM plats ORDER BY Benamning");
                 for(int i = 0; i < platsLista.size(); i++){
                     String omradesNamn = platsLista.get(i);
-                    cb.addItem(omradesNamn);
+                    cb2.addItem(omradesNamn);
             }
         }
         catch(InfException e){
@@ -70,7 +78,7 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
-    
+
     /**
      * Hämta alla agenter och lägg till dem i en combobox
      */
@@ -80,7 +88,7 @@ public class SQL extends javax.swing.JFrame {
                 ArrayList<String> agentLista = idb.fetchColumn("SELECT namn FROM agent ORDER BY namn");
                 for(int i = 0; i < agentLista.size(); i++){
                     String agentNamn = agentLista.get(i);
-                    cb2.addItem(agentNamn);
+                    cb3.addItem(agentNamn);
             }
         }
         catch(InfException e){
