@@ -8,8 +8,6 @@
 
 package mib;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -28,7 +26,9 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private String anvId;
     private String anvTyp;
     private String regAlienID;
-
+    ArrayList<String> squidLista;
+    ArrayList<String> bogloditeLista;
+    ArrayList<String> wormLista;
 
     /**
      * Creates new form RegistreraAlien
@@ -49,6 +49,12 @@ public class UppdateraAlien extends javax.swing.JFrame {
         s.omraden(cmbOmrade);
         doljText(txtRasInfo);
         doljLabel(lblRasInfo);
+        squidLista = new ArrayList<>();
+        bogloditeLista  = new ArrayList<>();
+        wormLista  = new ArrayList<>();
+        
+        
+        
     }
 
     /**
@@ -82,7 +88,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
         btnValjRas = new javax.swing.JToggleButton();
         txtAlienID = new javax.swing.JTextField();
         lblOmrade = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnSok = new javax.swing.JToggleButton();
         btnSpara = new javax.swing.JToggleButton();
         cmbOmrade = new javax.swing.JComboBox<>();
 
@@ -145,10 +151,10 @@ public class UppdateraAlien extends javax.swing.JFrame {
 
         lblOmrade.setText("Område");
 
-        jToggleButton1.setText("Sök");
-        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSok.setText("Sök");
+        btnSok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseClicked(evt);
+                btnSokMouseClicked(evt);
             }
         });
 
@@ -187,7 +193,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtAlienID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton1))
+                                .addComponent(btnSok))
                             .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSpara)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -218,7 +224,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAlienID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAlienID)
-                    .addComponent(jToggleButton1))
+                    .addComponent(btnSok))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pswLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,7 +317,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbRasActionPerformed
 
-    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+    private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
         if(Validering.textFaltHarVarde(txtAlienID)){
             String idText = txtAlienID.getText();
                         
@@ -339,18 +345,14 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + agent + "'");
                 cmbAnsAgent.setSelectedItem(agentNamn);
                 
-                ArrayList<String> squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
-                //for(int i = 0; i < squidLista.size(); i++){
-                    //String squid = squidLista.get(i);}
+                squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");               
                 
-                ArrayList<String> bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
-                //for(int i = 0; i < bogloditeLista.size(); i++){
-                    //String boglodite = bogloditeLista.get(i);}
+                bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");                
                 
-                ArrayList<String> wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
-                //for(int i = 0; i < wormLista.size(); i++){
-                    //String worm = wormLista.get(i);}
+                wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
                 
+                
+                            
                 if(squidLista.contains(idText)){
                     cmbRas.setSelectedItem("Squid");
                     
@@ -388,54 +390,96 @@ public class UppdateraAlien extends javax.swing.JFrame {
         else {
                 JOptionPane.showMessageDialog(null, "AgentID måste vara ifyllt!");
         }
-    }//GEN-LAST:event_jToggleButton1MouseClicked
+    }//GEN-LAST:event_btnSokMouseClicked
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-          if(Validering.textFaltHarVarde(txtAlienID) && Validering.passwordHarVarde(pswLosen) && Validering.textFaltHarVarde(txtNamn)){
-              
-              String idText = txtAlienID.getText();
-              
-              String regLosenord = pswLosen.getText();
-              String regNamn = txtNamn.getText();
-              String regTelefon = txtTelefon.getText();
-              String regOmrade = cmbOmrade.getSelectedItem().toString();
-              String regPlats = cmbPlats.getSelectedItem().toString();
-              String regAnsAgent = cmbAnsAgent.getSelectedItem().toString();
-              String regRas = cmbRas.getSelectedItem().toString();
-              
-              try{
-              String platsID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning = '" + regPlats + "'");
-              String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn = '" + regAnsAgent + "'");
+        if (Validering.textFaltHarVarde(txtAlienID) && Validering.passwordHarVarde(pswLosen) && Validering.textFaltHarVarde(txtNamn)) {
 
-              idb.insert("UPDATE Alien SET Losenord = '" + regLosenord + "' WHERE Alien_ID = '" + idText + "'");
-                    
-              String rasInfo = txtRasInfo.getText();
-              
-                if(regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)){
-                  
+            String idText = txtAlienID.getText();
+            String regRas = cmbRas.getSelectedItem().toString();
+            String rasInfo = txtRasInfo.getText();
+
+            try {
+                squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+
+                bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+
+                wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+
+                if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
+                    uppdatera();
+
+                    if (bogloditeLista.contains(idText)) {
+                        idb.update("UPDATE Boglodite SET Antal_Boogies = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+                    } else {
+                        idb.insert("INSERT INTO Boglodite VAlLUES ('" + idText + "', '" + rasInfo + "'");
+                    }
+
+                } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
+                    uppdatera();
+
+                    if (squidLista.contains(idText)) {
+
+                        idb.update("UPDATE Squid SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+                    } else {
+
+                        idb.insert("INSERT INTO Squid VALUES ('" + idText + "', '" + rasInfo + "'");
+                    }
+
+                } else if (regRas.equals("Worm")) {
+                    uppdatera();
+
+                    idb.insert("INSERT INTO Worm VALUES ('" + idText + "'");
+
+                } else if (regRas.equals("Ingen")) {
+                    uppdatera();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
                 }
-                else if(regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)){
-                  
-                }
-                else{
-                  JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
-                }
-              }
-            catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande" + e.getMessage()); 
-        }
-              
-        }
-        else{
+
+                JOptionPane.showMessageDialog(null, "Uppdateringen lyckades!");
+
+            } catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Något gick fel!");
+                System.out.println("Internt felmeddelande" + e.getMessage());
+            }
+
+        } else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
-          
+
+
     }//GEN-LAST:event_btnSparaActionPerformed
-  
+
+    private void uppdatera() {
+        String idText = txtAlienID.getText();
+
+        String regLosenord = pswLosen.getText();
+        String regNamn = txtNamn.getText();
+        String regTelefon = txtTelefon.getText();
+        String regPlats = cmbPlats.getSelectedItem().toString();
+        String regAnsAgent = cmbAnsAgent.getSelectedItem().toString();
+        try {
+
+            String platsID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning = '" + regPlats + "'");
+            String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn = '" + regAnsAgent + "'");
+
+            idb.update("UPDATE Alien SET Losenord = '" + regLosenord + "' WHERE Alien_ID = '" + idText + "'");
+            idb.update("UPDATE Alien SET Namn = '" + regNamn + "' WHERE Alien_ID = '" + idText + "'");
+            idb.update("UPDATE Alien SET Telefon = '" + regTelefon + "' WHERE Alien_ID = '" + idText + "'");
+            idb.update("UPDATE Alien SET Losenord = '" + regLosenord + "' WHERE Alien_ID = '" + idText + "'");
+            idb.update("UPDATE Alien SET Plats = '" + platsID + "'");
+            idb.update("UPDATE Alien SET Ansvarig_Agent = '" + regAgentID + "'");
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage());
+        }
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnSok;
     private javax.swing.JToggleButton btnSpara;
     private javax.swing.JToggleButton btnValjRas;
     private javax.swing.JComboBox<String> cmbAnsAgent;
@@ -443,7 +487,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbPlats;
     private javax.swing.JComboBox<String> cmbRas;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblAlienID;
     private javax.swing.JLabel lblAnsvarigAgent;
     private javax.swing.JLabel lblConfirm;

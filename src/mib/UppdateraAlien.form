@@ -48,7 +48,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="txtAlienID" min="-2" pref="150" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSok" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="cmbRas" min="-2" pref="152" max="-2" attributes="0"/>
                           <Component id="btnSpara" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -88,7 +88,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtAlienID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblAlienID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jToggleButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSok" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -275,12 +275,12 @@
         <Property name="text" type="java.lang.String" value="Omr&#xe5;de"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+    <Component class="javax.swing.JToggleButton" name="btnSok">
       <Properties>
         <Property name="text" type="java.lang.String" value="S&#xf6;k"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jToggleButton1MouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSokMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnSpara">
