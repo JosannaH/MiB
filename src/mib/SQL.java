@@ -14,34 +14,10 @@ import oru.inf.InfException;
 public class SQL extends javax.swing.JFrame {
 
     private InfDB idb;
-    private JComboBox cb;
-    private JComboBox cb2;
-    private JComboBox cb3;
-
 
     public SQL(InfDB idb) {
         this.idb = idb;
     }
-/*
-    public SQL(InfDB idb, JComboBox cb){
-        this.idb = idb;
-        this.cb = cb;
-
-    }*/
-/*
-    public SQL(InfDB idb, JComboBox cb1, JComboBox cb2){
-        this.idb = idb;
-        this.cb = cb1;
-        this.cb2 = cb2;
-
-    }*/
-/*
-    public SQL(InfDB idb, JComboBox cb1, JComboBox cb2, JComboBox cb3){
-        this.idb = idb;
-        this.cb = cb1;
-        this.cb2 = cb2;
-        this.cb3 = cb3;
-    }*/
 
     /**
      * Hämta alla områden och lägg till dom i en combobox
