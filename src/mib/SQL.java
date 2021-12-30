@@ -14,37 +14,21 @@ import oru.inf.InfException;
 public class SQL extends javax.swing.JFrame {
 
     private InfDB idb;
-    private JComboBox cb;
-    private JComboBox cb2;
-
 
     public SQL(InfDB idb) {
         this.idb = idb;
-    }
-    
-    public SQL(InfDB idb, JComboBox cb){
-        this.idb = idb;
-        this.cb = cb;
-        
-    }
-    
-    public SQL(InfDB idb, JComboBox cb1, JComboBox cb2){
-        this.idb = idb;
-        this.cb = cb1;
-        this.cb2 = cb2;
-        
     }
 
     /**
      * Hämta alla områden och lägg till dom i en combobox
      */
-    public void omraden()
+    public void omraden(JComboBox x)
         {
             try{
                 ArrayList<String> omradeLista = idb.fetchColumn("SELECT Benamning FROM omrade ORDER BY Benamning");
                 for(int i = 0; i < omradeLista.size(); i++){
                     String omradesNamn = omradeLista.get(i);
-                    cb.addItem(omradesNamn);
+                    x.addItem(omradesNamn);
             }
         }
         catch(InfException e){
@@ -52,17 +36,17 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
-    
+
     /**
      * Hämta alla platser och lägg till dem i en combobox
      */
-    public void plats()
+    public void plats(JComboBox x)
         {
             try{
                 ArrayList<String> platsLista = idb.fetchColumn("SELECT Benamning FROM plats ORDER BY Benamning");
                 for(int i = 0; i < platsLista.size(); i++){
                     String omradesNamn = platsLista.get(i);
-                    cb.addItem(omradesNamn);
+                    x.addItem(omradesNamn);
             }
         }
         catch(InfException e){
@@ -70,44 +54,22 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
-    
+
     /**
      * Hämta alla agenter och lägg till dem i en combobox
      */
-    public void agent()
+    public void agent(JComboBox x)
         {
             try{
                 ArrayList<String> agentLista = idb.fetchColumn("SELECT namn FROM agent ORDER BY namn");
                 for(int i = 0; i < agentLista.size(); i++){
                     String agentNamn = agentLista.get(i);
-                    cb2.addItem(agentNamn);
+                    x.addItem(agentNamn);
             }
         }
         catch(InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
-        }
-    }
-    
-      
-    /**
-     * Hämta alla aliens utifrån plats
-     */
-    public void getAlienFranPlats(int platsID){
-      
-        try{
-                ArrayList<String> alienLista = idb.fetchColumn("SELECT alien_ID, namn, registreringsdatum FROM alien WHERE plats = " + platsID);
-                for(int i = 0; i < alienLista.size(); i++){
-                    String alienNamn = alienLista.get(i);
-                    System.out.println("Aliennamn: " + alienNamn);
-                            
-                    // TODO referera till kolumn 1
-                    //cb.addItem(agentNamn);
-                }
-        }
-        catch(InfException e){
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage() + "getAlienFranPlats()");
         }
     }
 }
