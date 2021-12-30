@@ -4,12 +4,9 @@
  */
 package mib;
 
-import com.mysql.cj.util.StringUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Vector;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -25,8 +22,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
     private InfDB idb;
     private String anvId;
     private String anvTyp;
-    
-    
+
     public ListaAliensPlats(InfDB idb) {
         initComponents();
         this.idb = idb;
@@ -40,8 +36,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
         getOmraden();
     }
-  
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -188,7 +183,8 @@ public class ListaAliensPlats extends javax.swing.JFrame {
 
     /**
      * Logga ut högst upp i MenuBar
-     * @param evt 
+     *
+     * @param evt
      */
     private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
         setVisible(false);
@@ -198,17 +194,19 @@ public class ListaAliensPlats extends javax.swing.JFrame {
 
     /**
      * Gå tillbaka till föregående sida
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
-         setVisible(false);
+        setVisible(false);
         HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
         hanteraAliens.setVisible(true);
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
 
     /**
      * Gå till startsidan i MenuBar
-     * @param evt 
+     *
+     * @param evt
      */
     private void menuBarTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarTillStartsidaMouseClicked
         setVisible(false);
@@ -218,30 +216,31 @@ public class ListaAliensPlats extends javax.swing.JFrame {
 
     /**
      * Bekräfta valt område och hämta dess platser
-     * @param evt 
+     *
+     * @param evt
      */
     private void btnOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOmradeMouseClicked
-      // Gör så att anv kan trycka på Välj område flera gånger utan att fler och fler
-      // platser läggs till i cmbPlats
-      cmbPlats.removeAllItems();
-      String valtOmrade = cmbOmrade.getSelectedItem().toString();
-      SQL sql = new SQL(idb);
-      sql.getPlatser(valtOmrade, cmbPlats);
+        // Gör så att anv kan trycka på Välj område flera gånger utan att fler och fler
+        // platser läggs till i cmbPlats
+        cmbPlats.removeAllItems();
+        String valtOmrade = cmbOmrade.getSelectedItem().toString();
+        SQL sql = new SQL(idb);
+        sql.getPlatser(valtOmrade, cmbPlats);
     }//GEN-LAST:event_btnOmradeMouseClicked
-/**
- * Bekräfta vald plats och visa lista i TextArea
- * @param evt 
- */
+    /**
+     * Bekräfta vald plats och visa lista i TextArea
+     *
+     * @param evt
+     */
     private void btnPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlatsMouseClicked
-       // Sparar användarens val av plats 
+        // Sparar användarens val av plats 
         String valdPlats = cmbPlats.getSelectedItem().toString();
         String valdPlatsID = "";
-        try{
+        try {
             //hämta ID för vald plats
-        valdPlatsID = idb.fetchSingle("SELECT plats_ID from plats WHERE benamning = '" + valdPlats + "'");
-            System.out.println("Vald plats ID: " + valdPlatsID);
-        }
-         catch(InfException e) {
+            valdPlatsID = idb.fetchSingle("SELECT plats_ID from plats WHERE benamning = '" + valdPlats + "'");
+            
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: valdPlatsID i btnPlatsMouseClicked() " + e.getMessage());
         }
@@ -259,25 +258,23 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         try {
             // Hämta alla områden, spara i hashmap
             ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade");
-             
-             // loopa igenom lista och lägg till alla områden i drop down menyn 
-               for (int i = 0; i < listaOmraden.size(); i++) {
-                   
+
+            // loopa igenom lista och lägg till alla områden i drop down menyn 
+            for (int i = 0; i < listaOmraden.size(); i++) {
+
                 String omrade = listaOmraden.get(i).get("Benamning");
                 cmbOmrade.addItem(omrade);
-               }
+            }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());
+            System.out.println("Internt felmeddelande: getOmraden() " + e.getMessage());
         }
     }
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGaTillbaka;
     private javax.swing.JButton btnOmrade;
