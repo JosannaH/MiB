@@ -97,6 +97,11 @@ public class HanteraAliens extends javax.swing.JFrame {
         });
 
         btnSok.setText("Sök alien");
+        btnSok.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSokMouseClicked(evt);
+            }
+        });
 
         jToggleButton3.setText("Lista alien utifrån ras");
 
@@ -144,7 +149,6 @@ public class HanteraAliens extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
@@ -199,6 +203,11 @@ public class HanteraAliens extends javax.swing.JFrame {
         UppdateraAlien uppdateraAlien = new UppdateraAlien(idb, anvId, anvTyp);
         uppdateraAlien.setVisible(true);
     }//GEN-LAST:event_btnUppdateraMouseClicked
+
+    private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
+    setVisible(false);
+        SokAlien sokAlien = new SokAlien (idb);
+        sokAlien.setVisible(true);    }//GEN-LAST:event_btnSokMouseClicked
 
     /**
      * @param args the command line arguments

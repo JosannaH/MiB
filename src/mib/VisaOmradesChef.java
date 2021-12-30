@@ -30,8 +30,8 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         
-        SQL s = new SQL(idb, cmbOmrade);
-        s.omraden();
+        SQL s = new SQL(idb);
+        s.omraden(cmbOmrade);
     }
 
     /**

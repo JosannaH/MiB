@@ -43,10 +43,10 @@ public class UppdateraAlien extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        SQL s = new SQL(idb, cmbOmrade, cmbPlats, cmbAnsAgent);
-        s.plats();
-        s.agent();
-        s.omraden();
+        SQL s = new SQL(idb);
+        s.plats(cmbPlats);
+        s.agent(cmbAnsAgent);
+        s.omraden(cmbOmrade);
         doljText(txtRasInfo);
         doljLabel(lblRasInfo);
     }

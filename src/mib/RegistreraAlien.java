@@ -43,9 +43,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         nyttDatum();
-        SQL s = new SQL(idb, cmbPlats, cmbAnsAgent);
-        s.plats();
-        s.agent();
+        SQL s = new SQL(idb);
+        s.plats(cmbPlats);
+        s.agent(cmbAnsAgent);
         hamtaAlienID(regAlienID);
         doljText(txtRasInfo);
         doljLabel(lblRasInfo);
@@ -352,8 +352,8 @@ public class RegistreraAlien extends javax.swing.JFrame {
     private void hamtaAlienID (String regAlienID) {
         
         try{
-    regAlienID = idb.getAutoIncrement("Alien", "Alien_ID");
-               lblAlienID2.setText(regAlienID); 
+            regAlienID = idb.getAutoIncrement("Alien", "Alien_ID");
+            lblAlienID2.setText(regAlienID); 
         
         }
         
