@@ -20,7 +20,7 @@ import oru.inf.InfException;
 public class ListaAliensPlats extends javax.swing.JFrame {
 
     /**
-     * Creates new form StartsidaAgent
+     * Creates new form ListaAlienPlats
      */
     private InfDB idb;
     private String anvId;
@@ -30,7 +30,6 @@ public class ListaAliensPlats extends javax.swing.JFrame {
     public ListaAliensPlats(InfDB idb) {
         initComponents();
         this.idb = idb;
-  
     }
 
     public ListaAliensPlats(InfDB idb, String anvId, String anvTyp) {
@@ -40,10 +39,6 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
         getOmraden();
-        
-        //Hämta alla områden så dom finns i Combobox från början
-       // SQL s = new SQL(idb, cmBoxPlats);
-      //  s.plats();
     }
   
     
@@ -275,11 +270,8 @@ public class ListaAliensPlats extends javax.swing.JFrame {
             txtLista.append(a + " \t " + n + " \t\t" + t + "\n");
             // TODO visar bara en alien i listan
         }
-
     }
 
-    
-    
     /**
      * Hämta alla områden och lägg till dom i ComboBox
      */
@@ -323,12 +315,10 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         }
     }
     
-    
     /**
      * @param args the command line arguments
      */
     
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGaTillbaka;
     private javax.swing.JButton btnOmrade;
