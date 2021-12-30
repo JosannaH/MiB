@@ -153,6 +153,11 @@ public class UppdateraAlien extends javax.swing.JFrame {
         });
 
         btnSpara.setText("Spara ändringar");
+        btnSpara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSparaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,13 +194,11 @@ public class UppdateraAlien extends javax.swing.JFrame {
                                 .addComponent(cmbOmrade, javax.swing.GroupLayout.Alignment.LEADING, 0, 150, Short.MAX_VALUE)
                                 .addComponent(cmbAnsAgent, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cmbPlats, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(lblConfirm)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblConfirm)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblPersInfo)
-                                .addGap(290, 290, 290)
-                                .addComponent(lblTitel)))))
+                        .addComponent(lblPersInfo)
+                        .addGap(290, 290, 290)
+                        .addComponent(lblTitel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(182, 182, 182)
@@ -337,16 +340,16 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 cmbAnsAgent.setSelectedItem(agentNamn);
                 
                 ArrayList<String> squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
-                for(int i = 0; i < squidLista.size(); i++){
-                    String squid = squidLista.get(i);}
+                //for(int i = 0; i < squidLista.size(); i++){
+                    //String squid = squidLista.get(i);}
                 
                 ArrayList<String> bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
-                for(int i = 0; i < bogloditeLista.size(); i++){
-                    String boglodite = bogloditeLista.get(i);}
+                //for(int i = 0; i < bogloditeLista.size(); i++){
+                    //String boglodite = bogloditeLista.get(i);}
                 
                 ArrayList<String> wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
-                for(int i = 0; i < wormLista.size(); i++){
-                    String worm = wormLista.get(i);}
+                //for(int i = 0; i < wormLista.size(); i++){
+                    //String worm = wormLista.get(i);}
                 
                 if(squidLista.contains(idText)){
                     cmbRas.setSelectedItem("Squid");
@@ -386,6 +389,49 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "AgentID måste vara ifyllt!");
         }
     }//GEN-LAST:event_jToggleButton1MouseClicked
+
+    private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
+          if(Validering.textFaltHarVarde(txtAlienID) && Validering.passwordHarVarde(pswLosen) && Validering.textFaltHarVarde(txtNamn)){
+              
+              String idText = txtAlienID.getText();
+              
+              String regLosenord = pswLosen.getText();
+              String regNamn = txtNamn.getText();
+              String regTelefon = txtTelefon.getText();
+              String regOmrade = cmbOmrade.getSelectedItem().toString();
+              String regPlats = cmbPlats.getSelectedItem().toString();
+              String regAnsAgent = cmbAnsAgent.getSelectedItem().toString();
+              String regRas = cmbRas.getSelectedItem().toString();
+              
+              try{
+              String platsID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning = '" + regPlats + "'");
+              String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn = '" + regAnsAgent + "'");
+
+              idb.insert("UPDATE Alien SET Losenord = '" + regLosenord + "' WHERE Alien_ID = '" + idText + "'");
+                    
+              String rasInfo = txtRasInfo.getText();
+              
+                if(regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)){
+                  
+                }
+                else if(regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)){
+                  
+                }
+                else{
+                  JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+                }
+              }
+            catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage()); 
+        }
+              
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+        }
+          
+    }//GEN-LAST:event_btnSparaActionPerformed
   
     
 
