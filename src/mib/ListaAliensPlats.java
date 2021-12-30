@@ -225,58 +225,39 @@ public class ListaAliensPlats extends javax.swing.JFrame {
       // platser läggs till i cmbPlats
       cmbPlats.removeAllItems();
       String valtOmrade = cmbOmrade.getSelectedItem().toString();
-      getPlatser(valtOmrade);
+      SQL sql = new SQL(idb);
+      sql.getPlatser(valtOmrade, cmbPlats);
     }//GEN-LAST:event_btnOmradeMouseClicked
-
+/**
+ * Bekräfta vald plats och visa lista i TextArea
+ * @param evt 
+ */
     private void btnPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlatsMouseClicked
        // Sparar användarens val av plats 
         String valdPlats = cmbPlats.getSelectedItem().toString();
         String valdPlatsID = "";
         try{
+            //hämta ID för vald plats
         valdPlatsID = idb.fetchSingle("SELECT plats_ID from plats WHERE benamning = '" + valdPlats + "'");
             System.out.println("Vald plats ID: " + valdPlatsID);
         }
          catch(InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: valdPlatsID i btnPlatsMouseClicked" + e.getMessage());
+            System.out.println("Internt felmeddelande: valdPlatsID i btnPlatsMouseClicked() " + e.getMessage());
         }
+        // Gör om ID till int
         int valdPlatsIDint = Integer.parseInt(valdPlatsID);
-        fyllLista(valdPlatsIDint);
+        //Använd metod som finns i klassen SQL
+        SQL sql = new SQL(idb);
+        sql.fyllListaAlienPlats(valdPlatsIDint, txtLista);
     }//GEN-LAST:event_btnPlatsMouseClicked
-
-    /**
-     * Fyll TextArea
-     */
-    private void fyllLista(int x){
-        ArrayList<HashMap<String,String>> alienIDLista = new ArrayList<>();
-        ArrayList<HashMap<String,String>> namnLista = new ArrayList<>();
-        ArrayList<HashMap<String,String>> telefonLista = new ArrayList<>();
-       try{
-         alienIDLista= idb.fetchRows("SELECT alien_ID from alien WHERE plats = " + x);
-         namnLista = idb.fetchRows("SELECT namn from alien WHERE plats = " + x);
-        telefonLista = idb.fetchRows("SELECT telefon from alien WHERE plats = " + x);
-        }
-        catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: fyllLista() " + e.getMessage());
-        }
-        txtLista.append("AlienID \t Namn \t\t Telefon \n");
-        
-        for (int i = 0; i < alienIDLista.size(); i++) {
-            String a = alienIDLista.get(i).get("alien_ID");
-            String n = namnLista.get(i).get("namn");
-            String t = telefonLista.get(i).get("telefon");
-            
-            txtLista.append(a + " \t " + n + " \t\t" + t + "\n");
-        }
-    }
 
     /**
      * Hämta alla områden och lägg till dom i ComboBox
      */
     private void getOmraden() {
         try {
-            // Hämta alla områden, spara i hashmap i bokstavsordning
+            // Hämta alla områden, spara i hashmap
             ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade");
              
              // loopa igenom lista och lägg till alla områden i drop down menyn 
@@ -291,28 +272,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         }
     }
     
-     /**
-     * Hämta platser utifrån vilket område användaren valt
-     * och lägg till dom i ComboBox
-     */
-    private void getPlatser(String valtOmrade){
-
-        try{
-            String valtOmradeID = idb.fetchSingle("SELECT omrades_ID FROM omrade WHERE benamning = '" + valtOmrade + "'");
-            
-            System.out.println("Valt Område ID: " + valtOmradeID);
-            ArrayList<HashMap<String, String>> listaPlatser = idb.fetchRows("SELECT Benamning FROM plats WHERE Finns_I = " + valtOmradeID+ "");
-            // loopa igenom lista och lägg till alla områden i drop down menyn 
-               for (int i = 0; i < listaPlatser.size(); i++) {
-                   
-                String plats = listaPlatser.get(i).get("Benamning");
-                cmbPlats.addItem(plats);
-               }
-        }catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());
-        }
-    }
+    
     
     /**
      * @param args the command line arguments
