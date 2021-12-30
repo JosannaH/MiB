@@ -247,14 +247,14 @@ public class ListaAliensPlats extends javax.swing.JFrame {
     /**
      * Fyll TextArea
      */
-    private void fyllLista(int valdPlatsIDint){
+    private void fyllLista(int x){
         ArrayList<HashMap<String,String>> alienIDLista = new ArrayList<>();
         ArrayList<HashMap<String,String>> namnLista = new ArrayList<>();
         ArrayList<HashMap<String,String>> telefonLista = new ArrayList<>();
        try{
-         alienIDLista= idb.fetchRows("SELECT alien_ID from alien WHERE plats = " + valdPlatsIDint);
-         namnLista = idb.fetchRows("SELECT namn from alien WHERE plats = " + valdPlatsIDint);
-        telefonLista = idb.fetchRows("SELECT telefon from alien WHERE plats = " + valdPlatsIDint);
+         alienIDLista= idb.fetchRows("SELECT alien_ID from alien WHERE plats = " + x);
+         namnLista = idb.fetchRows("SELECT namn from alien WHERE plats = " + x);
+        telefonLista = idb.fetchRows("SELECT telefon from alien WHERE plats = " + x);
         }
         catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -268,7 +268,6 @@ public class ListaAliensPlats extends javax.swing.JFrame {
             String t = telefonLista.get(i).get("telefon");
             
             txtLista.append(a + " \t " + n + " \t\t" + t + "\n");
-            // TODO visar bara en alien i listan
         }
     }
 
@@ -278,7 +277,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
     private void getOmraden() {
         try {
             // Hämta alla områden, spara i hashmap i bokstavsordning
-             ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade");
+            ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade");
              
              // loopa igenom lista och lägg till alla områden i drop down menyn 
                for (int i = 0; i < listaOmraden.size(); i++) {
