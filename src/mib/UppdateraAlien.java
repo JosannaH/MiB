@@ -332,7 +332,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                         
             try{
                 txtAlienID.setText(idText);
-                //String alienID = idb.fetchSingle("SELECT A");
+                
                 String losen = idb.fetchSingle("SELECT Losenord FROM alien WHERE Alien_ID ='" + idText + "'");
                 pswLosen.setText(losen);
                 
@@ -389,7 +389,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
         }
         }
         else {
-                JOptionPane.showMessageDialog(null, "AgentID måste vara ifyllt!");
+            JOptionPane.showMessageDialog(null, "AgentID måste vara ifyllt!");
         }
     }//GEN-LAST:event_btnSokMouseClicked
 
@@ -409,17 +409,25 @@ public class UppdateraAlien extends javax.swing.JFrame {
                         //Funkar                        
                         idb.update("UPDATE Boglodite SET Antal_Boogies = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
                     } else {
-                        //Funkar inte
-                        idb.insert("INSERT INTO Boglodite VAlLUES (" + idText + "', '" + rasInfo + ")");
+                        //Funkar
+                        idb.insert("INSERT INTO Boglodite VALUES ('" + idText + "', '" + rasInfo + "')");
+                        //Om man ändrar från en tidigare ras behöver man ta bort info om tidigare ras... 
+                        if(squidLista.contains(idText)){
+                            
+                        }
+                        if(wormLista.contains(idText)){
+                            
+                        }
                     }
 
-                } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
+                } 
+                else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
                     uppdatera();
 
                     if (squidLista.contains(idText)) {
                         idb.update("UPDATE Squid SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
                     } else {                        
-                        idb.insert("INSERT INTO Squid VALUES ('" + idText + "', '" + rasInfo + "'");
+                        idb.insert("INSERT INTO Squid VALUES ('" + idText + "', '" + rasInfo + "')");
                     }
 
                 } else if (regRas.equals("Worm")) {
