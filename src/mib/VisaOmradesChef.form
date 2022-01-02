@@ -4,25 +4,31 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="menuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="menuBarStartsida">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mitt konto"/>
+            <Property name="text" type="java.lang.String" value="G&#xe5; till Startsida"/>
           </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Funktioner"/>
-          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarStartsidaMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="                                                                                                    "/>
+            <Property name="text" type="java.lang.String" value="                                                                                                            "/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inloggad som Agent"/>
           </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuBarLoggaUt">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Logga ut"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarLoggaUtMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
@@ -52,7 +58,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="59" max="32767" attributes="0"/>
-              <Component id="btnLoggaUtOmrade" min="-2" max="-2" attributes="0"/>
+              <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -98,7 +104,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lblNorden" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="17" max="32767" attributes="0"/>
-              <Component id="btnLoggaUtOmrade" min="-2" max="-2" attributes="0"/>
+              <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -125,12 +131,13 @@
         <Property name="text" type="java.lang.String" value="Visa Omr&#xe5;deschef"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="btnLoggaUtOmrade">
+    <Component class="javax.swing.JToggleButton" name="btnTillbaka">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Logga ut"/>
+        <Property name="text" type="java.lang.String" value="G&#xe5; tillbaka"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoggaUtOmradeActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTillbakaMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTillbakaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbOmrade">
