@@ -49,9 +49,18 @@ public class UppdateraAlien extends javax.swing.JFrame {
         s.omraden(cmbOmrade);
         doljText(txtRasInfo);
         doljLabel(lblRasInfo);
-        squidLista = new ArrayList<>();
-        bogloditeLista  = new ArrayList<>();
-        wormLista  = new ArrayList<>();
+        
+        try{
+            squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+            bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+            wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+        }
+        catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage());
+        }
+            
+        
         
         
         
@@ -343,15 +352,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 
                 String agent = idb.fetchSingle("SELECT Ansvarig_Agent FROM alien WHERE Alien_ID ='" + idText + "'");
                 String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + agent + "'");
-                cmbAnsAgent.setSelectedItem(agentNamn);
-                
-                squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");               
-                
-                bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");                
-                
-                wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
-                
-                
+                cmbAnsAgent.setSelectedItem(agentNamn);            
                             
                 if(squidLista.contains(idText)){
                     cmbRas.setSelectedItem("Squid");
@@ -400,29 +401,24 @@ public class UppdateraAlien extends javax.swing.JFrame {
             String rasInfo = txtRasInfo.getText();
 
             try {
-                squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
-
-                bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
-
-                wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
-
+                
                 if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
                     uppdatera();
 
                     if (bogloditeLista.contains(idText)) {
+                        //Funkar                        
                         idb.update("UPDATE Boglodite SET Antal_Boogies = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
                     } else {
-                        idb.insert("INSERT INTO Boglodite VAlLUES ('" + idText + "', '" + rasInfo + "'");
+                        //Funkar inte
+                        idb.insert("INSERT INTO Boglodite VAlLUES (" + idText + "', '" + rasInfo + ")");
                     }
 
                 } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
                     uppdatera();
 
                     if (squidLista.contains(idText)) {
-
                         idb.update("UPDATE Squid SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
-                    } else {
-
+                    } else {                        
                         idb.insert("INSERT INTO Squid VALUES ('" + idText + "', '" + rasInfo + "'");
                     }
 
