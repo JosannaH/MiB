@@ -401,7 +401,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
             String rasInfo = txtRasInfo.getText();
 
             try {
-                
+
                 if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
                     uppdatera();
 
@@ -412,31 +412,56 @@ public class UppdateraAlien extends javax.swing.JFrame {
                         //Funkar
                         idb.insert("INSERT INTO Boglodite VALUES ('" + idText + "', '" + rasInfo + "')");
                         //Om man ändrar från en tidigare ras behöver man ta bort info om tidigare ras... 
-                        if(squidLista.contains(idText)){
-                            
+                        if (squidLista.contains(idText)) {
+                            idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
                         }
-                        if(wormLista.contains(idText)){
-                            
+                        if (wormLista.contains(idText)) {
+                            idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
                         }
                     }
 
-                } 
-                else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
+                } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
                     uppdatera();
 
                     if (squidLista.contains(idText)) {
                         idb.update("UPDATE Squid SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
-                    } else {                        
+                    } else {
                         idb.insert("INSERT INTO Squid VALUES ('" + idText + "', '" + rasInfo + "')");
+                        if (bogloditeLista.contains(idText)) {
+                            idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
+                        }
+                        if (wormLista.contains(idText)) {
+                            idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
+                        }
                     }
-
                 } else if (regRas.equals("Worm")) {
                     uppdatera();
 
-                    idb.insert("INSERT INTO Worm VALUES ('" + idText + "'");
+                    if (wormLista.contains(idText)) {
+                        idb.update("UPDATE Worm SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+                    } else {
+                        idb.insert("INSERT INTO Worm VALUES ('" + idText + "')");
 
+                        if (bogloditeLista.contains(idText)) {
+                            idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
+                        }
+                        if (squidLista.contains(idText)) {
+                            idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
+                        }
+                    }
                 } else if (regRas.equals("Ingen")) {
                     uppdatera();
+
+                    if (bogloditeLista.contains(idText)) {
+                        idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
+                    }
+
+                    if (squidLista.contains(idText)) {
+                        idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
+                    }
+                    if (wormLista.contains(idText)) {
+                        idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
+                    }
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
