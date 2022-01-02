@@ -101,12 +101,12 @@ public class UppdateraAlien extends javax.swing.JFrame {
         btnSpara = new javax.swing.JToggleButton();
         cmbOmrade = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnTillbaka = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        menuBarStartsida = new javax.swing.JMenu();
+        menuBarInget = new javax.swing.JMenu();
+        menuBarInlogg = new javax.swing.JMenu();
+        menuBarLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,24 +183,34 @@ public class UppdateraAlien extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/UppdateraAlien.png"))); // NOI18N
 
-        jToggleButton1.setText("Gå tillbaka");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnTillbaka.setText("Gå tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                btnTillbakaActionPerformed(evt);
             }
         });
 
-        jMenu1.setText("Mitt konto");
-        jMenuBar1.add(jMenu1);
+        menuBarStartsida.setText("Gå till startsida");
+        menuBarStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarStartsidaMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuBarStartsida);
 
-        jMenu2.setText("Funktioner");
-        jMenuBar1.add(jMenu2);
+        menuBarInget.setText("                                                                                                                             ");
+        jMenuBar1.add(menuBarInget);
 
-        jMenu4.setText("                                                                                                                          ");
-        jMenuBar1.add(jMenu4);
+        menuBarInlogg.setText("Inloggad som Agent");
+        jMenuBar1.add(menuBarInlogg);
 
-        jMenu3.setText("Inloggad som Agent");
-        jMenuBar1.add(jMenu3);
+        menuBarLoggaUt.setText("Logga ut");
+        menuBarLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarLoggaUtMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuBarLoggaUt);
 
         setJMenuBar(jMenuBar1);
 
@@ -228,7 +238,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                                         .addComponent(lblRas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lblRasInfo, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lblPlats, javax.swing.GroupLayout.Alignment.LEADING)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(pswLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,9 +259,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblPersInfo)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addComponent(jToggleButton1)))
+                                    .addComponent(btnTillbaka))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jLabel1)
                         .addGap(56, 56, 56))))
@@ -271,7 +279,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1))
+                        .addComponent(btnTillbaka))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7)
@@ -540,9 +548,23 @@ public class UppdateraAlien extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSparaActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        setVisible(false);
+        HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
+        hanteraAliens.setVisible(true);
+    }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
+        setVisible(false);
+        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
+        startsidaAgent.setVisible(true);
+    }//GEN-LAST:event_menuBarStartsidaMouseClicked
+
+    private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
+        setVisible(false);
+        Inloggning inlogg = new Inloggning(idb);
+        inlogg.setVisible(true);
+    }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
     private void uppdatera() {
         String idText = txtAlienID.getText();
@@ -573,6 +595,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnSok;
     private javax.swing.JToggleButton btnSpara;
+    private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JToggleButton btnValjRas;
     private javax.swing.JComboBox<String> cmbAnsAgent;
     private javax.swing.JComboBox<String> cmbOmrade;
@@ -580,12 +603,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbRas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblAlienID;
     private javax.swing.JLabel lblAnsvarigAgent;
     private javax.swing.JLabel lblConfirm;
@@ -598,6 +616,10 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblRasInfo;
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTitel;
+    private javax.swing.JMenu menuBarInget;
+    private javax.swing.JMenu menuBarInlogg;
+    private javax.swing.JMenu menuBarLoggaUt;
+    private javax.swing.JMenu menuBarStartsida;
     private javax.swing.JPasswordField pswLosen;
     private javax.swing.JTextField txtAlienID;
     private javax.swing.JTextField txtNamn;

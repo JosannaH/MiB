@@ -4,25 +4,31 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="menuBarStartsida">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mitt konto"/>
+            <Property name="text" type="java.lang.String" value="G&#xe5; till startsida"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarStartsidaMouseClicked"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuBarInget">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="                                                                                                                             "/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Funktioner"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="                                                                                                                          "/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="menuBarInlogg">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inloggad som Agent"/>
           </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuBarLoggaUt">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Logga ut"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarLoggaUtMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
@@ -73,7 +79,7 @@
                                       <Component id="lblPlats" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="39" max="32767" attributes="0"/>
+                              <EmptySpace pref="10" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="pswLosen" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                                   <Component id="txtTelefon" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
@@ -97,11 +103,8 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblPersInfo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                      <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="lblPersInfo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnTillbaka" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -132,7 +135,7 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -373,12 +376,12 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+    <Component class="javax.swing.JToggleButton" name="btnTillbaka">
       <Properties>
         <Property name="text" type="java.lang.String" value="G&#xe5; tillbaka"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTillbakaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

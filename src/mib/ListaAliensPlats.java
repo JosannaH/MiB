@@ -201,7 +201,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
-         setVisible(false);
+        setVisible(false);
         HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
         hanteraAliens.setVisible(true);
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
