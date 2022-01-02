@@ -67,11 +67,6 @@ public class VisaOmradesChef extends javax.swing.JFrame {
                 btnTillbakaMouseClicked(evt);
             }
         });
-        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTillbakaActionPerformed(evt);
-            }
-        });
 
         cmbOmrade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,12 +171,6 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     //Skapar en metod som man sen använder för att fylla rullisten med information. 
     
     
-    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        setVisible(false);
-        Inloggning inlogg = new Inloggning(idb);
-        inlogg.setVisible(true);
-    }//GEN-LAST:event_btnTillbakaActionPerformed
-
     private void cmbOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOmradeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbOmradeActionPerformed

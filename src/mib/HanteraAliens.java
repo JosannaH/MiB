@@ -64,9 +64,9 @@ public class HanteraAliens extends javax.swing.JFrame {
         lblRubrik.setText("Hantera aliens");
 
         btnTillbaka.setText("Gå tillbaka");
-        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTillbakaActionPerformed(evt);
+        btnTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTillbakaMouseClicked(evt);
             }
         });
 
@@ -115,7 +115,7 @@ public class HanteraAliens extends javax.swing.JFrame {
         });
         menuBar.add(menuBarStartsida);
 
-        menuBarInget.setText("                                                                                                     ");
+        menuBarInget.setText("                                                                                                        ");
         menuBar.add(menuBarInget);
 
         menuBarTomt.setText("Inloggad som Agent");
@@ -187,12 +187,6 @@ public class HanteraAliens extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        setVisible(false);
-        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
-        startsidaAgent.setVisible(true);
-    }//GEN-LAST:event_btnTillbakaActionPerformed
-
     private void btnListaPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaPlatsMouseClicked
         setVisible(false);
         ListaAliensPlats listaAlien = new ListaAliensPlats(idb, anvId, anvTyp);
@@ -231,6 +225,12 @@ public class HanteraAliens extends javax.swing.JFrame {
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_manuBarLoggaUtMouseClicked
+
+    private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
+        setVisible(false);
+        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
+        startsidaAgent.setVisible(true);
+    }//GEN-LAST:event_btnTillbakaMouseClicked
 
     /**
      * @param args the command line arguments
