@@ -40,25 +40,16 @@ public class StartsidaAlien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        menyLista = new javax.swing.JList<>();
         lblAlienBild = new javax.swing.JLabel();
         lblRubrik = new javax.swing.JLabel();
         btnLoggaUt = new javax.swing.JToggleButton();
+        btnandraLosen = new javax.swing.JToggleButton();
+        btnVisaChef = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        menyLista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Ändra lösenord", "", "Visa min områdeschef" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(menyLista);
 
         lblAlienBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/delfin.png"))); // NOI18N
 
@@ -72,13 +63,21 @@ public class StartsidaAlien extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Mitt konto");
-        jMenuBar1.add(jMenu1);
+        btnandraLosen.setText("Ändra lösenord");
+        btnandraLosen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnandraLosenActionPerformed(evt);
+            }
+        });
 
-        jMenu2.setText("Funktioner");
-        jMenuBar1.add(jMenu2);
+        btnVisaChef.setText("Visa min områdeschef");
+        btnVisaChef.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVisaChefMouseClicked(evt);
+            }
+        });
 
-        jMenu5.setText("                                                                                         ");
+        jMenu5.setText("                                                                                                                                                             ");
         jMenuBar1.add(jMenu5);
 
         jMenu3.setText("Inloggad som Alien");
@@ -91,34 +90,40 @@ public class StartsidaAlien extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblAlienBild, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLoggaUt)
                 .addGap(29, 29, 29))
             .addGroup(layout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnandraLosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVisaChef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(65, 65, 65)
+                        .addComponent(lblAlienBild, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(240, 240, 240)
+                        .addComponent(lblRubrik)))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                            .addComponent(lblAlienBild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(34, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLoggaUt)
-                        .addGap(18, 18, 18))))
+                        .addGap(72, 72, 72)
+                        .addComponent(btnandraLosen)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnVisaChef))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblAlienBild, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addComponent(btnLoggaUt)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -131,6 +136,18 @@ public class StartsidaAlien extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
+    private void btnandraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnandraLosenActionPerformed
+        setVisible(false);
+        AndraLosenord andraLosenord = new AndraLosenord(idb, anvId, anvTyp);
+        andraLosenord.setVisible(true);
+    }//GEN-LAST:event_btnandraLosenActionPerformed
+
+    private void btnVisaChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVisaChefMouseClicked
+        setVisible(false);
+        VisaOmradesChefAlien visaChef = new VisaOmradesChefAlien(idb, anvId, anvTyp);
+        visaChef.setVisible(true);
+    }//GEN-LAST:event_btnVisaChefMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -138,14 +155,12 @@ public class StartsidaAlien extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnLoggaUt;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JToggleButton btnVisaChef;
+    private javax.swing.JToggleButton btnandraLosen;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAlienBild;
     private javax.swing.JLabel lblRubrik;
-    private javax.swing.JList<String> menyLista;
     // End of variables declaration//GEN-END:variables
 }

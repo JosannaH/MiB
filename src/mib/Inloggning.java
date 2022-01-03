@@ -20,7 +20,7 @@ public class Inloggning extends javax.swing.JFrame {
     private InfDB idb;
     // Att spara ID och typ i, för att skicka med till andra klasser
     private String anvTyp;
-    private String anvID;
+    private String anvId;
     
     public Inloggning(InfDB idb) {
         initComponents();
@@ -128,7 +128,7 @@ public class Inloggning extends javax.swing.JFrame {
     private void btnLoggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggainActionPerformed
 
         // Hämtar värden som användaren matat in
-        anvID = txtAnvandare.getText();
+        anvId = txtAnvandare.getText();
         String losenord = pswlosen.getText();
         //Variabler att spara SQL frågor i
         String inloggTyp = "";
@@ -150,27 +150,27 @@ public class Inloggning extends javax.swing.JFrame {
             }
             try {
 
-                String anvFranDatabas = idb.fetchSingle(inloggTyp + anvID);
-                String losenFranDatabas = idb.fetchSingle(losenTyp + anvID);
-                String adminStatus = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvID);
+                String anvFranDatabas = idb.fetchSingle(inloggTyp + anvId);
+                String losenFranDatabas = idb.fetchSingle(losenTyp + anvId);
+                String adminStatus = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvId);
 
                 //Kontrollerar att användare/lösenord stämmer överens.
-                if (anvID.equals(anvFranDatabas) && losenord.equals(losenFranDatabas)) {
+                if (anvId.equals(anvFranDatabas) && losenord.equals(losenFranDatabas)) {
 
                     //Här kontrolleras om man är alien/agent/admin och startsida skapas baserat på detta.
                     if (adminStatus.equals("J") && anvTyp.equals("Agent")) {
                         setVisible(false);
-                        StartsidaAdmin startAdmin = new StartsidaAdmin(idb, anvID, anvTyp);
+                        StartsidaAdmin startAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
                         startAdmin.setVisible(true);
                     }
                     else if (anvTyp.equals("Agent")){
                         setVisible(false);
-                        StartsidaAgent startAgent= new StartsidaAgent(idb, anvID, anvTyp);
+                        StartsidaAgent startAgent= new StartsidaAgent(idb, anvId, anvTyp);
                         startAgent.setVisible(true);
                     }
                     else{
                         setVisible(false);
-                        StartsidaAlien startAlien= new StartsidaAlien(idb, anvID, anvTyp);
+                        StartsidaAlien startAlien= new StartsidaAlien(idb, anvId, anvTyp);
                         startAlien.setVisible(true);
                     }
                 } else {
