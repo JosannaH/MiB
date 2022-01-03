@@ -574,8 +574,8 @@ public class UppdateraAlien extends javax.swing.JFrame {
             idb.update("UPDATE Alien SET Namn = '" + regNamn + "' WHERE Alien_ID = '" + idText + "'");
             idb.update("UPDATE Alien SET Telefon = '" + regTelefon + "' WHERE Alien_ID = '" + idText + "'");
             idb.update("UPDATE Alien SET Losenord = '" + regLosenord + "' WHERE Alien_ID = '" + idText + "'");
-            idb.update("UPDATE Alien SET Plats = '" + platsID + "'");
-            idb.update("UPDATE Alien SET Ansvarig_Agent = '" + regAgentID + "'");
+            idb.update("UPDATE Alien SET Plats = '" + platsID + "' WHERE Alien_ID = '" + idText + "'");
+            idb.update("UPDATE Alien SET Ansvarig_Agent = '" + regAgentID + "'WHERE Alien_ID = '" + idText + "'");
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());
