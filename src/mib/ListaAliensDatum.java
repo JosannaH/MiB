@@ -100,6 +100,11 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         cmbOrdning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Äldsta först", "Senaste först" }));
 
         btnOrdna.setText("Ordna");
+        btnOrdna.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOrdnaMouseClicked(evt);
+            }
+        });
 
         menuBarTillStartsida.setText("Gå till Startsida");
         menuBarTillStartsida.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -231,17 +236,20 @@ public class ListaAliensDatum extends javax.swing.JFrame {
      * @param evt
      */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-
-        /*
-
-            
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: valdPlatsID i btnPlatsMouseClicked() " + e.getMessage());
-        }
-
-        */
+        txtLista.setText(""); //rensar textArea inför sökningen
+        String franDatum = txtFran.getText().trim();  //ta bort aventuella mellanslag efter datumet
+        String tillDatum = txtTill.getText().trim();
+        
+        String ordning = cmbOrdning.getSelectedItem().toString();
+        SQL sql = new SQL(idb);
+        sql.getRegistreringsdatum(franDatum, tillDatum, txtLista, ordning);
     }//GEN-LAST:event_btnSokMouseClicked
+
+    private void btnOrdnaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOrdnaMouseClicked
+       
+        // kör samma kod som Sök-knappen
+        btnSokMouseClicked(evt);
+    }//GEN-LAST:event_btnOrdnaMouseClicked
 
 
     /**
