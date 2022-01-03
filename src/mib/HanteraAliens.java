@@ -29,7 +29,7 @@ public class HanteraAliens extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuBarInloggadSom.setText("Inloggad som " + anvTyp);
+        menuBarTomt.setText("Inloggad som " + anvTyp);
     }
 
     /**
@@ -43,7 +43,7 @@ public class HanteraAliens extends javax.swing.JFrame {
 
         lblAgentBild = new javax.swing.JLabel();
         lblRubrik = new javax.swing.JLabel();
-        btnLoggaUt = new javax.swing.JToggleButton();
+        btnTillbaka = new javax.swing.JToggleButton();
         btnListaPlats = new javax.swing.JButton();
         btnRegistreraNyAlien = new javax.swing.JButton();
         btnUppdatera = new javax.swing.JToggleButton();
@@ -51,10 +51,10 @@ public class HanteraAliens extends javax.swing.JFrame {
         jToggleButton3 = new javax.swing.JToggleButton();
         jToggleButton4 = new javax.swing.JToggleButton();
         menuBar = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        menuBarInloggadSom = new javax.swing.JMenu();
+        menuBarStartsida = new javax.swing.JMenu();
+        menuBarInget = new javax.swing.JMenu();
+        menuBarTomt = new javax.swing.JMenu();
+        manuBarLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,10 +63,10 @@ public class HanteraAliens extends javax.swing.JFrame {
         lblRubrik.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         lblRubrik.setText("Hantera aliens");
 
-        btnLoggaUt.setText("Logga ut");
-        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoggaUtActionPerformed(evt);
+        btnTillbaka.setText("Gå tillbaka");
+        btnTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTillbakaMouseClicked(evt);
             }
         });
 
@@ -107,15 +107,27 @@ public class HanteraAliens extends javax.swing.JFrame {
 
         jToggleButton4.setText("Lista alien utifrån registreringsdatum");
 
-        jMenu1.setText("Mitt konto");
-        menuBar.add(jMenu1);
+        menuBarStartsida.setText("Gå till Startsida");
+        menuBarStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarStartsidaMouseClicked(evt);
+            }
+        });
+        menuBar.add(menuBarStartsida);
 
-        jMenu2.setText("Funktioner");
-        menuBar.add(jMenu2);
+        menuBarInget.setText("                                                                                                        ");
+        menuBar.add(menuBarInget);
 
-        jMenu5.setText("                                                                                                    ");
-        menuBar.add(jMenu5);
-        menuBar.add(menuBarInloggadSom);
+        menuBarTomt.setText("Inloggad som Agent");
+        menuBar.add(menuBarTomt);
+
+        manuBarLoggaUt.setText("Logga ut");
+        manuBarLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manuBarLoggaUtMouseClicked(evt);
+            }
+        });
+        menuBar.add(manuBarLoggaUt);
 
         setJMenuBar(menuBar);
 
@@ -137,7 +149,7 @@ public class HanteraAliens extends javax.swing.JFrame {
                 .addGap(58, 58, 58))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLoggaUt)
+                .addComponent(btnTillbaka)
                 .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
                 .addGap(242, 242, 242)
@@ -168,19 +180,12 @@ public class HanteraAliens extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
-                        .addComponent(btnLoggaUt)
+                        .addComponent(btnTillbaka)
                         .addGap(14, 14, 14))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
-        setVisible(false);
-        Inloggning inlogg = new Inloggning(idb);
-        inlogg.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     private void btnListaPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaPlatsMouseClicked
         setVisible(false);
@@ -209,6 +214,24 @@ public class HanteraAliens extends javax.swing.JFrame {
         SokAlien sokAlien = new SokAlien (idb);
         sokAlien.setVisible(true);    }//GEN-LAST:event_btnSokMouseClicked
 
+    private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
+        setVisible(false);
+        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
+        startsidaAgent.setVisible(true);
+    }//GEN-LAST:event_menuBarStartsidaMouseClicked
+
+    private void manuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manuBarLoggaUtMouseClicked
+        setVisible(false);
+        Inloggning inlogg = new Inloggning(idb);
+        inlogg.setVisible(true);
+    }//GEN-LAST:event_manuBarLoggaUtMouseClicked
+
+    private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
+        setVisible(false);
+        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
+        startsidaAgent.setVisible(true);
+    }//GEN-LAST:event_btnTillbakaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -216,18 +239,18 @@ public class HanteraAliens extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnListaPlats;
-    private javax.swing.JToggleButton btnLoggaUt;
     private javax.swing.JButton btnRegistreraNyAlien;
     private javax.swing.JToggleButton btnSok;
+    private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JToggleButton btnUppdatera;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JLabel lblAgentBild;
     private javax.swing.JLabel lblRubrik;
+    private javax.swing.JMenu manuBarLoggaUt;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenu menuBarInloggadSom;
+    private javax.swing.JMenu menuBarInget;
+    private javax.swing.JMenu menuBarStartsida;
+    private javax.swing.JMenu menuBarTomt;
     // End of variables declaration//GEN-END:variables
 }

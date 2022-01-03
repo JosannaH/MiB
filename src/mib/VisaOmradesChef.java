@@ -30,8 +30,8 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         
-        SQL s = new SQL(idb, cmbOmrade);
-        s.omraden();
+        SQL s = new SQL(idb);
+        s.omraden(cmbOmrade);
     }
 
     /**
@@ -44,27 +44,27 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     private void initComponents() {
 
         lblRubrikOmrade = new javax.swing.JLabel();
-        btnLoggaUtOmrade = new javax.swing.JToggleButton();
+        btnTillbaka = new javax.swing.JToggleButton();
         cmbOmrade = new javax.swing.JComboBox<>();
         lblOmrade = new javax.swing.JLabel();
         btnSokOmrade = new javax.swing.JToggleButton();
         lblNorden = new javax.swing.JLabel();
         lblChef = new javax.swing.JLabel();
         menuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        menuBarStartsida = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        menuBarLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblRubrikOmrade.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         lblRubrikOmrade.setText("Visa Områdeschef");
 
-        btnLoggaUtOmrade.setText("Logga ut");
-        btnLoggaUtOmrade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoggaUtOmradeActionPerformed(evt);
+        btnTillbaka.setText("Gå tillbaka");
+        btnTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTillbakaMouseClicked(evt);
             }
         });
 
@@ -87,17 +87,27 @@ public class VisaOmradesChef extends javax.swing.JFrame {
 
         lblChef.setText("                    ");
 
-        jMenu1.setText("Mitt konto");
-        menuBar1.add(jMenu1);
+        menuBarStartsida.setText("Gå till Startsida");
+        menuBarStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarStartsidaMouseClicked(evt);
+            }
+        });
+        menuBar1.add(menuBarStartsida);
 
-        jMenu2.setText("Funktioner");
-        menuBar1.add(jMenu2);
-
-        jMenu5.setText("                                                                                                    ");
+        jMenu5.setText("                                                                                                            ");
         menuBar1.add(jMenu5);
 
         jMenu3.setText("Inloggad som Agent");
         menuBar1.add(jMenu3);
+
+        menuBarLoggaUt.setText("Logga ut");
+        menuBarLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarLoggaUtMouseClicked(evt);
+            }
+        });
+        menuBar1.add(menuBarLoggaUt);
 
         setJMenuBar(menuBar1);
 
@@ -107,7 +117,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLoggaUtOmrade)
+                .addComponent(btnTillbaka)
                 .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +151,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblNorden)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(btnLoggaUtOmrade)
+                .addComponent(btnTillbaka)
                 .addGap(14, 14, 14))
             .addGroup(layout.createSequentialGroup()
                 .addGap(84, 84, 84)
@@ -161,13 +171,6 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     //Skapar en metod som man sen använder för att fylla rullisten med information. 
     
     
-    private void btnLoggaUtOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtOmradeActionPerformed
-        setVisible(false);
-        Inloggning inlogg = new Inloggning(idb);
-        inlogg.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoggaUtOmradeActionPerformed
-
     private void cmbOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOmradeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbOmradeActionPerformed
@@ -188,17 +191,33 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnSokOmradeActionPerformed
 
+    private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
+        setVisible(false);
+        Inloggning inlogg = new Inloggning(idb);
+        inlogg.setVisible(true);
+    }//GEN-LAST:event_menuBarLoggaUtMouseClicked
+
+    private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
+        setVisible(false);
+        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
+        startsidaAgent.setVisible(true);
+    }//GEN-LAST:event_menuBarStartsidaMouseClicked
+
+    private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
+        setVisible(false);
+        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
+        startsidaAgent.setVisible(true);
+    }//GEN-LAST:event_btnTillbakaMouseClicked
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnLoggaUtOmrade;
     private javax.swing.JToggleButton btnSokOmrade;
+    private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JComboBox<String> cmbOmrade;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JLabel lblChef;
@@ -206,5 +225,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     private javax.swing.JLabel lblOmrade;
     private javax.swing.JLabel lblRubrikOmrade;
     private javax.swing.JMenuBar menuBar1;
+    private javax.swing.JMenu menuBarLoggaUt;
+    private javax.swing.JMenu menuBarStartsida;
     // End of variables declaration//GEN-END:variables
 }
