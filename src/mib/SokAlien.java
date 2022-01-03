@@ -205,7 +205,7 @@ public class SokAlien extends javax.swing.JFrame {
                         .addGap(154, 154, 154)
                         .addComponent(lblConfirm))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(175, 175, 175)
                         .addComponent(lblError)))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
@@ -221,7 +221,7 @@ public class SokAlien extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblConfirm)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lblAlienNamn))
@@ -251,9 +251,9 @@ public class SokAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAntalArmar)
                     .addComponent(lblAntalArmarSvar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(lblError)
-                .addContainerGap())
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
