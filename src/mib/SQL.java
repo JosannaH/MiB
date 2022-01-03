@@ -161,4 +161,26 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
+    
+    public void getRegistreringsdatumAldstaForst (String franDatum, String tillDatum, JTextArea txtAreaListaDatum){
+        // töm textarea inför ny sökning
+        txtAreaListaDatum.setText("");
+        // Listans rubriker
+        txtAreaListaDatum.append("Reg. datum \t Alien ID \t\t Namn \n");
+        
+        ArrayList<HashMap<String, String>> listaDatum = new ArrayList<>();
+        try{
+            
+            String query = "SELECT date_format(Registreringsdatum, '%Y%m%d'), alien_ID, namn FROM alien ORDER BY Registreringsdatum ASC";
+            listaDatum = idb.fetchRows(query);
+            
+            for (int i = 0; i < listaDatum.size(); i++) {
+                
+            }
+            
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att datumen är korrekt ifyllda: ÅÅÅÅ-MM-DD");
+            System.out.println("Internt felmeddelande: getPlatser() " + e.getMessage());
+        }
+    }
 }

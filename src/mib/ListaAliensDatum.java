@@ -56,6 +56,8 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         lblFranTip = new javax.swing.JLabel();
         txtTill = new javax.swing.JTextField();
         lblTillTip = new javax.swing.JLabel();
+        cmbOrdning = new javax.swing.JComboBox<>();
+        btnOrdna = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menuBarTillStartsida = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -91,9 +93,13 @@ public class ListaAliensDatum extends javax.swing.JFrame {
 
         txtFran.setToolTipText("");
 
-        lblFranTip.setText("ÅÅÅÅMMDD");
+        lblFranTip.setText("ÅÅÅÅ-MM-DD");
 
-        lblTillTip.setText("ÅÅÅÅMMDD");
+        lblTillTip.setText("ÅÅÅÅ-MM-DD");
+
+        cmbOrdning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Äldsta först", "Senaste först" }));
+
+        btnOrdna.setText("Ordna");
 
         menuBarTillStartsida.setText("Gå till Startsida");
         menuBarTillStartsida.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -135,22 +141,25 @@ public class ListaAliensDatum extends javax.swing.JFrame {
                         .addComponent(btnGaTillbaka))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFran, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(lblFranTip, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                                        .addComponent(txtFran, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(lblFran, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFranTip, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                    .addComponent(txtFran, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(70, 70, 70)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblTill, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTill)
-                                    .addComponent(lblTillTip, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSok)))))
-                .addContainerGap(156, Short.MAX_VALUE))
+                                    .addComponent(txtTill, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTillTip, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42)
+                                .addComponent(btnSok))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cmbOrdning, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnOrdna)))))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,9 +178,13 @@ public class ListaAliensDatum extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFranTip)
                     .addComponent(lblTillTip))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbOrdning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOrdna))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addComponent(btnGaTillbaka)
                 .addGap(32, 32, 32))
         );
@@ -237,7 +250,9 @@ public class ListaAliensDatum extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGaTillbaka;
+    private javax.swing.JButton btnOrdna;
     private javax.swing.JButton btnSok;
+    private javax.swing.JComboBox<String> cmbOrdning;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblFran;
