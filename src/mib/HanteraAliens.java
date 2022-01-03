@@ -18,8 +18,8 @@ public class HanteraAliens extends javax.swing.JFrame {
     private InfDB idb;
     private String anvId;
     private String anvTyp;
-    
-    
+
+
     public HanteraAliens(InfDB idb) {
         initComponents();
         this.idb = idb;
@@ -48,8 +48,8 @@ public class HanteraAliens extends javax.swing.JFrame {
         btnRegistreraNyAlien = new javax.swing.JButton();
         btnUppdatera = new javax.swing.JToggleButton();
         btnSok = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
+        btnListaAlienRas = new javax.swing.JToggleButton();
+        btnListaAlienDatum = new javax.swing.JToggleButton();
         menuBar = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         menuBarInget = new javax.swing.JMenu();
@@ -103,9 +103,19 @@ public class HanteraAliens extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton3.setText("Lista alien utifrån ras");
+        btnListaAlienRas.setText("Lista alien utifrån ras");
+        btnListaAlienRas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnListaAlienRasMouseClicked(evt);
+            }
+        });
 
-        jToggleButton4.setText("Lista alien utifrån registreringsdatum");
+        btnListaAlienDatum.setText("Lista alien utifrån registreringsdatum");
+        btnListaAlienDatum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnListaAlienDatumMouseClicked(evt);
+            }
+        });
 
         menuBarStartsida.setText("Gå till Startsida");
         menuBarStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -138,8 +148,8 @@ public class HanteraAliens extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnListaAlienDatum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnListaAlienRas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnListaPlats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUppdatera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -172,9 +182,9 @@ public class HanteraAliens extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnListaPlats)
                         .addGap(18, 18, 18)
-                        .addComponent(jToggleButton3)
+                        .addComponent(btnListaAlienRas)
                         .addGap(18, 18, 18)
-                        .addComponent(jToggleButton4)
+                        .addComponent(btnListaAlienDatum)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
@@ -232,19 +242,31 @@ public class HanteraAliens extends javax.swing.JFrame {
         startsidaAgent.setVisible(true);
     }//GEN-LAST:event_btnTillbakaMouseClicked
 
+    private void btnListaAlienDatumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaAlienDatumMouseClicked
+        setVisible(false);
+        ListaAliensDatum datum = new ListaAliensDatum(idb, anvId, anvTyp);
+        datum.setVisible(true);
+    }//GEN-LAST:event_btnListaAlienDatumMouseClicked
+
+    private void btnListaAlienRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaAlienRasMouseClicked
+        setVisible(false);
+        ListaAliensRas ras = new ListaAliensRas(idb, anvId, anvTyp);
+        ras.setVisible(true);
+    }//GEN-LAST:event_btnListaAlienRasMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnListaAlienDatum;
+    private javax.swing.JToggleButton btnListaAlienRas;
     private javax.swing.JButton btnListaPlats;
     private javax.swing.JButton btnRegistreraNyAlien;
     private javax.swing.JToggleButton btnSok;
     private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JToggleButton btnUppdatera;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JLabel lblAgentBild;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JMenu manuBarLoggaUt;
