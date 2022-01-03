@@ -140,6 +140,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Registrera ny utrustning"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnUtrustningMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnChef">
       <Properties>

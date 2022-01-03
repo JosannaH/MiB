@@ -87,6 +87,11 @@ public class RegistreraAlien extends javax.swing.JFrame {
         txtRasInfo = new javax.swing.JTextField();
         lblRasInfo = new javax.swing.JLabel();
         tbValjRas = new javax.swing.JToggleButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuBarStartsida = new javax.swing.JMenu();
+        menuBarTomt = new javax.swing.JMenu();
+        menuBarInlogg = new javax.swing.JMenu();
+        menuBarLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,6 +172,25 @@ public class RegistreraAlien extends javax.swing.JFrame {
                 tbValjRasActionPerformed(evt);
             }
         });
+
+        menuBarStartsida.setText("Gå till Startsida");
+        menuBarStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuBarStartsidaMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuBarStartsida);
+
+        menuBarTomt.setText("                                                                                                               ");
+        jMenuBar1.add(menuBarTomt);
+
+        menuBarInlogg.setText("Inloggad som Agent");
+        jMenuBar1.add(menuBarInlogg);
+
+        menuBarLoggaUt.setText("Logga ut");
+        jMenuBar1.add(menuBarLoggaUt);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,7 +294,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addGap(8, 8, 8)
                         .addComponent(psw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -312,6 +336,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
             String regRas = cmbRas.getSelectedItem().toString();
             //System.out.println(regRas);
+            String rasInfo = txtRasInfo.getText();
 
             String regAnsAgent = cmbAnsAgent.getSelectedItem().toString();
             //Här behöver vi hämta Agent_ID baserat på namnet
@@ -331,6 +356,22 @@ public class RegistreraAlien extends javax.swing.JFrame {
                     // lägger till alien i databasen
                     idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
                     
+                    if(regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)){
+                        idb.insert("INSERT INTO Boglodite VALUES ('" + regAlienIDGet + "', '" + rasInfo + "')");
+                    }
+                    else if(regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)){
+                        idb.insert("INSERT INTO Squid VALUES ('" + regAlienIDGet + "', '" + rasInfo + "')");
+                    }
+                    else if(regRas.equals("Worm")){
+                        idb.insert("INSERT INTO Worm VALUES ('" + regAlienIDGet + "')");
+                    }
+                    else if(regRas.equals("Ingen")){
+                        
+                    }
+                    else {
+                    JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+                    }
+
                     // TODO lägg till alien i tabellen för rätt ras, uppdatera den tabellen med hur många aliens det finns av den rasen
                     
                     
@@ -412,6 +453,12 @@ public class RegistreraAlien extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbRasActionPerformed
 
+    private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
+        setVisible(false);
+        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
+        startsidaAgent.setVisible(true);
+    }//GEN-LAST:event_menuBarStartsidaMouseClicked
+
     private void nyttDatum() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDateTime time = LocalDateTime.now();
@@ -419,8 +466,8 @@ public class RegistreraAlien extends javax.swing.JFrame {
         txtDatum.setText(date);
 
     }
-
-
+    
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSpara;
     private javax.swing.JComboBox<String> cmbAnsAgent;
@@ -433,6 +480,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblAktResInfo;
     private javax.swing.JLabel lblAlienID;
     private javax.swing.JLabel lblAlienID2;
@@ -442,6 +490,10 @@ public class RegistreraAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblRasInfo;
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTitel;
+    private javax.swing.JMenu menuBarInlogg;
+    private javax.swing.JMenu menuBarLoggaUt;
+    private javax.swing.JMenu menuBarStartsida;
+    private javax.swing.JMenu menuBarTomt;
     private javax.swing.JPasswordField psw1;
     private javax.swing.JPasswordField psw2;
     private javax.swing.JToggleButton tbValjRas;
