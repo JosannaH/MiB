@@ -46,7 +46,7 @@ public class HanteraAliensAdmin extends javax.swing.JFrame {
         btnTillbaka = new javax.swing.JToggleButton();
         btnRegistreraNyAlien = new javax.swing.JButton();
         btnUppdatera = new javax.swing.JToggleButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnTaBort = new javax.swing.JToggleButton();
         menuBar = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         menuBarInget = new javax.swing.JMenu();
@@ -86,15 +86,15 @@ public class HanteraAliensAdmin extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setText("Ta bort alien");
-        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTaBort.setText("Ta bort alien");
+        btnTaBort.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseClicked(evt);
+                btnTaBortMouseClicked(evt);
             }
         });
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnTaBort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                btnTaBortActionPerformed(evt);
             }
         });
 
@@ -137,7 +137,7 @@ public class HanteraAliensAdmin extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnUppdatera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnRegistreraNyAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78))
@@ -160,7 +160,7 @@ public class HanteraAliensAdmin extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addComponent(btnUppdatera)
                         .addGap(33, 33, 33)
-                        .addComponent(jToggleButton1)))
+                        .addComponent(btnTaBort)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(btnTillbaka)
                 .addGap(14, 14, 14))
@@ -203,13 +203,15 @@ public class HanteraAliensAdmin extends javax.swing.JFrame {
         startsidaAdmin.setVisible(true);
     }//GEN-LAST:event_btnTillbakaMouseClicked
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_btnTaBortActionPerformed
 
-    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1MouseClicked
+    private void btnTaBortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortMouseClicked
+        setVisible(false);
+        TaBortAlien taBort = new TaBortAlien(idb, anvId, anvTyp);
+        taBort.setVisible(true);
+    }//GEN-LAST:event_btnTaBortMouseClicked
 
     /**
      * @param args the command line arguments
@@ -218,9 +220,9 @@ public class HanteraAliensAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistreraNyAlien;
+    private javax.swing.JToggleButton btnTaBort;
     private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JToggleButton btnUppdatera;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblAgentBild;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JMenu manuBarLoggaUt;

@@ -68,7 +68,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnUppdatera" max="32767" attributes="0"/>
                           <Component id="btnRegistreraNyAlien" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jToggleButton1" min="-2" pref="221" max="-2" attributes="0"/>
+                          <Component id="btnTaBort" min="-2" pref="221" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="lblAgentBild" min="-2" pref="241" max="-2" attributes="0"/>
@@ -98,7 +98,7 @@
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="btnUppdatera" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnTaBort" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="100" max="32767" attributes="0"/>
@@ -149,13 +149,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUppdateraActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+    <Component class="javax.swing.JToggleButton" name="btnTaBort">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ta bort alien"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jToggleButton1MouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTaBortMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaBortActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
