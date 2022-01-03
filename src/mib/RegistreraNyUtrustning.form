@@ -72,39 +72,8 @@
                               <EmptySpace min="-2" pref="281" max="-2" attributes="0"/>
                               <Component id="lblTitel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblBenamning" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblUtrustningID" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblUtrustningsTyp" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="tbValjTyp" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblUtrustning" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
-                                                  <Component id="txtEgenskap" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
-                                                  <Component id="btnSpara" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="txtBenamning" min="-2" pref="152" max="-2" attributes="0"/>
-                                                  <Component id="cmbUtrustningstyp" min="-2" pref="152" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <Component id="lblEgenskap" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                       </Group>
-                      <EmptySpace min="0" pref="177" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="145" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -112,6 +81,38 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblBenamning" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUtrustningID" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUtrustningsTyp" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="lblUtrustning" min="-2" pref="152" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cmbUtrustningstyp" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <Component id="txtBenamning" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <Component id="tbValjTyp" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtEgenskap" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <Component id="btnSpara" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Component id="lblEgenskap" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -122,9 +123,9 @@
               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTitel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="lblUtrustningID" min="-2" max="-2" attributes="0"/>
                           <Component id="lblUtrustning" min="-2" max="-2" attributes="0"/>
@@ -135,24 +136,30 @@
                           <Component id="txtBenamning" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lblUtrustningsTyp" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblUtrustningsTyp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbUtrustningstyp" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="tbValjTyp" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtEgenskap" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEgenskap" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="cmbUtrustningstyp" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="345" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="tbValjTyp" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblEgenskap" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtEgenskap" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="52" max="32767" attributes="0"/>
-              <Component id="lblConfirm" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lblConfirm" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -256,6 +263,13 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTillbakaMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTillbakaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Media/Vapen.png"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
