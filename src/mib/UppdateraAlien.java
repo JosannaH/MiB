@@ -59,10 +59,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());
         }
-            
-        
-        
-        
         
     }
 

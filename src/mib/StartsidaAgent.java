@@ -83,6 +83,11 @@ public class StartsidaAgent extends javax.swing.JFrame {
         });
 
         btnUtrustning.setText("Registrera ny utrustning");
+        btnUtrustning.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUtrustningMouseClicked(evt);
+            }
+        });
 
         btnChef.setText("Visa områdeschef");
         btnChef.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -177,6 +182,12 @@ public class StartsidaAgent extends javax.swing.JFrame {
         VisaOmradesChef omradesChef = new VisaOmradesChef(idb, anvId, anvTyp);
         omradesChef.setVisible(true);
     }//GEN-LAST:event_btnChefMouseClicked
+
+    private void btnUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUtrustningMouseClicked
+        setVisible(false);
+        RegistreraNyUtrustning utrustning = new RegistreraNyUtrustning(idb, anvId, anvTyp);
+        utrustning.setVisible(true);
+    }//GEN-LAST:event_btnUtrustningMouseClicked
 
     /**
      * @param args the command line arguments
