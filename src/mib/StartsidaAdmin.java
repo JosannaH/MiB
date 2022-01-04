@@ -74,9 +74,9 @@ public class StartsidaAdmin extends javax.swing.JFrame {
         jButton1.setText("Ändra lösenord");
 
         jButton2.setText("Aliens");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
             }
         });
 
@@ -170,14 +170,16 @@ public class StartsidaAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         setVisible(false);
         AdminHanteraAgenter adminHanteraAgenter = new AdminHanteraAgenter (idb, anvId, anvTyp);
         adminHanteraAgenter.setVisible(true);    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        setVisible(false);
+        HanteraAliensAdmin adminHanteraAlien = new HanteraAliensAdmin (idb, anvId, anvTyp);
+        adminHanteraAlien.setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

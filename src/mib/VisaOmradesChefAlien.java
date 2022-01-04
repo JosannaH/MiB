@@ -4,11 +4,9 @@
  */
 package mib;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
-import java.util.HashMap;
 
 /**
  *
@@ -48,8 +46,8 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
         lblChef = new javax.swing.JLabel();
         lblOmrade2 = new javax.swing.JLabel();
         lblChef2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtAreaChef = new javax.swing.JTextArea();
+        lblTelefon = new javax.swing.JLabel();
+        lblTelefon2 = new javax.swing.JLabel();
         menuBar1 = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -59,7 +57,7 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblRubrikOmrade.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        lblRubrikOmrade.setText("Visa Områdeschef");
+        lblRubrikOmrade.setText("Din Områdeschef");
 
         btnTillbaka.setText("Gå tillbaka");
         btnTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,9 +72,7 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
 
         lblChef.setText("Chef");
 
-        txtAreaChef.setColumns(20);
-        txtAreaChef.setRows(5);
-        jScrollPane2.setViewportView(txtAreaChef);
+        lblTelefon.setText("Telefon");
 
         menuBarStartsida.setText("Gå till Startsida");
         menuBarStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -86,7 +82,7 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
         });
         menuBar1.add(menuBarStartsida);
 
-        jMenu5.setText("                                                                                                            ");
+        jMenu5.setText("                                                                                                                      ");
         menuBar1.add(jMenu5);
 
         jMenu3.setText("Inloggad som Alien");
@@ -106,52 +102,54 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTillbaka)
-                .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(142, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addComponent(lblRubrikOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblOmrade)
-                                    .addComponent(lblChef))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblChef2, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                                    .addComponent(lblOmrade2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addComponent(lblNorden)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                            .addComponent(lblOmrade)
+                            .addComponent(lblChef)
+                            .addComponent(lblTelefon))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTelefon2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblChef2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblOmrade2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(62, 62, 62)
+                        .addComponent(lblNorden)
+                        .addGap(77, 77, 77))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnTillbaka)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblRubrikOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(282, 282, 282))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(lblRubrikOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(14, Short.MAX_VALUE)
+                        .addComponent(lblRubrikOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lblNorden))
+                        .addComponent(lblNorden)
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblOmrade)
-                            .addComponent(lblOmrade2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblChef)
+                        .addGap(160, 160, 160)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblOmrade2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblOmrade))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblChef, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblChef2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTelefon)
+                            .addComponent(lblTelefon2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(btnTillbaka)
                 .addGap(14, 14, 14))
         );
@@ -174,9 +172,14 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
         String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + chef + "'");
         lblChef2.setText(agentNamn);
         
-               
+        String namn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID = '" + chef + "'");
+        String telefon = idb.fetchSingle("SELECT Telefon FROM agent WHERE Agent_ID = '" + chef + "'");
+                
+        lblChef2.setText(namn);
+        lblTelefon2.setText(telefon);       
         
         }
+               
         catch(InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
@@ -191,8 +194,8 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
 
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
-        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
-        startsidaAgent.setVisible(true);
+        StartsidaAlien startsidaAlien = new StartsidaAlien(idb, anvId, anvTyp);
+        startsidaAlien.setVisible(true);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
 
     private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
@@ -210,16 +213,16 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblChef;
     private javax.swing.JLabel lblChef2;
     private javax.swing.JLabel lblNorden;
     private javax.swing.JLabel lblOmrade;
     private javax.swing.JLabel lblOmrade2;
     private javax.swing.JLabel lblRubrikOmrade;
+    private javax.swing.JLabel lblTelefon;
+    private javax.swing.JLabel lblTelefon2;
     private javax.swing.JMenuBar menuBar1;
     private javax.swing.JMenu menuBarLoggaUt;
     private javax.swing.JMenu menuBarStartsida;
-    private javax.swing.JTextArea txtAreaChef;
     // End of variables declaration//GEN-END:variables
 }
