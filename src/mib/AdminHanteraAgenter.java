@@ -67,6 +67,11 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         });
 
         btnUppdateraAgent.setText("Uppdatera agent");
+        btnUppdateraAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUppdateraAgentActionPerformed(evt);
+            }
+        });
 
         btnRegistrera.setText("Registrera agent");
         btnRegistrera.addActionListener(new java.awt.event.ActionListener() {
@@ -225,6 +230,12 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
+
+    private void btnUppdateraAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraAgentActionPerformed
+        setVisible(false);
+        UppdateraAgent updAgent = new UppdateraAgent(idb);
+        updAgent.setVisible(true);
+    }//GEN-LAST:event_btnUppdateraAgentActionPerformed
 
     /**
      * @param args the command line arguments

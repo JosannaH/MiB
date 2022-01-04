@@ -169,6 +169,11 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 btnSokMouseClicked(evt);
             }
         });
+        btnSok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSokActionPerformed(evt);
+            }
+        });
 
         btnSpara.setText("Spara ändringar");
         btnSpara.addActionListener(new java.awt.event.ActionListener() {
@@ -556,6 +561,10 @@ public class UppdateraAlien extends javax.swing.JFrame {
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
+
+    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSokActionPerformed
 
     private void uppdatera() {
         String idText = txtAlienID.getText();
