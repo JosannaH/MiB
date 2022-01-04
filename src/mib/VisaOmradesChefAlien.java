@@ -10,23 +10,21 @@ import oru.inf.InfException;
 
 /**
  *
- * @author luna
+ * @author Josanna, Lind & Lisa
  */
 public class VisaOmradesChefAlien extends javax.swing.JFrame {
 
-    /**
-     * Creates new form StartsidaAgent
-     */
     private InfDB idb;
     private String anvId;
     private String anvTyp;
-     
-   
+
     public VisaOmradesChefAlien(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+
+        // Metoden anropas i konstruktorn för att vid uppstart av denna klass vis information om inloggad aliens chef.
         visaChef();
     }
 
@@ -157,47 +155,46 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Skapar en metod som man sen använder för att fylla rullisten med information. 
-    
-    
-    private void visaChef(){
-        try{
-        
-        String platsID = idb.fetchSingle("SELECT Plats FROM alien WHERE Alien_ID ='" + anvId + "'");
-        String omrade = idb.fetchSingle("SELECT Finns_I FROM plats WHERE Plats_ID ='" + platsID + "'");
-        String omradesNamn = idb.fetchSingle("SELECT Benamning FROM omrade WHERE Omrades_ID ='" + omrade + "'");            
-        lblOmrade2.setText(omradesNamn);
-        
-        String chef = idb.fetchSingle("SELECT Agent_ID FROM omradeschef WHERE Omrade = '" + omrade + "'");
-        String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + chef + "'");
-        lblChef2.setText(agentNamn);
-        
-        String namn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID = '" + chef + "'");
-        String telefon = idb.fetchSingle("SELECT Telefon FROM agent WHERE Agent_ID = '" + chef + "'");
-                
-        lblChef2.setText(namn);
-        lblTelefon2.setText(telefon);       
-        
-        }
-               
-        catch(InfException e){
+    // Metoden fyller information i angedda fält om inloggad aliens chef. Detta görs med angett inloggningsID.
+    private void visaChef() {
+        try {
+
+            String platsID = idb.fetchSingle("SELECT Plats FROM alien WHERE Alien_ID ='" + anvId + "'");
+            String omrade = idb.fetchSingle("SELECT Finns_I FROM plats WHERE Plats_ID ='" + platsID + "'");
+            String omradesNamn = idb.fetchSingle("SELECT Benamning FROM omrade WHERE Omrades_ID ='" + omrade + "'");
+            lblOmrade2.setText(omradesNamn);
+
+            String chef = idb.fetchSingle("SELECT Agent_ID FROM omradeschef WHERE Omrade = '" + omrade + "'");
+            String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + chef + "'");
+            lblChef2.setText(agentNamn);
+
+            String namn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID = '" + chef + "'");
+            String telefon = idb.fetchSingle("SELECT Telefon FROM agent WHERE Agent_ID = '" + chef + "'");
+
+            lblChef2.setText(namn);
+            lblTelefon2.setText(telefon);
+
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
-    
+
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
     private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
         StartsidaAlien startsidaAlien = new StartsidaAlien(idb, anvId, anvTyp);
         startsidaAlien.setVisible(true);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
     private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
         setVisible(false);
         StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
@@ -207,7 +204,6 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnTillbaka;
