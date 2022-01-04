@@ -8,22 +8,14 @@ import oru.inf.InfDB;
 
 /**
  *
- * @author luna
+ * @author Josanna, Linda & Lisa
  */
 public class StartsidaAgent extends javax.swing.JFrame {
 
-    /**
-     * Creates new form StartsidaAgent
-     */
     private InfDB idb;
     private String anvId;
     private String anvTyp;
-    
-    
-    public StartsidaAgent(InfDB idb) {
-        initComponents();
-        this.idb = idb;
-    }
+
     public StartsidaAgent(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
@@ -154,35 +146,35 @@ public class StartsidaAgent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
     private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
-    // Hittade inte hur man ger varje val i menyn olika länkar till andra sidor
-    // oavsett vart i menyn man klickar så kommer man till Ändra lösenord
-    // så jag gjorde en knapp så att jag kan nå Hantera aliens, för att kunna testa sidan Hantera aliens
-    // och även Lista aliens
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen HanteraAliens i nytt fönster.
     private void btnHanteraAliensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHanteraAliensMouseClicked
         setVisible(false);
         HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
         hanteraAliens.setVisible(true);
     }//GEN-LAST:event_btnHanteraAliensMouseClicked
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen AndraLosenord i nytt fönster.
     private void btnAndraLosenordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAndraLosenordMouseClicked
         setVisible(false);
         AndraLosenord andraLosenord = new AndraLosenord(idb, anvId, anvTyp);
         andraLosenord.setVisible(true);
     }//GEN-LAST:event_btnAndraLosenordMouseClicked
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen VisaOmradesChef i nytt fönster.
     private void btnChefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChefMouseClicked
         setVisible(false);
         VisaOmradesChef omradesChef = new VisaOmradesChef(idb, anvId, anvTyp);
         omradesChef.setVisible(true);
     }//GEN-LAST:event_btnChefMouseClicked
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen RegistreraNyUtrustning i nytt fönster.
     private void btnUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUtrustningMouseClicked
         setVisible(false);
         RegistreraNyUtrustning utrustning = new RegistreraNyUtrustning(idb, anvId, anvTyp);
@@ -192,7 +184,6 @@ public class StartsidaAgent extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosenord;

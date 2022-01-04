@@ -8,29 +8,23 @@ import oru.inf.InfDB;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
- * @author luna
+ * @author Josanna, Linda & Lisa
  */
 public class AdminHanteraAgenter extends javax.swing.JFrame {
 
     private InfDB idb;
     private String anvId;
     private String anvTyp;
-    /**
-     * Creates new form AdminHanteraAgenter
-     */
-    public AdminHanteraAgenter(InfDB idb) {
-    initComponents();
-    this.idb = idb;
-    }
-    
+
     public AdminHanteraAgenter(InfDB idb, String anvId, String anvTyp) {
-    initComponents();
-    this.idb = idb;
-    this.anvId = anvId;
-    this.anvTyp = anvTyp;
-   
+        initComponents();
+        this.idb = idb;
+        this.anvId = anvId;
+        this.anvTyp = anvTyp;
+
     }
 
     /**
@@ -182,24 +176,28 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen SokAgent i nytt fönster.
     private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
         setVisible(false);
-        SokAgent sokAgent = new SokAgent (idb, anvId, anvTyp);
+        SokAgent sokAgent = new SokAgent(idb, anvId, anvTyp);
         sokAgent.setVisible(true);
     }//GEN-LAST:event_btnSokActionPerformed
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen RegistreraAgent i nytt fönster.
     private void btnRegistreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraActionPerformed
         setVisible(false);
-        RegistreraAgent registreraAgent = new RegistreraAgent (idb, anvId, anvTyp);
+        RegistreraAgent registreraAgent = new RegistreraAgent(idb, anvId, anvTyp);
         registreraAgent.setVisible(true);
     }//GEN-LAST:event_btnRegistreraActionPerformed
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
         StartsidaAdmin startsidaAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
         startsidaAdmin.setVisible(true);
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen TaBortAgent i nytt fönster.
     private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
         setVisible(false);
         TaBortAgent radera = new TaBortAgent(idb, anvId, anvTyp);
@@ -214,12 +212,14 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdminActionPerformed
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
     private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
         setVisible(false);
         StartsidaAdmin startsidaAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
-        startsidaAdmin.setVisible(true);        
+        startsidaAdmin.setVisible(true);
     }//GEN-LAST:event_menuStartsidaMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
@@ -229,7 +229,6 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;

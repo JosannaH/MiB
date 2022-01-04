@@ -247,9 +247,6 @@
           </StringArray>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbRasActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -287,9 +284,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="pswLosen">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pswLosenActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
@@ -317,9 +311,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtRasInfo">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRasInfoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblRasInfo">
       <Properties>
@@ -332,7 +323,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnValjRasMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnValjRasActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAlienID">
