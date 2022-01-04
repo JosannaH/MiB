@@ -49,6 +49,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
         hamtaAlienID(regAlienID);
         doljText(txtRasInfo);
         doljLabel(lblRasInfo);
+        menuBarInlogg.setText("Inloggad som " + anvTyp);
     }
 
     /**

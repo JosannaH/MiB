@@ -25,7 +25,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-    
+
     }
 
     /**
@@ -190,14 +190,14 @@ public class RegistreraAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbOmradeSvarActionPerformed
 
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
-    
+
         if (Validering.textFaltHarVarde(txtNamnSvar) && Validering.textFaltHarVarde(txtAnsDatumSvar)
-                && Validering.comboHarVarde(cmbAdminSvar) && Validering.comboHarVarde(cmbOmradeSvar) 
-                && Validering.textFaltHarVarde(txtLosen1) && Validering.textFaltHarVarde(txtLosen2)) 
+                && Validering.comboHarVarde(cmbAdminSvar) && Validering.comboHarVarde(cmbOmradeSvar)
+                && Validering.textFaltHarVarde(txtLosen1) && Validering.textFaltHarVarde(txtLosen2))
         {
-        
+
          lblID.getText();
-    
+
         String regNamn = txtNamnSvar.getText();
         String regTel = txtTelefonSvar.getText();
         String regAdmin = cmbAdminSvar.getSelectedItem().toString();
@@ -205,35 +205,35 @@ public class RegistreraAgent extends javax.swing.JFrame {
         String regDatum = txtAnsDatumSvar.getText();
         String regLosen1 = txtLosen1.getText();
         String regLosen2 = txtLosen2.getText();
-        
+
             if (regLosen1.equals(regLosen2)) {
-            
+
                 try {
                 idb.insert("INSERT INTO Agent(Namn, Telefon, Losenord) VALUES ( '" + regNamn + "', '" + regTel + "','" + regLosen1 + ")");
-                
+
                 }
-                
+
                 catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande" + e.getMessage()); 
-            
+            System.out.println("Internt felmeddelande" + e.getMessage());
+
                 }
-            
+
             }
-            
-            
+
+
         }
-        
+
         else {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");       
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
         }
-         
+
     }//GEN-LAST:event_btnRegActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReg;
