@@ -8,22 +8,14 @@ import oru.inf.InfDB;
 
 /**
  *
- * @author luna
+ * @author Josanna, Linda & Lisa
  */
 public class HanteraAliens extends javax.swing.JFrame {
 
-    /**
-     * Creates new form StartsidaAgent
-     */
     private InfDB idb;
     private String anvId;
     private String anvTyp;
 
-
-    public HanteraAliens(InfDB idb) {
-        initComponents();
-        this.idb = idb;
-    }
     public HanteraAliens(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
@@ -88,11 +80,6 @@ public class HanteraAliens extends javax.swing.JFrame {
         btnUppdatera.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnUppdateraMouseClicked(evt);
-            }
-        });
-        btnUppdatera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUppdateraActionPerformed(evt);
             }
         });
 
@@ -197,57 +184,62 @@ public class HanteraAliens extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen ListaAliensPlats i nytt fönster.
     private void btnListaPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaPlatsMouseClicked
         setVisible(false);
         ListaAliensPlats listaAlien = new ListaAliensPlats(idb, anvId, anvTyp);
         listaAlien.setVisible(true);
     }//GEN-LAST:event_btnListaPlatsMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen RegistreraAlien i nytt fönster.
     private void btnRegistreraNyAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistreraNyAlienMouseClicked
         setVisible(false);
         RegistreraAlien registreraAlien = new RegistreraAlien(idb, anvId, anvTyp);
         registreraAlien.setVisible(true);
     }//GEN-LAST:event_btnRegistreraNyAlienMouseClicked
 
-    private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUppdateraActionPerformed
-
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen UppdateraAlien i nytt fönster.
     private void btnUppdateraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUppdateraMouseClicked
         setVisible(false);
         UppdateraAlien uppdateraAlien = new UppdateraAlien(idb, anvId, anvTyp);
         uppdateraAlien.setVisible(true);
     }//GEN-LAST:event_btnUppdateraMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen SokAlien i nytt fönster.
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-    setVisible(false);
-        SokAlien sokAlien = new SokAlien (idb);
+        setVisible(false);
+        SokAlien sokAlien = new SokAlien(idb);
         sokAlien.setVisible(true);    }//GEN-LAST:event_btnSokMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
         StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
         startsidaAgent.setVisible(true);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
     private void manuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manuBarLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_manuBarLoggaUtMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
     private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
         setVisible(false);
         StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
         startsidaAgent.setVisible(true);
     }//GEN-LAST:event_btnTillbakaMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen ListaAliensDatum i nytt fönster.
     private void btnListaAlienDatumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaAlienDatumMouseClicked
         setVisible(false);
         ListaAliensDatum datum = new ListaAliensDatum(idb, anvId, anvTyp);
         datum.setVisible(true);
     }//GEN-LAST:event_btnListaAlienDatumMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen SokListaAliensRas i nytt fönster.
     private void btnListaAlienRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaAlienRasMouseClicked
         setVisible(false);
         ListaAliensRas ras = new ListaAliensRas(idb, anvId, anvTyp);
@@ -257,7 +249,6 @@ public class HanteraAliens extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnListaAlienDatum;

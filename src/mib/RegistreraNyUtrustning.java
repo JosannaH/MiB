@@ -2,14 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-// TODO Lägg till fler val vid registrering beroende på ras. Tex antal armar för Squid
-// TODO sätt alienID automatiskt -> räkna uppåt från senaste inlagda (Rosa har nummer 4)
-
 package mib;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -18,7 +12,7 @@ import oru.inf.InfException;
 
 /**
  *
- * @author luna
+ * @author Josanna, Linda & Lisa
  */
 public class RegistreraNyUtrustning extends javax.swing.JFrame {
 
@@ -28,7 +22,7 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
     private String anvTyp;
     private String regID;
 
-    // kontruktor som tar in information som bland annat används till den översta MenuBar
+    // Kontruktor som tar in information som bland annat används till den översta MenuBar
     public RegistreraNyUtrustning(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
@@ -86,11 +80,6 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         lblUtrustningsTyp.setText("Utrustningstyp");
 
         cmbUtrustningstyp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vapen", "Kommunikation", "Teknik", "Okänd" }));
-        cmbUtrustningstyp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbUtrustningstypActionPerformed(evt);
-            }
-        });
 
         lblConfirm.setForeground(new java.awt.Color(0, 204, 0));
 
@@ -101,12 +90,6 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
 
         lblUtrustning.setText("ID");
 
-        txtEgenskap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEgenskapActionPerformed(evt);
-            }
-        });
-
         lblEgenskap.setText("Egenskap");
 
         tbValjTyp.setText("Välj typ");
@@ -115,21 +98,11 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                 tbValjTypMouseClicked(evt);
             }
         });
-        tbValjTyp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbValjTypActionPerformed(evt);
-            }
-        });
 
         btnTillbaka.setText("Gå tillbaka");
         btnTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTillbakaMouseClicked(evt);
-            }
-        });
-        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTillbakaActionPerformed(evt);
             }
         });
 
@@ -220,9 +193,9 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                             .addComponent(lblUtrustningID)
                             .addComponent(lblUtrustning))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBenamning, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBenamning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBenamning, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblBenamning, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblUtrustningsTyp)
@@ -248,8 +221,9 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Metoden anropas när man trycker på knappen spara.
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-        // Utgår ifrån att det är klicket på sparaknappen som gör att all info sparas i DG
+        // Kontrollerar att vissa fält måste vara ifyllda för att kunna spara ny utrustning.
         if (Validering.textFaltHarVarde(txtBenamning) && Validering.comboHarVarde(cmbUtrustningstyp)) {
 
             String regUtrustningsID = lblUtrustning.getText();
@@ -258,6 +232,7 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
 
             try {
 
+                // Kontrollerar att man har fyllt i tillhörande information (egenskap) om valt vapen. 
                 if (regUtrustning.equals("Vapen") && Validering.textFaltHarVarde(txtEgenskap)) {
                     laggTill();
                     idb.insert("INSERT INTO Vapen VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
@@ -284,113 +259,88 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSparaActionPerformed
 
-    private void hamtaAlienID(String regAlienID) {
-        
-        try{
-            regAlienID = idb.getAutoIncrement("Alien", "Alien_ID");
-            lblUtrustning.setText(regAlienID); 
-        
-        }
-        
-        catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande" + e.getMessage()); 
-        }
-    }
-    
-    private void laggTill(){
+    // Metoden lägger till utrustning i databasen. Metoden finns för att undvika att man repeterar samma sak i andra metoder. 
+    private void laggTill() {
         String regBenamning = txtBenamning.getText();
         String regUtrustningsID = lblUtrustning.getText();
-        try{
-        
-        idb.insert("INSERT INTO Utrustning VALUES ('" + regUtrustningsID + "', '" + regBenamning + "')");
-        JOptionPane.showMessageDialog(null, "Ny utrustning är nu registrerad!");
-        }
-        catch (InfException e) {
+        try {
+
+            idb.insert("INSERT INTO Utrustning VALUES ('" + regUtrustningsID + "', '" + regBenamning + "')");
+            JOptionPane.showMessageDialog(null, "Ny utrustning är nu registrerad!");
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande" + e.getMessage()); 
+            System.out.println("Internt felmeddelande" + e.getMessage());
         }
-        
+
     }
-    
-    private void doljText(JTextField textAttDolja){
+
+    /* Metoden döljer en ruta som lagrar information tillhörande specifik utrustning. metoden anropas direkt i konstruktorn 
+    för att inledningsvis döljas. */
+    private void doljText(JTextField textAttDolja) {
         textAttDolja.setVisible(false);
     }
-    
-    private void doljLabel(JLabel labelAttDolja){
+
+    /* Metoden döljer en rubrik som lagrar information tillhörande specifik utrustning. metoden anropas direkt i konstruktorn 
+    för att inledningsvis döljas. */
+    private void doljLabel(JLabel labelAttDolja) {
         labelAttDolja.setVisible(false);
     }
-    
-    
-    private void txtEgenskapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEgenskapActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEgenskapActionPerformed
 
-    private void tbValjTypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbValjTypActionPerformed
-            // TODO add your handling code here:
-    }//GEN-LAST:event_tbValjTypActionPerformed
-
+    // Metoden anropas när man väljer vilken typ av utrustning som man vill registrera. 
     private void tbValjTypMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbValjTypMouseClicked
         String typ = cmbUtrustningstyp.getSelectedItem().toString();
-        
-        if(typ.equals("Vapen")){
+
+        /* Beroende på vilken utrustning så ska olika saker ske. Viss utrustning har fler uppgifter som behöver hämtas in. 
+        Dessa görs synliga beroende på vilken typ av utrustning man har valt. */
+        if (typ.equals("Vapen")) {
             txtEgenskap.setVisible(true);
             lblEgenskap.setVisible(true);
-            lblEgenskap.setText("Kaliber");         
-        }
-        else if(typ.equals("Kommunikation")){
+            lblEgenskap.setText("Kaliber");
+        } else if (typ.equals("Kommunikation")) {
             txtEgenskap.setVisible(true);
             lblEgenskap.setVisible(true);
             lblEgenskap.setText("Överföringsteknik");
-        }
-        else if(typ.equals("Teknik")){
+        } else if (typ.equals("Teknik")) {
             txtEgenskap.setVisible(true);
             lblEgenskap.setVisible(true);
             lblEgenskap.setText("Kraftkälla");
-        }
-        else{
+        } else {
             doljText(txtEgenskap);
             doljLabel(lblEgenskap);
         }
     }//GEN-LAST:event_tbValjTypMouseClicked
-
-    private void cmbUtrustningstypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbUtrustningstypActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbUtrustningstypActionPerformed
-
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
         StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
         startsidaAgent.setVisible(true);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
     private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
     private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
         setVisible(false);
         StartsidaAgent startsida = new StartsidaAgent(idb, anvId, anvTyp);
         startsida.setVisible(true);
     }//GEN-LAST:event_btnTillbakaMouseClicked
 
-    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTillbakaActionPerformed
-
+    /* Denna metod genererar ett ID för varje ny registrerad utrustning. För att det ska bli ett nytt ID som inte går att ändras anropas den i konstruktorn. 
+    För att generera nytt ID i sifferordning anropas getAutoIncrement(). */
     private void hamtaUtrustningsID(String regID) {
-        
-        try{
+
+        try {
             regID = idb.getAutoIncrement("Utrustning", "Utrustnings_ID");
-            lblUtrustning.setText(regID); 
-        
-        }
-        
-        catch (InfException e) {
+            lblUtrustning.setText(regID);
+
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande" + e.getMessage()); 
+            System.out.println("Internt felmeddelande" + e.getMessage());
         }
     }
 
