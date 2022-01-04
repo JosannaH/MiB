@@ -52,6 +52,9 @@ public class SokAgent extends javax.swing.JFrame {
         lblTelefonSvar = new javax.swing.JLabel();
         lblOmradeSvar = new javax.swing.JLabel();
         lblAnsDatSvar = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,17 +82,25 @@ public class SokAgent extends javax.swing.JFrame {
 
         jLabel8.setText("Område:");
 
-        lblBenamningSvar.setText("jLabel9");
+        lblBenamningSvar.setText("-");
 
-        lblLosenordSvar.setText("jLabel9");
+        lblLosenordSvar.setText("-");
 
-        lblBehorigheterSvar.setText("jLabel10");
+        lblBehorigheterSvar.setText("-");
 
-        lblTelefonSvar.setText("jLabel9");
+        lblTelefonSvar.setText("-");
 
-        lblOmradeSvar.setText("jLabel9");
+        lblOmradeSvar.setText("-");
 
-        lblAnsDatSvar.setText("jLabel9");
+        lblAnsDatSvar.setText("-");
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,15 +161,15 @@ public class SokAgent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(lblBehorigheterSvar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(lblOmradeSvar))
-                .addGap(38, 38, 38)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(lblLosenordSvar))
-                .addGap(41, 41, 41)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(lblAnsDatSvar))
@@ -176,8 +187,27 @@ public class SokAgent extends javax.swing.JFrame {
     
     String agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID +"");
     String agentTelefon = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID = " + soktID +"");
+    String agentBehorighet = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID = " + soktID +"");
+    String agentOmrade = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE Omrades_ID IN(SELECT Omrade FROM Agent WHERE Agent_ID = " + soktID +")");
+    String agentLosenord = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID = " + soktID + "");
+    String agentAnsDat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Agent_ID = " + soktID +"");
     
     lblBenamningSvar.setText(agentNamn);
+    lblTelefonSvar.setText(agentTelefon);
+    lblOmradeSvar.setText(agentOmrade);
+    lblLosenordSvar.setText(agentLosenord);
+    lblAnsDatSvar.setText(agentAnsDat);
+    
+    
+    
+    if (agentBehorighet.contains("J")) {
+    lblBehorigheterSvar.setText("Administratör");
+    }
+    
+    else if (agentBehorighet.contains("N")) {
+    lblBehorigheterSvar.setText("Agentstandard");
+    }
+    
     
     
     }
@@ -204,6 +234,9 @@ public class SokAgent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblAnsDatSvar;
     private javax.swing.JLabel lblBehorigheterSvar;
     private javax.swing.JLabel lblBenamningSvar;
