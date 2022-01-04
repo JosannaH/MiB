@@ -242,28 +242,43 @@ public class TaBortAgent extends javax.swing.JFrame {
     private void btnTaBortAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortAgentMouseClicked
         String losenord = txtLosenord.getText().trim();
         String losenordDB = "";
+        String qLosen = "SELECT losenord FROM agent WHERE agent_ID =" + anvId;
         
+        String qAlien = "UPDATE alien SET ansvarig_agent = 0 WHERE ansvarig_agent = " + soktID;
+        String qFaltAgent = "DELETE FROM faltagent WHERE agent_ID = " + soktID;
+        String qInneharFordon = "DELETE FROM innehar_fordon WHERE agent_ID = " + soktID;
+        String qInneharUtrustning = "DELETE FROM innehar_utrustning WHERE agent_ID = " + soktID;
+        String qKontorschef = "DELETE FROM kontorschef WHERE agent_ID = " + soktID;
+        String qOmradeschef = "DELETE FROM omradeschef WHERE agent_ID = " + soktID;
+        
+        String qTaBortAgent = "DELETE FROM agent WHERE agent_ID = " + soktID;
+
         try{
-            losenordDB = idb.fetchSingle("SELECT losenord FROM agent WHERE agent_ID =" + anvId);
+            // Hämta lösen från DB
+            losenordDB = idb.fetchSingle(qLosen);
         }
              catch (InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: Hämta lösenord från DB" + e.getMessage());  
     }
+        // Kontrollera att användare angett rätt lösenord
         if (losenord.equals(losenordDB)){
             try {
-                idb.delete("DELETE FROM agent WHERE agent_ID = '" + soktID + "'");
+                //Ta bort agenten i relaterade tabeller
+                idb.update(qAlien);
+                idb.delete(qFaltAgent);
+                idb.delete(qInneharFordon);
+                idb.delete(qInneharUtrustning);
+                idb.delete(qKontorschef);
+                idb.delete(qOmradeschef);
+                // Ta bort agenten från tabellen Agent
+                idb.delete(qTaBortAgent);
+                // Bekräftelse till användaren att agenten tagits bort
                 JOptionPane.showMessageDialog(null, "Agent " + agentNamn + " med ID " + soktID + " är nu borttagen");
             }
                   catch (InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: Ta bort agent från DB" + e.getMessage());  
-//            inner join faltagent f on agent.Agent_ID = f.Agent_ID
-//    inner join alien a on agent.Agent_ID = a.Ansvarig_Agent
-//    inner join innehar_fordon i on agent.Agent_ID = i.Agent_ID
-//    inner join innehar_utrustning iu on agent.Agent_ID = iu.Agent_ID
-//    inner join kontorschef k on agent.Agent_ID = k.Agent_ID
-//    inner join omradeschef o on agent.Agent_ID = o.Agent_ID
     }
         }
         else{
