@@ -242,9 +242,14 @@ public class TaBortAgent extends javax.swing.JFrame {
     private void btnTaBortAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortAgentMouseClicked
         String losenord = txtLosenord.getText().trim();
         String losenordDB = "";
+        String alienID = "";
         String qLosen = "SELECT losenord FROM agent WHERE agent_ID =" + anvId;
+        // Lista att spara alla aliens med den aktuella agenten som ansvarig agent
+        ArrayList<HashMap<String, String>> listaAliensMedAgent = new ArrayList<>();
         
-        String qAlien = "UPDATE alien SET ansvarig_agent = 0 WHERE ansvarig_agent = " + soktID;
+        String qListaAliens = "SELECT alien_ID FROM alien WHERE ansvarig_agent = " + soktID;
+        
+        String qAlien = "UPDATE alien SET ansvarig_agent = 0 WHERE alien_ID = " + alienID;
         String qFaltAgent = "DELETE FROM faltagent WHERE agent_ID = " + soktID;
         String qInneharFordon = "DELETE FROM innehar_fordon WHERE agent_ID = " + soktID;
         String qInneharUtrustning = "DELETE FROM innehar_utrustning WHERE agent_ID = " + soktID;
@@ -264,21 +269,30 @@ public class TaBortAgent extends javax.swing.JFrame {
         // Kontrollera att användare angett rätt lösenord
         if (losenord.equals(losenordDB)){
             try {
+                // hämta alla aliens med den aktuella agenten som ansvarig agent
+                idb.fetchRows(qListaAliens);
+                //System.out.println(listaAliensMedAgent.get(0).get("alien_ID"));
+                // gå igenom listan och uppdatera alla aliens
+                for (int i = 0; i < listaAliensMedAgent.size(); i++) {
+                   alienID = listaAliensMedAgent.get(i).get("alien_ID");
+                    System.out.println(alienID);
+                  // idb.update(qAlien);
+                }
                 //Ta bort agenten i relaterade tabeller
-                idb.update(qAlien);
+               /* idb.update(qAlien);
                 idb.delete(qFaltAgent);
                 idb.delete(qInneharFordon);
                 idb.delete(qInneharUtrustning);
                 idb.delete(qKontorschef);
-                idb.delete(qOmradeschef);
+                idb.delete(qOmradeschef); */
                 // Ta bort agenten från tabellen Agent
-                idb.delete(qTaBortAgent);
+               // idb.delete(qTaBortAgent);
                 // Bekräftelse till användaren att agenten tagits bort
-                JOptionPane.showMessageDialog(null, "Agent " + agentNamn + " med ID " + soktID + " är nu borttagen");
+                JOptionPane.showMessageDialog(null, agentNamn + " med ID " + soktID + " är nu borttagen");
             }
                   catch (InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: Ta bort agent från DB" + e.getMessage());  
+            System.out.println("Internt felmeddelande:" + e.getMessage());  
     }
         }
         else{
