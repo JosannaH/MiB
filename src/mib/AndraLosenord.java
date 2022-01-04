@@ -26,6 +26,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        menuInloggad.setText("Inloggad som " + anvTyp);
     }
 
     /**
@@ -49,9 +50,8 @@ public class AndraLosenord extends javax.swing.JFrame {
         txtAnvandare = new javax.swing.JTextField();
         lblMeddelande = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        menuInget = new javax.swing.JMenu();
+        menuInloggad = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,14 +83,11 @@ public class AndraLosenord extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Mitt konto");
-        jMenuBar1.add(jMenu1);
+        menuInget.setText("                                                                                                                                                                  ");
+        jMenuBar1.add(menuInget);
 
-        jMenu2.setText("Funktioner");
-        jMenuBar1.add(jMenu2);
-
-        jMenu5.setText("                                                                                                    ");
-        jMenuBar1.add(jMenu5);
+        menuInloggad.setText("Inloggad som XXX");
+        jMenuBar1.add(menuInloggad);
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -180,39 +177,39 @@ public class AndraLosenord extends javax.swing.JFrame {
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
-        
+
         String anvandare = txtAnvandare.getText();
         String nuvLosen = pwNuvLosen.getText();
         String nyttLosen = pwNyttLosen.getText();
         String losenFranDB = "";
-     
+
         //Kollar att alla fält är ifyllda
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pwNuvLosen) && Validering.textFaltHarVarde(pwNyttLosen)) {
-       
-            try{
+
+            try {
                 // Lösen för individen hämtas ur databasen
                 losenFranDB = idb.fetchSingle("SELECT Losenord FROM " + anvTyp + " WHERE " + anvTyp + "_ID=" + anvandare);
-       
-                //jämför inmatat nuvarande lösenord med lösenord från databas
-                if(nuvLosen.equals(losenFranDB)){
-                    // ändrar lösenordet i databasen
-                    idb.fetchSingle("UPDATE " + anvTyp + " SET Losenord = '" + nyttLosen + "' where " + anvTyp + "_ID=" + anvandare);
-                    JOptionPane.showMessageDialog(null, "Ditt lösenord är ändrat!");
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Användare och nuvarande lösenord stämmer inte överens");
-                }
-            }
-            catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande" + e.getMessage());
+                if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
+
+                    //jämför inmatat nuvarande lösenord med lösenord från databas
+                    if (nuvLosen.equals(losenFranDB)) {
+                        // ändrar lösenordet i databasen
+                        idb.fetchSingle("UPDATE " + anvTyp + " SET Losenord = '" + nyttLosen + "' where " + anvTyp + "_ID=" + anvandare);
+                        JOptionPane.showMessageDialog(null, "Ditt lösenord är ändrat!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Användare och nuvarande lösenord stämmer inte överens");
                     }
-        }
-        else{
+                } else {
+                    JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
+                }
+            } catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Något gick fel!");
+                System.out.println("Internt felmeddelande" + e.getMessage());
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Alla fält måste fyllas i");
         }
     }//GEN-LAST:event_btnAndraLosenActionPerformed
@@ -225,10 +222,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosen;
     private javax.swing.JToggleButton btnLoggaUt;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblAgentBild;
     private javax.swing.JLabel lblAnvandare;
@@ -236,6 +230,8 @@ public class AndraLosenord extends javax.swing.JFrame {
     private javax.swing.JLabel lblNuvLosen;
     private javax.swing.JLabel lblNyttLosen;
     private javax.swing.JLabel lblRubrik;
+    private javax.swing.JMenu menuInget;
+    private javax.swing.JMenu menuInloggad;
     private javax.swing.JPasswordField pwNuvLosen;
     private javax.swing.JPasswordField pwNyttLosen;
     private javax.swing.JTextField txtAnvandare;

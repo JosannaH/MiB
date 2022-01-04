@@ -4,19 +4,14 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="menuInget">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mitt konto"/>
+            <Property name="text" type="java.lang.String" value="                                                                                                                                                                  "/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="menuInloggad">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Funktioner"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="                                                                                                    "/>
+            <Property name="text" type="java.lang.String" value="Inloggad som XXX"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">

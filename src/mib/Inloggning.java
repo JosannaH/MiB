@@ -164,7 +164,7 @@ public class Inloggning extends javax.swing.JFrame {
                 if (anvId.equals(anvFranDatabas) && losenord.equals(losenFranDatabas)) {
 
                     //Här kontrolleras om man är alien/agent/admin och startsida skapas baserat på detta.
-                    if (adminStatus.equals("J") && anvTyp.equals("Agent")) {
+                    if (anvTyp.equals("Agent") && adminStatus.equals("J")) {
                         setVisible(false);
                         StartsidaAdmin startAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
                         startAdmin.setVisible(true);
