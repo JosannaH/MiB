@@ -43,6 +43,7 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        btnTaBortAgent = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,13 +54,22 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
             }
         });
 
+        btnTaBortAgent.setText("Ta bort agent");
+        btnTaBortAgent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTaBortAgentMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(396, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addContainerGap(376, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnTaBortAgent)
+                    .addComponent(jButton1))
                 .addGap(380, 380, 380))
         );
         layout.setVerticalGroup(
@@ -67,7 +77,9 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(255, 255, 255)
                 .addComponent(jButton1)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(btnTaBortAgent)
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,12 +91,19 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         sokAgent.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnTaBortAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortAgentMouseClicked
+        setVisible(false);
+        TaBortAgent t = new TaBortAgent (idb, anvId, anvTyp);
+        t.setVisible(true);
+    }//GEN-LAST:event_btnTaBortAgentMouseClicked
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTaBortAgent;
     private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
