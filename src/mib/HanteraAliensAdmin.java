@@ -187,8 +187,8 @@ public class HanteraAliensAdmin extends javax.swing.JFrame {
 
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
-        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
-        startsidaAgent.setVisible(true);
+        StartsidaAdmin startsidaAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
+        startsidaAdmin.setVisible(true);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
 
     private void manuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manuBarLoggaUtMouseClicked

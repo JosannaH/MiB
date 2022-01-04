@@ -202,7 +202,7 @@ public class TaBortAgent extends javax.swing.JFrame {
      */
     private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
         setVisible(false);
-        HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
+        HanteraAliensAdmin hanteraAliens = new HanteraAliensAdmin(idb, anvId, anvTyp);
         hanteraAliens.setVisible(true);
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
 

@@ -42,36 +42,93 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnSok = new javax.swing.JButton();
+        btnUppdateraAgent = new javax.swing.JButton();
+        btnRegistrera = new javax.swing.JButton();
+        lblBild = new javax.swing.JLabel();
+        btnTillbaka = new javax.swing.JToggleButton();
+        lblRubrik = new javax.swing.JLabel();
+        btnRadera = new javax.swing.JButton();
+        btnUppdateraChef = new javax.swing.JButton();
+        btnAdmin = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        menuStartsida = new javax.swing.JMenu();
+        menuInget = new javax.swing.JMenu();
+        menuInlogg = new javax.swing.JMenu();
+        menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Sök agent");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSok.setText("Sök agent");
+        btnSok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSokActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Uppdatera agent");
+        btnUppdateraAgent.setText("Uppdatera agent");
 
-        jButton3.setText("Registrera agent");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrera.setText("Registrera agent");
+        btnRegistrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnRegistreraActionPerformed(evt);
             }
         });
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        lblBild.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Men-In-Black-Siluett.png"))); // NOI18N
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        btnTillbaka.setText("Gå tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
+
+        lblRubrik.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        lblRubrik.setText("Hantera agenter");
+
+        btnRadera.setText("Ta bort Agent");
+        btnRadera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRaderaActionPerformed(evt);
+            }
+        });
+
+        btnUppdateraChef.setText("Uppdatera chefer");
+        btnUppdateraChef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUppdateraChefActionPerformed(evt);
+            }
+        });
+
+        btnAdmin.setText("Gör till administratör");
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminActionPerformed(evt);
+            }
+        });
+
+        menuStartsida.setText("Gå till startsida");
+        menuStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuStartsidaMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuStartsida);
+
+        menuInget.setText("                                                                                                                                               ");
+        jMenuBar1.add(menuInget);
+
+        menuInlogg.setText("Inloggad som administratör");
+        jMenuBar1.add(menuInlogg);
+
+        menuLoggaUt.setText("Logga ut");
+        menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuLoggaUtMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuLoggaUt);
 
         setJMenuBar(jMenuBar1);
 
@@ -79,40 +136,95 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(455, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(108, 108, 108))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblRubrik)
+                    .addComponent(lblBild))
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnRadera, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRegistrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUppdateraAgent, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+                        .addComponent(btnSok, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUppdateraChef, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTillbaka))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegistrera)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUppdateraAgent)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSok)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRadera)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAdmin)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUppdateraChef)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnTillbaka))
+                    .addComponent(lblBild))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
         setVisible(false);
         SokAgent sokAgent = new SokAgent (idb, anvId, anvTyp);
         sokAgent.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSokActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnRegistreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraActionPerformed
         setVisible(false);
         RegistreraAgent registreraAgent = new RegistreraAgent (idb, anvId, anvTyp);
         registreraAgent.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnRegistreraActionPerformed
+
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        setVisible(false);
+        StartsidaAdmin startsidaAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
+        startsidaAdmin.setVisible(true);
+    }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
+        setVisible(false);
+        TaBortAgent radera = new TaBortAgent(idb, anvId, anvTyp);
+        radera.setVisible(true);
+    }//GEN-LAST:event_btnRaderaActionPerformed
+
+    private void btnUppdateraChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraChefActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUppdateraChefActionPerformed
+
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdminActionPerformed
+
+    private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
+        setVisible(false);
+        StartsidaAdmin startsidaAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
+        startsidaAdmin.setVisible(true);        
+    }//GEN-LAST:event_menuStartsidaMouseClicked
+
+    private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
+        setVisible(false);
+        Inloggning inlogg = new Inloggning(idb);
+        inlogg.setVisible(true);
+    }//GEN-LAST:event_menuLoggaUtMouseClicked
 
     /**
      * @param args the command line arguments
@@ -120,11 +232,19 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnRadera;
+    private javax.swing.JButton btnRegistrera;
+    private javax.swing.JButton btnSok;
+    private javax.swing.JToggleButton btnTillbaka;
+    private javax.swing.JButton btnUppdateraAgent;
+    private javax.swing.JButton btnUppdateraChef;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblBild;
+    private javax.swing.JLabel lblRubrik;
+    private javax.swing.JMenu menuInget;
+    private javax.swing.JMenu menuInlogg;
+    private javax.swing.JMenu menuLoggaUt;
+    private javax.swing.JMenu menuStartsida;
     // End of variables declaration//GEN-END:variables
 }
