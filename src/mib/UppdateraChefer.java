@@ -35,11 +35,12 @@ public class UppdateraChefer extends javax.swing.JFrame {
         btnValjOmrade.setVisible(false);
         btnValjPlats.setVisible(false);
         cmbOmrade.setVisible(false);
-        cmbPlats.setVisible(false);
+        cmbKontor.setVisible(false);
         lblNuvChef.setVisible(false);
         lblNyChefAr.setVisible(false);
         lblValjNy.setVisible(false);
         cmbNyChef.setVisible(false);
+        btnBekraftaVal.setVisible(false);
     }
 
     /**
@@ -54,7 +55,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
         lblRubrik = new javax.swing.JLabel();
         btnGaTillbaka = new javax.swing.JButton();
         lblPlats = new javax.swing.JLabel();
-        cmbPlats = new javax.swing.JComboBox<>();
+        cmbKontor = new javax.swing.JComboBox<>();
         btnValjOmrade = new javax.swing.JButton();
         lblOmrade = new javax.swing.JLabel();
         cmbOmrade = new javax.swing.JComboBox<>();
@@ -87,7 +88,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
 
         lblPlats.setText("Välj plats:");
 
-        cmbPlats.setToolTipText("");
+        cmbKontor.setToolTipText("");
 
         btnValjOmrade.setText("Välj");
         btnValjOmrade.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -185,15 +186,13 @@ public class UppdateraChefer extends javax.swing.JFrame {
                         .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnValjOmrade)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(cmbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnValjPlats))))
+                                .addComponent(cmbKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnValjPlats))
+                            .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblNuvChef, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblValjNy, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,7 +201,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(btnBekraftaVal))
                     .addComponent(lblNyChefAr, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(132, 132, 132))
+                .addGap(106, 106, 106))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +221,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnValjOmrade)
-                    .addComponent(cmbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnValjPlats))
                 .addGap(18, 18, 18)
                 .addComponent(lblNuvChef)
@@ -269,51 +268,88 @@ public class UppdateraChefer extends javax.swing.JFrame {
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
     private void btnPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlatsMouseClicked
-         // dölj ev områdesval-knapp, lbl och combobox
-        lblOmrade.setVisible(false);
-        btnValjOmrade.setVisible(false);
-        cmbOmrade.setVisible(false);
-        
-        cmbPlats.setVisible(true);
-        btnValjPlats.setVisible(true);
-        lblPlats.setVisible(true);
+        setVisibleUppdateraOmrade(false);
+        setVisibleUppdateraPlats(true);
+        setVisibleNyChef(false);
         
         SQL s = new SQL(idb);
-        s.plats(cmbPlats);
+        s.getPlatsKontor(cmbKontor);
     }//GEN-LAST:event_btnPlatsMouseClicked
 
     private void btnValjOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValjOmradeMouseClicked
-        lblNuvChef.setVisible(true);
+
+        setVisibleNyChef(true);
+        
         omradePlats = cmbOmrade.getSelectedItem().toString();
         SQL s = new SQL(idb);
         s.getChefForOmrade(lblNuvChef, omradePlats);
-        lblValjNy.setVisible(true);
-        cmbNyChef.setVisible(true);
-        btnBekraftaVal.setVisible(true);
     }//GEN-LAST:event_btnValjOmradeMouseClicked
 
     private void btnValjPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValjPlatsMouseClicked
-        omradePlats = cmbPlats.getSelectedItem().toString();
+        setVisibleNyChef(true);
+        omradePlats = cmbKontor.getSelectedItem().toString();
+        SQL s = new SQL(idb);
+        s.getKontorschef(omradePlats, lblNuvChef);
+        
+         
     }//GEN-LAST:event_btnValjPlatsMouseClicked
 
     private void btnOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOmradeMouseClicked
-        // dölj ev platsval-knapp, lbl och combobox
-        lblPlats.setVisible(false);
-        btnValjPlats.setVisible(false);
-        cmbPlats.setVisible(false);
- 
-        cmbOmrade.setVisible(true);
-        btnValjOmrade.setVisible(true);
-        lblOmrade.setVisible(true);
+        setVisibleUppdateraPlats(false);
+        setVisibleUppdateraOmrade(true);
+        setVisibleNyChef(false);
         
         SQL s = new SQL(idb);
         s.omraden(cmbOmrade);
     }//GEN-LAST:event_btnOmradeMouseClicked
 
     private void btnBekraftaValMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaValMouseClicked
-        // TODO add your handling code here:
+        lblNyChefAr.setVisible(true);
     }//GEN-LAST:event_btnBekraftaValMouseClicked
 
+    private void setVisibleUppdateraOmrade(boolean bool){
+        if (bool == false){
+        // dölj områdesval-knapp, lbl och combobox
+        lblOmrade.setVisible(false);
+        btnValjOmrade.setVisible(false);
+        cmbOmrade.setVisible(false);
+    }
+        else{
+        lblOmrade.setVisible(true);
+        btnValjOmrade.setVisible(true);
+        cmbOmrade.setVisible(true);
+    }
+    }
+    
+    private void setVisibleUppdateraPlats(boolean bool){
+        if (bool == false){
+        // dölj ev platsval-knapp, lbl och combobox
+        lblPlats.setVisible(false);
+        btnValjPlats.setVisible(false);
+        cmbKontor.setVisible(false);
+        }
+        else{
+        lblPlats.setVisible(true);
+        btnValjPlats.setVisible(true);
+        cmbKontor.setVisible(true);
+        }
+    }
+    
+    private void setVisibleNyChef(boolean bool){
+        if(bool == false){
+        lblNuvChef.setVisible(false);
+        lblValjNy.setVisible(false);
+        cmbNyChef.setVisible(false);
+        btnBekraftaVal.setVisible(false);
+        }
+        else{
+        lblNuvChef.setVisible(true);
+        lblValjNy.setVisible(true);
+        cmbNyChef.setVisible(true);
+        btnBekraftaVal.setVisible(true);
+        }
+           
+    }
     /**
      * @param args the command line arguments
      */
@@ -325,9 +361,9 @@ public class UppdateraChefer extends javax.swing.JFrame {
     private javax.swing.JButton btnPlats;
     private javax.swing.JButton btnValjOmrade;
     private javax.swing.JButton btnValjPlats;
+    private javax.swing.JComboBox<String> cmbKontor;
     private javax.swing.JComboBox<String> cmbNyChef;
     private javax.swing.JComboBox<String> cmbOmrade;
-    private javax.swing.JComboBox<String> cmbPlats;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JLabel lblNuvChef;
     private javax.swing.JLabel lblNyChefAr;
