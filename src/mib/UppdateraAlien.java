@@ -418,6 +418,9 @@ public class UppdateraAlien extends javax.swing.JFrame {
             String idText = txtAlienID.getText();
             String regRas = cmbRas.getSelectedItem().toString();
             String rasInfo = txtRasInfo.getText();
+            String regLosenord = pswLosen.getText();
+
+            if (regLosenord.length() <= 6 && regLosenord.length() >= 3) {
 
             try {
 
@@ -504,6 +507,10 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
+            }
+            else {
+                    JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
+                }
 
         } else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");

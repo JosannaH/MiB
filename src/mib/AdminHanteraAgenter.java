@@ -101,9 +101,9 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         });
 
         btnAdmin.setText("Gör till administratör");
-        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminActionPerformed(evt);
+        btnAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdminMouseClicked(evt);
             }
         });
 
@@ -215,10 +215,6 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         u.setVisible(true);
     }//GEN-LAST:event_btnUppdateraChefActionPerformed
 
-    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdminActionPerformed
-
     //Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
     private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
         setVisible(false);
@@ -235,9 +231,18 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
 
     private void btnUppdateraAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraAgentActionPerformed
         setVisible(false);
-        UppdateraAgent updAgent = new UppdateraAgent(idb);
+        UppdateraAgent updAgent = new UppdateraAgent(idb, anvId, anvTyp);
         updAgent.setVisible(true);
     }//GEN-LAST:event_btnUppdateraAgentActionPerformed
+
+    /*
+    Öppnar fönstret Gör till administratör
+    */
+    private void btnAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseClicked
+        setVisible(false);
+        GorTillAdmin g = new GorTillAdmin(idb, anvId, anvTyp);
+        g.setVisible(true);
+    }//GEN-LAST:event_btnAdminMouseClicked
 
     /**
      * @param args the command line arguments
