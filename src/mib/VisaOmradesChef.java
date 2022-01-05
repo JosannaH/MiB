@@ -4,32 +4,27 @@
  */
 package mib;
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
-import java.util.HashMap;
 
 /**
  *
- * @author luna
+ * @author Josanna, Linda & Lisa
  */
 public class VisaOmradesChef extends javax.swing.JFrame {
 
-    /**
-     * Creates new form StartsidaAgent
-     */
     private InfDB idb;
     private String anvId;
     private String anvTyp;
-     
-   
+
     public VisaOmradesChef(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        
+
+        // Anropar en metod från klassen SQL. Metoden fyller rullisten områden med information från databasen.
         SQL s = new SQL(idb);
         s.omraden(cmbOmrade);
     }
@@ -65,12 +60,6 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         btnTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTillbakaMouseClicked(evt);
-            }
-        });
-
-        cmbOmrade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbOmradeActionPerformed(evt);
             }
         });
 
@@ -168,41 +157,37 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Skapar en metod som man sen använder för att fylla rullisten med information. 
-    
-    
-    private void cmbOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOmradeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbOmradeActionPerformed
-
+    // Metoden anropas när man klickar på sök-knappen. Metoden letar upp information om vilken agent som är chef över vilket område. 
     private void btnSokOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokOmradeActionPerformed
         String omraden = cmbOmrade.getSelectedItem().toString();
-        try{
-             String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + omraden + "'");
-             String agentID = idb.fetchSingle("SELECT Agent_ID FROM omradeschef WHERE Omrade =" + omradesID);
-             String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID =" + agentID);
-             
-             lblChef.setText("Områdeschef för " + omraden + " är " + agentNamn + "");
-        }
-        catch(InfException e){
+        try {
+            String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + omraden + "'");
+            String agentID = idb.fetchSingle("SELECT Agent_ID FROM omradeschef WHERE Omrade =" + omradesID);
+            String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID =" + agentID);
+
+            lblChef.setText("Områdeschef för " + omraden + " är " + agentNamn + "");
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
-        
+
     }//GEN-LAST:event_btnSokOmradeActionPerformed
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
     private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
         StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
         startsidaAgent.setVisible(true);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
     private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
         setVisible(false);
         StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
@@ -212,7 +197,6 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnSokOmrade;

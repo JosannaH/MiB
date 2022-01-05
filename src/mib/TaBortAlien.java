@@ -8,24 +8,25 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
- * @author luna
+ * @author Josanna, Linda & Lisa
  */
 public class TaBortAlien extends javax.swing.JFrame {
 
     //Vi skapar 3 Array Lists för att lagra de tre olika rasalternativen i.
-    private InfDB idb;    
+    private InfDB idb;
     private String anvId;
     private String anvTyp;
     ArrayList<String> squidLista;
     ArrayList<String> bogloditeLista;
     ArrayList<String> wormLista;
-    
+
     //I konstruktorn anger vi att de rasunika fälten ska vara osynliga som default.
     public TaBortAlien(InfDB idb, String anvId, String anvTyp) {
         initComponents();
-        this.idb=idb;
+        this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         lblBoogies.setVisible(false); //rätt
@@ -35,7 +36,7 @@ public class TaBortAlien extends javax.swing.JFrame {
         lblConfirm.setVisible(false);
         lblError.setVisible(false);
 
-    } 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,7 +59,7 @@ public class TaBortAlien extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSok = new javax.swing.JButton();
         lblAlienRas = new javax.swing.JLabel();
         lblAlienPlats = new javax.swing.JLabel();
         lblAnsvarigAgent = new javax.swing.JLabel();
@@ -83,12 +84,6 @@ public class TaBortAlien extends javax.swing.JFrame {
         lblTitel.setText("MiB ");
 
         lblSokID.setText("AlienID:");
-
-        txtSokID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSokIDActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel1.setText("Lösenord:");
@@ -122,15 +117,10 @@ public class TaBortAlien extends javax.swing.JFrame {
         jLabel10.setText("Ansvarig agent:");
         jLabel10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setText("SÖK");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSok.setText("SÖK");
+        btnSok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSokMouseClicked(evt);
             }
         });
 
@@ -171,11 +161,6 @@ public class TaBortAlien extends javax.swing.JFrame {
         btnRadera.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRaderaMouseClicked(evt);
-            }
-        });
-        btnRadera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRaderaActionPerformed(evt);
             }
         });
 
@@ -246,7 +231,7 @@ public class TaBortAlien extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(txtSokID, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1))))
+                                        .addComponent(btnSok))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,7 +275,7 @@ public class TaBortAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSokID)
                     .addComponent(txtSokID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnSok))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblConfirm)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -335,170 +320,155 @@ public class TaBortAlien extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSokIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSokIDActionPerformed
-    }//GEN-LAST:event_txtSokIDActionPerformed
-        
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-   
-    }//GEN-LAST:event_jButton1ActionPerformed
+    // Metoden söker upp information om vald agent.
+    private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        
-        
         try {
-            
-        squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
-        bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
-        wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");      
-        
-        //Lokala variabler för fälten
-        String soktID = txtSokID.getText();
-        int soktIDint = Integer.parseInt(soktID);
-        
-        //Nästlad SQL-fråga för att kunna visa namnet på agenten i stället för dess AgentID.
-        String alienAgentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID IN (SELECT Ansvarig_Agent FROM Alien where Alien_ID = " + soktIDint + ")");
-        
-        //Nästlad SQL-fråga för att kunna visa namnet på platsen istället för platsID.
-        String alienPlats = idb.fetchSingle("SELECT Benamning FROM Plats WHERE Plats_ID IN(SELECT Plats from Alien where Alien_ID =" + soktIDint +")");     
-        
-        //SQL-frågor som hämtar aliens lösenord, namn och telefon från databasen.  
-        String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktIDint +"");
-        String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktIDint +"");
-        String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktIDint +"");
-     
-        //Här anger vi vad vi vill ska stå i våra labels, det vill säga informationen om den eftersökta alien.
-        lblAlienLosenord.setText(alienLosenord);
-        lblAlienNamn.setText(alienNamn);
-        lblAlienTelefon.setText(alienTelefon);
-        lblAlienPlats.setText(alienPlats);
-        lblAnsvarigAgent.setText(alienAgentNamn);
-        
-        lblConfirm.setVisible(true);
-        
-        
-        //Här arbetr vi med villkorssatser för att "söka" efter det eftersökta ID:t i våra Arrayer.
-        if (squidLista.contains(soktID)) {
-        String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + soktID + "'");
-        lblAlienRas.setText("Squid");
-        
-        lblAntalArmar.setVisible(true);
-        lblAntalArmarSvar.setVisible(true);
-        lblAntalArmarSvar.setText(antalArmar);
-        
-        lblBoogies.setVisible(false);
-        lblBoogiesSvar.setVisible(false);
-        
-        }
-        
-        else if (bogloditeLista.contains(soktID)) {
-        String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + soktID + "'");
-        lblAlienRas.setText("Boglodite");
-        
-        lblBoogies.setVisible(true);
-        lblBoogiesSvar.setVisible(true);
-        lblBoogiesSvar.setText(antalBoogies);
-        
-        lblAntalArmar.setVisible(false);
-        lblAntalArmarSvar.setVisible(false);
-        
-        }
-        
-        else if (wormLista.contains(soktID)) {
-        lblAlienRas.setText("Worm");
-        lblAntalArmar.setVisible(false);
-        lblAntalArmarSvar.setVisible(false);
-        lblBoogies.setVisible(false);
-        lblBoogiesSvar.setVisible(false);
-        
-        }
-        
-        else {
-        lblAlienRas.setText("Okänd");
-        lblAntalArmar.setVisible(false);
-        lblAntalArmarSvar.setVisible(false);
-        lblBoogies.setVisible(false);
-        lblBoogiesSvar.setVisible(false);
-        }
-        
-        }
-       
-        //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
-        catch (InfException e){
+
+            squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+            bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+            wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+
+            //Lokala variabler för fälten
+            String soktID = txtSokID.getText();
+            int soktIDint = Integer.parseInt(soktID);
+
+            //Nästlad SQL-fråga för att kunna visa namnet på agenten i stället för dess AgentID.
+            String alienAgentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID IN (SELECT Ansvarig_Agent FROM Alien where Alien_ID = " + soktIDint + ")");
+
+            //Nästlad SQL-fråga för att kunna visa namnet på platsen istället för platsID.
+            String alienPlats = idb.fetchSingle("SELECT Benamning FROM Plats WHERE Plats_ID IN(SELECT Plats from Alien where Alien_ID =" + soktIDint + ")");
+
+            //SQL-frågor som hämtar aliens lösenord, namn och telefon från databasen.  
+            String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktIDint + "");
+            String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktIDint + "");
+            String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktIDint + "");
+
+            //Här anger vi vad vi vill ska stå i våra labels, det vill säga informationen om den eftersökta alien.
+            lblAlienLosenord.setText(alienLosenord);
+            lblAlienNamn.setText(alienNamn);
+            lblAlienTelefon.setText(alienTelefon);
+            lblAlienPlats.setText(alienPlats);
+            lblAnsvarigAgent.setText(alienAgentNamn);
+
+            lblConfirm.setVisible(true);
+
+            //Här arbetr vi med villkorssatser för att "söka" efter det eftersökta ID:t i våra Arrayer.
+            if (squidLista.contains(soktID)) {
+                String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + soktID + "'");
+                lblAlienRas.setText("Squid");
+
+                lblAntalArmar.setVisible(true);
+                lblAntalArmarSvar.setVisible(true);
+                lblAntalArmarSvar.setText(antalArmar);
+
+                lblBoogies.setVisible(false);
+                lblBoogiesSvar.setVisible(false);
+
+            } else if (bogloditeLista.contains(soktID)) {
+                String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + soktID + "'");
+                lblAlienRas.setText("Boglodite");
+
+                lblBoogies.setVisible(true);
+                lblBoogiesSvar.setVisible(true);
+                lblBoogiesSvar.setText(antalBoogies);
+
+                lblAntalArmar.setVisible(false);
+                lblAntalArmarSvar.setVisible(false);
+
+            } else if (wormLista.contains(soktID)) {
+                lblAlienRas.setText("Worm");
+                lblAntalArmar.setVisible(false);
+                lblAntalArmarSvar.setVisible(false);
+                lblBoogies.setVisible(false);
+                lblBoogiesSvar.setVisible(false);
+
+            } else {
+                lblAlienRas.setText("Okänd");
+                lblAntalArmar.setVisible(false);
+                lblAntalArmarSvar.setVisible(false);
+                lblBoogies.setVisible(false);
+                lblBoogiesSvar.setVisible(false);
+            }
+
+        } //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
+        catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             lblError.setVisible(true);
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnSokMouseClicked
 
-    private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRaderaActionPerformed
-
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen HanteraAliensAdmin i nytt fönster.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
         HanteraAliensAdmin hanteraAliens = new HanteraAliensAdmin(idb, anvId, anvTyp);
         hanteraAliens.setVisible(true);
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
     private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
         setVisible(false);
         StartsidaAdmin startsidaAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
         startsidaAdmin.setVisible(true);
     }//GEN-LAST:event_menuStartsidaMouseClicked
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
 
+    // Metoden raderar information om det valda ID:t som man har sökt upp.
     private void btnRaderaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRaderaMouseClicked
-        if(Validering.textFaltHarVarde(txtSokID)){
+
+        // Här kontrollerar man att fältet txtSokID är ifyllt innan man får vidare och raderar informationen. 
+        if (Validering.textFaltHarVarde(txtSokID)) {
+
+            // Om txtSokID är ifyllt sker en dubbelkontroll för om man verkligen vill radera informationen. Detta görs med metoden showConfirmDialog. 
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort vald alien?", "Ta bort alien..", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            // Metoden använder 0 och 1 som input på svar. 0 = ja. Om detta väljs så går metoden vidare och raderar informationen. 
             if (input == 0) {
-                try{
+                try {
                     String alienID = txtSokID.getText();
-                    
-                    //Lägg till att man raderar info även från raser...
+
+                    // Här raderas information från tabellen alien.
                     idb.delete("DELETE FROM alien WHERE Alien_ID = '" + alienID + "'");
-                   
-                    ArrayList<String> bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
-                    ArrayList<String> squidLista  = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
-                    ArrayList<String> wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
-    
-                    
-                    if(bogloditeLista.contains(alienID)){
+
+                    // För att kunna kontrollera vilken tabell som sökt ID finns inom (Ras) används tre ArrayLists där man lagrar information om värdena. 
+                    bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+                    squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+                    wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+
+                    // Beroende på vilken tabell som används raderas värdena baserat pp sökt ID. 
+                    if (bogloditeLista.contains(alienID)) {
                         idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + alienID + "'");
-                    }
-                    else if(squidLista.contains(alienID)){
+                    } else if (squidLista.contains(alienID)) {
                         idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + alienID + "'");
-                    }
-                    else if(wormLista.contains(alienID)){
+                    } else if (wormLista.contains(alienID)) {
                         idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + alienID + "'");
                     }
-                    
-                }
-                catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-                System.out.println("Internt felmeddelande" + e.getMessage()); 
+
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande" + e.getMessage());
                 }
             }
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
         }
     }//GEN-LAST:event_btnRaderaMouseClicked
 
-    
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnRadera;
+    private javax.swing.JButton btnSok;
     private javax.swing.JToggleButton btnTillbaka;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

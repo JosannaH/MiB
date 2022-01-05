@@ -45,7 +45,7 @@ public class StartsidaAdmin extends javax.swing.JFrame {
         lblAdminBild = new javax.swing.JLabel();
         lblRubrik = new javax.swing.JLabel();
         btnLoggaUt = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        btnAndraLosen = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -71,7 +71,12 @@ public class StartsidaAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ändra lösenord");
+        btnAndraLosen.setText("Ändra lösenord");
+        btnAndraLosen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAndraLosenMouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Aliens");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -121,7 +126,7 @@ public class StartsidaAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAndraLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(84, 84, 84))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +144,7 @@ public class StartsidaAdmin extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnAndraLosen))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
@@ -181,14 +186,20 @@ public class StartsidaAdmin extends javax.swing.JFrame {
         adminHanteraAlien.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void btnAndraLosenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAndraLosenMouseClicked
+        setVisible(false);
+        AndraLosenord andraLosenord = new AndraLosenord(idb, anvId, anvTyp);
+        andraLosenord.setVisible(true);
+    }//GEN-LAST:event_btnAndraLosenMouseClicked
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAndraLosen;
     private javax.swing.JToggleButton btnLoggaUt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

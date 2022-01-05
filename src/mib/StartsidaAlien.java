@@ -126,7 +126,6 @@ public class StartsidaAlien extends javax.swing.JFrame {
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     // Metoden gör nuvarande fönster osynligt och öppnar klassen AndraLosenord i nytt fönster. 
