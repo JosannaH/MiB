@@ -236,7 +236,6 @@ public class RegistreraAgent extends javax.swing.JFrame {
                 }
                 }
                 
-
                 }
 
                 catch (InfException e) {
@@ -257,7 +256,6 @@ public class RegistreraAgent extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReg;
     private javax.swing.ButtonGroup buttonGroup1;
