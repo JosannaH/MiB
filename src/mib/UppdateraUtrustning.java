@@ -464,7 +464,6 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
             
             idb.update("UPDATE Utrustning SET Benamning = '" + regBenamning + "' WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
             
-            JOptionPane.showMessageDialog(null, "Ny utrustning är nu registrerad!");
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());
