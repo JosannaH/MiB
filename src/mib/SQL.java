@@ -154,6 +154,27 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
+    
+    public void getAliensForAnsvaigAgent(String agent_ID, JTextArea txtAreaAliens){
+        txtAreaAliens.setText("");
+        txtAreaAliens.append("Alien ID \t Namn \n");
+        
+        ArrayList<HashMap<String, String>> hashID = new ArrayList<>();
+        ArrayList<HashMap<String, String>> hashNamn = new ArrayList<>();
+        
+        try{
+            hashID = idb.fetchRows("SELECT alien_ID FROM alien WHERE ansvarig_agent = " + agent_ID + " ORDER BY alien_ID ASC");
+            hashNamn = idb.fetchRows("SELECT namn FROM alien WHERE ansvarig_agent = " + agent_ID + " ORDER BY alien_ID ASC");
+        }
+        catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande: getAliensForAnsvarigAgent() " + e.getMessage());
+        }
+        
+        for (int i = 0; i < hashID.size(); i++) {
+            txtAreaAliens.append(hashID.get(i).get("alien_ID") + "\t" + hashNamn.get(i).get("namn") + "\n");
+        }
+    }
 
     public void getRegistreringsdatum(String franDatum, String tillDatum, JTextArea txtAreaListaDatum, String ordning) {
 
