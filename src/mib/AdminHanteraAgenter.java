@@ -233,6 +233,9 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         updAgent.setVisible(true);
     }//GEN-LAST:event_btnUppdateraAgentActionPerformed
 
+    /*
+    Öppnar fönstret Gör till administratör
+    */
     private void btnAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseClicked
         setVisible(false);
         GorTillAdmin g = new GorTillAdmin(idb, anvId, anvTyp);
