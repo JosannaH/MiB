@@ -100,7 +100,11 @@ public class SQL extends javax.swing.JFrame {
             txtLista.append(a + " \t " + n + " \t\t" + t + "\n");
         }
     }
-
+/**
+ * Fyll text area med aliens efter vald ras
+ * @param valdRas
+ * @param txtLista 
+ */
     public void fyllListaAlienRas(String valdRas, JTextArea txtLista) {
         txtLista.setText("");
         ArrayList<String> alienIDLista = new ArrayList<>();
@@ -156,6 +160,11 @@ public class SQL extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Fyll text area med lista på vilka aliens en specifik agent är ansvarig för
+     * @param agent_ID
+     * @param txtAreaAliens 
+     */
     public void getAliensForAnsvaigAgent(String agent_ID, JTextArea txtAreaAliens){
         txtAreaAliens.setText("");
         txtAreaAliens.append("Alien ID \t Namn \n");
@@ -177,6 +186,13 @@ public class SQL extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Fyll text area med lista över vilka aliens som registrerats under en viss tidsperiod
+     * @param franDatum
+     * @param tillDatum
+     * @param txtAreaListaDatum
+     * @param ordning 
+     */
     public void getRegistreringsdatum(String franDatum, String tillDatum, JTextArea txtAreaListaDatum, String ordning) {
 
         String[] fran = franDatum.split("-");
@@ -233,6 +249,11 @@ public class SQL extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Visa områdeschef utifrån ett valt område, setText i en label
+     * @param lblChef
+     * @param omrade 
+     */
     public void getOmradeschef(JLabel lblChef, String omrade){
          try {
             String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + omrade + "'");
@@ -246,6 +267,10 @@ public class SQL extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Visa vilka kontor som finns i tabellen kontorschef, fyll combobox
+     * @param cmbKontor 
+     */
      public void getKontor(JComboBox cmbKontor){
          ArrayList<String> kontorLista = new ArrayList<>();
          String kontor = "";
@@ -262,7 +287,11 @@ public class SQL extends javax.swing.JFrame {
                 cmbKontor.addItem(kontor);        
     }        
 }
-     
+     /**
+      * Visa vilken agent som är chef över ett valt kontor, set text i en label
+      * @param kontor
+      * @param lblNuvChef 
+      */
      public void getKontorschef(String kontor, JLabel lblNuvChef){
          String chefID = "";
          String chefNamn = "";
@@ -277,7 +306,7 @@ public class SQL extends javax.swing.JFrame {
      }
      
      /**
-      * Uppdatera tabellen Omradeschef 
+      * Uppdatera tabellen Omradeschef med en ny chef
       * @param nyChefNamn
       * @param omrade 
       */
@@ -296,7 +325,7 @@ public class SQL extends javax.swing.JFrame {
          lblNyChef.setText("Ny chef för " + omrade + " är " + nyChefNamn);
      }
      /**
-      * Uppdatera tabellen kontorschef
+      * Uppdatera tabellen kontorschef med en ny chef
       * @param nyChefNamn
       * @param kontor 
       */
