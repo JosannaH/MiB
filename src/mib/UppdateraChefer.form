@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Menu class="javax.swing.JMenuBar" name="menuBar">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="menuBarTillStartsida">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="G&#xe5; till Startsida"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarTillStartsidaMouseClicked"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="                                                                                 "/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuBarInloggadSom">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Inloggad som XXX"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuBarLoggaUt">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Logga ut"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuBarLoggaUtMouseClicked"/>
+          </Events>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnGaTillbaka" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lblRubrik" min="-2" pref="306" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="121" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblOmrade" min="-2" pref="82" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="lblRubrikVal" min="-2" pref="119" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnOmrade" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnKontor" min="-2" pref="78" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="cmbOmrade" min="-2" pref="101" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnValjOmrade" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="cmbKontor" min="-2" pref="141" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnValjKontor" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="lblKontor" min="-2" pref="67" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="lblNuvChef" alignment="0" min="-2" pref="289" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblValjNy" min="-2" pref="97" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="cmbNyChef" min="-2" pref="127" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="btnBekraftaVal" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="lblNyChefAr" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblRubrik" min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblRubrikVal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnKontor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblKontor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cmbOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnValjOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbKontor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnValjKontor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblNuvChef" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblValjNy" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbNyChef" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnBekraftaVal" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblNyChefAr" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="56" max="32767" attributes="0"/>
+              <Component id="btnGaTillbaka" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblRubrik">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="24" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Uppdatera chefer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGaTillbaka">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="G&#xe5; tillbaka"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnGaTillbakaMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblKontor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj kontor:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbKontor">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnValjOmrade">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnValjOmradeMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblOmrade">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj omr&#xe5;de:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbOmrade">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnValjKontor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnValjKontorMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnOmrade">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Omr&#xe5;de"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnOmradeMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnKontor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Kontor"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnKontorMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblRubrikVal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Jag vill uppdatera:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNuvChef">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nuvarande chef:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblValjNy">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj ny chef:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbNyChef">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNyChefAr">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ny chef &#xe4;r:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnBekraftaVal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bekr&#xe4;fta val"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBekraftaValMouseClicked"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>
