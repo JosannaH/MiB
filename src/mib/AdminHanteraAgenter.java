@@ -233,7 +233,7 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
 
     private void btnUppdateraAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraAgentActionPerformed
         setVisible(false);
-        UppdateraAgent updAgent = new UppdateraAgent(idb);
+        UppdateraAgent updAgent = new UppdateraAgent(idb, anvId, anvTyp);
         updAgent.setVisible(true);
     }//GEN-LAST:event_btnUppdateraAgentActionPerformed
 

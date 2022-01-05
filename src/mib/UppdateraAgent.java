@@ -21,11 +21,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
     /**
      * Creates new form UppdateraAgent
      */
-    public UppdateraAgent(InfDB idb) {
-        initComponents();
-        this.idb = idb;
-        
-    }
+    
     public UppdateraAgent(InfDB idb,String anvId,String anvTyp) {
         initComponents();
         this.idb = idb;
@@ -265,17 +261,19 @@ public class UppdateraAgent extends javax.swing.JFrame {
     
     try {
     
-    String los = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID = " + soktID + "");
-    String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID + "");
-    String tel = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID = " + soktID + "");
-    String admin = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID = " + soktID +"");
-    String ansdat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Agent_ID = " + soktID + "");
-    String omr = idb.fetchSingle("SELECT Omrade FROM Agent WHERE Agent_ID = " + soktID + "");
+    String los = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID =  '" + soktID + "'");
+    String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = '" + soktID + "'");
+    String tel = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID = '" + soktID + "'");
+    String admin = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID = '" + soktID + "'");
+    String ansdat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Agent_ID = '" + soktID + "'");
+    String omrID = idb.fetchSingle("SELECT Omrade FROM Agent WHERE Agent_ID = '" + soktID + "'");
+    String omr = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE Omrades_ID ='" + omrID + "'");
     
     txtLosenord.setText(los);
     txtNamn.setText(namn);
     txtTelefon.setText(tel);
     txtAnsDat.setText(ansdat);
+    cmbOmrade.setSelectedItem(omr);
     
     if (admin.contains("J")) {
     cmbAdmin.setSelectedItem("Administratör");
@@ -285,17 +283,6 @@ public class UppdateraAgent extends javax.swing.JFrame {
     cmbAdmin.setSelectedItem("Agentstandard");
     }
     
-    if (omr.contains("1")) {
-    cmbOmrade.setSelectedItem("Svealand");
-    }
-    
-    else if (omr.contains("2")) {
-    cmbOmrade.setSelectedItem("Götaland");
-    }
-    
-    else if (omr.contains("4")) {
-    cmbOmrade.setSelectedItem("Norrland");
-    }
     
     //if (txtLosenord.length() <= 6 && txtLosenord.length() >= 3)
 
