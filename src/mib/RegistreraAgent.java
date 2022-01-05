@@ -26,8 +26,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        
-        
+
         // Anropar en metod som genererar nytt ID automatiskt. Hämtas i konstruktorn för att visas så fort klassens fönster visas.
         hamtaAgentID(regAgentID);
 
@@ -209,29 +208,33 @@ public class RegistreraAgent extends javax.swing.JFrame {
 
             if (regLosen1.equals(regLosen2)) {
 
-                try {
+                if (regLosen1.length() <= 6 && regLosen1.length() >= 3) {
 
-                    if (regAdmin.contains("Ja")) {
-                        regAdmin = "J";
-                    } else if (regAdmin.contains("Nej")) {
-                        regAdmin = "N";
+                    try {
+
+                        if (regAdmin.contains("Ja")) {
+                            regAdmin = "J";
+                        } else if (regAdmin.contains("Nej")) {
+                            regAdmin = "N";
+                        }
+
+                        String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + regOmrade + "'");
+
+                        idb.insert("INSERT INTO Agent VALUES ('" + agentID + "', '" + regNamn + "', '" + regTel + "', '" + regDatum + "', '" + regAdmin + "','" + regLosen1 + "','" + omradesID + "')");
+                        JOptionPane.showMessageDialog(null, "En ny agent har registrerats!");
+
+                    } catch (InfException e) {
+                        JOptionPane.showMessageDialog(null, "Något gick fel!");
+                        System.out.println("Internt felmeddelande" + e.getMessage());
+
                     }
-
-                    String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + regOmrade + "'");
-
-                    idb.insert("INSERT INTO Agent VALUES ('" + agentID + "', '" + regNamn + "', '" + regTel + "', '" + regDatum + "', '" + regAdmin + "','" + regLosen1 + "','" + omradesID + "')");
-                    JOptionPane.showMessageDialog(null, "En ny agent har registrerats!");
-                    
-                } catch (InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    System.out.println("Internt felmeddelande" + e.getMessage());
-
+                } else {
+                    JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Lösenorden stämmer inte överens!");
             }
-        }
-            else {
+        } else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
 
