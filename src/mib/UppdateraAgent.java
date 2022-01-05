@@ -4,17 +4,36 @@
  */
 package mib;
 
+
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 /**
  *
  * @author luna
  */
 public class UppdateraAgent extends javax.swing.JFrame {
 
+    
+    private InfDB idb;
+    private String anvId;
+    private String anvTyp;
     /**
      * Creates new form UppdateraAgent
      */
-    public UppdateraAgent() {
+    public UppdateraAgent(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        
+    }
+    public UppdateraAgent(InfDB idb,String anvId,String anvTyp) {
+        initComponents();
+        this.idb = idb;
+        this.anvId = anvId;
+        this.anvTyp = anvTyp;
+        lblErrorID.setVisible(false);
+        lblErrorID.setVisible(false);
+        lblErrorEmpty.setVisible(false);
     }
 
     /**
@@ -26,57 +45,347 @@ public class UppdateraAgent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        btnSok = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtLosenord = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtNamn = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtTelefon = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        cmbAdmin = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        txtAnsDat = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        lblErrorID = new javax.swing.JLabel();
+        lblErrorLosen = new javax.swing.JLabel();
+        lblErrorEmpty = new javax.swing.JLabel();
+        btnSpara = new javax.swing.JButton();
+        cmbOmrade = new javax.swing.JComboBox<>();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
+        jLabel1.setText("UPPDATERA BEFINTLIGA AGENTUPPGIFTER");
+
+        jLabel2.setText("Agent-ID");
+
+        btnSok.setText("Sök");
+        btnSok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSokActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Lösenord");
+
+        jLabel4.setText("Benämning");
+
+        txtNamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamnActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("* Lösenordet måste vara mellan 3 och 6 tecken långt.");
+
+        jLabel6.setText("Telefon");
+
+        txtTelefon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Behörigheter");
+
+        cmbAdmin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administratör", "Agentstandard" }));
+        cmbAdmin.setToolTipText("");
+        cmbAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAdminActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Anställningsdatum");
+
+        txtAnsDat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAnsDatActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Områdesansvar");
+
+        lblErrorID.setText("* Ange ID för att söka.");
+
+        lblErrorLosen.setText("* Fel lösenordslängd.");
+
+        lblErrorEmpty.setText("* Inga tomma fält får finnas vid sparning.");
+
+        btnSpara.setText("Spara uppdateringar");
+        btnSpara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSparaActionPerformed(evt);
+            }
+        });
+
+        cmbOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Svealand", "Götaland", "Norrland" }));
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(btnSpara))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblErrorEmpty, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel9))
+                                    .addGap(31, 31, 31)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(btnSok))
+                                        .addComponent(cmbAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txtNamn)
+                                        .addComponent(txtLosenord)
+                                        .addComponent(txtAnsDat)
+                                        .addComponent(cmbOmrade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblErrorID)
+                                        .addComponent(lblErrorLosen))))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSok))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblErrorLosen)))
+                    .addComponent(lblErrorID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cmbAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtAnsDat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
+                .addComponent(btnSpara)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(lblErrorEmpty)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtTelefonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonActionPerformed
+
+    private void cmbAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbAdminActionPerformed
+
+    private void txtNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNamnActionPerformed
+
+    private void txtAnsDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnsDatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAnsDatActionPerformed
+
+    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
+
+    if (Validering.textFaltHarVarde(txtID)) {
+    String soktID = txtID.getText();
+    
+    try {
+    
+    String los = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID = " + soktID + "");
+    String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID + "");
+    String tel = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID = " + soktID + "");
+    String admin = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID = " + soktID +"");
+    String ansdat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Agent_ID = " + soktID + "");
+    String omr = idb.fetchSingle("SELECT Omrade FROM Agent WHERE Agent_ID = " + soktID + "");
+    
+    txtLosenord.setText(los);
+    txtNamn.setText(namn);
+    txtTelefon.setText(tel);
+    txtAnsDat.setText(ansdat);
+    
+    if (admin.contains("J")) {
+    cmbAdmin.setSelectedItem("Administratör");
+    }
+    
+    else if (admin.contains("N")) {
+    cmbAdmin.setSelectedItem("Agentstandard");
+    }
+    
+    if (omr.contains("1")) {
+    cmbOmrade.setSelectedItem("Svealand");
+    }
+    
+    else if (omr.contains("2")) {
+    cmbOmrade.setSelectedItem("Götaland");
+    }
+    
+    else if (omr.contains("4")) {
+    cmbOmrade.setSelectedItem("Norrland");
+    }
+    
+    //if (txtLosenord.length() <= 6 && txtLosenord.length() >= 3)
+
+       }
+
+            catch (InfException e){
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+    }   
+    }//GEN-LAST:event_btnSokActionPerformed
+
+    private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
+
+    String soktID = txtID.getText();
+    
+    try {
+    String nyttNamn = txtNamn.getText();
+    String nyttLosen = txtLosenord.getText();
+    String nyttTele = txtTelefon.getText();
+    String nyttOmrade = cmbOmrade.getSelectedItem().toString();
+    String nyttAnsDat = txtAnsDat.getText();
+    String nyttAdmin = cmbAdmin.getSelectedItem().toString();
+    
+    idb.update("UPDATE Agent SET Namn = " + nyttNamn + " WHERE Agent_ID = " + soktID + "");
+    idb.update("UPDATE Agent SET Losenord = " + nyttLosen + " WHERE Agent_ID = " + soktID + "");
+    idb.update("UPDATE Agent SET Telefon = " + nyttTele + "WHERE Agent_ID = " + soktID + "");
+    idb.update("UPDATE Agent SET Anstallningsdatum = " + nyttAnsDat + " WHERE Agent_ID = " + soktID + "");
+
+    if (nyttOmrade.contains("Svealand")) {
+        idb.delete("DELETE FROM Omrade WHERE Agent_ID = " + soktID +"");
+        idb.delete("DELETE FROM Omrade WHERE Agent_ID = " + soktID +"");
+          idb.update("UPDATE Agent SET Omrade = 1");
+    }
+    
+    else if (nyttOmrade.contains("Götaland")) {
+        idb.update("UPDATE Agent SET Omrade = 2");
+    }
+  
+    else if (nyttOmrade.contains("Norrland")) {
+        idb.update("UPDATE Agent SET Omrade = 4");
+    }
+    
+    if (nyttAdmin.contains("Administratör")) {
+        String ja = "J";
+        idb.update("UPDATE Agent SET Administrator = " + ja + "");
+    }
+    
+    else if (nyttAdmin.contains("Agentstandard")) {
+        String nej = "N";
+        idb.update("UPDATE Agent SET Administrator = " + nej + "");
+    }
+    
+            JOptionPane.showMessageDialog(null, "Lyckad uppdatering!");
+    }
+    
+    catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage()); 
+    }
+    }//GEN-LAST:event_btnSparaActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UppdateraAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UppdateraAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UppdateraAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UppdateraAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UppdateraAgent().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSok;
+    private javax.swing.JButton btnSpara;
+    private javax.swing.JComboBox<String> cmbAdmin;
+    private javax.swing.JComboBox<String> cmbOmrade;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblErrorEmpty;
+    private javax.swing.JLabel lblErrorID;
+    private javax.swing.JLabel lblErrorLosen;
+    private javax.swing.JTextField txtAnsDat;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtLosenord;
+    private javax.swing.JTextField txtNamn;
+    private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
 }
