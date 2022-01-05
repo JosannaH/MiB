@@ -86,6 +86,11 @@ public class StartsidaAdmin extends javax.swing.JFrame {
         });
 
         jButton3.setText("Utrustning");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton4.setText("Agenter");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -191,6 +196,12 @@ public class StartsidaAdmin extends javax.swing.JFrame {
         AndraLosenord andraLosenord = new AndraLosenord(idb, anvId, anvTyp);
         andraLosenord.setVisible(true);
     }//GEN-LAST:event_btnAndraLosenMouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        setVisible(false);
+        HanteraUtrustningAdmin hantera = new HanteraUtrustningAdmin(idb, anvId, anvTyp);
+        hantera.setVisible(true);
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
