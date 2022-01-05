@@ -37,7 +37,6 @@ public class TaBortAgent extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
         cmbNyAnsvarig.setVisible(false);
-        btnAngeNyAnsvarig.setVisible(false);
         txtAreaAliens.setVisible(false);
     }
 
@@ -281,7 +280,6 @@ public class TaBortAgent extends javax.swing.JFrame {
         if(val.agentHarAlien(soktID, idb) == true){
             // Visa info och val gällande att byta ansvarig agent
             cmbNyAnsvarig.setVisible(true);
-            btnAngeNyAnsvarig.setVisible(true);
             txtAreaAliens.setVisible(true);
             lblDennaAgent.setText("Denna agent är ansvarig över en eller flera aliens.");
             lblVanligenAnge.setText("Vänligen ange en ny ansvarig agent för dessa aliens:");
@@ -289,21 +287,13 @@ public class TaBortAgent extends javax.swing.JFrame {
             SQL s = new SQL(idb);
             s.agent(cmbNyAnsvarig);
             s.getAliensForAnsvaigAgent(soktID, txtAreaAliens);
-            
-            
-        }
-        
-        
-        
-        
+        }  
     }//GEN-LAST:event_btnSokMouseClicked
 
     private void btnTaBortAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortAgentMouseClicked
         String losenord = txtLosenord.getText().trim();
         String losenordDB = "";
-        String alienID = "";
-        String nyAnsvarig = "";
-        String count = ";";
+        String nyAnsvarig = cmbNyAnsvarig.getSelectedItem().toString().trim();
 
 
         try{
@@ -318,16 +308,18 @@ public class TaBortAgent extends javax.swing.JFrame {
         if (losenord.equals(losenordDB)){
             try {       
 
+                // hämta agentID för ny ansvarig agent
+                String nyID = idb.fetchSingle("SELECT agent_ID FROM agent WHERE namn = '" + nyAnsvarig + "'");
+                // uppdatera ansvarig agent för aliens
+                idb.update("UPDATE alien SET ansvarig_agent = " + nyID + " WHERE ansvarig_agent = " + soktID);
                 //Ta bort agenten i relaterade tabeller
-                idb.update("UPDATE alien SET ansvarig_agent = " + nyAnsvarig + " WHERE ansvarig_agent = " + soktID);
-                /*
                 idb.delete("DELETE FROM faltagent WHERE agent_ID = " + soktID);
                 idb.delete("DELETE FROM innehar_fordon WHERE agent_ID = " + soktID);
                 idb.delete("DELETE FROM innehar_utrustning WHERE agent_ID = " + soktID);
                 idb.delete("DELETE FROM kontorschef WHERE agent_ID = " + soktID);
-                idb.delete("DELETE FROM omradeschef WHERE agent_ID = " + soktID); */
+                idb.delete("DELETE FROM omradeschef WHERE agent_ID = " + soktID); 
                 // Ta bort agenten från tabellen Agent
-               // idb.delete("DELETE FROM agent WHERE agent_ID = " + soktID);
+                idb.delete("DELETE FROM agent WHERE agent_ID = " + soktID);
                 // Bekräftelse till användaren att agenten tagits bort
                 JOptionPane.showMessageDialog(null, agentNamn + " med ID " + soktID + " är nu borttagen");
             }
