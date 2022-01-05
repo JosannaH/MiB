@@ -247,17 +247,36 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
-    /*
-     public void getChefForPlats(JLabel lblChef, String plats){
+    
+     public void getPlatsKontor(JComboBox cmbPlatsKontor){
+         ArrayList<String> kontorLista = new ArrayList<>();
+         String kontor = "";
+         // hämta alla kontor från DB
          try {
-            String platsID = idb.fetchSingle("SELECT plats_ID FROM plats WHERE Benamning = '" + plats + "'");
-            String agentID = idb.fetchSingle("SELECT Agent_ID FROM kontorschef WHERE kontorsbeteckning =" + platsID);
-            String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID =" + agentID);
-
-            lblChef.setText("Områdeschef för " + omrade + " är " + agentNamn + "");
+            kontorLista = idb.fetchColumn("SELECT kontorsbeteckning FROM kontorschef"); 
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());
+            System.out.println("Internt felmeddelande: hämta kontor" + e.getMessage());
         }
-    }*/
+          // loopa igenom lista och lägg till alla kontor i drop down menyn 
+            for (int i = 0; i < kontorLista.size(); i++) {
+                kontor = kontorLista.get(i);
+                cmbPlatsKontor.addItem(kontor);
+                
+    }
+           
+}
+     
+     public void getKontorschef(String kontor, JLabel lblNuvChef){
+         String chefID = "";
+         String chefNamn = "";
+         try{
+             chefID = idb.fetchSingle("SELECT agent_ID FROM kontorschef WHERE kontorsbeteckning = '" + kontor + "'");
+             chefNamn = idb.fetchSingle("SELECT namn FROM agent WHERE agent_ID = " + chefID);
+         }catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande: hämta kontorschef" + e.getMessage());
+        }
+         lblNuvChef.setText("Kontorschef för " + kontor + " är " + chefNamn);
+     }
 }
