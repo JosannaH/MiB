@@ -4,8 +4,6 @@
  */
 package mib;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -24,11 +22,6 @@ public class TaBortAgent extends javax.swing.JFrame {
     private String anvTyp;
     private String soktID = "";
     private String agentNamn = "";
-
-    public TaBortAgent(InfDB idb) {
-        initComponents();
-        this.idb = idb;
-    }
 
     public TaBortAgent(InfDB idb, String anvId, String anvTyp) {
         initComponents();
@@ -252,32 +245,32 @@ public class TaBortAgent extends javax.swing.JFrame {
      */
     private void menuBarTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarTillStartsidaMouseClicked
         setVisible(false);
-        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
-        startsidaAgent.setVisible(true);
+        StartsidaAdmin startsidaAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
+        startsidaAdmin.setVisible(true);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
-   /**
-     * Sök aliens efter valt registreringsintervall
+    /**
+     * Sök agent utifrån ID
      *
      * @param evt
      */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-        lblNamn.setText(""); //rensar textfield inför sökning
+        // Hämtar agentId som användaren söker efter
         soktID = txtAgentID.getText().trim();
-        String nyAnsvarig = "";
 
-        try{
-            agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID +"");
-        }
-         catch (InfException e){
+        try {
+            // hämta namn på agent utifrån ID
+            agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID + "");
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());  
-    }
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+        // Visa namnet för den sökta agenten
         lblNamn.setText(agentNamn);
-        
+
         // Kolla om agent är ansvarig över någon alien
         Validering val = new Validering();
-        if(val.agentHarAlien(soktID, idb) == true){
+        if (val.agentHarAlien(soktID, idb) == true) {
             // Visa info och val gällande att byta ansvarig agent
             cmbNyAnsvarig.setVisible(true);
             txtAreaAliens.setVisible(true);
@@ -286,27 +279,31 @@ public class TaBortAgent extends javax.swing.JFrame {
             // fyll combobox med agenter att välja mellan
             SQL s = new SQL(idb);
             s.agent(cmbNyAnsvarig);
+            // visa vilka aliens som agenten är ansvarig för
             s.getAliensForAnsvaigAgent(soktID, txtAreaAliens);
-        }  
+        }
     }//GEN-LAST:event_btnSokMouseClicked
-
+    /**
+     * Tar bort agenten från tabellen agent, uppdaterar aliens med nya ansvariga
+     * agenter samt tar bort alla främmande nycklar som är länkade till agenten
+     *
+     * @param evt
+     */
     private void btnTaBortAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortAgentMouseClicked
         String losenord = txtLosenord.getText().trim();
         String losenordDB = "";
         String nyAnsvarig = cmbNyAnsvarig.getSelectedItem().toString().trim();
 
-
-        try{
+        try {
             // Hämta lösen från DB att jämföra med
             losenordDB = idb.fetchSingle("SELECT losenord FROM agent WHERE agent_ID =" + anvId);
-        }
-             catch (InfException e){
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: Hämta lösenord från DB" + e.getMessage());  
-    }
+            System.out.println("Internt felmeddelande: Hämta lösenord från DB" + e.getMessage());
+        }
         // Kontrollera att användare angett rätt lösenord
-        if (losenord.equals(losenordDB)){
-            try {       
+        if (losenord.equals(losenordDB)) {
+            try {
 
                 // hämta agentID för ny ansvarig agent
                 String nyID = idb.fetchSingle("SELECT agent_ID FROM agent WHERE namn = '" + nyAnsvarig + "'");
@@ -317,24 +314,21 @@ public class TaBortAgent extends javax.swing.JFrame {
                 idb.delete("DELETE FROM innehar_fordon WHERE agent_ID = " + soktID);
                 idb.delete("DELETE FROM innehar_utrustning WHERE agent_ID = " + soktID);
                 idb.delete("DELETE FROM kontorschef WHERE agent_ID = " + soktID);
-                idb.delete("DELETE FROM omradeschef WHERE agent_ID = " + soktID); 
+                idb.delete("DELETE FROM omradeschef WHERE agent_ID = " + soktID);
                 // Ta bort agenten från tabellen Agent
                 idb.delete("DELETE FROM agent WHERE agent_ID = " + soktID);
                 // Bekräftelse till användaren att agenten tagits bort
                 JOptionPane.showMessageDialog(null, agentNamn + " med ID " + soktID + " är nu borttagen");
+            } catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Något gick fel!");
+                System.out.println("Internt felmeddelande:" + e.getMessage());
             }
-                  catch (InfException e){
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());  
-    }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Du har angett fel lösenord, försök igen.");
         }
-        
-        
-    }//GEN-LAST:event_btnTaBortAgentMouseClicked
 
+
+    }//GEN-LAST:event_btnTaBortAgentMouseClicked
 
     /**
      * @param args the command line arguments
