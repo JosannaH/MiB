@@ -210,7 +210,9 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRaderaActionPerformed
 
     private void btnUppdateraChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraChefActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        UppdateraChefer u = new UppdateraChefer(idb, anvId, anvTyp);
+        u.setVisible(true);
     }//GEN-LAST:event_btnUppdateraChefActionPerformed
 
     //Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
