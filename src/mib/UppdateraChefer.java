@@ -4,11 +4,7 @@
  */
 package mib;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import javax.swing.JOptionPane;
 import oru.inf.InfDB;
-import oru.inf.InfException;
 
 /**
  *
@@ -323,8 +319,6 @@ public class UppdateraChefer extends javax.swing.JFrame {
         SQL s = new SQL(idb);
         s.getKontorschef(omradePlats, lblNuvChef);
         s.agent(cmbNyChef);
-
-
     }//GEN-LAST:event_btnValjKontorMouseClicked
 
     /**
