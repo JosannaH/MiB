@@ -4,8 +4,6 @@
  */
 package mib;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -25,17 +23,14 @@ public class TaBortAgent extends javax.swing.JFrame {
     private String soktID = "";
     private String agentNamn = "";
 
-    public TaBortAgent(InfDB idb) {
-        initComponents();
-        this.idb = idb;
-    }
-
     public TaBortAgent(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
+        cmbNyAnsvarig.setVisible(false);
+        txtAreaAliens.setVisible(false);
     }
 
     /**
@@ -57,6 +52,12 @@ public class TaBortAgent extends javax.swing.JFrame {
         btnTaBortAgent = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtLosenord = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
+        lblDennaAgent = new javax.swing.JLabel();
+        lblVanligenAnge = new javax.swing.JLabel();
+        cmbNyAnsvarig = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaAliens = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         menuBarTillStartsida = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -99,6 +100,14 @@ public class TaBortAgent extends javax.swing.JFrame {
 
         jLabel2.setText("Ange ditt lösenord för att ta bort ovanstående agent från systemet:");
 
+        lblDennaAgent.setText("                                    ");
+
+        lblVanligenAnge.setText("                                 ");
+
+        txtAreaAliens.setColumns(20);
+        txtAreaAliens.setRows(5);
+        jScrollPane1.setViewportView(txtAreaAliens);
+
         menuBarTillStartsida.setText("Gå till Startsida");
         menuBarTillStartsida.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         menuBarTillStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -129,7 +138,7 @@ public class TaBortAgent extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(140, 140, 140))
             .addGroup(layout.createSequentialGroup()
@@ -140,43 +149,66 @@ public class TaBortAgent extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAgentID, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnTaBortAgent)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtAgentID)
-                                    .addComponent(lblNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
-                                .addGap(29, 29, 29)
-                                .addComponent(btnSok))
-                            .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAgentID, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnTaBortAgent)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtAgentID)
+                                            .addComponent(lblNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))
+                                        .addGap(28, 28, 28)
+                                        .addComponent(btnSok))
+                                    .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblVanligenAnge, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDennaAgent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(11, 11, 11))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(211, 211, 211)
+                        .addComponent(cmbNyAnsvarig, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAgentID)
                     .addComponent(txtAgentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSok))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lblNamn))
-                .addGap(32, 32, 32)
+                    .addComponent(lblNamn)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblDennaAgent)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblVanligenAnge)
+                .addGap(18, 18, 18)
+                .addComponent(cmbNyAnsvarig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(btnTaBortAgent)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addComponent(btnGaTillbaka)
                 .addGap(32, 32, 32))
         );
@@ -213,66 +245,90 @@ public class TaBortAgent extends javax.swing.JFrame {
      */
     private void menuBarTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarTillStartsidaMouseClicked
         setVisible(false);
-        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
-        startsidaAgent.setVisible(true);
+        StartsidaAdmin startsidaAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
+        startsidaAdmin.setVisible(true);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
-   /**
-     * Sök aliens efter valt registreringsintervall
+    /**
+     * Sök agent utifrån ID
      *
      * @param evt
      */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-        lblNamn.setText(""); //rensar textfield inför sökning
+        // Hämtar agentId som användaren söker efter
         soktID = txtAgentID.getText().trim();
 
-        try{
-            agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID +"");
-        }
-         catch (InfException e){
+        try {
+            // hämta namn på agent utifrån ID
+            agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID + "");
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());  
-    }
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+        // Visa namnet för den sökta agenten
         lblNamn.setText(agentNamn);
-        
-        
-        
-    }//GEN-LAST:event_btnSokMouseClicked
 
+        // Kolla om agent är ansvarig över någon alien
+        Validering val = new Validering();
+        if (val.agentHarAlien(soktID, idb) == true) {
+            // Visa info och val gällande att byta ansvarig agent
+            cmbNyAnsvarig.setVisible(true);
+            txtAreaAliens.setVisible(true);
+            lblDennaAgent.setText("Denna agent är ansvarig över en eller flera aliens.");
+            lblVanligenAnge.setText("Vänligen ange en ny ansvarig agent för dessa aliens:");
+            // fyll combobox med agenter att välja mellan
+            SQL s = new SQL(idb);
+            s.agent(cmbNyAnsvarig);
+            // visa vilka aliens som agenten är ansvarig för
+            s.getAliensForAnsvaigAgent(soktID, txtAreaAliens);
+        }
+    }//GEN-LAST:event_btnSokMouseClicked
+    /**
+     * Tar bort agenten från tabellen agent, uppdaterar aliens med nya ansvariga
+     * agenter samt tar bort alla främmande nycklar som är länkade till agenten
+     *
+     * @param evt
+     */
     private void btnTaBortAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortAgentMouseClicked
         String losenord = txtLosenord.getText().trim();
         String losenordDB = "";
-        
-        try{
+        String nyAnsvarig = cmbNyAnsvarig.getSelectedItem().toString().trim();
+
+        try {
+            // Hämta lösen från DB att jämföra med
             losenordDB = idb.fetchSingle("SELECT losenord FROM agent WHERE agent_ID =" + anvId);
-        }
-             catch (InfException e){
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: Hämta lösenord från DB" + e.getMessage());  
-    }
-        if (losenord.equals(losenordDB)){
+            System.out.println("Internt felmeddelande: Hämta lösenord från DB" + e.getMessage());
+        }
+        // Kontrollera att användare angett rätt lösenord
+        if (losenord.equals(losenordDB)) {
             try {
-                idb.delete("DELETE FROM agent WHERE agent_ID = '" + soktID + "'");
-                JOptionPane.showMessageDialog(null, "Agent " + agentNamn + " med ID " + soktID + " är nu borttagen");
+
+                // hämta agentID för ny ansvarig agent
+                String nyID = idb.fetchSingle("SELECT agent_ID FROM agent WHERE namn = '" + nyAnsvarig + "'");
+                // uppdatera ansvarig agent för aliens
+                idb.update("UPDATE alien SET ansvarig_agent = " + nyID + " WHERE ansvarig_agent = " + soktID);
+                //Ta bort agenten i relaterade tabeller
+                idb.delete("DELETE FROM faltagent WHERE agent_ID = " + soktID);
+                idb.delete("DELETE FROM innehar_fordon WHERE agent_ID = " + soktID);
+                idb.delete("DELETE FROM innehar_utrustning WHERE agent_ID = " + soktID);
+                idb.delete("DELETE FROM kontorschef WHERE agent_ID = " + soktID);
+                idb.delete("DELETE FROM omradeschef WHERE agent_ID = " + soktID);
+                // Ta bort agenten från tabellen Agent
+                idb.delete("DELETE FROM agent WHERE agent_ID = " + soktID);
+                // Bekräftelse till användaren att agenten tagits bort
+                JOptionPane.showMessageDialog(null, agentNamn + " med ID " + soktID + " är nu borttagen");
+            } catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Något gick fel!");
+                System.out.println("Internt felmeddelande:" + e.getMessage());
             }
-                  catch (InfException e){
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: Ta bort agent från DB" + e.getMessage());  
-//            inner join faltagent f on agent.Agent_ID = f.Agent_ID
-//    inner join alien a on agent.Agent_ID = a.Ansvarig_Agent
-//    inner join innehar_fordon i on agent.Agent_ID = i.Agent_ID
-//    inner join innehar_utrustning iu on agent.Agent_ID = iu.Agent_ID
-//    inner join kontorschef k on agent.Agent_ID = k.Agent_ID
-//    inner join omradeschef o on agent.Agent_ID = o.Agent_ID
-    }
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "Du har angett fel lösenord, försök igen.");
         }
-        
-        
-    }//GEN-LAST:event_btnTaBortAgentMouseClicked
 
+
+    }//GEN-LAST:event_btnTaBortAgentMouseClicked
 
     /**
      * @param args the command line arguments
@@ -282,17 +338,23 @@ public class TaBortAgent extends javax.swing.JFrame {
     private javax.swing.JButton btnGaTillbaka;
     private javax.swing.JButton btnSok;
     private javax.swing.JButton btnTaBortAgent;
+    private javax.swing.JComboBox<String> cmbNyAnsvarig;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAgentID;
+    private javax.swing.JLabel lblDennaAgent;
     private javax.swing.JLabel lblListaAliens;
     private javax.swing.JLabel lblNamn;
+    private javax.swing.JLabel lblVanligenAnge;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuBarInloggadSom;
     private javax.swing.JMenu menuBarLoggaUt;
     private javax.swing.JMenu menuBarTillStartsida;
     private javax.swing.JTextField txtAgentID;
+    private javax.swing.JTextArea txtAreaAliens;
     private javax.swing.JPasswordField txtLosenord;
     // End of variables declaration//GEN-END:variables
 }

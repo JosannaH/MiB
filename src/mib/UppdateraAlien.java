@@ -137,6 +137,11 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 btnSokMouseClicked(evt);
             }
         });
+        btnSok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSokActionPerformed(evt);
+            }
+        });
 
         btnSpara.setText("Spara ändringar");
         btnSpara.addActionListener(new java.awt.event.ActionListener() {
@@ -304,19 +309,19 @@ public class UppdateraAlien extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /* Metoden döljer en ruta som lagrar information tillhörande specifik utrustning. metoden anropas direkt i konstruktorn 
+    /* Metoden döljer en ruta som lagrar information tillhörande specifik utrustning. metoden anropas direkt i konstruktorn
     för att inledningsvis döljas. */
     private void doljText(JTextField textAttDolja) {
         textAttDolja.setVisible(false);
     }
 
-    /* Metoden döljer en rubrik som lagrar information tillhörande specifik utrustning. metoden anropas direkt i konstruktorn 
+    /* Metoden döljer en rubrik som lagrar information tillhörande specifik utrustning. metoden anropas direkt i konstruktorn
     för att inledningsvis döljas. */
     private void doljLabel(JLabel lablAttDolja) {
         lablAttDolja.setVisible(false);
     }
 
-    // Varje ras har egen information som behöver lagras. Detta görs genom knappen välj. Beroende på ras så ska olik information visas. 
+    // Varje ras har egen information som behöver lagras. Detta görs genom knappen välj. Beroende på ras så ska olik information visas.
     private void btnValjRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValjRasMouseClicked
         String ras = cmbRas.getSelectedItem().toString();
 
@@ -340,13 +345,13 @@ public class UppdateraAlien extends javax.swing.JFrame {
     // Metoden söker upp information om det alienID man har angett.
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
 
-        // Kontrollerar att fältet för alienID är ifyllt. 
+        // Kontrollerar att fältet för alienID är ifyllt.
         if (Validering.textFaltHarVarde(txtAlienID)) {
             String idText = txtAlienID.getText();
 
             try {
 
-                // Koden nedan hämtar information baserat på det ID man har angett. 
+                // Koden nedan hämtar information baserat på det ID man har angett.
                 txtAlienID.setText(idText);
 
                 String losen = idb.fetchSingle("SELECT Losenord FROM alien WHERE Alien_ID ='" + idText + "'");
@@ -370,7 +375,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + agent + "'");
                 cmbAnsAgent.setSelectedItem(agentNamn);
 
-                // Nedan använder man ArrayList för att hämta information kopplat till den ras som alienID är kopplat till. 
+                // Nedan använder man ArrayList för att hämta information kopplat till den ras som alienID är kopplat till.
                 if (squidLista.contains(idText)) {
                     cmbRas.setSelectedItem("Squid");
 
@@ -407,7 +412,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
     // Metoden lägger till den information man har uppdaterat om valt alienID.
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
 
-        // Kontrollerar att viktiga fält är ifyllda innan man kan lagra ny information. 
+        // Kontrollerar att viktiga fält är ifyllda innan man kan lagra ny information.
         if (Validering.textFaltHarVarde(txtAlienID) && Validering.passwordHarVarde(pswLosen) && Validering.textFaltHarVarde(txtNamn)) {
 
             String idText = txtAlienID.getText();
@@ -426,7 +431,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                     } else {
                         idb.insert("INSERT INTO Boglodite VALUES ('" + idText + "', '" + rasInfo + "')");
 
-                        // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen. 
+                        // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
                         if (squidLista.contains(idText)) {
                             idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
                         }
@@ -445,7 +450,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                     } else {
                         idb.insert("INSERT INTO Squid VALUES ('" + idText + "', '" + rasInfo + "')");
 
-                        // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen. 
+                        // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
                         if (bogloditeLista.contains(idText)) {
                             idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
                         }
@@ -464,7 +469,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                     } else {
                         idb.insert("INSERT INTO Worm VALUES ('" + idText + "')");
 
-                        // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen. 
+                        // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
                         if (bogloditeLista.contains(idText)) {
                             idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
                         }
@@ -477,7 +482,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 } else if (regRas.equals("Ingen")) {
                     uppdatera();
 
-                    // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen. 
+                    // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
                     if (bogloditeLista.contains(idText)) {
                         idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
                     }
@@ -528,7 +533,10 @@ public class UppdateraAlien extends javax.swing.JFrame {
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
-    // Metoden lägger till information i de fält som finns i klassen. En egen metod har skapats för att minska ner upprepning då den anropas flera gånger.
+    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSokActionPerformed
+
     private void uppdatera() {
         String idText = txtAlienID.getText();
 
