@@ -198,6 +198,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
 
          lblID.getText();
 
+        
         String regNamn = txtNamnSvar.getText();
         String regTel = txtTelefonSvar.getText();
         String regAdmin = cmbAdminSvar.getSelectedItem().toString();
@@ -209,7 +210,32 @@ public class RegistreraAgent extends javax.swing.JFrame {
             if (regLosen1.equals(regLosen2)) {
 
                 try {
+                    
+                String regID = idb.getAutoIncrement("Agent", "Agent_ID");
+                lblID.setText(regID);
+      
                 idb.insert("INSERT INTO Agent(Namn, Telefon, Losenord) VALUES ( '" + regNamn + "', '" + regTel + "','" + regLosen1 + ")");
+                
+                if (regOmrade.contains("Svealand")) {
+                idb.insert("INSERT INTO Agent (Omrade) VALUES (1)");
+                }
+                
+                else if (regOmrade.contains("Götaland")) {
+                idb.insert("INSERT INTO Agent (Omrade) VALUES (2)");
+                }
+                
+                else if (regOmrade.contains("Norrland")) {
+                idb.insert("INSERT INTO Agent (Omrade) VALUES (1)");
+                
+                if (regAdmin.contains("Administratör")) {
+                idb.insert("INSERT INTO Agent (Administrator) VALUES (J)");
+                }
+                
+                else if (regAdmin.contains("Agentstandard")) {
+                idb.insert("INSERT INTO Agent (Administrator) VALUES (N)");
+                }
+                }
+                
 
                 }
 
@@ -218,10 +244,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande" + e.getMessage());
 
                 }
-
             }
-
-
         }
 
         else {
