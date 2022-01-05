@@ -348,6 +348,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
             String dagensDatum = txtDatum.getText();
 
             if (regPassword.equals(regPasswordCheck)) {
+                if (regPassword.length() <= 6 && regPassword.length() >= 3) {
 
                 try {
 
@@ -382,6 +383,11 @@ public class RegistreraAlien extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
                     System.out.println("Internt felmeddelande" + e.getMessage());
                 }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
+                }
+                
             }
             } else {
                 JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
