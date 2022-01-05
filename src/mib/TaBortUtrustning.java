@@ -177,16 +177,16 @@ public class TaBortUtrustning extends javax.swing.JFrame {
     lblInfo.setVisible(true);
     lblInfo.setText("Kraftkälla");
     txtSpec.setVisible(true);
-    String vapenKaliber = idb.fetchSingle("SELECT Kraftkalla FROM Teknik WHERE Utrustnings_ID="+soktID+"");
-    txtSpec.setText(vapenKaliber);
+    String kraftkalla = idb.fetchSingle("SELECT Kraftkalla FROM Teknik WHERE Utrustnings_ID="+soktID+"");
+    txtSpec.setText(kraftkalla);
     }
     
     else if (kommunikationsLista.contains(soktID)) {
     lblInfo.setVisible(true);
     lblInfo.setText("Överföringsteknik");
     txtSpec.setVisible(true);
-    String vapenKaliber = idb.fetchSingle("SELECT Overforingsteknik FROM Kommunikation WHERE Utrustnings_ID="+soktID+"");
-    txtSpec.setText(vapenKaliber);}
+    String overforingsTeknik = idb.fetchSingle("SELECT Overforingsteknik FROM Kommunikation WHERE Utrustnings_ID="+soktID+"");
+    txtSpec.setText(overforingsTeknik);}
    
     }
     
@@ -232,7 +232,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
+            JOptionPane.showMessageDialog(null, "UtrustningsID måste vara ifyllt!");
         }
                                          
 
