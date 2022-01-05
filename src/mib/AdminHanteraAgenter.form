@@ -178,7 +178,7 @@
         <Property name="text" type="java.lang.String" value="G&#xf6;r till administrat&#xf6;r"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdminActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAdminMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

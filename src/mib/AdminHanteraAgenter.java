@@ -101,9 +101,9 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         });
 
         btnAdmin.setText("Gör till administratör");
-        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminActionPerformed(evt);
+        btnAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAdminMouseClicked(evt);
             }
         });
 
@@ -213,10 +213,6 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUppdateraChefActionPerformed
 
-    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdminActionPerformed
-
     //Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
     private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
         setVisible(false);
@@ -236,6 +232,12 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         UppdateraAgent updAgent = new UppdateraAgent(idb);
         updAgent.setVisible(true);
     }//GEN-LAST:event_btnUppdateraAgentActionPerformed
+
+    private void btnAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseClicked
+        setVisible(false);
+        GorTillAdmin g = new GorTillAdmin(idb, anvId, anvTyp);
+        g.setVisible(true);
+    }//GEN-LAST:event_btnAdminMouseClicked
 
     /**
      * @param args the command line arguments
