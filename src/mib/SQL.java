@@ -7,6 +7,7 @@ package mib;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import oru.inf.InfDB;
@@ -233,4 +234,30 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande: getPlatser() " + e.getMessage());
         }
     }
+    
+    public void getChefForOmrade(JLabel lblChef, String omrade){
+         try {
+            String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + omrade + "'");
+            String agentID = idb.fetchSingle("SELECT Agent_ID FROM omradeschef WHERE Omrade =" + omradesID);
+            String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID =" + agentID);
+
+            lblChef.setText("Områdeschef för " + omrade + " är " + agentNamn + "");
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+    }
+    /*
+     public void getChefForPlats(JLabel lblChef, String plats){
+         try {
+            String platsID = idb.fetchSingle("SELECT plats_ID FROM plats WHERE Benamning = '" + plats + "'");
+            String agentID = idb.fetchSingle("SELECT Agent_ID FROM kontorschef WHERE kontorsbeteckning =" + platsID);
+            String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID =" + agentID);
+
+            lblChef.setText("Områdeschef för " + omrade + " är " + agentNamn + "");
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+    }*/
 }
