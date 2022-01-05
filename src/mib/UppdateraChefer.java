@@ -31,9 +31,9 @@ public class UppdateraChefer extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
         lblOmrade.setVisible(false);
-        lblPlats.setVisible(false);
+        lblKontor.setVisible(false);
         btnValjOmrade.setVisible(false);
-        btnValjPlats.setVisible(false);
+        btnValjKontor.setVisible(false);
         cmbOmrade.setVisible(false);
         cmbKontor.setVisible(false);
         lblNuvChef.setVisible(false);
@@ -54,14 +54,14 @@ public class UppdateraChefer extends javax.swing.JFrame {
 
         lblRubrik = new javax.swing.JLabel();
         btnGaTillbaka = new javax.swing.JButton();
-        lblPlats = new javax.swing.JLabel();
+        lblKontor = new javax.swing.JLabel();
         cmbKontor = new javax.swing.JComboBox<>();
         btnValjOmrade = new javax.swing.JButton();
         lblOmrade = new javax.swing.JLabel();
         cmbOmrade = new javax.swing.JComboBox<>();
-        btnValjPlats = new javax.swing.JButton();
+        btnValjKontor = new javax.swing.JButton();
         btnOmrade = new javax.swing.JButton();
-        btnPlats = new javax.swing.JButton();
+        btnKontor = new javax.swing.JButton();
         lblRubrikVal = new javax.swing.JLabel();
         lblNuvChef = new javax.swing.JLabel();
         lblValjNy = new javax.swing.JLabel();
@@ -86,7 +86,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
             }
         });
 
-        lblPlats.setText("Välj plats:");
+        lblKontor.setText("Välj kontor:");
 
         cmbKontor.setToolTipText("");
 
@@ -99,10 +99,10 @@ public class UppdateraChefer extends javax.swing.JFrame {
 
         lblOmrade.setText("Välj område:");
 
-        btnValjPlats.setText("Välj");
-        btnValjPlats.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnValjKontor.setText("Välj");
+        btnValjKontor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnValjPlatsMouseClicked(evt);
+                btnValjKontorMouseClicked(evt);
             }
         });
 
@@ -113,10 +113,10 @@ public class UppdateraChefer extends javax.swing.JFrame {
             }
         });
 
-        btnPlats.setText("Plats");
-        btnPlats.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnKontor.setText("Kontor");
+        btnKontor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPlatsMouseClicked(evt);
+                btnKontorMouseClicked(evt);
             }
         });
 
@@ -181,7 +181,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnOmrade)
                         .addGap(18, 18, 18)
-                        .addComponent(btnPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -191,8 +191,8 @@ public class UppdateraChefer extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cmbKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnValjPlats))
-                            .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnValjKontor))
+                            .addComponent(lblKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblNuvChef, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblValjNy, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,17 +212,17 @@ public class UppdateraChefer extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRubrikVal)
                     .addComponent(btnOmrade)
-                    .addComponent(btnPlats))
+                    .addComponent(btnKontor))
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOmrade)
-                    .addComponent(lblPlats))
+                    .addComponent(lblKontor))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnValjOmrade)
                     .addComponent(cmbKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnValjPlats))
+                    .addComponent(btnValjKontor))
                 .addGap(18, 18, 18)
                 .addComponent(lblNuvChef)
                 .addGap(18, 18, 18)
@@ -266,89 +266,156 @@ public class UppdateraChefer extends javax.swing.JFrame {
         StartsidaAdmin s = new StartsidaAdmin(idb, anvId, anvTyp);
         s.setVisible(true);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
-
-    private void btnPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlatsMouseClicked
+    /**
+     * Metod som anropas när användaren valt att uppdatera plats/kontor
+     */
+    private void btnKontorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKontorMouseClicked
+        // Visa inte det som tillhör Område och inte det som ska visas när 
+        // anändaren har valt en plats
         setVisibleUppdateraOmrade(false);
-        setVisibleUppdateraPlats(true);
         setVisibleNyChef(false);
-        
+        // Visa det som behövs för att välja plats
+        setVisibleUppdateraPlats(true);
+        //om en ändring redan gjorts så döljs den bekräftelsen inför en ny sökning
+        lblNyChefAr.setVisible(false);
+         //om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
+        cmbKontor.removeAllItems();
+
+        // anropa metod för att lägga in alla kontor i comboboxen
         SQL s = new SQL(idb);
-        s.getPlatsKontor(cmbKontor);
-    }//GEN-LAST:event_btnPlatsMouseClicked
-
+        s.getKontor(cmbKontor);
+    }//GEN-LAST:event_btnKontorMouseClicked
+    /**
+     * Metod som anropas när användaren bestämt vilket område som ska uppdateras
+     *
+     * @param evt
+     */
     private void btnValjOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValjOmradeMouseClicked
-
+        // visa det som behövs för att välja ny chef för aktuellt område
         setVisibleNyChef(true);
+        btnBekraftaVal.setText("Bekräfta områdeschef");
         
+         //om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
+        cmbNyChef.removeAllItems();
+
+        // hämta användarens val av område samt anropa metod för att visa vem som är chef där
         omradePlats = cmbOmrade.getSelectedItem().toString();
         SQL s = new SQL(idb);
-        s.getChefForOmrade(lblNuvChef, omradePlats);
+        s.getOmradeschef(lblNuvChef, omradePlats);
+        s.agent(cmbNyChef);
     }//GEN-LAST:event_btnValjOmradeMouseClicked
-
-    private void btnValjPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValjPlatsMouseClicked
+    /**
+     * Metod som anropas när användaren valt vilken plats/kontor som ska
+     * uppdateras
+     *
+     * @param evt
+     */
+    private void btnValjKontorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValjKontorMouseClicked
+        // visa det som behövs för att kunna välja ny chef
         setVisibleNyChef(true);
+        btnBekraftaVal.setText("Bekräfta kontorschef");
+        
+         //om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
+        cmbNyChef.removeAllItems();
+
+        // hämta användarens val av plats och visa vem som är chef där
         omradePlats = cmbKontor.getSelectedItem().toString();
         SQL s = new SQL(idb);
         s.getKontorschef(omradePlats, lblNuvChef);
-        
-         
-    }//GEN-LAST:event_btnValjPlatsMouseClicked
+        s.agent(cmbNyChef);
 
+
+    }//GEN-LAST:event_btnValjKontorMouseClicked
+
+    /**
+     * Metod som anropas när användaren valt att uppdatera område
+     */
     private void btnOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOmradeMouseClicked
+        // dölj det som inte har med välja område att göra
         setVisibleUppdateraPlats(false);
-        setVisibleUppdateraOmrade(true);
         setVisibleNyChef(false);
-        
+        //om en ändring redan gjorts så döljs den bekräftelsen inför en ny sökning
+        lblNyChefAr.setVisible(false);
+        //om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
+        cmbOmrade.removeAllItems();
+        // visa det som behövs för att användaren ska kunna välja område
+        setVisibleUppdateraOmrade(true);
+        // anropa metod för att visa alla områden i combobox
         SQL s = new SQL(idb);
         s.omraden(cmbOmrade);
     }//GEN-LAST:event_btnOmradeMouseClicked
-
+    /**
+     * Metod som anropas när användaren valt att bekräfta vem den nya chefen är
+     */
     private void btnBekraftaValMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaValMouseClicked
         lblNyChefAr.setVisible(true);
+        String nyChef = cmbNyChef.getSelectedItem().toString();
+        SQL s = new SQL(idb);
+        if (btnBekraftaVal.getText().equals("Bekräfta kontorschef")){
+            s.uppdateraKontorschef(nyChef, omradePlats, lblNyChefAr);
+        }
+        else{
+            s.uppdateraOmradeschef(nyChef, omradePlats, lblNyChefAr);
+        }
     }//GEN-LAST:event_btnBekraftaValMouseClicked
 
-    private void setVisibleUppdateraOmrade(boolean bool){
-        if (bool == false){
-        // dölj områdesval-knapp, lbl och combobox
-        lblOmrade.setVisible(false);
-        btnValjOmrade.setVisible(false);
-        cmbOmrade.setVisible(false);
-    }
-        else{
-        lblOmrade.setVisible(true);
-        btnValjOmrade.setVisible(true);
-        cmbOmrade.setVisible(true);
-    }
-    }
-    
-    private void setVisibleUppdateraPlats(boolean bool){
-        if (bool == false){
-        // dölj ev platsval-knapp, lbl och combobox
-        lblPlats.setVisible(false);
-        btnValjPlats.setVisible(false);
-        cmbKontor.setVisible(false);
-        }
-        else{
-        lblPlats.setVisible(true);
-        btnValjPlats.setVisible(true);
-        cmbKontor.setVisible(true);
+    /**
+     * Metod för att dölja/visa det som användaren behöver se för att välja
+     * vilket område som ska uppdateras
+     *
+     * @param bool
+     */
+    private void setVisibleUppdateraOmrade(boolean bool) {
+        if (bool == false) {
+            // dölj områdesval-knapp, lbl och combobox
+            lblOmrade.setVisible(false);
+            btnValjOmrade.setVisible(false);
+            cmbOmrade.setVisible(false);
+        } else {
+            lblOmrade.setVisible(true);
+            btnValjOmrade.setVisible(true);
+            cmbOmrade.setVisible(true);
         }
     }
-    
-    private void setVisibleNyChef(boolean bool){
-        if(bool == false){
-        lblNuvChef.setVisible(false);
-        lblValjNy.setVisible(false);
-        cmbNyChef.setVisible(false);
-        btnBekraftaVal.setVisible(false);
+
+    /**
+     * Metod för att dölja/visa det som användaren behöver se för att välja
+     * vilken plats/kontor som ska uppdateras
+     *
+     * @param bool
+     */
+    private void setVisibleUppdateraPlats(boolean bool) {
+        if (bool == false) {
+            // dölj ev platsval-knapp, lbl och combobox
+            lblKontor.setVisible(false);
+            btnValjKontor.setVisible(false);
+            cmbKontor.setVisible(false);
+        } else {
+            lblKontor.setVisible(true);
+            btnValjKontor.setVisible(true);
+            cmbKontor.setVisible(true);
         }
-        else{
-        lblNuvChef.setVisible(true);
-        lblValjNy.setVisible(true);
-        cmbNyChef.setVisible(true);
-        btnBekraftaVal.setVisible(true);
+    }
+
+    /**
+     * Metod för att dölja/visa det som användaren behöver se för att välja en
+     * ny chef för området/platsen
+     *
+     * @param bool
+     */
+    private void setVisibleNyChef(boolean bool) {
+        if (bool == false) {
+            lblNuvChef.setVisible(false);
+            lblValjNy.setVisible(false);
+            cmbNyChef.setVisible(false);
+            btnBekraftaVal.setVisible(false);
+        } else {
+            lblNuvChef.setVisible(true);
+            lblValjNy.setVisible(true);
+            cmbNyChef.setVisible(true);
+            btnBekraftaVal.setVisible(true);
         }
-           
+
     }
     /**
      * @param args the command line arguments
@@ -357,18 +424,18 @@ public class UppdateraChefer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBekraftaVal;
     private javax.swing.JButton btnGaTillbaka;
+    private javax.swing.JButton btnKontor;
     private javax.swing.JButton btnOmrade;
-    private javax.swing.JButton btnPlats;
+    private javax.swing.JButton btnValjKontor;
     private javax.swing.JButton btnValjOmrade;
-    private javax.swing.JButton btnValjPlats;
     private javax.swing.JComboBox<String> cmbKontor;
     private javax.swing.JComboBox<String> cmbNyChef;
     private javax.swing.JComboBox<String> cmbOmrade;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JLabel lblKontor;
     private javax.swing.JLabel lblNuvChef;
     private javax.swing.JLabel lblNyChefAr;
     private javax.swing.JLabel lblOmrade;
-    private javax.swing.JLabel lblPlats;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JLabel lblRubrikVal;
     private javax.swing.JLabel lblValjNy;

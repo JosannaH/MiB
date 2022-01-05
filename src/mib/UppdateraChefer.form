@@ -76,7 +76,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnOmrade" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnPlats" min="-2" pref="78" max="-2" attributes="0"/>
+                      <Component id="btnKontor" min="-2" pref="78" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="cmbOmrade" min="-2" pref="101" max="-2" attributes="0"/>
@@ -87,9 +87,9 @@
                           <Group type="102" attributes="0">
                               <Component id="cmbKontor" min="-2" pref="141" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnValjPlats" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnValjKontor" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="lblPlats" min="-2" pref="67" max="-2" attributes="0"/>
+                          <Component id="lblKontor" min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="lblNuvChef" alignment="0" min="-2" pref="289" max="-2" attributes="0"/>
@@ -115,19 +115,19 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblRubrikVal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnPlats" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnKontor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPlats" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblKontor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cmbOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnValjOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cmbKontor" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnValjPlats" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnValjKontor" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lblNuvChef" min="-2" max="-2" attributes="0"/>
@@ -163,9 +163,9 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnGaTillbakaMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblPlats">
+    <Component class="javax.swing.JLabel" name="lblKontor">
       <Properties>
-        <Property name="text" type="java.lang.String" value="V&#xe4;lj plats:"/>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj kontor:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbKontor">
@@ -202,12 +202,12 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="btnValjPlats">
+    <Component class="javax.swing.JButton" name="btnValjKontor">
       <Properties>
         <Property name="text" type="java.lang.String" value="V&#xe4;lj"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnValjPlatsMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnValjKontorMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnOmrade">
@@ -218,12 +218,12 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnOmradeMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnPlats">
+    <Component class="javax.swing.JButton" name="btnKontor">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Plats"/>
+        <Property name="text" type="java.lang.String" value="Kontor"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPlatsMouseClicked"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnKontorMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblRubrikVal">
