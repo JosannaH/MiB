@@ -8,6 +8,8 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -49,4 +51,24 @@ public class Validering {
         
         return resultat;    
     }   
+    
+    public static boolean agentHarAlien(String soktID, InfDB idb){
+        boolean resultat = true;
+        String count = "";
+        
+        try{
+              // Kolla om agenten är ansvarig för några Aliens
+               count = idb.fetchSingle("SELECT count(alien_ID) FROM alien WHERE ansvarig_agent = " + soktID);
+        }
+            catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande: agentHarAlien() " + e.getMessage());
+        }
+        // om agenten inte är ansvarig förnågra aliens, returnera false, annars true
+        if(count.equals("0")){
+            resultat = false;
+        }
+        return resultat;
+        
+    }
 }
