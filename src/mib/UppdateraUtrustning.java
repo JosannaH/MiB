@@ -274,14 +274,17 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
             txtEgenskapInfo.setVisible(true);
             lblEgenskap.setVisible(true);
             lblEgenskap.setText("Kaliber");
+            txtEgenskapInfo.setText("");
         } else if (typ.equals("Kommunikation")) {
             txtEgenskapInfo.setVisible(true);
             lblEgenskap.setVisible(true);
             lblEgenskap.setText("Överföringsteknik");
+            txtEgenskapInfo.setText("");
         } else if (typ.equals("Teknik")) {
             txtEgenskapInfo.setVisible(true);
             lblEgenskap.setVisible(true);
             lblEgenskap.setText("Kraftkälla");
+            txtEgenskapInfo.setText("");
         } else {
             doljText(txtEgenskapInfo);
             doljLabel(lblEgenskap);
@@ -432,8 +435,8 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
     // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
-        HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
-        hanteraAliens.setVisible(true);
+        HanteraUtrustningAdmin hantera = new HanteraUtrustningAdmin(idb, anvId, anvTyp);
+        hantera.setVisible(true);
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
@@ -456,10 +459,11 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
 
     private void laggTill() {
         String regBenamning = txtNamn.getText();
-        String regUtrustningsID = lblUtrustningsID.getText();
+        String regUtrustningsID = txtUtrustningID.getText();
         try {
-
-            idb.insert("INSERT INTO Utrustning VALUES ('" + regUtrustningsID + "', '" + regBenamning + "')");
+            
+            idb.update("UPDATE Utrustning SET Benamning = '" + regBenamning + "' WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
+            
             JOptionPane.showMessageDialog(null, "Ny utrustning är nu registrerad!");
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");

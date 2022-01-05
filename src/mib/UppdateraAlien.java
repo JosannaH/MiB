@@ -405,7 +405,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "AgentID måste vara ifyllt!");
+            JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
         }
     }//GEN-LAST:event_btnSokMouseClicked
 
