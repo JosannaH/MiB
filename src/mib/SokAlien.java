@@ -335,28 +335,37 @@ public class SokAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        lblConfirm.setVisible(false);
+        lblError.setVisible(false);
         
+        
+       
         
         try {
+            //Lokala variabler för fälten
+        String soktID = txtSokID.getText();
+        ArrayList<String> alienLista = idb.fetchColumn("SELECT alien_ID FROM alien");
             
+        
+        if(alienLista.contains(soktID)){
+            
+        
         squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
         bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
         wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");      
         
-        //Lokala variabler för fälten
-        String soktID = txtSokID.getText();
-        int soktIDint = Integer.parseInt(soktID);
+        
         
         //Nästlad SQL-fråga för att kunna visa namnet på agenten i stället för dess AgentID.
-        String alienAgentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID IN (SELECT Ansvarig_Agent FROM Alien where Alien_ID = " + soktIDint + ")");
+        String alienAgentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID IN (SELECT Ansvarig_Agent FROM Alien where Alien_ID = " + soktID + ")");
         
         //Nästlad SQL-fråga för att kunna visa namnet på platsen istället för platsID.
-        String alienPlats = idb.fetchSingle("SELECT Benamning FROM Plats WHERE Plats_ID IN(SELECT Plats from Alien where Alien_ID =" + soktIDint +")");     
+        String alienPlats = idb.fetchSingle("SELECT Benamning FROM Plats WHERE Plats_ID IN(SELECT Plats from Alien where Alien_ID =" + soktID +")");     
         
         //SQL-frågor som hämtar aliens lösenord, namn och telefon från databasen.  
-        String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktIDint +"");
-        String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktIDint +"");
-        String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktIDint +"");
+        String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktID +"");
+        String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktID +"");
+        String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktID +"");
      
         String datum = idb.fetchSingle("SELECT Registreringsdatum FROM alien WHERE Alien_ID = " + soktID + "");
         
@@ -368,7 +377,7 @@ public class SokAlien extends javax.swing.JFrame {
         lblAnsvarigAgent.setText(alienAgentNamn);
         lblDatum.setText(datum);
         
-        lblConfirm.setVisible(true);
+        
         
         
         //Här arbetr vi med villkorssatser för att "söka" efter det eftersökta ID:t i våra Arrayer.
@@ -382,6 +391,7 @@ public class SokAlien extends javax.swing.JFrame {
         
         lblBoogies.setVisible(false);
         lblBoogiesSvar.setVisible(false);
+        lblConfirm.setVisible(true);
         
         }
         
@@ -395,7 +405,7 @@ public class SokAlien extends javax.swing.JFrame {
         
         lblAntalArmar.setVisible(false);
         lblAntalArmarSvar.setVisible(false);
-        
+        lblConfirm.setVisible(true);
         }
         
         else if (wormLista.contains(soktID)) {
@@ -404,6 +414,7 @@ public class SokAlien extends javax.swing.JFrame {
         lblAntalArmarSvar.setVisible(false);
         lblBoogies.setVisible(false);
         lblBoogiesSvar.setVisible(false);
+        lblConfirm.setVisible(true);
         
         }
         
@@ -413,9 +424,16 @@ public class SokAlien extends javax.swing.JFrame {
         lblAntalArmarSvar.setVisible(false);
         lblBoogies.setVisible(false);
         lblBoogiesSvar.setVisible(false);
+        lblConfirm.setVisible(true);
         }
         
+        
         }
+        else{
+                JOptionPane.showMessageDialog(null, "AlienID finns inte!");
+                }
+        }
+        
        
         //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
         catch (InfException e){
@@ -423,6 +441,8 @@ public class SokAlien extends javax.swing.JFrame {
             lblError.setVisible(true);
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
+        
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
