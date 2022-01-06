@@ -59,21 +59,30 @@ public class TaBortUtrustning extends javax.swing.JFrame {
 
         jLabel1.setText("RADERA UTRUSTNING");
 
-        txtID.setText("jTextField1");
+        txtID.setText("ID");
 
         jLabel2.setText("Utrustnings-ID");
 
         jLabel3.setText("Benämning");
 
-        txtBenamning.setText("jTextField1");
+        txtBenamning.setText("-");
 
         jLabel4.setText("Utrustningstyp");
 
         lblInfo.setText("-");
 
-        txtTyp.setText("jTextField1");
+        txtTyp.setText("-");
+        txtTyp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTypActionPerformed(evt);
+            }
+        });
 
-        txtSpec.setText("jTextField1");
+        txtSpec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSpecActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Radera");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -93,42 +102,39 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(300, 300, 300)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(369, 369, 369)
+                        .addGap(54, 54, 54)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(315, 315, 315)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(68, 68, 68)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtSpec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtBenamning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton2))
-                                    .addComponent(txtTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(77, 77, 77)
-                                .addComponent(jButton1)))))
-                .addContainerGap(223, Short.MAX_VALUE))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                            .addComponent(txtBenamning)
+                            .addComponent(txtTyp)
+                            .addComponent(txtSpec))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jButton1)))
+                .addGap(239, 239, 239))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1)
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
@@ -145,7 +151,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                     .addComponent(txtSpec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66)
                 .addComponent(jButton1)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,39 +160,44 @@ public class TaBortUtrustning extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 // Sökning
 
-    String soktID = txtID.getText();
     
     try {
     vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
     teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
     kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
     
+    String soktID = txtID.getText();
+    int soktIDint = Integer.parseInt(soktID);
     
-    String benamning = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID"+soktID+"");
+    String benamning = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID="+soktIDint+"");
     txtBenamning.setText(benamning);
     
     if (vapenLista.contains(soktID)) {
     lblInfo.setVisible(true);
     lblInfo.setText("Kaliber");
     txtSpec.setVisible(true);
-    String vapenKaliber = idb.fetchSingle("SELECT Kaliber FROM Vapen WHERE Utrustnings_ID="+soktID+"");
+    String vapenKaliber = idb.fetchSingle("SELECT Kaliber FROM Vapen WHERE Utrustnings_ID="+soktIDint+"");
     txtSpec.setText(vapenKaliber);
+    txtTyp.setText("Vapen");
     }
     
     else if (teknikLista.contains(soktID)) {
     lblInfo.setVisible(true);
     lblInfo.setText("Kraftkälla");
     txtSpec.setVisible(true);
-    String kraftkalla = idb.fetchSingle("SELECT Kraftkalla FROM Teknik WHERE Utrustnings_ID="+soktID+"");
+    String kraftkalla = idb.fetchSingle("SELECT Kraftkalla FROM Teknik WHERE Utrustnings_ID="+soktIDint+"");
     txtSpec.setText(kraftkalla);
+    txtTyp.setText("Teknik");
     }
     
     else if (kommunikationsLista.contains(soktID)) {
     lblInfo.setVisible(true);
     lblInfo.setText("Överföringsteknik");
     txtSpec.setVisible(true);
-    String overforingsTeknik = idb.fetchSingle("SELECT Overforingsteknik FROM Kommunikation WHERE Utrustnings_ID="+soktID+"");
-    txtSpec.setText(overforingsTeknik);}
+    String overforingsTeknik = idb.fetchSingle("SELECT Overforingsteknik FROM Kommunikation WHERE Utrustnings_ID="+soktIDint+"");
+    txtSpec.setText(overforingsTeknik);
+    txtTyp.setText("Kommunikation");
+    }
    
     }
     
@@ -209,21 +220,26 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                 try {
                     String soktID = txtID.getText();
 
-                    // Här raderas information från tabellen alien.
+                    // Här raderas information från tabellen Utrustning.
                     idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID ="+soktID+"");
 
-                    // För att kunna kontrollera vilken tabell som sökt ID finns inom (Ras) används tre ArrayLists där man lagrar information om värdena. 
+                    // För att kunna kontrollera vilken tabell som sökt ID finns inom (Utrustningstyp) används tre ArrayLists där man lagrar information om värdena. 
                     vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
                     teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
                     kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikatiob ORDER BY Utrustnings_ID");
 
                     // Beroende på vilken tabell som används raderas värdena baserat pp sökt ID. 
                     if (vapenLista.contains(soktID)) {
+                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID +"");
                         idb.delete("DELETE FROM Vapen WHERE Utrustnings_ID = " + soktID +"");
                     } else if (teknikLista.contains(soktID)) {
                         idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = " + soktID +"");
+                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID +"");
+
                     } else if (kommunikationsLista.contains(soktID)) {
                         idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = " + soktID+"");
+                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID +"");
+
                     }
 
                 } catch (InfException e) {
@@ -237,6 +253,14 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                                          
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtSpecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSpecActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSpecActionPerformed
+
+    private void txtTypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTypActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTypActionPerformed
 
     /**
      * @param args the command line arguments
