@@ -214,6 +214,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                         // ändrar lösenordet i databasen
                         idb.fetchSingle("UPDATE " + anvTyp + " SET Losenord = '" + nyttLosen + "' where " + anvTyp + "_ID=" + anvandare);
                         JOptionPane.showMessageDialog(null, "Ditt lösenord är ändrat!");
+                        btnTillbakaActionPerformed(evt);
                     } else {
                         JOptionPane.showMessageDialog(null, "Användare och nuvarande lösenord stämmer inte överens");
                     }

@@ -427,7 +427,7 @@ public class TaBortAlien extends javax.swing.JFrame {
         if (Validering.textFaltHarVarde(txtSokID)) {
 
             // Om txtSokID är ifyllt sker en dubbelkontroll för om man verkligen vill radera informationen. Detta görs med metoden showConfirmDialog. 
-            int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort vald alien?", "Ta bort alien..", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int input = JOptionPane.showConfirmDialog(null, "Vill du verkligen radera vald alien?", "Är du säker?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             // Metoden använder 0 och 1 som input på svar. 0 = ja. Om detta väljs så går metoden vidare och raderar informationen. 
             if (input == 0) {

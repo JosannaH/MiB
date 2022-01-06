@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author luna
@@ -21,11 +22,11 @@ public class SokAlien extends javax.swing.JFrame {
     ArrayList<String> squidLista;
     ArrayList<String> bogloditeLista;
     ArrayList<String> wormLista;
-    
+
     //I konstruktorn anger vi att de rasunika fälten ska vara osynliga som default.
     public SokAlien(InfDB idb, String anvId, String anvTyp) {
         initComponents();
-        this.idb=idb;        
+        this.idb = idb;        
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         lblBoogies.setVisible(false); //rätt
@@ -34,8 +35,8 @@ public class SokAlien extends javax.swing.JFrame {
         lblAntalArmarSvar.setVisible(false);
         lblConfirm.setVisible(false);
         lblError.setVisible(false);
-
-    } 
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -329,120 +330,99 @@ public class SokAlien extends javax.swing.JFrame {
 
     private void txtSokIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSokIDActionPerformed
     }//GEN-LAST:event_txtSokIDActionPerformed
-        
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-   
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         lblConfirm.setVisible(false);
         lblError.setVisible(false);
         
-        
-       
-        
         try {
             //Lokala variabler för fälten
-        String soktID = txtSokID.getText();
-        ArrayList<String> alienLista = idb.fetchColumn("SELECT alien_ID FROM alien");
+            String soktID = txtSokID.getText();
+            ArrayList<String> alienLista = idb.fetchColumn("SELECT alien_ID FROM alien");
             
-        
-        if(alienLista.contains(soktID)){
-            
-        
-        squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
-        bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
-        wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");      
-        
-        
-        
-        //Nästlad SQL-fråga för att kunna visa namnet på agenten i stället för dess AgentID.
-        String alienAgentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID IN (SELECT Ansvarig_Agent FROM Alien where Alien_ID = " + soktID + ")");
-        
-        //Nästlad SQL-fråga för att kunna visa namnet på platsen istället för platsID.
-        String alienPlats = idb.fetchSingle("SELECT Benamning FROM Plats WHERE Plats_ID IN(SELECT Plats from Alien where Alien_ID =" + soktID +")");     
-        
-        //SQL-frågor som hämtar aliens lösenord, namn och telefon från databasen.  
-        String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktID +"");
-        String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktID +"");
-        String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktID +"");
-     
-        String datum = idb.fetchSingle("SELECT Registreringsdatum FROM alien WHERE Alien_ID = " + soktID + "");
-        
-        //Här anger vi vad vi vill ska stå i våra labels, det vill säga informationen om den eftersökta alien.
-        lblAlienLosenord.setText(alienLosenord);
-        lblAlienNamn.setText(alienNamn);
-        lblAlienTelefon.setText(alienTelefon);
-        lblAlienPlats.setText(alienPlats);
-        lblAnsvarigAgent.setText(alienAgentNamn);
-        lblDatum.setText(datum);
-        
-        
-        
-        
-        //Här arbetr vi med villkorssatser för att "söka" efter det eftersökta ID:t i våra Arrayer.
-        if (squidLista.contains(soktID)) {
-        String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + soktID + "'");
-        lblAlienRas.setText("Squid");
-        
-        lblAntalArmar.setVisible(true);
-        lblAntalArmarSvar.setVisible(true);
-        lblAntalArmarSvar.setText(antalArmar);
-        
-        lblBoogies.setVisible(false);
-        lblBoogiesSvar.setVisible(false);
-        lblConfirm.setVisible(true);
-        
-        }
-        
-        else if (bogloditeLista.contains(soktID)) {
-        String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + soktID + "'");
-        lblAlienRas.setText("Boglodite");
-        
-        lblBoogies.setVisible(true);
-        lblBoogiesSvar.setVisible(true);
-        lblBoogiesSvar.setText(antalBoogies);
-        
-        lblAntalArmar.setVisible(false);
-        lblAntalArmarSvar.setVisible(false);
-        lblConfirm.setVisible(true);
-        }
-        
-        else if (wormLista.contains(soktID)) {
-        lblAlienRas.setText("Worm");
-        lblAntalArmar.setVisible(false);
-        lblAntalArmarSvar.setVisible(false);
-        lblBoogies.setVisible(false);
-        lblBoogiesSvar.setVisible(false);
-        lblConfirm.setVisible(true);
-        
-        }
-        
-        else {
-        lblAlienRas.setText("Okänd");
-        lblAntalArmar.setVisible(false);
-        lblAntalArmarSvar.setVisible(false);
-        lblBoogies.setVisible(false);
-        lblBoogiesSvar.setVisible(false);
-        lblConfirm.setVisible(true);
-        }
-        
-        
-        }
-        else{
-                JOptionPane.showMessageDialog(null, "AlienID finns inte!");
+            if (alienLista.contains(soktID)) {
+                
+                squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+                bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+                wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+
+                //Nästlad SQL-fråga för att kunna visa namnet på agenten i stället för dess AgentID.
+                String alienAgentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID IN (SELECT Ansvarig_Agent FROM Alien where Alien_ID = " + soktID + ")");
+
+                //Nästlad SQL-fråga för att kunna visa namnet på platsen istället för platsID.
+                String alienPlats = idb.fetchSingle("SELECT Benamning FROM Plats WHERE Plats_ID IN(SELECT Plats from Alien where Alien_ID =" + soktID + ")");
+
+                //SQL-frågor som hämtar aliens lösenord, namn och telefon från databasen.  
+                String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktID + "");
+                String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktID + "");
+                String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktID + "");
+                
+                String datum = idb.fetchSingle("SELECT Registreringsdatum FROM alien WHERE Alien_ID = " + soktID + "");
+
+                //Här anger vi vad vi vill ska stå i våra labels, det vill säga informationen om den eftersökta alien.
+                lblAlienLosenord.setText(alienLosenord);
+                lblAlienNamn.setText(alienNamn);
+                lblAlienTelefon.setText(alienTelefon);
+                lblAlienPlats.setText(alienPlats);
+                lblAnsvarigAgent.setText(alienAgentNamn);
+                lblDatum.setText(datum);
+
+                //Här arbetr vi med villkorssatser för att "söka" efter det eftersökta ID:t i våra Arrayer.
+                if (squidLista.contains(soktID)) {
+                    String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + soktID + "'");
+                    lblAlienRas.setText("Squid");
+                    
+                    lblAntalArmar.setVisible(true);
+                    lblAntalArmarSvar.setVisible(true);
+                    lblAntalArmarSvar.setText(antalArmar);
+                    
+                    lblBoogies.setVisible(false);
+                    lblBoogiesSvar.setVisible(false);
+                    lblConfirm.setVisible(true);
+                    
+                } else if (bogloditeLista.contains(soktID)) {
+                    String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + soktID + "'");
+                    lblAlienRas.setText("Boglodite");
+                    
+                    lblBoogies.setVisible(true);
+                    lblBoogiesSvar.setVisible(true);
+                    lblBoogiesSvar.setText(antalBoogies);
+                    
+                    lblAntalArmar.setVisible(false);
+                    lblAntalArmarSvar.setVisible(false);
+                    lblConfirm.setVisible(true);
+                } else if (wormLista.contains(soktID)) {
+                    lblAlienRas.setText("Worm");
+                    lblAntalArmar.setVisible(false);
+                    lblAntalArmarSvar.setVisible(false);
+                    lblBoogies.setVisible(false);
+                    lblBoogiesSvar.setVisible(false);
+                    lblConfirm.setVisible(true);
+                    
+                } else {
+                    lblAlienRas.setText("Okänd");
+                    lblAntalArmar.setVisible(false);
+                    lblAntalArmarSvar.setVisible(false);
+                    lblBoogies.setVisible(false);
+                    lblBoogiesSvar.setVisible(false);
+                    lblConfirm.setVisible(true);
                 }
-        }
-        
-       
-        //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
-        catch (InfException e){
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "AlienID finns inte!");
+            }
+        } //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
+        catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             lblError.setVisible(true);
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
         
-        
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
@@ -450,11 +430,10 @@ public class SokAlien extends javax.swing.JFrame {
         boolean admin = s.arAdmin(anvId);
         setVisible(false);
         
-        if(admin){
+        if (admin) {
             HanteraAliensAdmin h = new HanteraAliensAdmin(idb, anvId, anvTyp);
             h.setVisible(true);
-        }
-        else{
+        } else {
             HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
             h.setVisible(true);
         }
@@ -473,11 +452,9 @@ public class SokAlien extends javax.swing.JFrame {
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
 
-    
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnTillbaka;
