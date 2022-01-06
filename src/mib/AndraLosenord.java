@@ -190,7 +190,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
         SQL s = new SQL(idb);
-      s.tillStartsida(anvId, anvTyp);
+        s.tillStartsida(anvId, anvTyp);
        
     }//GEN-LAST:event_btnTillbakaActionPerformed
 

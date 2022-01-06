@@ -22,7 +22,6 @@ public class HanteraAliens extends javax.swing.JFrame {
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         menuBarTomt.setText("Inloggad som " + anvTyp);
-        doljKnapp();
     }
 
     /**
@@ -43,7 +42,6 @@ public class HanteraAliens extends javax.swing.JFrame {
         btnSok = new javax.swing.JToggleButton();
         btnListaAlienRas = new javax.swing.JToggleButton();
         btnListaAlienDatum = new javax.swing.JToggleButton();
-        btnTaBort = new javax.swing.JToggleButton();
         menuBar = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         menuBarInget = new javax.swing.JMenu();
@@ -106,13 +104,6 @@ public class HanteraAliens extends javax.swing.JFrame {
             }
         });
 
-        btnTaBort.setText("Ta bort alien");
-        btnTaBort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaBortActionPerformed(evt);
-            }
-        });
-
         menuBarStartsida.setText("Gå till Startsida");
         menuBarStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -149,8 +140,7 @@ public class HanteraAliens extends javax.swing.JFrame {
                     .addComponent(btnListaPlats, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUppdatera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegistreraNyAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTaBort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRegistreraNyAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
@@ -187,8 +177,6 @@ public class HanteraAliens extends javax.swing.JFrame {
                         .addComponent(btnListaAlienRas)
                         .addGap(18, 18, 18)
                         .addComponent(btnListaAlienDatum)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnTaBort)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTillbaka)
                         .addGap(23, 23, 23))))
@@ -259,22 +247,6 @@ public class HanteraAliens extends javax.swing.JFrame {
         ras.setVisible(true);
     }//GEN-LAST:event_btnListaAlienRasMouseClicked
 
-    private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
-        setVisible(false);
-        TaBortAlien radera = new TaBortAlien(idb, anvId, anvTyp);
-        radera.setVisible(true);
-    }//GEN-LAST:event_btnTaBortActionPerformed
-
-    private void doljKnapp(){
-        SQL s = new SQL(idb);
-        boolean admin = s.arAdmin(anvId);
-        if(admin == true){
-            btnTaBort.setVisible(true);
-        }
-        else{
-            btnTaBort.setVisible(false);
-        }
-    }
     
     /**
      * @param args the command line arguments
@@ -286,7 +258,6 @@ public class HanteraAliens extends javax.swing.JFrame {
     private javax.swing.JButton btnListaPlats;
     private javax.swing.JButton btnRegistreraNyAlien;
     private javax.swing.JToggleButton btnSok;
-    private javax.swing.JToggleButton btnTaBort;
     private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JToggleButton btnUppdatera;
     private javax.swing.JLabel lblAgentBild;

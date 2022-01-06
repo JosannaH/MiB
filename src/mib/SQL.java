@@ -361,15 +361,16 @@ public class SQL extends javax.swing.JFrame {
          String admin = "";
          
          try{
-         admin = idb.fetchSingle("SELECT administrator FROM agent WHERE agent_ID =" + anvID);
+         admin = idb.fetchSingle("SELECT administrator FROM agent WHERE agent_ID =" + anvID + "");
+         if (admin.equals("J")){
+           result = true;
+         }
          }
          catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: arAdmin() " + e.getMessage());
          }
-         if (admin.equals("J")){
-           result = true;
-         }
+         
          return result;
      }
      
