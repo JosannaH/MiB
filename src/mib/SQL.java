@@ -328,6 +328,7 @@ public class SQL extends javax.swing.JFrame {
          try{
              nyChefID = idb.fetchSingle("SELECT agent_ID FROM agent WHERE namn = '" + nyChefNamn + "'");
              omradeID = idb.fetchSingle("SELECT omrades_ID FROM omrade WHERE benamning = '" + omrade + "'" );
+             // TODO Här kan if-sats behövas för att kontrollera om agent redan är chef.
              idb.update("UPDATE omradeschef SET agent_ID = " + nyChefID + " WHERE omrade = " + omradeID);
              
          }catch (InfException e) {
