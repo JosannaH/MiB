@@ -5,7 +5,6 @@
 package mib;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -25,11 +24,6 @@ public class ListaAliensRas extends javax.swing.JFrame {
     ArrayList<String> squidLista;
     ArrayList<String> bogloditeLista;
     ArrayList<String> wormLista;
-
-    public ListaAliensRas(InfDB idb) {
-        initComponents();
-        this.idb = idb;
-    }
 
     public ListaAliensRas(InfDB idb, String anvId, String anvTyp) {
         initComponents();
@@ -198,81 +192,75 @@ public class ListaAliensRas extends javax.swing.JFrame {
      * @param evt
      */
     private void btnRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRasMouseClicked
-       txtLista.setText("");
+        txtLista.setText("");
         String valdRas = cmbRas.getSelectedItem().toString();
         // Listans rubriker
         txtLista.append("AlienID \t Namn \t\t Telefon \n");
         try {
+
+            // Fyller listor med information om varje ras.
+            bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+            squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+            wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+
+            // Beroende på vilken ras man väljer fylls fältet med information om tillhörande aliens.
             if (valdRas.equals("Boglodite")) {
-                bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
-                  
+
+                // Loopar igenom listan för att hämta och skriva ut informationen. 
                 for (int i = 0; i < bogloditeLista.size(); i++) {
                     String ID = bogloditeLista.get(i);
                     String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
                     String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
                     txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
                 }
-               
-            }
-            else if(valdRas.equals("Squid")){
 
-                squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
-            
+            } else if (valdRas.equals("Squid")) {
+
+                // Loopar igenom listan för att hämta och skriva ut informationen. 
                 for (int i = 0; i < squidLista.size(); i++) {
                     String ID = squidLista.get(i);
                     String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
                     String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
                     txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
-            }
-            }
-            else if(valdRas.equals("Worm")){
+                }
+            } else if (valdRas.equals("Worm")) {
 
-                wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
-            
+                // Loopar igenom listan för att hämta och skriva ut informationen. 
                 for (int i = 0; i < wormLista.size(); i++) {
                     String ID = squidLista.get(i);
                     String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
                     String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
                     txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
+                }
+            } /* Om en alien inte hör till någon ras ska man kunna söka upp dessa. 
+            Det gör man genom att skapa två listor - en med alla aliens och en för alla som tillhör en ras. */ else {
+
+                ArrayList<String> rasLista = new ArrayList<>();
+                rasLista.addAll(bogloditeLista);
+                rasLista.addAll(squidLista);
+                rasLista.addAll(wormLista);
+
+                ArrayList<String> alienLista = idb.fetchColumn("SELECT alien_ID FROM alien");
+
+                // Loopar igenom listan med alla aliens och undersöker vilka alienID som inte finns med i raslistan.
+                for (int i = 0; i < alienLista.size(); i++) {
+                    String ID = alienLista.get(i);
+
+                    // Om alien inte tillhör en ras så listas de i alternativet "Ingen ras".
+                    if (!rasLista.contains(ID)) {
+                        String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
+                        String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
+                        txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
+                    }
+                }
+
             }
-            }
-            else{
-                // kolla koden i chatten
-            }
-            
-            
 
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());
         }
-
-        /* // Sparar användarens val av ras
-        String valdRas = cmbRas.getSelectedItem().toString();
-        SQL sql = new SQL(idb);
-        // fyller textarean med aliens av vald ras
-        sql.fyllListaAlienRas(valdRas, txtLista);*/
     }//GEN-LAST:event_btnRasMouseClicked
-
-    /**
-     * Hämta alla områden och lägg till dom i ComboBox
-     */
-    private void getOmraden() {
-        try {
-            // Hämta alla områden, spara i hashmap
-            ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade");
-
-            // loopa igenom lista och lägg till alla områden i drop down menyn 
-            for (int i = 0; i < listaOmraden.size(); i++) {
-
-                String omrade = listaOmraden.get(i).get("Benamning");
-                //cmbOmrade.addItem(omrade);
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: getOmraden() " + e.getMessage());
-        }
-    }
 
     /**
      * @param args the command line arguments

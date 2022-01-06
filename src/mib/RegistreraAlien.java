@@ -47,6 +47,8 @@ public class RegistreraAlien extends javax.swing.JFrame {
         doljText(txtRasInfo);
         doljLabel(lblRasInfo);
         menuBarInlogg.setText("Inloggad som " + anvTyp);
+        
+        
     }
 
     /**
@@ -479,7 +481,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-         setVisible(false);
+        setVisible(false);
         HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
         h.setVisible(true);
     }//GEN-LAST:event_btnTillbakaActionPerformed

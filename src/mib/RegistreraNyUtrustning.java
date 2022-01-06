@@ -101,9 +101,9 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         });
 
         btnGaTillbaka.setText("Gå tillbaka");
-        btnGaTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnGaTillbakaMouseClicked(evt);
+        btnGaTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGaTillbakaActionPerformed(evt);
             }
         });
 
@@ -117,7 +117,7 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         });
         jMenuBar1.add(menuTillStart);
 
-        jMenu1.setText("                                                                                                                                       ");
+        jMenu1.setText("                                                                                                                                   ");
         jMenuBar1.add(jMenu1);
 
         menuBarInloggad.setText("Inloggad som XXX");
@@ -151,25 +151,21 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblBenamning)
-                                    .addComponent(lblUtrustningID)
-                                    .addComponent(lblUtrustningsTyp))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(19, 19, 19)
-                                        .addComponent(lblUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cmbUtrustningstyp, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtBenamning, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tbValjTyp)
-                                            .addComponent(txtEgenskap, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(lblBenamning)
+                            .addComponent(lblUtrustningID)
+                            .addComponent(lblUtrustningsTyp)
                             .addComponent(lblEgenskap))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(lblUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbUtrustningstyp, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBenamning, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tbValjTyp)
+                            .addComponent(txtEgenskap, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(86, 86, 86))
                     .addGroup(layout.createSequentialGroup()
@@ -240,14 +236,18 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                 if (regUtrustning.equals("Vapen") && Validering.textFaltHarVarde(txtEgenskap)) {
                     laggTill();
                     idb.insert("INSERT INTO Vapen VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
+                    btnGaTillbakaActionPerformed(evt);
                 } else if (regUtrustning.equals("Kommunikation") && Validering.textFaltHarVarde(txtEgenskap)) {
                     laggTill();
                     idb.insert("INSERT INTO Kommunikation VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
+                    btnGaTillbakaActionPerformed(evt);
                 } else if (regUtrustning.equals("Teknik") && Validering.textFaltHarVarde(txtEgenskap)) {
                     laggTill();
                     idb.insert("INSERT INTO Teknik VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
+                    btnGaTillbakaActionPerformed(evt);
                 } else if (regUtrustning.equals("Okänd")) {
                     laggTill();
+                    btnGaTillbakaActionPerformed(evt);
                 } else {
                     JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
                 }
@@ -314,21 +314,6 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbValjTypMouseClicked
 
-    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
-    private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
-        setVisible(false);
-        SQL s = new SQL(idb);
-        boolean arAdmin = s.arAdmin(anvId);
-        
-        if (arAdmin == true){
-            HanteraUtrustningAdmin a = new HanteraUtrustningAdmin(idb, anvId, anvTyp);
-            a.setVisible(true);
-        }
-        else{
-            StartsidaAgent a = new StartsidaAgent(idb, anvId, anvTyp);
-            a.setVisible(true);
-    }//GEN-LAST:event_btnGaTillbakaMouseClicked
-    }
     /**
      * Gå tillbaka till startsida, olika beroende på om anv är admin eller vanlig agent
      * @param evt 
@@ -358,6 +343,22 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
+    
+    // Metdoden kontrollerar om du är administratör eller agent och skickar dig sedan tillbaka till rätt sida.
+    private void btnGaTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaTillbakaActionPerformed
+        setVisible(false);
+        SQL s = new SQL(idb);
+        boolean arAdmin = s.arAdmin(anvId);
+        
+        if (arAdmin == true){
+            HanteraUtrustningAdmin a = new HanteraUtrustningAdmin(idb, anvId, anvTyp);
+            a.setVisible(true);
+        }
+        else{
+            StartsidaAgent a = new StartsidaAgent(idb, anvId, anvTyp);
+            a.setVisible(true);
+    }     
+    }//GEN-LAST:event_btnGaTillbakaActionPerformed
 
     /* Denna metod genererar ett ID för varje ny registrerad utrustning. För att det ska bli ett nytt ID som inte går att ändras anropas den i konstruktorn. 
     För att generera nytt ID i sifferordning anropas getAutoIncrement(). */
