@@ -67,7 +67,7 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblListaAliens.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        lblListaAliens.setText("Lista aliens efter plats");
+        lblListaAliens.setText("Lista aliens efter datum");
 
         btnGaTillbaka.setText("Gå tillbaka");
         btnGaTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {

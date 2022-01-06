@@ -32,9 +32,8 @@ public class UppdateraAlien extends javax.swing.JFrame {
 
         // Här anropas en metod från klassen SQL där man fyller rullister med information.
         SQL s = new SQL(idb);
-        s.plats(cmbPlats);
         s.agent(cmbAnsAgent);
-        s.omraden(cmbOmrade);
+        s.plats(cmbPlats);
 
         // Anropas för att dölja nedanstående rader tills dess att man har valt ras.
         doljText(txtRasInfo);
@@ -82,10 +81,8 @@ public class UppdateraAlien extends javax.swing.JFrame {
         lblRasInfo = new javax.swing.JLabel();
         btnValjRas = new javax.swing.JToggleButton();
         txtAlienID = new javax.swing.JTextField();
-        lblOmrade = new javax.swing.JLabel();
         btnSok = new javax.swing.JToggleButton();
         btnSpara = new javax.swing.JToggleButton();
-        cmbOmrade = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         btnTillbaka = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -128,8 +125,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 btnValjRasMouseClicked(evt);
             }
         });
-
-        lblOmrade.setText("Område");
 
         btnSok.setText("Sök");
         btnSok.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -197,7 +192,11 @@ public class UppdateraAlien extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblOmrade)
+                                    .addComponent(lblPersInfo)
+                                    .addComponent(btnTillbaka))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblNamn)
                                     .addComponent(lblAlienID)
@@ -208,27 +207,25 @@ public class UppdateraAlien extends javax.swing.JFrame {
                                     .addComponent(lblLosen))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pswLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtAlienID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnSok))
-                                    .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRasInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnValjRas)
-                                    .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSpara)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(cmbAnsAgent, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cmbPlats, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(90, 90, 90))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblPersInfo)
-                                    .addComponent(btnTillbaka))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(pswLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtAlienID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btnSok))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(cmbAnsAgent, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(cmbPlats, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(63, 63, 63)))
+                                    .addComponent(txtRasInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSpara))
+                                .addGap(110, 110, 110)))
                         .addComponent(jLabel1)
                         .addGap(56, 56, 56))))
             .addGroup(layout.createSequentialGroup()
@@ -270,31 +267,27 @@ public class UppdateraAlien extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblTelefon))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblOmrade))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cmbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPlats))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cmbAnsAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAnsvarigAgent))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblRas))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(lblPlats)
+                                    .addComponent(cmbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAnsvarigAgent)
+                                    .addComponent(cmbAnsAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblRas)
+                                    .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addComponent(btnValjRas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtRasInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblRasInfo))
+                                    .addComponent(lblRasInfo)
+                                    .addComponent(txtRasInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSpara)))
-                        .addGap(16, 16, 16))
+                        .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(lblPersInfo)
@@ -367,10 +360,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 String platsNamn = idb.fetchSingle("SELECT Benamning FROM plats WHERE Plats_ID ='" + platsID + "'");
                 cmbPlats.setSelectedItem(platsNamn);
 
-                String omrade = idb.fetchSingle("SELECT Finns_I FROM plats WHERE Plats_ID ='" + platsID + "'");
-                String omradesNamn = idb.fetchSingle("SELECT Benamning FROM omrade WHERE Omrades_ID ='" + omrade + "'");
-                cmbOmrade.setSelectedItem(omradesNamn);
-
                 String agent = idb.fetchSingle("SELECT Ansvarig_Agent FROM alien WHERE Alien_ID ='" + idText + "'");
                 String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + agent + "'");
                 cmbAnsAgent.setSelectedItem(agentNamn);
@@ -427,12 +416,15 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 // Kontrollerar att beroende på vilken ras man har angett måste även tillhörande fält vara ifyllt. Uppdaterar rastabellen med vald information.
                 if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
                     uppdatera();
+                    
 
                     if (bogloditeLista.contains(idText)) {
                         // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
                         idb.update("UPDATE Boglodite SET Antal_Boogies = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+                        btnTillbakaActionPerformed(evt);
                     } else {
                         idb.insert("INSERT INTO Boglodite VALUES ('" + idText + "', '" + rasInfo + "')");
+                        btnTillbakaActionPerformed(evt);
 
                         // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
                         if (squidLista.contains(idText)) {
@@ -450,8 +442,10 @@ public class UppdateraAlien extends javax.swing.JFrame {
                     if (squidLista.contains(idText)) {
                         // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
                         idb.update("UPDATE Squid SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+                        btnTillbakaActionPerformed(evt);
                     } else {
                         idb.insert("INSERT INTO Squid VALUES ('" + idText + "', '" + rasInfo + "')");
+                        btnTillbakaActionPerformed(evt);
 
                         // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
                         if (bogloditeLista.contains(idText)) {
@@ -469,8 +463,10 @@ public class UppdateraAlien extends javax.swing.JFrame {
                     if (wormLista.contains(idText)) {
                         // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
                         idb.update("UPDATE Worm SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+                        btnTillbakaActionPerformed(evt);
                     } else {
                         idb.insert("INSERT INTO Worm VALUES ('" + idText + "')");
+                        btnTillbakaActionPerformed(evt);
 
                         // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
                         if (bogloditeLista.contains(idText)) {
@@ -484,7 +480,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                     // Uppdaterar rastabellen med vald information.
                 } else if (regRas.equals("Ingen")) {
                     uppdatera();
-
+                    btnTillbakaActionPerformed(evt);
                     // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
                     if (bogloditeLista.contains(idText)) {
                         idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
@@ -501,7 +497,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
                 }
 
-                JOptionPane.showMessageDialog(null, "Uppdateringen lyckades!");
+                
 
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -563,10 +559,14 @@ public class UppdateraAlien extends javax.swing.JFrame {
             idb.update("UPDATE Alien SET Losenord = '" + regLosenord + "' WHERE Alien_ID = '" + idText + "'");
             idb.update("UPDATE Alien SET Plats = '" + platsID + "' WHERE Alien_ID = '" + idText + "'");
             idb.update("UPDATE Alien SET Ansvarig_Agent = '" + regAgentID + "'WHERE Alien_ID = '" + idText + "'");
+            
+            JOptionPane.showMessageDialog(null, "Uppdateringen lyckades!");
+            
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());
         }
+        
     }
 
 
@@ -576,7 +576,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JToggleButton btnValjRas;
     private javax.swing.JComboBox<String> cmbAnsAgent;
-    private javax.swing.JComboBox<String> cmbOmrade;
     private javax.swing.JComboBox<String> cmbPlats;
     private javax.swing.JComboBox<String> cmbRas;
     private javax.swing.JLabel jLabel1;
@@ -587,7 +586,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblConfirm;
     private javax.swing.JLabel lblLosen;
     private javax.swing.JLabel lblNamn;
-    private javax.swing.JLabel lblOmrade;
     private javax.swing.JLabel lblPersInfo;
     private javax.swing.JLabel lblPlats;
     private javax.swing.JLabel lblRas;

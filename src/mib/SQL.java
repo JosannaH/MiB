@@ -197,11 +197,23 @@ public class SQL extends javax.swing.JFrame {
 
         String[] fran = franDatum.split("-");
         String[] till = tillDatum.split("-");
-        String franDatumString = fran[0] + fran[1] + fran[2];
-        String tillDatumString = till[0] + till[1] + till[2];
-
-        int franDatumInt = Integer.parseInt(franDatumString);
-        int tillDatumInt = Integer.parseInt(tillDatumString);
+        String franDatumString = "";
+        String tillDatumString = "";
+        
+        int franDatumInt = 0;
+        int tillDatumInt = 0;
+        
+        try{
+        franDatumString = fran[0] + fran[1] + fran[2];
+        tillDatumString = till[0] + till[1] + till[2];
+        
+        franDatumInt = Integer.parseInt(franDatumString);
+        tillDatumInt = Integer.parseInt(tillDatumString);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att datumen är korrekt ifyllda: ÅÅÅÅ-MM-DD");
+        }
+     
 
         // töm textarea inför ny sökning
         txtAreaListaDatum.setText("");
@@ -341,5 +353,41 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande: uppdateraKontorschef() " + e.getMessage());
         }
          lblNyChef.setText("Ny chef för " + kontor + " är " + nyChefNamn);
+     }
+     
+     
+     public boolean arAdmin(String anvID){
+         boolean result = false;
+         String admin = "";
+         
+         try{
+         admin = idb.fetchSingle("SELECT administrator FROM agent WHERE agent_ID =" + anvID);
+         }
+         catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande: arAdmin() " + e.getMessage());
+         }
+         if (admin.equals("J")){
+           result = true;
+         }
+         return result;
+     }
+     
+     public void tillStartsida(String anvId, String anvTyp){
+        setVisible(false);
+        boolean arAdmin = arAdmin(anvId);
+        
+        if (anvTyp.equals("Alien")){
+            StartsidaAlien a = new StartsidaAlien(idb, anvId, anvTyp);
+            a.setVisible(true);
+        }
+        else if (arAdmin == true){
+            StartsidaAdmin a = new StartsidaAdmin(idb, anvId, anvTyp);
+            a.setVisible(true);
+        }
+        else{
+            StartsidaAgent a = new StartsidaAgent(idb, anvId, anvTyp);
+            a.setVisible(true);
+        }
      }
 }

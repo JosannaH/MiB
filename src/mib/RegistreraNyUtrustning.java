@@ -56,11 +56,13 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         txtEgenskap = new javax.swing.JTextField();
         lblEgenskap = new javax.swing.JLabel();
         tbValjTyp = new javax.swing.JToggleButton();
-        btnLoggaUt = new javax.swing.JToggleButton();
+        btnGaTillbaka = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        menuBarInget = new javax.swing.JMenu();
+        menuTillStart = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
         menuBarInloggad = new javax.swing.JMenu();
+        menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,25 +100,36 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
             }
         });
 
-        btnLoggaUt.setText("Logga ut");
-        btnLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnGaTillbaka.setText("Gå tillbaka");
+        btnGaTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLoggaUtMouseClicked(evt);
-            }
-        });
-        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoggaUtActionPerformed(evt);
+                btnGaTillbakaMouseClicked(evt);
             }
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Vapen.png"))); // NOI18N
 
-        menuBarInget.setText("                                                                                                                                                                        ");
-        jMenuBar1.add(menuBarInget);
+        menuTillStart.setText("Till startsida");
+        menuTillStart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuTillStartMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuTillStart);
+
+        jMenu1.setText("                                                                                                                                       ");
+        jMenuBar1.add(jMenu1);
 
         menuBarInloggad.setText("Inloggad som XXX");
         jMenuBar1.add(menuBarInloggad);
+
+        menuLoggaUt.setText("Logga ut");
+        menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuLoggaUtMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuLoggaUt);
 
         setJMenuBar(jMenuBar1);
 
@@ -161,19 +174,24 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                         .addGap(86, 86, 86))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblConfirm)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLoggaUt)
-                        .addGap(17, 17, 17))))
+                        .addGap(17, 697, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(btnGaTillbaka)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitel)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGaTillbaka))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTitel)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
@@ -200,12 +218,8 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addComponent(lblConfirm)
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLoggaUt)
-                        .addGap(14, 14, 14))))
+                        .addComponent(lblConfirm)))
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -301,17 +315,49 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_tbValjTypMouseClicked
 
     // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
-    private void btnLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoggaUtMouseClicked
+    private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
         setVisible(false);
-        StartsidaAgent startsida = new StartsidaAgent(idb, anvId, anvTyp);
-        startsida.setVisible(true);
-    }//GEN-LAST:event_btnLoggaUtMouseClicked
+        SQL s = new SQL(idb);
+        boolean arAdmin = s.arAdmin(anvId);
+        
+        if (arAdmin == true){
+            HanteraUtrustningAdmin a = new HanteraUtrustningAdmin(idb, anvId, anvTyp);
+            a.setVisible(true);
+        }
+        else{
+            StartsidaAgent a = new StartsidaAgent(idb, anvId, anvTyp);
+            a.setVisible(true);
+    }//GEN-LAST:event_btnGaTillbakaMouseClicked
+    }
+    /**
+     * Gå tillbaka till startsida, olika beroende på om anv är admin eller vanlig agent
+     * @param evt 
+     */
+    private void menuTillStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTillStartMouseClicked
+         setVisible(false);
+        SQL s = new SQL(idb);
+        boolean arAdmin = s.arAdmin(anvId);
+        
+        if (arAdmin == true){
+            StartsidaAdmin a = new StartsidaAdmin(idb, anvId, anvTyp);
+            a.setVisible(true);
+        }
+        else{
+            StartsidaAgent a = new StartsidaAgent(idb, anvId, anvTyp);
+            a.setVisible(true);
+    }                                          
+    
+    }//GEN-LAST:event_menuTillStartMouseClicked
 
-    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
+    /**
+     * Logga ut och gå tillbaka till inloggningsfönster
+     * @param evt 
+     */
+    private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
-    }//GEN-LAST:event_btnLoggaUtActionPerformed
+    }//GEN-LAST:event_menuLoggaUtMouseClicked
 
     /* Denna metod genererar ett ID för varje ny registrerad utrustning. För att det ska bli ett nytt ID som inte går att ändras anropas den i konstruktorn. 
     För att generera nytt ID i sifferordning anropas getAutoIncrement(). */
@@ -329,11 +375,12 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnLoggaUt;
+    private javax.swing.JToggleButton btnGaTillbaka;
     private javax.swing.JButton btnSpara;
     private javax.swing.JComboBox<String> cmbUtrustningstyp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblBenamning;
     private javax.swing.JLabel lblConfirm;
@@ -342,8 +389,9 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
     private javax.swing.JLabel lblUtrustning;
     private javax.swing.JLabel lblUtrustningID;
     private javax.swing.JLabel lblUtrustningsTyp;
-    private javax.swing.JMenu menuBarInget;
     private javax.swing.JMenu menuBarInloggad;
+    private javax.swing.JMenu menuLoggaUt;
+    private javax.swing.JMenu menuTillStart;
     private javax.swing.JToggleButton tbValjTyp;
     private javax.swing.JTextField txtBenamning;
     private javax.swing.JTextField txtEgenskap;

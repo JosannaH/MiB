@@ -40,7 +40,7 @@ public class AndraLosenord extends javax.swing.JFrame {
 
         lblAgentBild = new javax.swing.JLabel();
         lblRubrik = new javax.swing.JLabel();
-        btnLoggaUt = new javax.swing.JToggleButton();
+        btnTillbaka = new javax.swing.JToggleButton();
         lblAnvandare = new javax.swing.JLabel();
         lblNuvLosen = new javax.swing.JLabel();
         lblNyttLosen = new javax.swing.JLabel();
@@ -50,9 +50,10 @@ public class AndraLosenord extends javax.swing.JFrame {
         txtAnvandare = new javax.swing.JTextField();
         lblMeddelande = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        menuTillStartsida = new javax.swing.JMenu();
         menuInget = new javax.swing.JMenu();
         menuInloggad = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,10 +63,10 @@ public class AndraLosenord extends javax.swing.JFrame {
         lblRubrik.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         lblRubrik.setText("Ändra lösenord");
 
-        btnLoggaUt.setText("Logga ut");
-        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
+        btnTillbaka.setText("Gå tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoggaUtActionPerformed(evt);
+                btnTillbakaActionPerformed(evt);
             }
         });
 
@@ -83,12 +84,27 @@ public class AndraLosenord extends javax.swing.JFrame {
             }
         });
 
-        menuInget.setText("                                                                                                                                                                  ");
+        menuTillStartsida.setText("Tillbaka till startsida");
+        menuTillStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuTillStartsidaMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuTillStartsida);
+
+        menuInget.setText("                                                                                                              ");
         jMenuBar1.add(menuInget);
 
         menuInloggad.setText("Inloggad som XXX");
         jMenuBar1.add(menuInloggad);
-        jMenuBar1.add(jMenu3);
+
+        menuLoggaUt.setText("Logga ut");
+        menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuLoggaUtMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuLoggaUt);
 
         setJMenuBar(jMenuBar1);
 
@@ -101,16 +117,17 @@ public class AndraLosenord extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblNyttLosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(49, 49, 49))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblNuvLosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblAnvandare, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)))
+                                .addComponent(lblNyttLosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(49, 49, 49))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNuvLosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAnvandare, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnTillbaka))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtAnvandare)
                             .addComponent(pwNyttLosen, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
@@ -126,9 +143,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                                 .addComponent(lblMeddelande, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(100, 100, 100)))))
                 .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLoggaUt)
-                .addGap(17, 17, 17))
+                .addGap(101, 101, 101))
             .addGroup(layout.createSequentialGroup()
                 .addGap(186, 186, 186)
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -139,45 +154,45 @@ public class AndraLosenord extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLoggaUt)
-                        .addGap(14, 14, 14))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblAnvandare)
+                            .addComponent(txtAnvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNuvLosen)
+                            .addComponent(pwNuvLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNyttLosen)
+                            .addComponent(pwNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblAnvandare)
-                                    .addComponent(txtAnvandare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblNuvLosen)
-                                    .addComponent(pwNuvLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNyttLosen)
-                                    .addComponent(pwNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)
                                 .addComponent(btnAndraLosen)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblMeddelande)))
-                        .addContainerGap(30, Short.MAX_VALUE))))
+                                .addComponent(lblMeddelande))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnTillbaka)))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
-        Inloggning inlogg = new Inloggning(idb);
-        inlogg.setVisible(true);
-    }//GEN-LAST:event_btnLoggaUtActionPerformed
+        SQL s = new SQL(idb);
+      s.tillStartsida(anvId, anvTyp);
+       
+    }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
 
@@ -214,6 +229,18 @@ public class AndraLosenord extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAndraLosenActionPerformed
 
+    private void menuTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTillStartsidaMouseClicked
+       setVisible(false);
+        SQL s = new SQL(idb);
+        s.tillStartsida(anvId, anvTyp);
+    }//GEN-LAST:event_menuTillStartsidaMouseClicked
+
+    private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
+        setVisible(false);
+        Inloggning inlogg = new Inloggning(idb);
+        inlogg.setVisible(true);
+    }//GEN-LAST:event_menuLoggaUtMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -221,8 +248,7 @@ public class AndraLosenord extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosen;
-    private javax.swing.JToggleButton btnLoggaUt;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblAgentBild;
     private javax.swing.JLabel lblAnvandare;
@@ -232,6 +258,8 @@ public class AndraLosenord extends javax.swing.JFrame {
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JMenu menuInget;
     private javax.swing.JMenu menuInloggad;
+    private javax.swing.JMenu menuLoggaUt;
+    private javax.swing.JMenu menuTillStartsida;
     private javax.swing.JPasswordField pwNuvLosen;
     private javax.swing.JPasswordField pwNyttLosen;
     private javax.swing.JTextField txtAnvandare;

@@ -15,7 +15,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="                                                                                 "/>
+            <Property name="text" type="java.lang.String" value="                                                                                                             "/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuBarInloggadSom">
@@ -93,13 +93,8 @@
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" pref="383" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblVanligenAnge" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
-                                  <Component id="lblDennaAgent" alignment="0" min="-2" pref="345" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblVanligenAnge" alignment="0" min="-2" pref="290" max="-2" attributes="0"/>
+                          <Component id="lblDennaAgent" alignment="0" min="-2" pref="345" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
