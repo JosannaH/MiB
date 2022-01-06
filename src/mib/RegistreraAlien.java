@@ -476,14 +476,23 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
-        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
-        startsidaAgent.setVisible(true);
+        SQL s = new SQL(idb);
+        s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        SQL s = new SQL(idb);
+        boolean admin = s.arAdmin(anvId);
         setVisible(false);
-        HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
-        h.setVisible(true);
+        
+        if(admin){
+            HanteraAliensAdmin h = new HanteraAliensAdmin(idb, anvId, anvTyp);
+            h.setVisible(true);
+        }
+        else{
+            HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
+            h.setVisible(true);
+        }
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked

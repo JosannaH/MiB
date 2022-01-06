@@ -517,16 +517,25 @@ public class UppdateraAlien extends javax.swing.JFrame {
 
     // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        SQL s = new SQL(idb);
+        boolean admin = s.arAdmin(anvId);
         setVisible(false);
-        HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
-        hanteraAliens.setVisible(true);
+        
+        if(admin){
+            HanteraAliensAdmin h = new HanteraAliensAdmin(idb, anvId, anvTyp);
+            h.setVisible(true);
+        }
+        else{
+            HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
+            h.setVisible(true);
+        }
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
-        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
-        startsidaAgent.setVisible(true);
+        SQL s = new SQL(idb);
+        s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
 
     //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
