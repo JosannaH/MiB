@@ -293,6 +293,8 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                     }
                     
                         idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID ="+soktID+"");
+                        
+                        jButton3ActionPerformed(evt);
 
                 } catch (InfException e) {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
