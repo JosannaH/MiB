@@ -22,6 +22,9 @@ public class ListaAliensRas extends javax.swing.JFrame {
     private InfDB idb;
     private String anvId;
     private String anvTyp;
+    ArrayList<String> squidLista;
+    ArrayList<String> bogloditeLista;
+    ArrayList<String> wormLista;
 
     public ListaAliensRas(InfDB idb) {
         initComponents();
@@ -34,7 +37,7 @@ public class ListaAliensRas extends javax.swing.JFrame {
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
-        
+
     }
 
     /**
@@ -73,7 +76,7 @@ public class ListaAliensRas extends javax.swing.JFrame {
 
         lblRas.setText("Välj ras:");
 
-        cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Squid", "Worm" }));
+        cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Squid", "Worm", "Ingen ras" }));
         cmbRas.setToolTipText("");
 
         btnRas.setText("Välj");
@@ -189,17 +192,66 @@ public class ListaAliensRas extends javax.swing.JFrame {
         startsidaAgent.setVisible(true);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
-   /**
+    /**
      * Bekräfta vald ras och visa lista i TextArea
      *
      * @param evt
      */
     private void btnRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRasMouseClicked
-        // Sparar användarens val av ras
+       txtLista.setText("");
+        String valdRas = cmbRas.getSelectedItem().toString();
+        // Listans rubriker
+        txtLista.append("AlienID \t Namn \t\t Telefon \n");
+        try {
+            if (valdRas.equals("Boglodite")) {
+                bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+                  
+                for (int i = 0; i < bogloditeLista.size(); i++) {
+                    String ID = bogloditeLista.get(i);
+                    String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
+                    String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
+                    txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
+                }
+               
+            }
+            else if(valdRas.equals("Squid")){
+
+                squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+            
+                for (int i = 0; i < squidLista.size(); i++) {
+                    String ID = squidLista.get(i);
+                    String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
+                    String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
+                    txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
+            }
+            }
+            else if(valdRas.equals("Worm")){
+
+                wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+            
+                for (int i = 0; i < wormLista.size(); i++) {
+                    String ID = squidLista.get(i);
+                    String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
+                    String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
+                    txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
+            }
+            }
+            else{
+                // kolla koden i chatten
+            }
+            
+            
+
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage());
+        }
+
+        /* // Sparar användarens val av ras
         String valdRas = cmbRas.getSelectedItem().toString();
         SQL sql = new SQL(idb);
         // fyller textarean med aliens av vald ras
-        sql.fyllListaAlienRas(valdRas, txtLista);
+        sql.fyllListaAlienRas(valdRas, txtLista);*/
     }//GEN-LAST:event_btnRasMouseClicked
 
     /**
