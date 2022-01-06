@@ -165,9 +165,9 @@ public class TaBortAlien extends javax.swing.JFrame {
         });
 
         btnTillbaka.setText("Gå tillbaka");
-        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTillbakaActionPerformed(evt);
+        btnTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTillbakaMouseClicked(evt);
             }
         });
 
@@ -399,13 +399,6 @@ public class TaBortAlien extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSokMouseClicked
 
-    // Metoden gör nuvarande fönster osynligt och öppnar klassen HanteraAliensAdmin i nytt fönster.
-    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        setVisible(false);
-        HanteraAliensAdmin hanteraAliens = new HanteraAliensAdmin(idb, anvId, anvTyp);
-        hanteraAliens.setVisible(true);
-    }//GEN-LAST:event_btnTillbakaActionPerformed
-
     // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
     private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
         setVisible(false);
@@ -450,6 +443,7 @@ public class TaBortAlien extends javax.swing.JFrame {
                     } else if (wormLista.contains(alienID)) {
                         idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + alienID + "'");
                     }
+                    btnTillbakaMouseClicked(evt);
 
                 } catch (InfException e) {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -460,6 +454,12 @@ public class TaBortAlien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
         }
     }//GEN-LAST:event_btnRaderaMouseClicked
+
+    private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
+        setVisible(false);
+        HanteraAliensAdmin hanteraAliens = new HanteraAliensAdmin(idb, anvId, anvTyp);
+        hanteraAliens.setVisible(true);
+    }//GEN-LAST:event_btnTillbakaMouseClicked
 
     /**
      * @param args the command line arguments
