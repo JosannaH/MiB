@@ -219,28 +219,27 @@ public class TaBortUtrustning extends javax.swing.JFrame {
             if (input == 0) {
                 try {
                     String soktID = txtID.getText();
-
-                    // Här raderas information från tabellen Utrustning.
-                    idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID ="+soktID+"");
-
+                    
                     // För att kunna kontrollera vilken tabell som sökt ID finns inom (Utrustningstyp) används tre ArrayLists där man lagrar information om värdena. 
                     vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
                     teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
-                    kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikatiob ORDER BY Utrustnings_ID");
+                    kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
 
                     // Beroende på vilken tabell som används raderas värdena baserat pp sökt ID. 
                     if (vapenLista.contains(soktID)) {
                         idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID +"");
                         idb.delete("DELETE FROM Vapen WHERE Utrustnings_ID = " + soktID +"");
                     } else if (teknikLista.contains(soktID)) {
-                        idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = " + soktID +"");
                         idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID +"");
+                        idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = " + soktID +"");
 
                     } else if (kommunikationsLista.contains(soktID)) {
-                        idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = " + soktID+"");
                         idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID +"");
+                        idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = " + soktID+"");
 
                     }
+                    
+                        idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID ="+soktID+"");
 
                 } catch (InfException e) {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
