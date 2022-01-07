@@ -10,7 +10,7 @@ import oru.inf.InfException;
 
 /**
  *
- * @author Josanna, Lind & Lisa
+ * @author Josanna, Linda & Lisa
  */
 public class VisaOmradesChefAlien extends javax.swing.JFrame {
 
@@ -157,19 +157,24 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
     // Metoden fyller information i angedda fält om inloggad aliens chef. Detta görs med angett inloggningsID.
     private void visaChef() {
         try {
-
+            // Hämtar information från databasen.
             String platsID = idb.fetchSingle("SELECT Plats FROM alien WHERE Alien_ID ='" + anvId + "'");
             String omrade = idb.fetchSingle("SELECT Finns_I FROM plats WHERE Plats_ID ='" + platsID + "'");
             String omradesNamn = idb.fetchSingle("SELECT Benamning FROM omrade WHERE Omrades_ID ='" + omrade + "'");
+            // Fyller fältet med den information som hämtats från databasen.
             lblOmrade2.setText(omradesNamn);
 
+            // Hämtar information från databasen.
             String chef = idb.fetchSingle("SELECT Agent_ID FROM omradeschef WHERE Omrade = '" + omrade + "'");
             String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + chef + "'");
+            // Fyller fältet med den information som hämtats från databasen.
             lblChef2.setText(agentNamn);
 
+            // Hämtar information från databasen.
             String namn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID = '" + chef + "'");
             String telefon = idb.fetchSingle("SELECT Telefon FROM agent WHERE Agent_ID = '" + chef + "'");
-
+            
+            // Fyller fälten med den information som hämtats från databasen.
             lblChef2.setText(namn);
             lblTelefon2.setText(telefon);
 

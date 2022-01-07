@@ -132,11 +132,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 btnSokMouseClicked(evt);
             }
         });
-        btnSok.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSokActionPerformed(evt);
-            }
-        });
 
         btnSpara.setText("Spara ändringar");
         btnSpara.addActionListener(new java.awt.event.ActionListener() {
@@ -302,22 +297,34 @@ public class UppdateraAlien extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /* Metoden döljer en ruta som lagrar information tillhörande specifik utrustning. metoden anropas direkt i konstruktorn
-    för att inledningsvis döljas. */
+    /**
+     * Metoden döljer en ruta som lagrar information tillhörande specifik
+     * utrustning. metoden anropas direkt i konstruktorn för att inledningsvis
+     * döljas.
+     */
     private void doljText(JTextField textAttDolja) {
         textAttDolja.setVisible(false);
     }
 
-    /* Metoden döljer en rubrik som lagrar information tillhörande specifik utrustning. metoden anropas direkt i konstruktorn
-    för att inledningsvis döljas. */
+    /**
+     * Metoden döljer en rubrik som lagrar information tillhörande specifik
+     * utrustning. metoden anropas direkt i konstruktorn för att inledningsvis
+     * döljas.
+     */
     private void doljLabel(JLabel lablAttDolja) {
         lablAttDolja.setVisible(false);
     }
 
-    // Varje ras har egen information som behöver lagras. Detta görs genom knappen välj. Beroende på ras så ska olik information visas.
+    /**
+     * Varje ras har egen information som behöver lagras. Detta görs genom
+     * knappen välj. Beroende på ras så ska olik information visas.
+     *
+     */
     private void btnValjRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValjRasMouseClicked
+        // Hämtar information från markerat alternativ i rullisten. 
         String ras = cmbRas.getSelectedItem().toString();
 
+        // Via en villkorssats visas tillhörande information om rasen. 
         if (ras.equals("Boglodite")) {
             txtRasInfo.setVisible(true);
             lblRasInfo.setVisible(true);
@@ -335,184 +342,193 @@ public class UppdateraAlien extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnValjRasMouseClicked
 
-    // Metoden söker upp information om det alienID man har angett.
+    /**
+     * Metoden söker upp information om det alienID man har angett.
+     *
+     * @param evt
+     */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
 
         // Kontrollerar att fältet för alienID är ifyllt.
         if (Validering.textFaltHarVarde(txtAlienID)) {
-            if(Validering.txtFaltHarSiffror(txtAlienID)){
-            String idText = txtAlienID.getText();
+            if (Validering.txtFaltHarSiffror(txtAlienID)) {
+                String idText = txtAlienID.getText();
 
-            try {
+                try {
 
-                // Koden nedan hämtar information baserat på det ID man har angett.
-                txtAlienID.setText(idText);
+                    // Koden nedan hämtar information baserat på det ID man har angett.
+                    txtAlienID.setText(idText);
 
-                String losen = idb.fetchSingle("SELECT Losenord FROM alien WHERE Alien_ID ='" + idText + "'");
-                pswLosen.setText(losen);
+                    String losen = idb.fetchSingle("SELECT Losenord FROM alien WHERE Alien_ID ='" + idText + "'");
+                    pswLosen.setText(losen);
 
-                String namn = idb.fetchSingle("SELECT Namn FROM alien WHERE Alien_ID ='" + idText + "'");
-                txtNamn.setText(namn);
+                    String namn = idb.fetchSingle("SELECT Namn FROM alien WHERE Alien_ID ='" + idText + "'");
+                    txtNamn.setText(namn);
 
-                String telefon = idb.fetchSingle("SELECT Telefon FROM alien WHERE Alien_ID ='" + idText + "'");
-                txtTelefon.setText(telefon);
+                    String telefon = idb.fetchSingle("SELECT Telefon FROM alien WHERE Alien_ID ='" + idText + "'");
+                    txtTelefon.setText(telefon);
 
-                String platsID = idb.fetchSingle("SELECT Plats FROM alien WHERE Alien_ID ='" + idText + "'");
-                String platsNamn = idb.fetchSingle("SELECT Benamning FROM plats WHERE Plats_ID ='" + platsID + "'");
-                cmbPlats.setSelectedItem(platsNamn);
+                    String platsID = idb.fetchSingle("SELECT Plats FROM alien WHERE Alien_ID ='" + idText + "'");
+                    String platsNamn = idb.fetchSingle("SELECT Benamning FROM plats WHERE Plats_ID ='" + platsID + "'");
+                    cmbPlats.setSelectedItem(platsNamn);
 
-                String agent = idb.fetchSingle("SELECT Ansvarig_Agent FROM alien WHERE Alien_ID ='" + idText + "'");
-                String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + agent + "'");
-                cmbAnsAgent.setSelectedItem(agentNamn);
+                    String agent = idb.fetchSingle("SELECT Ansvarig_Agent FROM alien WHERE Alien_ID ='" + idText + "'");
+                    String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + agent + "'");
+                    cmbAnsAgent.setSelectedItem(agentNamn);
 
-                // Nedan använder man ArrayList för att hämta information kopplat till den ras som alienID är kopplat till.
-                if (squidLista.contains(idText)) {
-                    cmbRas.setSelectedItem("Squid");
+                    // Nedan använder man ArrayList för att hämta information kopplat till den ras som alienID är kopplat till.
+                    if (squidLista.contains(idText)) {
+                        cmbRas.setSelectedItem("Squid");
 
-                    String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + idText + "'");
-                    txtRasInfo.setText(antalArmar);
-                    txtRasInfo.setVisible(true);
+                        String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + idText + "'");
+                        txtRasInfo.setText(antalArmar);
+                        txtRasInfo.setVisible(true);
 
-                    lblRasInfo.setVisible(true);
-                    lblRasInfo.setText("Antal Armar");
-                } else if (bogloditeLista.contains(idText)) {
-                    cmbRas.setSelectedItem("Boglodite");
+                        lblRasInfo.setVisible(true);
+                        lblRasInfo.setText("Antal Armar");
+                    } else if (bogloditeLista.contains(idText)) {
+                        cmbRas.setSelectedItem("Boglodite");
 
-                    String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + idText + "'");
-                    txtRasInfo.setText(antalBoogies);
-                    txtRasInfo.setVisible(true);
+                        String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + idText + "'");
+                        txtRasInfo.setText(antalBoogies);
+                        txtRasInfo.setVisible(true);
 
-                    lblRasInfo.setVisible(true);
-                    lblRasInfo.setText("Antal Boogies");
-                } else if (wormLista.contains(idText)) {
-                    cmbRas.setSelectedItem("Worm");
-                } else {
-                    cmbRas.setSelectedItem("Ingen");
+                        lblRasInfo.setVisible(true);
+                        lblRasInfo.setText("Antal Boogies");
+                    } else if (wormLista.contains(idText)) {
+                        cmbRas.setSelectedItem("Worm");
+                    } else {
+                        cmbRas.setSelectedItem("Ingen");
+                    }
+
+                } // Om något går fel visas ett felmeddelande. 
+                catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande" + e.getMessage());
                 }
-
-            } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-                System.out.println("Internt felmeddelande" + e.getMessage());
             }
-            }
-        } else {
+        } // Felmeddelande visas om ID inte är ifyllt.
+        else {
             JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
         }
     }//GEN-LAST:event_btnSokMouseClicked
 
-    // Metoden lägger till den information man har uppdaterat om valt alienID.
+    /**
+     * Metoden lägger till den information man har uppdaterat om valt alienID.
+     *
+     * @param evt
+     */
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
 
         // Kontrollerar att viktiga fält är ifyllda innan man kan lagra ny information.
         if (Validering.textFaltHarVarde(txtAlienID) && Validering.passwordHarVarde(pswLosen) && Validering.textFaltHarVarde(txtNamn)) {
-            
+
             String idText = txtAlienID.getText();
             String regRas = cmbRas.getSelectedItem().toString();
             String rasInfo = txtRasInfo.getText();
             String regLosenord = pswLosen.getText();
 
+            // Kontrollerar att lösenordet är korrekt ifyllt.
             if (regLosenord.length() <= 6 && regLosenord.length() >= 3) {
 
-            try {
-
-                // Kontrollerar att beroende på vilken ras man har angett måste även tillhörande fält vara ifyllt. Uppdaterar rastabellen med vald information.
-                if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
-                    uppdatera();
-                    
-
-                    if (bogloditeLista.contains(idText)) {
-                        // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
-                        idb.update("UPDATE Boglodite SET Antal_Boogies = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
-                        btnTillbakaActionPerformed(evt);
-                    } else {
-                        idb.insert("INSERT INTO Boglodite VALUES ('" + idText + "', '" + rasInfo + "')");
-                        btnTillbakaActionPerformed(evt);
-
-                        // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
-                        if (squidLista.contains(idText)) {
-                            idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
-                        }
-                        if (wormLista.contains(idText)) {
-                            idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
-                        }
-                    }
+                try {
 
                     // Kontrollerar att beroende på vilken ras man har angett måste även tillhörande fält vara ifyllt. Uppdaterar rastabellen med vald information.
-                } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
-                    uppdatera();
+                    if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
+                        uppdatera();
 
-                    if (squidLista.contains(idText)) {
                         // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
-                        idb.update("UPDATE Squid SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
-                        btnTillbakaActionPerformed(evt);
-                    } else {
-                        idb.insert("INSERT INTO Squid VALUES ('" + idText + "', '" + rasInfo + "')");
-                        btnTillbakaActionPerformed(evt);
+                        if (bogloditeLista.contains(idText)) {
+                            idb.update("UPDATE Boglodite SET Antal_Boogies = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+                            btnTillbakaActionPerformed(evt);
+                        } else {
+                            idb.insert("INSERT INTO Boglodite VALUES ('" + idText + "', '" + rasInfo + "')");
+                            btnTillbakaActionPerformed(evt);
 
+                            // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
+                            if (squidLista.contains(idText)) {
+                                idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
+                            }
+                            if (wormLista.contains(idText)) {
+                                idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
+                            }
+                        }
+
+                        // Kontrollerar att beroende på vilken ras man har angett måste även tillhörande fält vara ifyllt. Uppdaterar rastabellen med vald information.
+                    } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
+                        uppdatera();
+
+                        // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
+                        if (squidLista.contains(idText)) {
+                            idb.update("UPDATE Squid SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+                            btnTillbakaActionPerformed(evt);
+                        } else {
+                            idb.insert("INSERT INTO Squid VALUES ('" + idText + "', '" + rasInfo + "')");
+                            btnTillbakaActionPerformed(evt);
+
+                            // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
+                            if (bogloditeLista.contains(idText)) {
+                                idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
+                            }
+                            if (wormLista.contains(idText)) {
+                                idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
+                            }
+                        }
+
+                        // Uppdaterar rastabellen med vald information.
+                    } else if (regRas.equals("Worm")) {
+                        uppdatera();
+
+                        // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
+                        if (wormLista.contains(idText)) {
+                            idb.update("UPDATE Worm SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+                            btnTillbakaActionPerformed(evt);
+                        } else {
+                            idb.insert("INSERT INTO Worm VALUES ('" + idText + "')");
+                            btnTillbakaActionPerformed(evt);
+
+                            // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
+                            if (bogloditeLista.contains(idText)) {
+                                idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
+                            }
+                            if (squidLista.contains(idText)) {
+                                idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
+                            }
+                        }
+
+                        // Uppdaterar rastabellen med vald information.
+                    } else if (regRas.equals("Ingen")) {
+                        uppdatera();
+                        btnTillbakaActionPerformed(evt);
                         // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
                         if (bogloditeLista.contains(idText)) {
                             idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
+                        }
+
+                        if (squidLista.contains(idText)) {
+                            idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
                         }
                         if (wormLista.contains(idText)) {
                             idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
                         }
+
+                    } // Om fälten ej är korrekt ifyllda visas felmeddelande.
+                    else {
+                        JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
                     }
 
-                    // Uppdaterar rastabellen med vald information.
-                } else if (regRas.equals("Worm")) {
-                    uppdatera();
-
-                    if (wormLista.contains(idText)) {
-                        // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
-                        idb.update("UPDATE Worm SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
-                        btnTillbakaActionPerformed(evt);
-                    } else {
-                        idb.insert("INSERT INTO Worm VALUES ('" + idText + "')");
-                        btnTillbakaActionPerformed(evt);
-
-                        // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
-                        if (bogloditeLista.contains(idText)) {
-                            idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
-                        }
-                        if (squidLista.contains(idText)) {
-                            idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
-                        }
-                    }
-
-                    // Uppdaterar rastabellen med vald information.
-                } else if (regRas.equals("Ingen")) {
-                    uppdatera();
-                    btnTillbakaActionPerformed(evt);
-                    // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
-                    if (bogloditeLista.contains(idText)) {
-                        idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
-                    }
-
-                    if (squidLista.contains(idText)) {
-                        idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
-                    }
-                    if (wormLista.contains(idText)) {
-                        idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
-                    }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+                } // Om något går fel så visas ett felmeddelande.
+                catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande" + e.getMessage());
                 }
-
-                
-
-            } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-                System.out.println("Internt felmeddelande" + e.getMessage());
-            }
-            }
-            
+            } // Om lösenordet inte är korrekt ifyllt visas ett felmeddelande. 
             else {
-                    JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
-                }
-            
+                JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
+            }
 
-        } else {
+        } // Om fälten ej är korrekt ifyllda visas felmeddelande.
+        else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
 
@@ -521,15 +537,16 @@ public class UppdateraAlien extends javax.swing.JFrame {
 
     // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+
+        //Baserat på om inloggad agent är admin eller inte visas olika sidor. Detta gör man genom en separat metod i SQL.
         SQL s = new SQL(idb);
         boolean admin = s.arAdmin(anvId);
         setVisible(false);
-        
-        if(admin){
+
+        if (admin) {
             HanteraAliensAdmin h = new HanteraAliensAdmin(idb, anvId, anvTyp);
             h.setVisible(true);
-        }
-        else{
+        } else {
             HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
             h.setVisible(true);
         }
@@ -549,10 +566,9 @@ public class UppdateraAlien extends javax.swing.JFrame {
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
-    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSokActionPerformed
-
+    /**
+     * Metoden uppdaterar tabellen alien med den information som finns i fälten.
+     */
     private void uppdatera() {
         String idText = txtAlienID.getText();
 
@@ -572,14 +588,14 @@ public class UppdateraAlien extends javax.swing.JFrame {
             idb.update("UPDATE Alien SET Losenord = '" + regLosenord + "' WHERE Alien_ID = '" + idText + "'");
             idb.update("UPDATE Alien SET Plats = '" + platsID + "' WHERE Alien_ID = '" + idText + "'");
             idb.update("UPDATE Alien SET Ansvarig_Agent = '" + regAgentID + "'WHERE Alien_ID = '" + idText + "'");
-            
+
             JOptionPane.showMessageDialog(null, "Uppdateringen lyckades!");
-            
+
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());
         }
-        
+
     }
 
 

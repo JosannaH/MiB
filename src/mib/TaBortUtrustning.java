@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
- * @author luna
+ * @author Josanna, Linda & Lisa
  */
 public class TaBortUtrustning extends javax.swing.JFrame {
 
@@ -20,7 +21,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
     ArrayList<String> vapenLista;
     ArrayList<String> teknikLista;
     ArrayList<String> kommunikationsLista;
-    
+
     /**
      * Creates new form TaBortUtrustning
      */
@@ -31,7 +32,6 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
         lblInfo.setVisible(false);
         txtSpec.setVisible(false);
-
     }
 
     /**
@@ -47,22 +47,22 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jLabel1 = new javax.swing.JLabel();
+        lblRubrik = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
+        lblBenamning = new javax.swing.JLabel();
         txtBenamning = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lblUtrustning = new javax.swing.JLabel();
         lblInfo = new javax.swing.JLabel();
         txtTyp = new javax.swing.JTextField();
         txtSpec = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnRadera = new javax.swing.JButton();
+        btnSok = new javax.swing.JButton();
+        btnTillbaka = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        menuStartsida = new javax.swing.JMenu();
+        menuInlogg = new javax.swing.JMenu();
+        menuLoggaUt = new javax.swing.JMenu();
 
         jMenu3.setText("File");
         jMenuBar2.add(jMenu3);
@@ -72,74 +72,61 @@ public class TaBortUtrustning extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 24)); // NOI18N
-        jLabel1.setText("RADERA UTRUSTNING");
+        lblRubrik.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 24)); // NOI18N
+        lblRubrik.setText("RADERA UTRUSTNING");
 
-        txtID.setText("ID");
+        lblID.setText("Utrustnings-ID");
 
-        jLabel2.setText("Utrustnings-ID");
-
-        jLabel3.setText("Benämning");
+        lblBenamning.setText("Benämning");
 
         txtBenamning.setText("-");
 
-        jLabel4.setText("Utrustningstyp");
+        lblUtrustning.setText("Utrustningstyp");
 
         lblInfo.setText("-");
 
         txtTyp.setText("-");
-        txtTyp.addActionListener(new java.awt.event.ActionListener() {
+
+        btnRadera.setForeground(new java.awt.Color(255, 0, 0));
+        btnRadera.setText("Radera");
+        btnRadera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTypActionPerformed(evt);
+                btnRaderaActionPerformed(evt);
             }
         });
 
-        txtSpec.addActionListener(new java.awt.event.ActionListener() {
+        btnSok.setText("Sök");
+        btnSok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSpecActionPerformed(evt);
+                btnSokActionPerformed(evt);
             }
         });
 
-        jButton1.setForeground(new java.awt.Color(255, 0, 0));
-        jButton1.setText("Radera");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnTillbakaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Sök");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Tillbaka");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jMenu1.setText("Gå till startsida");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        menuStartsida.setText("Gå till startsida");
+        menuStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                menuStartsidaMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuStartsida);
 
-        jMenu5.setText("                                                                                                              Inloggad som Admin");
-        jMenuBar1.add(jMenu5);
+        menuInlogg.setText("                                                                                                                                                   Inloggad som Admin");
+        jMenuBar1.add(menuInlogg);
 
-        jMenu2.setText("Logga ut");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        menuLoggaUt.setText("Logga ut");
+        menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+                menuLoggaUtMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(menuLoggaUt);
 
         setJMenuBar(jMenuBar1);
 
@@ -149,21 +136,21 @@ public class TaBortUtrustning extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3)
+                .addComponent(btnTillbaka)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(246, 246, 246)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblRubrik)
                         .addGap(0, 271, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
+                                    .addComponent(lblID)
+                                    .addComponent(lblBenamning)
+                                    .addComponent(lblUtrustning)
                                     .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(52, 52, 52)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -172,97 +159,109 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                                     .addComponent(txtBenamning, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtSpec))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
+                                .addComponent(btnSok))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(88, 88, 88)
-                                .addComponent(jButton1)))
+                                .addComponent(btnRadera)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(63, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(lblRubrik)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton2))
+                    .addComponent(lblID)
+                    .addComponent(btnSok))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(lblBenamning)
                     .addComponent(txtBenamning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(lblUtrustning)
                     .addComponent(txtTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblInfo)
                     .addComponent(txtSpec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
-                .addComponent(jButton1)
+                .addComponent(btnRadera)
                 .addGap(3, 3, 3)
-                .addComponent(jButton3)
+                .addComponent(btnTillbaka)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-// Sökning
+    // Sökning
+    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
+        // Kontrollerar om fältet för ID är ifyllt samt att det endast består av siffror. 
+        if (Validering.textFaltHarVarde(txtID)) {
+            if (Validering.txtFaltHarSiffror(txtID)) {
 
-    
-    try {
-    vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
-    teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
-    kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
-    
-    String soktID = txtID.getText();
-    int soktIDint = Integer.parseInt(soktID);
-    
-    String benamning = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID="+soktIDint+"");
-    txtBenamning.setText(benamning);
-    
-    if (vapenLista.contains(soktID)) {
-    lblInfo.setVisible(true);
-    lblInfo.setText("Kaliber");
-    txtSpec.setVisible(true);
-    String vapenKaliber = idb.fetchSingle("SELECT Kaliber FROM Vapen WHERE Utrustnings_ID="+soktIDint+"");
-    txtSpec.setText(vapenKaliber);
-    txtTyp.setText("Vapen");
-    }
-    
-    else if (teknikLista.contains(soktID)) {
-    lblInfo.setVisible(true);
-    lblInfo.setText("Kraftkälla");
-    txtSpec.setVisible(true);
-    String kraftkalla = idb.fetchSingle("SELECT Kraftkalla FROM Teknik WHERE Utrustnings_ID="+soktIDint+"");
-    txtSpec.setText(kraftkalla);
-    txtTyp.setText("Teknik");
-    }
-    
-    else if (kommunikationsLista.contains(soktID)) {
-    lblInfo.setVisible(true);
-    lblInfo.setText("Överföringsteknik");
-    txtSpec.setVisible(true);
-    String overforingsTeknik = idb.fetchSingle("SELECT Overforingsteknik FROM Kommunikation WHERE Utrustnings_ID="+soktIDint+"");
-    txtSpec.setText(overforingsTeknik);
-    txtTyp.setText("Kommunikation");
-    }
-   
-    }
-    
-    catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());
-    }
-    }//GEN-LAST:event_jButton2ActionPerformed
+                try {
+                    // Fyller på listorna med utrustningsID från utrustningstabellerna. 
+                    vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
+                    teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
+                    kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//radera
- // Här kontrollerar man att fältet txtSokID är ifyllt innan man får vidare och raderar informationen. 
+                    // Hämtar information från sökfältet. 
+                    String soktID = txtID.getText();
+                    int soktIDint = Integer.parseInt(soktID);
+
+                    // Hämtar information från från namnfältet. 
+                    String benamning = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID=" + soktIDint + "");
+                    txtBenamning.setText(benamning);
+
+                    // Villkorssatser för att hämta information från utrustningstabellerna. 
+                    if (vapenLista.contains(soktID)) {
+                        // Sätter rubrik och textfält synligt för användaren. Rubriken får namnet som utrustningens egenskap.
+                        lblInfo.setVisible(true);
+                        lblInfo.setText("Kaliber");
+                        txtSpec.setVisible(true);
+                        // Hämtar information om utrustningens egenskap.
+                        String vapenKaliber = idb.fetchSingle("SELECT Kaliber FROM Vapen WHERE Utrustnings_ID=" + soktIDint + "");
+                        txtSpec.setText(vapenKaliber);
+                        txtTyp.setText("Vapen");
+                    } else if (teknikLista.contains(soktID)) {
+                        // Sätter rubrik och textfält synligt för användaren. Rubriken får namnet som utrustningens egenskap.
+                        lblInfo.setVisible(true);
+                        lblInfo.setText("Kraftkälla");
+                        txtSpec.setVisible(true);
+                        // Hämtar information om utrustningens egenskap.
+                        String kraftkalla = idb.fetchSingle("SELECT Kraftkalla FROM Teknik WHERE Utrustnings_ID=" + soktIDint + "");
+                        txtSpec.setText(kraftkalla);
+                        txtTyp.setText("Teknik");
+                    } else if (kommunikationsLista.contains(soktID)) {
+                        // Sätter rubrik och textfält synligt för användaren. Rubriken får namnet som utrustningens egenskap.
+                        lblInfo.setVisible(true);
+                        lblInfo.setText("Överföringsteknik");
+                        txtSpec.setVisible(true);
+                        // Hämtar information om utrustningens egenskap.
+                        String overforingsTeknik = idb.fetchSingle("SELECT Overforingsteknik FROM Kommunikation WHERE Utrustnings_ID=" + soktIDint + "");
+                        txtSpec.setText(overforingsTeknik);
+                        txtTyp.setText("Kommunikation");
+                    }
+                    // Visar information om att något inte fungerar. 
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande:" + e.getMessage());
+                }
+            }
+            // Visar information om att alla fält måste ha ett värden. 
+        } else {
+            JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+        }
+    }//GEN-LAST:event_btnSokActionPerformed
+
+    // Radera
+    private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
+
+        // Här kontrollerar man att fältet txtSokID är ifyllt innan man går vidare och raderar informationen. 
         if (Validering.textFaltHarVarde(txtID)) {
 
             // Om txtSokID är ifyllt sker en dubbelkontroll för om man verkligen vill radera informationen. Detta görs med metoden showConfirmDialog. 
@@ -272,91 +271,86 @@ public class TaBortUtrustning extends javax.swing.JFrame {
             if (input == 0) {
                 try {
                     String soktID = txtID.getText();
-                    
+
                     // För att kunna kontrollera vilken tabell som sökt ID finns inom (Utrustningstyp) används tre ArrayLists där man lagrar information om värdena. 
                     vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
                     teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
                     kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
 
-                    // Beroende på vilken tabell som används raderas värdena baserat pp sökt ID. 
+                    // Beroende på vilken tabell som används raderas värdena baserat på sökt ID. 
                     if (vapenLista.contains(soktID)) {
-                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID +"");
-                        idb.delete("DELETE FROM Vapen WHERE Utrustnings_ID = " + soktID +"");
+                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID + "");
+                        idb.delete("DELETE FROM Vapen WHERE Utrustnings_ID = " + soktID + "");
                     } else if (teknikLista.contains(soktID)) {
-                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID +"");
-                        idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = " + soktID +"");
+                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID + "");
+                        idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = " + soktID + "");
 
                     } else if (kommunikationsLista.contains(soktID)) {
-                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID +"");
-                        idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = " + soktID+"");
+                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID + "");
+                        idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = " + soktID + "");
 
                     }
-                    
-                        idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID ="+soktID+"");
-                        
-                        jButton3ActionPerformed(evt);
 
-                } catch (InfException e) {
+                    idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID =" + soktID + "");
+
+                    // Skickar tillbaka användaren till tidigare sida.
+                    btnTillbakaActionPerformed(evt);
+
+                } // Visar felmeddelande om att något har gått fel. 
+                catch (InfException e) {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
                     System.out.println("Internt felmeddelande" + e.getMessage());
                 }
             }
-        } else {
+        } // Visar information om att ID behöver vara ifyllt.  
+        else {
             JOptionPane.showMessageDialog(null, "UtrustningsID måste vara ifyllt!");
         }
-                                         
 
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txtSpecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSpecActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSpecActionPerformed
+    }//GEN-LAST:event_btnRaderaActionPerformed
 
-    private void txtTypActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTypActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTypActionPerformed
-
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
+    private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
-    }//GEN-LAST:event_jMenu2MouseClicked
+    }//GEN-LAST:event_menuLoggaUtMouseClicked
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
+    private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
         setVisible(false);
         StartsidaAdmin startAdm = new StartsidaAdmin(idb, anvId, anvTyp);
         startAdm.setVisible(true);
-    }//GEN-LAST:event_jMenu1MouseClicked
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_menuStartsidaMouseClicked
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen HanteraUtrustningAdmin i nytt fönster.
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
         HanteraUtrustningAdmin hantUtr = new HanteraUtrustningAdmin(idb, anvId, anvTyp);
         hantUtr.setVisible(true);
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnTillbakaActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRadera;
+    private javax.swing.JButton btnSok;
+    private javax.swing.JButton btnTillbaka;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JLabel lblBenamning;
+    private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblInfo;
+    private javax.swing.JLabel lblRubrik;
+    private javax.swing.JLabel lblUtrustning;
+    private javax.swing.JMenu menuInlogg;
+    private javax.swing.JMenu menuLoggaUt;
+    private javax.swing.JMenu menuStartsida;
     private javax.swing.JTextField txtBenamning;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtSpec;

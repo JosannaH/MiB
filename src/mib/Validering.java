@@ -4,64 +4,73 @@
  */
 package mib;
 
-import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import oru.inf.InfDB;
-import oru.inf.InfException;
 
 /**
- *
+ * En klass som lagrar metoder som ska kunna används av andra klasser. Det är
+ * metoder som kontrollerar att fält är korrekt ifyllda
+ * 
  * @author Josanna, Linda & Lisa
  */
+
 public class Validering {
-    
-    public static boolean textFaltHarVarde(JTextField rutaAttKolla)
-    {
+
+    /**
+     * Metoden kontrollerar om ett fält har ett ifyllt värde.
+     */
+    public static boolean textFaltHarVarde(JTextField rutaAttKolla) {
         boolean resultat = true;
-        
-        if(rutaAttKolla.getText().isEmpty()){
+
+        if (rutaAttKolla.getText().isEmpty()) {
             resultat = false;
             rutaAttKolla.requestFocus();
-        }       
-        
+        }
+
         return resultat;
     }
-    
-    public static boolean txtFaltHarSiffror(JTextField rutaAttKolla){
+
+    /**
+     * Metoden kontrollerar om ett fält har ett ifyllt värde.
+     */
+    public static boolean txtFaltHarSiffror(JTextField rutaAttKolla) {
         boolean resultat = true;
-        if(!rutaAttKolla.getText().matches("[0-9]")){
+        if (!rutaAttKolla.getText().matches("[0-9]")) {
             resultat = false;
             JOptionPane.showMessageDialog(null, "Kontrollera att fältet består av siffror!");
-            
+
         }
-        
+
         return resultat;
     }
-    
-    
+
+    /**
+     * Metoden kontrollerar att en rullist har ett markerat värde.
+     */
     public static boolean comboHarVarde(JComboBox boxAttKolla) {
         boolean resultat = true;
-        
-        if(boxAttKolla.getSelectedItem().toString().isEmpty()){
+
+        if (boxAttKolla.getSelectedItem().toString().isEmpty()) {
             resultat = false;
             boxAttKolla.requestFocus();
-        }       
-        
-        return resultat; 
+        }
+
+        return resultat;
     }
-            
-            
+
+    /**
+     * Metoden kontrollerar att ett lösenordsfält har ett ifyllt värde.
+     */
     public static boolean passwordHarVarde(JPasswordField losenordAttKolla) {
-         boolean resultat = true;
-        
-        if(losenordAttKolla.getText().isEmpty()){
+        boolean resultat = true;
+
+        if (losenordAttKolla.getText().isEmpty()) {
             resultat = false;
             losenordAttKolla.requestFocus();
-        }       
-        
-        return resultat;    
-    }   
+        }
+
+        return resultat;
+    }
 }

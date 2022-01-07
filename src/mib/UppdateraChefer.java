@@ -8,7 +8,7 @@ import oru.inf.InfDB;
 
 /**
  *
- * @author Josanna
+ * @author Josanna, Linda & Lisa
  */
 public class UppdateraChefer extends javax.swing.JFrame {
 
@@ -26,6 +26,8 @@ public class UppdateraChefer extends javax.swing.JFrame {
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
+
+        // Döljer fönster som inte ska visas vid start.
         lblOmrade.setVisible(false);
         lblKontor.setVisible(false);
         btnValjOmrade.setVisible(false);
@@ -140,7 +142,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
         });
         menuBar.add(menuBarTillStartsida);
 
-        jMenu5.setText("                                                                                 ");
+        jMenu5.setText("                                                                                                 ");
         menuBar.add(jMenu5);
 
         menuBarInloggadSom.setText("Inloggad som XXX");
@@ -274,7 +276,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
         setVisibleUppdateraPlats(true);
         //om en ändring redan gjorts så döljs den bekräftelsen inför en ny sökning
         lblNyChefAr.setVisible(false);
-         //om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
+        //om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
         cmbKontor.removeAllItems();
 
         // anropa metod för att lägga in alla kontor i comboboxen
@@ -290,8 +292,8 @@ public class UppdateraChefer extends javax.swing.JFrame {
         // visa det som behövs för att välja ny chef för aktuellt område
         setVisibleNyChef(true);
         btnBekraftaVal.setText("Bekräfta områdeschef");
-        
-         //om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
+
+        // om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
         cmbNyChef.removeAllItems();
 
         // hämta användarens val av område samt anropa metod för att visa vem som är chef där
@@ -310,8 +312,8 @@ public class UppdateraChefer extends javax.swing.JFrame {
         // visa det som behövs för att kunna välja ny chef
         setVisibleNyChef(true);
         btnBekraftaVal.setText("Bekräfta kontorschef");
-        
-         //om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
+
+        //om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
         cmbNyChef.removeAllItems();
 
         // hämta användarens val av plats och visa vem som är chef där
@@ -342,15 +344,14 @@ public class UppdateraChefer extends javax.swing.JFrame {
      * Metod som anropas när användaren valt att bekräfta vem den nya chefen är
      */
     private void btnBekraftaValMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaValMouseClicked
-        
+
         String nyChef = cmbNyChef.getSelectedItem().toString();
         SQL s = new SQL(idb);
-        if (btnBekraftaVal.getText().equals("Bekräfta kontorschef")){
+        if (btnBekraftaVal.getText().equals("Bekräfta kontorschef")) {
             s.uppdateraKontorschef(nyChef, omradePlats, lblNyChefAr);
-        }
-        else{
+        } else {
             s.uppdateraOmradeschef(nyChef, omradePlats, lblNyChefAr);
-            
+
         }
     }//GEN-LAST:event_btnBekraftaValMouseClicked
 
