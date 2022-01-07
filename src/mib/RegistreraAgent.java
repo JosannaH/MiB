@@ -7,6 +7,7 @@ package mib;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author luna
@@ -42,26 +43,26 @@ public class RegistreraAgent extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblRubrik = new javax.swing.JLabel();
+        lblAgentID = new javax.swing.JLabel();
         lblID = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblNamn = new javax.swing.JLabel();
+        lblTelefon = new javax.swing.JLabel();
+        lblAdmin = new javax.swing.JLabel();
         cmbAdminSvar = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
+        lblOmrade = new javax.swing.JLabel();
         cmbOmradeSvar = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lblAnstDatum = new javax.swing.JLabel();
+        lblLosen = new javax.swing.JLabel();
         txtNamnSvar = new javax.swing.JTextField();
         txtTelefonSvar = new javax.swing.JTextField();
         txtAnsDatumSvar = new javax.swing.JTextField();
         txtLosen1 = new javax.swing.JTextField();
         btnReg = new javax.swing.JButton();
         txtLosen2 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
+        lblUppdateraLosen = new javax.swing.JLabel();
         btnTillbaka = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lblDatumHjalp = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         menuInget = new javax.swing.JMenu();
@@ -70,38 +71,27 @@ public class RegistreraAgent extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("AGENTREGISTRERING");
+        lblRubrik.setText("AGENTREGISTRERING");
 
-        jLabel2.setText("Agent-ID:");
+        lblAgentID.setText("Agent-ID:");
 
         lblID.setText("Autogenererad");
 
-        jLabel4.setText("Namn/Benämning:");
+        lblNamn.setText("Namn/Benämning:");
 
-        jLabel6.setText("Telefon:");
+        lblTelefon.setText("Telefon:");
 
-        jLabel8.setText("Administratör?:");
+        lblAdmin.setText("Administratör?:");
 
         cmbAdminSvar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ja", "Nej" }));
 
-        jLabel9.setText("Områdesansvar:");
+        lblOmrade.setText("Område:");
 
         cmbOmradeSvar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Svealand", "Götaland", "Norrland" }));
-        cmbOmradeSvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbOmradeSvarActionPerformed(evt);
-            }
-        });
 
-        jLabel10.setText("Anställningsdatum:");
+        lblAnstDatum.setText("Anställningsdatum:");
 
-        jLabel12.setText("Lösenord:");
-
-        txtAnsDatumSvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAnsDatumSvarActionPerformed(evt);
-            }
-        });
+        lblLosen.setText("Lösenord:");
 
         btnReg.setText("Registrera");
         btnReg.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +100,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
             }
         });
 
-        jLabel13.setText("Uppdatera lösenord");
+        lblUppdateraLosen.setText("Uppdatera lösenord");
 
         btnTillbaka.setText("Gå tillbaka");
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +109,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("ÅÅÅÅ-MM-DD");
+        lblDatumHjalp.setText("ÅÅÅÅ-MM-DD");
 
         menuStartsida.setText("Tillbaka till startsida");
         menuStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -163,14 +153,14 @@ public class RegistreraAgent extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(264, 264, 264)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13))
+                            .addComponent(lblNamn)
+                            .addComponent(lblAgentID)
+                            .addComponent(lblAdmin)
+                            .addComponent(lblTelefon)
+                            .addComponent(lblOmrade)
+                            .addComponent(lblAnstDatum)
+                            .addComponent(lblLosen)
+                            .addComponent(lblUppdateraLosen))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblID, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
@@ -179,52 +169,52 @@ public class RegistreraAgent extends javax.swing.JFrame {
                             .addComponent(cmbAdminSvar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmbOmradeSvar, 0, 87, Short.MAX_VALUE)
                             .addComponent(txtAnsDatumSvar)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDatumHjalp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtLosen1)
                             .addComponent(txtLosen2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(351, 351, 351)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblRubrik)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel1)
+                .addComponent(lblRubrik)
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblAgentID)
                     .addComponent(lblID))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(lblNamn)
                     .addComponent(txtNamnSvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(lblTelefon)
                     .addComponent(txtTelefonSvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                    .addComponent(lblAdmin)
                     .addComponent(cmbAdminSvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                    .addComponent(lblOmrade)
                     .addComponent(cmbOmradeSvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
+                    .addComponent(lblAnstDatum)
                     .addComponent(txtAnsDatumSvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblDatumHjalp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLosen1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addComponent(lblLosen))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13)
+                    .addComponent(lblUppdateraLosen)
                     .addComponent(txtLosen2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(btnReg)
@@ -235,125 +225,138 @@ public class RegistreraAgent extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cmbOmradeSvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOmradeSvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbOmradeSvarActionPerformed
-
+    /**
+     * När användaren trycker på knappen utförs kontroller på alla fält och den nya
+     * agenten registreras om allt är rätt ifyllt
+     * @param evt 
+     */
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
-
+        // Kollar att alla fält och comboboxar har är ifyllda
         if (Validering.textFaltHarVarde(txtNamnSvar) && Validering.textFaltHarVarde(txtAnsDatumSvar)
                 && Validering.comboHarVarde(cmbAdminSvar) && Validering.comboHarVarde(cmbOmradeSvar)
                 && Validering.textFaltHarVarde(txtLosen1) && Validering.textFaltHarVarde(txtLosen2)) {
             SQL s = new SQL(idb);
-            
-            if(s.namnFinnsInteAgent(txtNamnSvar)){
+            // Kollar så att agentnamnet inte redan finns
+            if (s.namnFinnsInteAgent(txtNamnSvar)) {
 
-            String agentID = lblID.getText();
+                // Hämtar alla användarinmatningar
+                String agentID = lblID.getText();
+                String regNamn = txtNamnSvar.getText();
+                String regTel = txtTelefonSvar.getText();
+                String regAdmin = cmbAdminSvar.getSelectedItem().toString();
+                String regOmrade = cmbOmradeSvar.getSelectedItem().toString();
+                String regDatum = txtAnsDatumSvar.getText();
+                String regLosen1 = txtLosen1.getText();
+                String regLosen2 = txtLosen2.getText();
+                // Kollar att användaren angett samma lösenord i båda textfields
+                if (regLosen1.equals(regLosen2)) {
+                    // Kollar att lösenordet har rätt längd
+                    if (regLosen1.length() <= 6 && regLosen1.length() >= 3) {
+                        // Kollar om agenten ska vara administratör eller inte
+                        try {
+                            if (regAdmin.contains("Ja")) {
+                                regAdmin = "J";
+                            } else if (regAdmin.contains("Nej")) {
+                                regAdmin = "N";
+                            }
+                            // Hämtar ID för området som agenten ska tillhöra
+                            String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + regOmrade + "'");
+                            // Lägger till den nya agenten i tabellen Agent
+                            idb.insert("INSERT INTO Agent VALUES ('" + agentID + "', '" + regNamn + "', '" + regTel + "', '" + regDatum + "', '" + regAdmin + "','" + regLosen1 + "','" + omradesID + "')");
+                            JOptionPane.showMessageDialog(null, "En ny agent har registrerats!");
+                            // Användaren skickas automatiskt tillbaka till föregående sida
+                            btnTillbakaActionPerformed(evt);
 
-            String regNamn = txtNamnSvar.getText();
-            String regTel = txtTelefonSvar.getText();
-            String regAdmin = cmbAdminSvar.getSelectedItem().toString();
-            String regOmrade = cmbOmradeSvar.getSelectedItem().toString();
-            String regDatum = txtAnsDatumSvar.getText();
-            String regLosen1 = txtLosen1.getText();
-            String regLosen2 = txtLosen2.getText();
-
-            if (regLosen1.equals(regLosen2)) {
-
-                if (regLosen1.length() <= 6 && regLosen1.length() >= 3) {
-
-                    try {
-
-                        if (regAdmin.contains("Ja")) {
-                            regAdmin = "J";
-                        } else if (regAdmin.contains("Nej")) {
-                            regAdmin = "N";
+                            // Fångar bland annat upp om användaren skrivit en bokstav i ID-fältet eller fel format på datum (genom att det inte går att föra in i databasen)
+                        } catch (InfException e) {
+                            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att alla fält har korrekta värden.");
+                            System.out.println("Internt felmeddelande" + e.getMessage());
                         }
-
-                        String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + regOmrade + "'");
-                        
-                        idb.insert("INSERT INTO Agent VALUES ('" + agentID + "', '" + regNamn + "', '" + regTel + "', '" + regDatum + "', '" + regAdmin + "','" + regLosen1 + "','" + omradesID + "')");
-                        JOptionPane.showMessageDialog(null, "En ny agent har registrerats!");
-                        btnTillbakaActionPerformed(evt);
-
-                    } catch (InfException e) {
-                        JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att alla fält har korrekta värden.");
-                        System.out.println("Internt felmeddelande" + e.getMessage());
-
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
+                    JOptionPane.showMessageDialog(null, "Lösenorden stämmer inte överens!");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Lösenorden stämmer inte överens!");
             }
-        } 
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
 
     }//GEN-LAST:event_btnRegActionPerformed
-
-    private void txtAnsDatumSvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnsDatumSvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAnsDatumSvarActionPerformed
-
+   
+    /**
+     * Gå tillbaka till föregående sida
+     *
+     * @param evt
+     */
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
         AdminHanteraAgenter hantera = new AdminHanteraAgenter(idb, anvId, anvTyp);
         hantera.setVisible(true);
     }//GEN-LAST:event_btnTillbakaActionPerformed
-
+   
+    /**
+     * Gå till startsida för administratörer
+     *
+     * @param evt
+     */
     private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
-       setVisible(false);
+        setVisible(false);
         StartsidaAdmin startAdm = new StartsidaAdmin(idb, anvId, anvTyp);
         startAdm.setVisible(true);
     }//GEN-LAST:event_menuStartsidaMouseClicked
-
+    
+    /**
+     * Logga ut och gå tillbaka till inloggningssidan
+     *
+     * @param evt
+     */
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
+    
+    /**
+     * Hämta ilket ID som det nya agenten ska få
+     *
+     * @param regAgentID
+     */
+    private void hamtaAgentID(String regAgentID) {
 
-    private void hamtaAgentID (String regAgentID) {
-        
-        try{
+        try {
             regAgentID = idb.getAutoIncrement("Agent", "Agent_ID");
-            lblID.setText(regAgentID); 
-        
-        }
-        
-        catch (InfException e) {
+            lblID.setText(regAgentID);
+
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande" + e.getMessage()); 
+            System.out.println("Internt felmeddelande" + e.getMessage());
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReg;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbAdminSvar;
     private javax.swing.JComboBox<String> cmbOmradeSvar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblAdmin;
+    private javax.swing.JLabel lblAgentID;
+    private javax.swing.JLabel lblAnstDatum;
+    private javax.swing.JLabel lblDatumHjalp;
     private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblLosen;
+    private javax.swing.JLabel lblNamn;
+    private javax.swing.JLabel lblOmrade;
+    private javax.swing.JLabel lblRubrik;
+    private javax.swing.JLabel lblTelefon;
+    private javax.swing.JLabel lblUppdateraLosen;
     private javax.swing.JMenu menuInget;
     private javax.swing.JMenu menuInlogg;
     private javax.swing.JMenu menuLoggaUt;
