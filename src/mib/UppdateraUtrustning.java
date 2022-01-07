@@ -33,18 +33,17 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
         // Anropas för att dölja nedanstående rader tills dess att man har valt ras.
         doljText(txtEgenskapInfo);
         doljLabel(lblEgenskap);
-        
-        try{
-        
-                vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
-                kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
-                teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
+
+        try {
+            // Listorna fylls med information från de utrustningstabeller som finns. 
+            vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
+            kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
+            teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage());
         }
-        catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-                System.out.println("Internt felmeddelande" + e.getMessage());
-            }
-        
+
     }
 
     /**
@@ -110,11 +109,6 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
         btnSok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSokMouseClicked(evt);
-            }
-        });
-        btnSok.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSokActionPerformed(evt);
             }
         });
 
@@ -264,9 +258,13 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
         lablAttDolja.setVisible(false);
     }
 
-    // Varje ras har egen information som behöver lagras. Detta görs genom knappen välj. Beroende på ras så ska olik information visas.
+    /**
+     * Varje ras har egen information som behöver lagras. Detta görs genom
+     * knappen välj. Beroende på ras så ska olik information visas.
+     *
+     */
     private void btnValjTypMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValjTypMouseClicked
-         String typ = cmbUtrustningsTyp.getSelectedItem().toString();
+        String typ = cmbUtrustningsTyp.getSelectedItem().toString();
 
         /* Beroende på vilken utrustning så ska olika saker ske. Viss utrustning har fler uppgifter som behöver hämtas in. 
         Dessa görs synliga beroende på vilken typ av utrustning man har valt. */
@@ -294,59 +292,61 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
     // Metoden söker upp information om det alienID man har angett.
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
 
-        // Kontrollerar att fältet för alienID är ifyllt.
+        // Kontrollerar att fältet för alienID är ifyllt och att det består av siffror.
         if (Validering.textFaltHarVarde(txtUtrustningID)) {
-            if(Validering.txtFaltHarSiffror(txtUtrustningID)){
-            String idText = txtUtrustningID.getText();
+            if (Validering.txtFaltHarSiffror(txtUtrustningID)) {
+                String idText = txtUtrustningID.getText();
 
-            try {
+                try {
+                    // Koden nedan hämtar information baserat på det ID man har angett.
+                    txtUtrustningID.setText(idText);
 
-                // Koden nedan hämtar information baserat på det ID man har angett.
-                txtUtrustningID.setText(idText);
+                    String namn = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID ='" + idText + "'");
+                    txtNamn.setText(namn);
 
-               
-                String namn = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID ='" + idText + "'");
-                txtNamn.setText(namn);
-                
-                
-                // Nedan använder man ArrayList för att hämta information kopplat till den ras som alienID är kopplat till.
-                if (vapenLista.contains(idText)) {
-                    cmbUtrustningsTyp.setSelectedItem("Vapen");
+                    // Nedan använder man ArrayList för att hämta information kopplat till den ras som alienID är kopplat till.
+                    if (vapenLista.contains(idText)) {
+                        // Rullisten får aktuell utrustning.
+                        cmbUtrustningsTyp.setSelectedItem("Vapen");
 
-                    String kaliber = idb.fetchSingle("SELECT Kaliber FROM Vapen WHERE Utrustnings_ID = '" + idText + "'");
-                    txtEgenskapInfo.setText(kaliber);
-                    txtEgenskapInfo.setVisible(true);
+                        String kaliber = idb.fetchSingle("SELECT Kaliber FROM Vapen WHERE Utrustnings_ID = '" + idText + "'");
+                        txtEgenskapInfo.setText(kaliber);
+                        txtEgenskapInfo.setVisible(true);
 
-                    lblEgenskap.setVisible(true);
-                    lblEgenskap.setText("Kaliber");
-                } else if (kommunikationsLista.contains(idText)) {
-                    cmbUtrustningsTyp.setSelectedItem("Kommunikation");
+                        lblEgenskap.setVisible(true);
+                        lblEgenskap.setText("Kaliber");
+                    } else if (kommunikationsLista.contains(idText)) {
+                        // Rullisten får aktuell utrustning.
+                        cmbUtrustningsTyp.setSelectedItem("Kommunikation");
 
-                    String overforingsTeknik = idb.fetchSingle("SELECT Overforingsteknik FROM Kommunikation WHERE Utrustnings_ID = '" + idText + "'");
-                    txtEgenskapInfo.setText(overforingsTeknik);
-                    txtEgenskapInfo.setVisible(true);
+                        String overforingsTeknik = idb.fetchSingle("SELECT Overforingsteknik FROM Kommunikation WHERE Utrustnings_ID = '" + idText + "'");
+                        txtEgenskapInfo.setText(overforingsTeknik);
+                        txtEgenskapInfo.setVisible(true);
 
-                    lblEgenskap.setVisible(true);
-                    lblEgenskap.setText("Överföringsteknik");
-                } else if (teknikLista.contains(idText)) {
-                    cmbUtrustningsTyp.setSelectedItem("Teknik");
-                    
-                    String kraftKalla = idb.fetchSingle("SELECT Kraftkalla FROM Teknik WHERE Utrustnings_ID = '" + idText + "'");
-                    txtEgenskapInfo.setText(kraftKalla);
-                    txtEgenskapInfo.setVisible(true);
+                        lblEgenskap.setVisible(true);
+                        lblEgenskap.setText("Överföringsteknik");
+                    } else if (teknikLista.contains(idText)) {
+                        // Rullisten får aktuell utrustning.
+                        cmbUtrustningsTyp.setSelectedItem("Teknik");
 
-                    lblEgenskap.setVisible(true);
-                    lblEgenskap.setText("Kraftkälla");
-                } else {
-                    cmbUtrustningsTyp.setSelectedItem("Okänd");
+                        String kraftKalla = idb.fetchSingle("SELECT Kraftkalla FROM Teknik WHERE Utrustnings_ID = '" + idText + "'");
+                        txtEgenskapInfo.setText(kraftKalla);
+                        txtEgenskapInfo.setVisible(true);
+
+                        lblEgenskap.setVisible(true);
+                        lblEgenskap.setText("Kraftkälla");
+                    } else {
+                        // Rullisten får aktuell utrustning.
+                        cmbUtrustningsTyp.setSelectedItem("Okänd");
+                    }
+
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande" + e.getMessage());
                 }
-
-            } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-                System.out.println("Internt felmeddelande" + e.getMessage());
             }
-            }
-        } else {
+        } // Felmeddelande om ID inte är ifyllt.
+        else {
             JOptionPane.showMessageDialog(null, "UtrustningsID måste vara ifyllt!");
         }
     }//GEN-LAST:event_btnSokMouseClicked
@@ -361,71 +361,73 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
             String regUtrustning = cmbUtrustningsTyp.getSelectedItem().toString();
             String regEgenskap = txtEgenskapInfo.getText();
             String regNamn = txtNamn.getText();
-                
-            
+
             try {
-               
-                 // Kontrollerar att man har fyllt i tillhörande information (egenskap) om valt vapen. 
+                // Kontrollerar att man har fyllt i tillhörande information (egenskap) om valt vapen. 
                 if (regUtrustning.equals("Vapen") && Validering.textFaltHarVarde(txtEgenskapInfo)) {
+                    // Lägger till information i tabellen utrustning via metoden laggTill().
                     laggTill();
-                    if(vapenLista.contains(regUtrustningsID)){
+                    // Beroende på om ID redan finns uppdateras tabellen eller så läggs det till information och raderas från tidigare tabell.
+                    if (vapenLista.contains(regUtrustningsID)) {
                         idb.update("UPDATE Vapen SET Kaliber = '" + regEgenskap + "' WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
+                    } else {
+                        idb.insert("INSERT INTO Vapen VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
+                        if (kommunikationsLista.contains(regUtrustningsID)) {
+                            idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
+                        }
+                        if (teknikLista.contains(regUtrustningsID)) {
+                            idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
+                        }
                     }
-                    else{
-                    idb.insert("INSERT INTO Vapen VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
-                    if(kommunikationsLista.contains(regUtrustningsID)){
-                        idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
-                    }
-                    if(teknikLista.contains(regUtrustningsID)){
-                        idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
-                    }
-                }
-                }
-                else if (regUtrustning.equals("Kommunikation") && Validering.textFaltHarVarde(txtEgenskapInfo)) {
+                } else if (regUtrustning.equals("Kommunikation") && Validering.textFaltHarVarde(txtEgenskapInfo)) {
+                    // Lägger till information i tabellen utrustning via metoden laggTill().
                     laggTill();
-                    if(kommunikationsLista.contains(regUtrustningsID)){
+                    // Beroende på om ID redan finns uppdateras tabellen eller så läggs det till information och raderas från tidigare tabell.
+                    if (kommunikationsLista.contains(regUtrustningsID)) {
                         idb.update("UPDATE Kommunikation SET Overforingsteknik = '" + regEgenskap + "' WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
-                    }
-                    else{
-                    idb.insert("INSERT INTO Kommunikation VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
-                    
-                    if(vapenLista.contains(regUtrustningsID)){
-                        idb.delete("DELETE FROM Vapen WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
-                    }
-                    if(teknikLista.contains(regUtrustningsID)){
-                        idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
-                    }
+                    } else {
+                        idb.insert("INSERT INTO Kommunikation VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
+
+                        if (vapenLista.contains(regUtrustningsID)) {
+                            idb.delete("DELETE FROM Vapen WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
+                        }
+                        if (teknikLista.contains(regUtrustningsID)) {
+                            idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
+                        }
                     }
                 } else if (regUtrustning.equals("Teknik") && Validering.textFaltHarVarde(txtEgenskapInfo)) {
+                    // Lägger till information i tabellen utrustning via metoden laggTill().
                     laggTill();
-                    if(teknikLista.contains(regUtrustningsID)){
+                    // Beroende på om ID redan finns uppdateras tabellen eller så läggs det till information och raderas från tidigare tabell.
+                    if (teknikLista.contains(regUtrustningsID)) {
                         idb.update("UPDATE Teknik SET Kraftkalla = '" + regEgenskap + "' WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
-                    }
-                    else{
-                    idb.insert("INSERT INTO Teknik VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
-                    if(vapenLista.contains(regUtrustningsID)){
-                        idb.delete("DELETE FROM Vapen WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
-                    }
-                    if(kommunikationsLista.contains(regUtrustningsID)){
-                        idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
-                    }
-                    if(teknikLista.contains(regUtrustningsID)){
-                        idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
-                    }
+                    } else {
+                        idb.insert("INSERT INTO Teknik VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
+                        if (vapenLista.contains(regUtrustningsID)) {
+                            idb.delete("DELETE FROM Vapen WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
+                        }
+                        if (kommunikationsLista.contains(regUtrustningsID)) {
+                            idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
+                        }
+                        if (teknikLista.contains(regUtrustningsID)) {
+                            idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
+                        }
                     }
                 } else if (regUtrustning.equals("Okänd")) {
+                    // Lägger till information i tabellen utrustning via metoden laggTill().
                     laggTill();
-                }else {
+                } else {
                     JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
                 }
 
                 JOptionPane.showMessageDialog(null, "Uppdateringen lyckades!");
+                // Skickar användaren tillbaka till tidigare sida efter uppdateringen.
+                btnTillbakaActionPerformed(evt);
 
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
-            
 
         } else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
@@ -455,17 +457,13 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
-    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSokActionPerformed
-
     private void laggTill() {
         String regBenamning = txtNamn.getText();
         String regUtrustningsID = txtUtrustningID.getText();
         try {
-            
+
             idb.update("UPDATE Utrustning SET Benamning = '" + regBenamning + "' WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
-            
+
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());

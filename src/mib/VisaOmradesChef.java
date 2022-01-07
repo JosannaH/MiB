@@ -156,20 +156,26 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // Metoden anropas när man klickar på sök-knappen. Metoden letar upp information om vilken agent som är chef över vilket område. 
+    /**
+     * Metoden anropas när man klickar på sök-knappen. Metoden letar upp
+     * information om vilken agent som är chef över vilket område.
+     */
     private void btnSokOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokOmradeActionPerformed
+        // Hämtar valt område från rullisten.
         String omraden = cmbOmrade.getSelectedItem().toString();
         try {
+            // Hämtar information baserat på valt område.
             String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + omraden + "'");
             String agentID = idb.fetchSingle("SELECT Agent_ID FROM omradeschef WHERE Omrade =" + omradesID);
             String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID =" + agentID);
 
+            // Gör rubriken synlig och fyller den med information om valt område. 
             lblChef.setText("Områdeschef för " + omraden + " är " + agentNamn + "");
-        } catch (InfException e) {
+        } // Om något går fel visas information om detta.
+        catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
-
     }//GEN-LAST:event_btnSokOmradeActionPerformed
 
     // Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
