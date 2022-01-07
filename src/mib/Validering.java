@@ -4,6 +4,7 @@
  */
 package mib;
 
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -39,6 +40,7 @@ public class Validering {
         
         return resultat;
     }
+    
     
     public static boolean comboHarVarde(JComboBox boxAttKolla) {
         boolean resultat = true;

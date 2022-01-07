@@ -245,6 +245,9 @@ public class RegistreraAgent extends javax.swing.JFrame {
         if (Validering.textFaltHarVarde(txtNamnSvar) && Validering.textFaltHarVarde(txtAnsDatumSvar)
                 && Validering.comboHarVarde(cmbAdminSvar) && Validering.comboHarVarde(cmbOmradeSvar)
                 && Validering.textFaltHarVarde(txtLosen1) && Validering.textFaltHarVarde(txtLosen2)) {
+            SQL s = new SQL(idb);
+            
+            if(s.namnFinnsInteAgent(txtNamnSvar)){
 
             String agentID = lblID.getText();
 
@@ -269,13 +272,13 @@ public class RegistreraAgent extends javax.swing.JFrame {
                         }
 
                         String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + regOmrade + "'");
-
+                        
                         idb.insert("INSERT INTO Agent VALUES ('" + agentID + "', '" + regNamn + "', '" + regTel + "', '" + regDatum + "', '" + regAdmin + "','" + regLosen1 + "','" + omradesID + "')");
                         JOptionPane.showMessageDialog(null, "En ny agent har registrerats!");
                         btnTillbakaActionPerformed(evt);
 
                     } catch (InfException e) {
-                        JOptionPane.showMessageDialog(null, "Något gick fel!");
+                        JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att alla fält har korrekta värden.");
                         System.out.println("Internt felmeddelande" + e.getMessage());
 
                     }
@@ -285,7 +288,9 @@ public class RegistreraAgent extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Lösenorden stämmer inte överens!");
             }
-        } else {
+        } 
+        }
+        else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
 

@@ -162,16 +162,14 @@ public class GorTillAdmin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSok)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAgentID)
-                            .addComponent(txtAgentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(4, 4, 4)))
-                .addGap(26, 26, 26)
+                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAgentID)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtAgentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSok)))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lblNamn))
@@ -228,6 +226,8 @@ public class GorTillAdmin extends javax.swing.JFrame {
      * Sök agent utifrån ID
      */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
+       if (Validering.textFaltHarVarde(txtAgentID)) {
+            if(Validering.txtFaltHarSiffror(txtAgentID)){
         // Hämtar agentId som användaren söker efter
         soktID = txtAgentID.getText().trim();
 
@@ -240,6 +240,10 @@ public class GorTillAdmin extends javax.swing.JFrame {
         }
         // Visa namnet för den sökta agenten
         lblNamn.setText(agentNamn);
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "AgentID måste vara ifyllt!");
+        }
     }//GEN-LAST:event_btnSokMouseClicked
     /**
      * Uppdaterar agenten till administratör

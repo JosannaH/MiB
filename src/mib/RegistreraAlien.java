@@ -88,6 +88,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
         lblRasInfo = new javax.swing.JLabel();
         tbValjRas = new javax.swing.JToggleButton();
         btnTillbaka = new javax.swing.JButton();
+        lblDatumTips = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         menuBarTomt = new javax.swing.JMenu();
@@ -181,6 +182,8 @@ public class RegistreraAlien extends javax.swing.JFrame {
             }
         });
 
+        lblDatumTips.setText("ÅÅÅÅ-MM-DD");
+
         menuBarStartsida.setText("Gå till Startsida");
         menuBarStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -252,7 +255,8 @@ public class RegistreraAlien extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(cmbAnsAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cmbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(cmbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblDatumTips))))
                                 .addGap(41, 41, 41)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
@@ -328,12 +332,16 @@ public class RegistreraAlien extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblConfirm)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTillbaka))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
-                        .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32))
+                        .addComponent(lblDatumTips)
+                        .addGap(7, 7, 7)
+                        .addComponent(btnTillbaka)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))))
         );
 
         pack();
@@ -343,7 +351,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
         // Utgår ifrån att det är klicket på sparaknappen som gör att all info sparas i DG
         if (Validering.textFaltHarVarde(txtNamn) && Validering.textFaltHarVarde(txtDatum)
                 && Validering.comboHarVarde(cmbAnsAgent) && Validering.comboHarVarde(cmbRas) && Validering.comboHarVarde(cmbPlats) && Validering.passwordHarVarde(psw1) && Validering.passwordHarVarde(psw2)) {
-
+            SQL s = new SQL(idb);
+            
+            if(s.namnFinnsInteAlien(txtNamn)){
             String regNamn = txtNamn.getText();
 
             String regTelefon = txtTelefon.getText();
@@ -402,7 +412,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
                         }
 
                     } catch (InfException e) {
-                        JOptionPane.showMessageDialog(null, "Något gick fel!");
+                        JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att alla fält är korrekt ifyllda");
                         System.out.println("Internt felmeddelande" + e.getMessage());
                     }
                 } else {
@@ -410,7 +420,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
                 }
 
             }
-        } else {
+        } 
+        }
+        else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
     }//GEN-LAST:event_btnSparaActionPerformed
@@ -528,6 +540,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblAlienID;
     private javax.swing.JLabel lblAlienID2;
     private javax.swing.JLabel lblConfirm;
+    private javax.swing.JLabel lblDatumTips;
     private javax.swing.JLabel lblNamn;
     private javax.swing.JLabel lblPersInfo;
     private javax.swing.JLabel lblRasInfo;

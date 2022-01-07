@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -99,6 +100,42 @@ public class SQL extends javax.swing.JFrame {
 
             txtLista.append(a + " \t " + n + " \t\t" + t + "\n");
         }
+    }
+
+    public boolean namnFinnsInteAgent(JTextField rutaAttKolla) {
+        boolean resultat = true;
+        String namn = rutaAttKolla.getText();
+
+        try {
+            ArrayList<String> namnLista = idb.fetchColumn("SELECT namn FROM agent");
+            if (namnLista.contains(namn)) {
+                resultat = false;
+                JOptionPane.showMessageDialog(null, "Namnet på agenten finns redan!");
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage());
+
+        }
+        return resultat;
+    }
+    
+    public boolean namnFinnsInteAlien(JTextField rutaAttKolla) {
+        boolean resultat = true;
+        String namn = rutaAttKolla.getText();
+
+        try {
+            ArrayList<String> namnLista = idb.fetchColumn("SELECT namn FROM alien");
+            if (namnLista.contains(namn)) {
+                resultat = false;
+                JOptionPane.showMessageDialog(null, "Namnet på alien finns redan!");
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage());
+
+        }
+        return resultat;
     }
 
     /**
