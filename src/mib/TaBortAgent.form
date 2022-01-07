@@ -170,7 +170,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblAgentID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agent namn:"/>
+        <Property name="text" type="java.lang.String" value="Agentnamn:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSok">

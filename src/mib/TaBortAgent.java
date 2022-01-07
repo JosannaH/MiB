@@ -80,7 +80,7 @@ public class TaBortAgent extends javax.swing.JFrame {
             }
         });
 
-        lblAgentID.setText("Agent namn:");
+        lblAgentID.setText("Agentnamn:");
 
         btnSok.setText("Sök");
         btnSok.addMouseListener(new java.awt.event.MouseAdapter() {
