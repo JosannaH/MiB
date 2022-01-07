@@ -165,13 +165,12 @@ public class ListaAliensRas extends javax.swing.JFrame {
         SQL s = new SQL(idb);
         boolean admin = s.arAdmin(anvId);
         setVisible(false);
-        
+
         //Två olika fönster
-        if(admin){
+        if (admin) {
             HanteraAliensAdmin h = new HanteraAliensAdmin(idb, anvId, anvTyp);
             h.setVisible(true);
-        }
-        else{
+        } else {
             HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
             h.setVisible(true);
         }
@@ -227,8 +226,7 @@ public class ListaAliensRas extends javax.swing.JFrame {
                     txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
                 }
             } /* Om en alien inte hör till någon ras alls ska en kunna söka upp dessa också. 
-            Det gör vi genom att skapa två listor - en med alla aliens, och en för alla som tillhör en ras. */  
-            else {
+            Det gör vi genom att skapa två listor - en med alla aliens, och en för alla som tillhör en ras. */ else {
                 ArrayList<String> rasLista = new ArrayList<>();
                 rasLista.addAll(bogloditeLista);
                 rasLista.addAll(squidLista);

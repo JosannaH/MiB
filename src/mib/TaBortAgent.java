@@ -23,8 +23,7 @@ public class TaBortAgent extends javax.swing.JFrame {
     private String anvId;
     private String anvTyp;
     private String agentNamn = "";
-                            String agentensID = "";
-
+    String agentensID = "";
 
     public TaBortAgent(InfDB idb, String anvId, String anvTyp) {
         initComponents();
@@ -257,32 +256,32 @@ public class TaBortAgent extends javax.swing.JFrame {
      */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
 
-                // Hämtar agentId som användaren söker efter, tar bort ev mellanslag efter tecknen
-                String soktNamn = cmbAgenter.getSelectedItem().toString();
-                
-                try {
-                    agentensID = idb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = '" + soktNamn + "'");
-                    lblSvarID.setText(agentensID);
-                    
-                } catch (InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    System.out.println("Internt felmeddelande:" + e.getMessage());
-                }
-               
-                // Kolla om agent är ansvarig över någon alien
-                SQL s = new SQL(idb);
-                if (s.agentHarAlien(agentensID, idb) == true) {
-                    // Visa info och val gällande att byta ansvarig agent
-                    cmbNyAnsvarig.setVisible(true);
-                    txtAreaAliens.setVisible(true);
-                    lblDennaAgent.setText("Denna agent är ansvarig över en eller flera aliens.");
-                    lblVanligenAnge.setText("Vänligen ange en ny ansvarig agent för dessa aliens:");
-                    // fyll combobox med agenter att välja mellan
-                    s.agent(cmbNyAnsvarig);
-                    // visa vilka aliens som agenten är ansvarig för
-                    s.getAliensForAnsvaigAgent(agentensID, txtAreaAliens);
-                
-        } 
+        // Hämtar agentId som användaren söker efter, tar bort ev mellanslag efter tecknen
+        String soktNamn = cmbAgenter.getSelectedItem().toString();
+
+        try {
+            agentensID = idb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn = '" + soktNamn + "'");
+            lblSvarID.setText(agentensID);
+
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+
+        // Kolla om agent är ansvarig över någon alien
+        SQL s = new SQL(idb);
+        if (s.agentHarAlien(agentensID, idb) == true) {
+            // Visa info och val gällande att byta ansvarig agent
+            cmbNyAnsvarig.setVisible(true);
+            txtAreaAliens.setVisible(true);
+            lblDennaAgent.setText("Denna agent är ansvarig över en eller flera aliens.");
+            lblVanligenAnge.setText("Vänligen ange en ny ansvarig agent för dessa aliens:");
+            // fyll combobox med agenter att välja mellan
+            s.agent(cmbNyAnsvarig);
+            // visa vilka aliens som agenten är ansvarig för
+            s.getAliensForAnsvaigAgent(agentensID, txtAreaAliens);
+
+        }
     }//GEN-LAST:event_btnSokMouseClicked
     /**
      * Tar bort agenten från tabellen agent, uppdaterar aliens med nya ansvariga
@@ -295,7 +294,7 @@ public class TaBortAgent extends javax.swing.JFrame {
             // Tar in lösenordet som användaren angett
             String losenord = txtLosenord.getText().trim();
             String losenordDB = "";
-             
+
             // Lista att spara ev aliens som agenten är ansvarig för
             ArrayList<HashMap<String, String>> harAnsvar = new ArrayList<>();
 

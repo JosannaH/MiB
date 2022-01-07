@@ -18,13 +18,13 @@ public class Inloggning extends javax.swing.JFrame {
     // Varabler att spara ID och användartyp i för att skicka med till andra klasser.
     private String anvTyp;
     private String anvId;
-    
+
     public Inloggning(InfDB idb) {
         initComponents();
         this.idb = idb;
     }
 
-     public Inloggning() {
+    public Inloggning() {
         initComponents();
     }
 
@@ -137,57 +137,51 @@ public class Inloggning extends javax.swing.JFrame {
 
         //If-sats för att kontrollera om användarnamn och lösenord fyllts i. 
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
-            if(Validering.txtFaltHarSiffror(txtAnvandare)){
-            //Kontrollera om anvädaren valt Agent eller Alien i comboBox:en och sparar SQL-frågor utifrån det valet.
-            if (anvTyp.equals("Agent")) {
-                inloggTyp = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
-                losenTyp = "SELECT Losenord FROM agent WHERE Agent_ID=";
-            } 
-            else {
-                inloggTyp = "SELECT Alien_ID FROM alien WHERE Alien_ID=";
-                losenTyp = "SELECT Losenord FROM alien WHERE Alien_ID=";
-            }
-            try {
-                String anvFranDatabas = idb.fetchSingle(inloggTyp + anvId);
-                String losenFranDatabas = idb.fetchSingle(losenTyp + anvId);
-                String adminStatus = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvId);
-
-                //Kontrollerar att användare/lösenord stämmer överens.
-                if (anvId.equals(anvFranDatabas) && losenord.equals(losenFranDatabas)) {
-
-                    //Här kontrolleras om man är alien/agent/admin och startsidan som öppnas är baserat på detta.
-                    //Det finns alltså tre olika startsidor för vanliga agenter, administratörer och aliens.
-                    if (anvTyp.equals("Agent") && adminStatus.equals("J")) {
-                        setVisible(false);
-                        StartsidaAdmin startAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
-                        startAdmin.setVisible(true);
-                    }
-                    else if (anvTyp.equals("Agent")){
-                        setVisible(false);
-                        StartsidaAgent startAgent= new StartsidaAgent(idb, anvId, anvTyp);
-                        startAgent.setVisible(true);
-                    }
-                    else{
-                        setVisible(false);
-                        StartsidaAlien startAlien= new StartsidaAlien(idb, anvId, anvTyp);
-                        startAlien.setVisible(true);
-                    }
-                } 
-                //Stämmer inte lösenordet överens med användat-ID:t (AlienID/AgentID) i databasen möts användaren av denna dialogruta.
-                else {
-                    JOptionPane.showMessageDialog(null, "Lösenordet är fel!");
+            if (Validering.txtFaltHarSiffror(txtAnvandare)) {
+                //Kontrollera om anvädaren valt Agent eller Alien i comboBox:en och sparar SQL-frågor utifrån det valet.
+                if (anvTyp.equals("Agent")) {
+                    inloggTyp = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
+                    losenTyp = "SELECT Losenord FROM agent WHERE Agent_ID=";
+                } else {
+                    inloggTyp = "SELECT Alien_ID FROM alien WHERE Alien_ID=";
+                    losenTyp = "SELECT Losenord FROM alien WHERE Alien_ID=";
                 }
-            } 
-            //Om något går fel i if-satsen (undantag) som kontrollerar inloggningstypen (Alien/Agent) kommer denna dialogruta upp.
-            catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-                System.out.println("Internt felmeddelande" + e.getMessage());
-            }    
-        }     
-    }
-        //Om fälten inte är ifyllda och saknas värden visas denna dialog.
-        else { 
-                 JOptionPane.showMessageDialog(null, "Fyll i användarnamn och lösenord");
+                try {
+                    String anvFranDatabas = idb.fetchSingle(inloggTyp + anvId);
+                    String losenFranDatabas = idb.fetchSingle(losenTyp + anvId);
+                    String adminStatus = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvId);
+
+                    //Kontrollerar att användare/lösenord stämmer överens.
+                    if (anvId.equals(anvFranDatabas) && losenord.equals(losenFranDatabas)) {
+
+                        //Här kontrolleras om man är alien/agent/admin och startsidan som öppnas är baserat på detta.
+                        //Det finns alltså tre olika startsidor för vanliga agenter, administratörer och aliens.
+                        if (anvTyp.equals("Agent") && adminStatus.equals("J")) {
+                            setVisible(false);
+                            StartsidaAdmin startAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
+                            startAdmin.setVisible(true);
+                        } else if (anvTyp.equals("Agent")) {
+                            setVisible(false);
+                            StartsidaAgent startAgent = new StartsidaAgent(idb, anvId, anvTyp);
+                            startAgent.setVisible(true);
+                        } else {
+                            setVisible(false);
+                            StartsidaAlien startAlien = new StartsidaAlien(idb, anvId, anvTyp);
+                            startAlien.setVisible(true);
+                        }
+                    } //Stämmer inte lösenordet överens med användat-ID:t (AlienID/AgentID) i databasen möts användaren av denna dialogruta.
+                    else {
+                        JOptionPane.showMessageDialog(null, "Lösenordet är fel!");
+                    }
+                } //Om något går fel i if-satsen (undantag) som kontrollerar inloggningstypen (Alien/Agent) kommer denna dialogruta upp.
+                catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande" + e.getMessage());
+                }
+            }
+        } //Om fälten inte är ifyllda och saknas värden visas denna dialog.
+        else {
+            JOptionPane.showMessageDialog(null, "Fyll i användarnamn och lösenord");
         }
     }//GEN-LAST:event_btnLoggainActionPerformed
 

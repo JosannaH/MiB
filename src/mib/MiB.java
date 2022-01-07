@@ -15,15 +15,14 @@ import oru.inf.InfException;
  * @author Josanna, Linda & Lisa
  */
 public class MiB {
-    
-    private static InfDB idb;    
-    
+
+    private static InfDB idb;
+
     public static void main(String[] args) {
         try {
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
             System.out.println("Databasen startade");
-        }
-        catch (InfException ex) {
+        } catch (InfException ex) {
             Logger.getLogger(MiB.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + ex.getMessage());

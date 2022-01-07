@@ -187,14 +187,14 @@ public class GorTillAdmin extends javax.swing.JFrame {
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
-   //Metod som skickar tillbaka användaren till föregånde sida vid klickning.
+    //Metod som skickar tillbaka användaren till föregånde sida vid klickning.
     private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
         setVisible(false);
         AdminHanteraAgenter h = new AdminHanteraAgenter(idb, anvId, anvTyp);
         h.setVisible(true);
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
 
-   //Metod som skickar användaren till startsidan för administratörer.
+    //Metod som skickar användaren till startsidan för administratörer.
     private void menuBarTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarTillStartsidaMouseClicked
         setVisible(false);
         StartsidaAdmin startsidaAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
@@ -203,30 +203,29 @@ public class GorTillAdmin extends javax.swing.JFrame {
 
     //Metoden körs när en klickar på sök-knappen och hämtar information om agenten med det sökta ID:t. 
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-       //Kontrollerar att textfältet vid sökningen är ifyllt.
+        //Kontrollerar att textfältet vid sökningen är ifyllt.
         if (Validering.textFaltHarVarde(txtAgentID)) {
-            if(Validering.txtFaltHarSiffror(txtAgentID)){
-        //Hämtar det agent-ID som användaren söker efter i textrutan.
-        soktID = txtAgentID.getText().trim();
+            if (Validering.txtFaltHarSiffror(txtAgentID)) {
+                //Hämtar det agent-ID som användaren söker efter i textrutan.
+                soktID = txtAgentID.getText().trim();
 
-        try {
-            //Hämtar namnet på agent som eftersöks utifrån ID:t.
-            agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID);
-            //Om något går fel i sökningen (undantag) dyker denna dialogruta upp.
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: hämta namn på agent" + e.getMessage());
-        }
-        //Visar namnet för den sökta agenten som hämtats på rad 216 i labeln efter "Namn".
-        lblNamn.setText(agentNamn);
-        }
-    } 
-        //Om inte rutan för agent-id är ifylld vid sökning dyker denna ruta upp för användaren.    
+                try {
+                    //Hämtar namnet på agent som eftersöks utifrån ID:t.
+                    agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID);
+                    //Om något går fel i sökningen (undantag) dyker denna dialogruta upp.
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande: hämta namn på agent" + e.getMessage());
+                }
+                //Visar namnet för den sökta agenten som hämtats på rad 216 i labeln efter "Namn".
+                lblNamn.setText(agentNamn);
+            }
+        } //Om inte rutan för agent-id är ifylld vid sökning dyker denna ruta upp för användaren.    
         else {
             JOptionPane.showMessageDialog(null, "AgentID måste vara ifyllt!");
         }
     }//GEN-LAST:event_btnSokMouseClicked
-   
+
     //Metoden avser att genomföra bytet från vanlig agent till administratör i databasen.
     private void btnGorTillAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGorTillAdminMouseClicked
         //Lokala varabler som används för att se om lösenorden som anges stämmer överens för den inloggade administratören.
@@ -236,8 +235,7 @@ public class GorTillAdmin extends javax.swing.JFrame {
         try {
             //Här hämtas lösenordet från databasen för att jämföra med det inmatade.
             losenordDB = idb.fetchSingle("SELECT losenord FROM agent WHERE agent_ID =" + anvId);
-        } 
-        //Kan inte lösenordet hämtas visas denna dialogruta.
+        } //Kan inte lösenordet hämtas visas denna dialogruta.
         catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: Hämta lösenord från DB" + e.getMessage());
@@ -257,8 +255,7 @@ public class GorTillAdmin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande: uppdatera agent-tabellen" + e.getMessage());
             }
-        } 
-        //Om det angivna lösenordet för den inloggade administratören inte stämmer överens med det i databasen öppnas denna dialogruta.
+        } //Om det angivna lösenordet för den inloggade administratören inte stämmer överens med det i databasen öppnas denna dialogruta.
         else {
             JOptionPane.showMessageDialog(null, "Du har angett fel lösenord, försök igen.");
         }

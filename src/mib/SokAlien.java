@@ -318,8 +318,8 @@ public class SokAlien extends javax.swing.JFrame {
         if (Validering.textFaltHarVarde(txtSokID)) {
             // Kollar om IDt består av siffror
             if (Validering.txtFaltHarSiffror(txtSokID)) {
-                 lblConfirm.setVisible(false);
-                 lblError.setVisible(false);
+                lblConfirm.setVisible(false);
+                lblError.setVisible(false);
 
                 try {
                     //Hämta ID som användaren sökt efter
