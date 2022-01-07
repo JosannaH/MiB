@@ -32,6 +32,9 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
         lblInfo.setVisible(false);
         txtSpec.setVisible(false);
+        
+        SQL s = new SQL(idb);
+        s.utrustning(cmbNamn);
     }
 
     /**
@@ -48,7 +51,6 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         lblRubrik = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
         lblID = new javax.swing.JLabel();
         lblBenamning = new javax.swing.JLabel();
         txtBenamning = new javax.swing.JTextField();
@@ -59,6 +61,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         btnRadera = new javax.swing.JButton();
         btnSok = new javax.swing.JButton();
         btnTillbaka = new javax.swing.JButton();
+        cmbNamn = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         menuInlogg = new javax.swing.JMenu();
@@ -75,9 +78,9 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         lblRubrik.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 1, 24)); // NOI18N
         lblRubrik.setText("RADERA UTRUSTNING");
 
-        lblID.setText("Utrustnings-ID");
+        lblID.setText("Namn");
 
-        lblBenamning.setText("Benämning");
+        lblBenamning.setText("ID");
 
         txtBenamning.setText("-");
 
@@ -143,7 +146,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblRubrik)
-                        .addGap(0, 271, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -153,29 +156,29 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                                     .addComponent(lblUtrustning)
                                     .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(52, 52, 52)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtTyp, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTyp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                                     .addComponent(txtBenamning, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtSpec))
+                                    .addComponent(txtSpec)
+                                    .addComponent(cmbNamn, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnSok))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(88, 88, 88)
                                 .addComponent(btnRadera)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(202, 202, 202))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(63, Short.MAX_VALUE)
+                .addContainerGap(66, Short.MAX_VALUE)
                 .addComponent(lblRubrik)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblID)
-                    .addComponent(btnSok))
-                .addGap(15, 15, 15)
+                    .addComponent(btnSok)
+                    .addComponent(cmbNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBenamning)
                     .addComponent(txtBenamning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -199,18 +202,17 @@ public class TaBortUtrustning extends javax.swing.JFrame {
 
     // Sökning
     private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
-        // Kontrollerar om fältet för ID är ifyllt samt att det endast består av siffror. 
-        if (Validering.textFaltHarVarde(txtID)) {
-            if (Validering.txtFaltHarSiffror(txtID)) {
-
+        
                 try {
+                    String namn = cmbNamn.getSelectedItem().toString();
+                    
                     // Fyller på listorna med utrustningsID från utrustningstabellerna. 
                     vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
                     teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
                     kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
 
                     // Hämtar information från sökfältet. 
-                    String soktID = txtID.getText();
+                    String soktID = idb.fetchSingle("SELECT Utrustnings_ID FROM utrustning WHERE benamning = '" + namn + "'");
                     int soktIDint = Integer.parseInt(soktID);
 
                     // Hämtar information från från namnfältet. 
@@ -251,26 +253,21 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
                     System.out.println("Internt felmeddelande:" + e.getMessage());
                 }
-            }
-            // Visar information om att alla fält måste ha ett värden. 
-        } else {
-            JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
-        }
+                   
     }//GEN-LAST:event_btnSokActionPerformed
 
     // Radera
     private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
 
-        // Här kontrollerar man att fältet txtSokID är ifyllt innan man går vidare och raderar informationen. 
-        if (Validering.textFaltHarVarde(txtID)) {
-
-            // Om txtSokID är ifyllt sker en dubbelkontroll för om man verkligen vill radera informationen. Detta görs med metoden showConfirmDialog. 
+            // Här sker en dubbelkontroll för om man verkligen vill radera informationen. Detta görs med metoden showConfirmDialog. 
             int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort vald utrustning?", "Ta bort utrustning..", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             // Metoden använder 0 och 1 som input på svar. 0 = ja. Om detta väljs så går metoden vidare och raderar informationen. 
             if (input == 0) {
                 try {
-                    String soktID = txtID.getText();
+                    
+                    String namn = cmbNamn.getSelectedItem().toString();
+                    String soktID = idb.fetchSingle("SELECT Utrustnings_ID from utrustning WHERE benamning = '" + namn + "'");
 
                     // För att kunna kontrollera vilken tabell som sökt ID finns inom (Utrustningstyp) används tre ArrayLists där man lagrar information om värdena. 
                     vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
@@ -294,6 +291,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                     idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID =" + soktID + "");
 
                     // Skickar tillbaka användaren till tidigare sida.
+                    JOptionPane.showMessageDialog(null, "Utrustningen är raderad!");
                     btnTillbakaActionPerformed(evt);
 
                 } // Visar felmeddelande om att något har gått fel. 
@@ -302,12 +300,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                     System.out.println("Internt felmeddelande" + e.getMessage());
                 }
             }
-        } // Visar information om att ID behöver vara ifyllt.  
-        else {
-            JOptionPane.showMessageDialog(null, "UtrustningsID måste vara ifyllt!");
-        }
-
-
+        
     }//GEN-LAST:event_btnRaderaActionPerformed
 
     //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
@@ -339,6 +332,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
     private javax.swing.JButton btnSok;
     private javax.swing.JButton btnTillbaka;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cmbNamn;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
@@ -352,7 +346,6 @@ public class TaBortUtrustning extends javax.swing.JFrame {
     private javax.swing.JMenu menuLoggaUt;
     private javax.swing.JMenu menuStartsida;
     private javax.swing.JTextField txtBenamning;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtSpec;
     private javax.swing.JTextField txtTyp;
     // End of variables declaration//GEN-END:variables

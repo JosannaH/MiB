@@ -63,8 +63,8 @@ public class SQL extends javax.swing.JFrame {
         try {
             ArrayList<String> agentLista = idb.fetchColumn("SELECT namn FROM agent ORDER BY namn");
             for (int i = 0; i < agentLista.size(); i++) {
-                String agentNamn = agentLista.get(i);
-                x.addItem(agentNamn);
+                String namn = agentLista.get(i);
+                x.addItem(namn);
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -77,10 +77,10 @@ public class SQL extends javax.swing.JFrame {
      */
     public void utrustning(JComboBox x) {
         try {
-            ArrayList<String> utrustningsLista = idb.fetchColumn("SELECT benamning FROM utrustning ORDER BY namn");
+            ArrayList<String> utrustningsLista = idb.fetchColumn("SELECT Benamning FROM utrustning");
             for (int i = 0; i < utrustningsLista.size(); i++) {
-                String agentNamn = utrustningsLista.get(i);
-                x.addItem(agentNamn);
+                String namn = utrustningsLista.get(i);
+                x.addItem(namn);
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
