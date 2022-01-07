@@ -12,7 +12,7 @@ import oru.inf.InfException;
 
 /**
  *
- * @author Josanna, Linda & Lisa
+ * @author Lisa
  */
 public class RegistreraNyUtrustning extends javax.swing.JFrame {
 
@@ -28,9 +28,11 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        // Hämta ett autogenererad utrustningsID
         hamtaUtrustningsID(regID);
-        doljText(txtEgenskap);
-        doljLabel(lblEgenskap);
+        // Döljer fält som endast ska visas beroende på ilken typ av utrustning men valt att registrera
+        txtEgenskap.setVisible(false);
+        lblEgenskap.setVisible(false);
         menuBarInloggad.setText("Inloggad som " + anvTyp);
     }
 
@@ -50,7 +52,7 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         lblUtrustningsTyp = new javax.swing.JLabel();
         cmbUtrustningstyp = new javax.swing.JComboBox<>();
         lblConfirm = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblRubrik = new javax.swing.JLabel();
         lblUtrustningID = new javax.swing.JLabel();
         lblUtrustning = new javax.swing.JLabel();
         txtEgenskap = new javax.swing.JTextField();
@@ -58,6 +60,7 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         tbValjTyp = new javax.swing.JToggleButton();
         btnGaTillbaka = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
+        lblTypVald = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuTillStart = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -84,8 +87,8 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
 
         lblConfirm.setForeground(new java.awt.Color(0, 204, 0));
 
-        jLabel7.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
-        jLabel7.setText("MiB REGISTRERINGSSERVICE");
+        lblRubrik.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
+        lblRubrik.setText("MiB REGISTRERINGSSERVICE");
 
         lblUtrustningID.setText("UtrustningsID");
 
@@ -108,6 +111,8 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Vapen.png"))); // NOI18N
+
+        lblTypVald.setText("Vapen vald!");
 
         menuTillStart.setText("Till startsida");
         menuTillStart.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,7 +146,7 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(182, 182, 182)
-                        .addComponent(jLabel7))
+                        .addComponent(lblRubrik))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(281, 281, 281)
                         .addComponent(lblTitel)))
@@ -162,10 +167,13 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                                 .addComponent(lblUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cmbUtrustningstyp, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtBenamning, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tbValjTyp)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tbValjTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTypVald, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
                             .addComponent(txtEgenskap, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addGap(86, 86, 86))
                     .addGroup(layout.createSequentialGroup()
@@ -185,7 +193,7 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                         .addComponent(btnGaTillbaka))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
+                        .addComponent(lblRubrik)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTitel)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +211,9 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                                     .addComponent(lblUtrustningsTyp)
                                     .addComponent(cmbUtrustningstyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(tbValjTyp)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tbValjTyp)
+                                    .addComponent(lblTypVald))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtEgenskap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,7 +235,7 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
         // Kontrollerar att vissa fält måste vara ifyllda för att kunna spara ny utrustning.
         if (Validering.textFaltHarVarde(txtBenamning) && Validering.comboHarVarde(cmbUtrustningstyp)) {
-
+            // Hämtar användarinmatningen
             String regUtrustningsID = lblUtrustning.getText();
             String regUtrustning = cmbUtrustningstyp.getSelectedItem().toString();
             String regEgenskap = txtEgenskap.getText();
@@ -234,24 +244,29 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
 
                 // Kontrollerar att man har fyllt i tillhörande information (egenskap) om valt vapen. 
                 if (regUtrustning.equals("Vapen") && Validering.textFaltHarVarde(txtEgenskap)) {
+                    // Metod som lägger till i tabellen Utrustning
                     laggTill();
+                    // Läggs till i tabellen för utrustningstyp, i detta fallet Vapen
                     idb.insert("INSERT INTO Vapen VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
+                    // Skickar tillbaka användaren till föregående sida
                     btnGaTillbakaActionPerformed(evt);
+
                 } else if (regUtrustning.equals("Kommunikation") && Validering.textFaltHarVarde(txtEgenskap)) {
                     laggTill();
                     idb.insert("INSERT INTO Kommunikation VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
                     btnGaTillbakaActionPerformed(evt);
+
                 } else if (regUtrustning.equals("Teknik") && Validering.textFaltHarVarde(txtEgenskap)) {
                     laggTill();
                     idb.insert("INSERT INTO Teknik VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
                     btnGaTillbakaActionPerformed(evt);
+
                 } else if (regUtrustning.equals("Okänd")) {
                     laggTill();
                     btnGaTillbakaActionPerformed(evt);
                 } else {
                     JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
                 }
-
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
@@ -268,30 +283,17 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         String regBenamning = txtBenamning.getText();
         String regUtrustningsID = lblUtrustning.getText();
         try {
-
             idb.insert("INSERT INTO Utrustning VALUES ('" + regUtrustningsID + "', '" + regBenamning + "')");
             JOptionPane.showMessageDialog(null, "Ny utrustning är nu registrerad!");
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());
         }
-
-    }
-
-    /* Metoden döljer en ruta som lagrar information tillhörande specifik utrustning. metoden anropas direkt i konstruktorn 
-    för att inledningsvis döljas. */
-    private void doljText(JTextField textAttDolja) {
-        textAttDolja.setVisible(false);
-    }
-
-    /* Metoden döljer en rubrik som lagrar information tillhörande specifik utrustning. metoden anropas direkt i konstruktorn 
-    för att inledningsvis döljas. */
-    private void doljLabel(JLabel labelAttDolja) {
-        labelAttDolja.setVisible(false);
     }
 
     // Metoden anropas när man väljer vilken typ av utrustning som man vill registrera. 
     private void tbValjTypMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbValjTypMouseClicked
+        // Hämta användarens val av vilken typ av utrustning det är
         String typ = cmbUtrustningstyp.getSelectedItem().toString();
 
         /* Beroende på vilken utrustning så ska olika saker ske. Viss utrustning har fler uppgifter som behöver hämtas in. 
@@ -300,64 +302,71 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
             txtEgenskap.setVisible(true);
             lblEgenskap.setVisible(true);
             lblEgenskap.setText("Kaliber");
+            // Visa bekräftelse på vilken typ användaren valt i komboboxen
+            lblTypVald.setText("Vapen vald!");
         } else if (typ.equals("Kommunikation")) {
             txtEgenskap.setVisible(true);
             lblEgenskap.setVisible(true);
             lblEgenskap.setText("Överföringsteknik");
+            lblTypVald.setText("Kommunikation vald!");
         } else if (typ.equals("Teknik")) {
             txtEgenskap.setVisible(true);
             lblEgenskap.setVisible(true);
             lblEgenskap.setText("Kraftkälla");
+            lblTypVald.setText("Teknik vald!");
         } else {
-            doljText(txtEgenskap);
-            doljLabel(lblEgenskap);
+            txtEgenskap.setVisible(false);
+            lblEgenskap.setVisible(false);
+            lblTypVald.setText("Okänd vald!");
         }
     }//GEN-LAST:event_tbValjTypMouseClicked
 
     /**
-     * Gå tillbaka till startsida, olika beroende på om anv är admin eller vanlig agent
-     * @param evt 
+     * Gå tillbaka till startsida, olika beroende på om anv är admin eller
+     * vanlig agent
+     *
+     * @param evt
      */
     private void menuTillStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTillStartMouseClicked
-         setVisible(false);
+        setVisible(false);
         SQL s = new SQL(idb);
+        // anropar metod som kolla om agenten är admin eller inte
         boolean arAdmin = s.arAdmin(anvId);
-        
-        if (arAdmin == true){
+
+        if (arAdmin == true) {
             StartsidaAdmin a = new StartsidaAdmin(idb, anvId, anvTyp);
             a.setVisible(true);
-        }
-        else{
+        } else {
             StartsidaAgent a = new StartsidaAgent(idb, anvId, anvTyp);
             a.setVisible(true);
-    }                                          
-    
+        }
+
     }//GEN-LAST:event_menuTillStartMouseClicked
 
     /**
      * Logga ut och gå tillbaka till inloggningsfönster
-     * @param evt 
+     *
+     * @param evt
      */
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
-    
+
     // Metdoden kontrollerar om du är administratör eller agent och skickar dig sedan tillbaka till rätt sida.
     private void btnGaTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaTillbakaActionPerformed
         setVisible(false);
         SQL s = new SQL(idb);
         boolean arAdmin = s.arAdmin(anvId);
-        
-        if (arAdmin == true){
+
+        if (arAdmin == true) {
             HanteraUtrustningAdmin a = new HanteraUtrustningAdmin(idb, anvId, anvTyp);
             a.setVisible(true);
-        }
-        else{
+        } else {
             StartsidaAgent a = new StartsidaAgent(idb, anvId, anvTyp);
             a.setVisible(true);
-    }     
+        }
     }//GEN-LAST:event_btnGaTillbakaActionPerformed
 
     /* Denna metod genererar ett ID för varje ny registrerad utrustning. För att det ska bli ett nytt ID som inte går att ändras anropas den i konstruktorn. 
@@ -380,13 +389,14 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
     private javax.swing.JButton btnSpara;
     private javax.swing.JComboBox<String> cmbUtrustningstyp;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblBenamning;
     private javax.swing.JLabel lblConfirm;
     private javax.swing.JLabel lblEgenskap;
+    private javax.swing.JLabel lblRubrik;
     private javax.swing.JLabel lblTitel;
+    private javax.swing.JLabel lblTypVald;
     private javax.swing.JLabel lblUtrustning;
     private javax.swing.JLabel lblUtrustningID;
     private javax.swing.JLabel lblUtrustningsTyp;
