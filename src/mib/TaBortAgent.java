@@ -255,6 +255,7 @@ public class TaBortAgent extends javax.swing.JFrame {
      * @param evt
      */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
+       if(Validering.txtFaltHarSiffror(txtAgentID)){
         // Hämtar agentId som användaren söker efter
         soktID = txtAgentID.getText().trim();
 
@@ -282,6 +283,7 @@ public class TaBortAgent extends javax.swing.JFrame {
             // visa vilka aliens som agenten är ansvarig för
             s.getAliensForAnsvaigAgent(soktID, txtAreaAliens);
         }
+       }
     }//GEN-LAST:event_btnSokMouseClicked
     /**
      * Tar bort agenten från tabellen agent, uppdaterar aliens med nya ansvariga

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author luna
@@ -17,6 +18,7 @@ public class SokAgent extends javax.swing.JFrame {
     private InfDB idb;
     private String anvId;
     private String anvTyp;
+
     /**
      * Creates new form SokAgent
      */
@@ -41,7 +43,7 @@ public class SokAgent extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSok = new javax.swing.JButton();
         txtSoktID = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -72,10 +74,10 @@ public class SokAgent extends javax.swing.JFrame {
 
         jLabel5.setText("Benämning:");
 
-        jButton1.setText("SÖK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSok.setText("SÖK");
+        btnSok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSokActionPerformed(evt);
             }
         });
 
@@ -136,7 +138,7 @@ public class SokAgent extends javax.swing.JFrame {
                 .addContainerGap(293, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnSok)
                         .addGap(399, 399, 399))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -178,7 +180,7 @@ public class SokAgent extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtSoktID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnSok)
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -211,53 +213,47 @@ public class SokAgent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
-    try {
-        String soktID = txtSoktID.getText();
-        ArrayList<String> agentnLista = idb.fetchColumn("SELECT agent_ID FROM agent");
-            
-            if (agentnLista.contains(soktID)){
-            
-    
-    
-    String agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID +"");
-    String agentTelefon = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID = " + soktID +"");
-    String agentBehorighet = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID = " + soktID +"");
-    String agentOmrade = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE Omrades_ID IN(SELECT Omrade FROM Agent WHERE Agent_ID = " + soktID +")");
-    String agentLosenord = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID = " + soktID + "");
-    String agentAnsDat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Agent_ID = " + soktID +"");
-    
-    lblBenamningSvar.setText(agentNamn);
-    lblTelefonSvar.setText(agentTelefon);
-    lblOmradeSvar.setText(agentOmrade);
-    lblLosenordSvar.setText(agentLosenord);
-    lblAnsDatSvar.setText(agentAnsDat);
-    
-    
-    
-    if (agentBehorighet.contains("J")) {
-    lblBehorigheterSvar.setText("Administratör");
-    }
-    
-    else if (agentBehorighet.contains("N")) {
-    lblBehorigheterSvar.setText("Agentstandard");
-    }
-    
-    
-    
-    }
-            else{
-                JOptionPane.showMessageDialog(null, "AgentID finns inte!");
-            }
-    }
-    
-    catch (InfException e){
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());  
-    }
+    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
+        if (Validering.textFaltHarVarde(txtSoktID)) {
+            if (Validering.txtFaltHarSiffror(txtSoktID)) {
+                try {
+                    String soktID = txtSoktID.getText();
+                    ArrayList<String> agentnLista = idb.fetchColumn("SELECT agent_ID FROM agent");
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+                    if (agentnLista.contains(soktID)) {
+
+                        String agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID + "");
+                        String agentTelefon = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID = " + soktID + "");
+                        String agentBehorighet = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID = " + soktID + "");
+                        String agentOmrade = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE Omrades_ID IN(SELECT Omrade FROM Agent WHERE Agent_ID = " + soktID + ")");
+                        String agentLosenord = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID = " + soktID + "");
+                        String agentAnsDat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Agent_ID = " + soktID + "");
+
+                        lblBenamningSvar.setText(agentNamn);
+                        lblTelefonSvar.setText(agentTelefon);
+                        lblOmradeSvar.setText(agentOmrade);
+                        lblLosenordSvar.setText(agentLosenord);
+                        lblAnsDatSvar.setText(agentAnsDat);
+
+                        if (agentBehorighet.contains("J")) {
+                            lblBehorigheterSvar.setText("Administratör");
+                        } else if (agentBehorighet.contains("N")) {
+                            lblBehorigheterSvar.setText("Agentstandard");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "AgentID finns inte!");
+                    }
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande:" + e.getMessage());
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
+        }
+
+    }//GEN-LAST:event_btnSokActionPerformed
 
     private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
         setVisible(false);
@@ -280,11 +276,10 @@ public class SokAgent extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSok;
     private javax.swing.JButton btnTillbaka;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -203,7 +203,7 @@ public class AndraLosenord extends javax.swing.JFrame {
 
         //Kollar att alla fält är ifyllda
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pwNuvLosen) && Validering.textFaltHarVarde(pwNyttLosen)) {
-
+             if(Validering.txtFaltHarSiffror(txtAnvandare)){
             try {
                 // Lösen för individen hämtas ur databasen
                 losenFranDB = idb.fetchSingle("SELECT Losenord FROM " + anvTyp + " WHERE " + anvTyp + "_ID=" + anvandare);
@@ -225,7 +225,8 @@ public class AndraLosenord extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
-        } else {
+        }
+        }else {
             JOptionPane.showMessageDialog(null, "Alla fält måste fyllas i");
         }
     }//GEN-LAST:event_btnAndraLosenActionPerformed

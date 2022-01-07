@@ -59,7 +59,7 @@ public class SokAlien extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSok = new javax.swing.JButton();
         lblAlienRas = new javax.swing.JLabel();
         lblAlienPlats = new javax.swing.JLabel();
         lblAnsvarigAgent = new javax.swing.JLabel();
@@ -123,15 +123,15 @@ public class SokAlien extends javax.swing.JFrame {
         jLabel10.setText("Ansvarig agent:");
         jLabel10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setText("SÖK");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSok.setText("SÖK");
+        btnSok.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnSokMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSokActionPerformed(evt);
             }
         });
 
@@ -231,7 +231,7 @@ public class SokAlien extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtSokID, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1))
+                                        .addComponent(btnSok))
                                     .addComponent(lblConfirm))
                                 .addGap(262, 262, 262))))))
             .addGroup(layout.createSequentialGroup()
@@ -281,7 +281,7 @@ public class SokAlien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSokID)
                     .addComponent(txtSokID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnSok))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(lblConfirm)
                 .addGap(29, 29, 29)
@@ -331,11 +331,13 @@ public class SokAlien extends javax.swing.JFrame {
     private void txtSokIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSokIDActionPerformed
     }//GEN-LAST:event_txtSokIDActionPerformed
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSokActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
+        if(Validering.textFaltHarVarde(txtSokID)){
+        if(Validering.txtFaltHarSiffror(txtSokID)){
         lblConfirm.setVisible(false);
         lblError.setVisible(false);
         
@@ -421,9 +423,14 @@ public class SokAlien extends javax.swing.JFrame {
             lblError.setVisible(true);
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
+        }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
+        }
         
 
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnSokMouseClicked
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         SQL s = new SQL(idb);
@@ -457,8 +464,8 @@ public class SokAlien extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSok;
     private javax.swing.JToggleButton btnTillbaka;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

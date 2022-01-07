@@ -322,7 +322,8 @@ public class TaBortAlien extends javax.swing.JFrame {
 
     // Metoden söker upp information om vald agent.
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-
+       if(Validering.textFaltHarVarde(txtSokID)){                                   
+       if(Validering.txtFaltHarSiffror(txtSokID)){
         try {
 
             squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
@@ -396,6 +397,11 @@ public class TaBortAlien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             lblError.setVisible(true);
             System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+       }
+       }
+       else {
+            JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
         }
     }//GEN-LAST:event_btnSokMouseClicked
 
