@@ -67,21 +67,11 @@ public class HanteraUtrustningAdmin extends javax.swing.JFrame {
                 btnRegistreraNyAlienMouseClicked(evt);
             }
         });
-        btnRegistreraNyAlien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistreraNyAlienActionPerformed(evt);
-            }
-        });
 
         btnUppdatera.setText("Uppdatera utrustning");
         btnUppdatera.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnUppdateraMouseClicked(evt);
-            }
-        });
-        btnUppdatera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUppdateraActionPerformed(evt);
             }
         });
 
@@ -200,14 +190,6 @@ public class HanteraUtrustningAdmin extends javax.swing.JFrame {
         TaBortUtrustning taBort = new TaBortUtrustning(idb, anvId, anvTyp);
         taBort.setVisible(true);
     }//GEN-LAST:event_btnTaBortMouseClicked
-
-    private void btnRegistreraNyAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraNyAlienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistreraNyAlienActionPerformed
-
-    private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUppdateraActionPerformed
 
     /**
      * @param args the command line arguments
