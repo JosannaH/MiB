@@ -75,8 +75,8 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblTelefon" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
-                                  <Component id="lblNamn" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblAlienID" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblID" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAlienNamn" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblRas" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                                   <Component id="lblRasInfo" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblPlats" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -84,32 +84,35 @@
                                   <Component id="lblLosen" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnValjRas" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Component id="pswLosen" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                          <Component id="txtTelefon" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                          <Component id="txtNamn" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="txtAlienID" min="-2" pref="150" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="btnSok" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Component id="pswLosen" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="txtTelefon" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="txtID" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="cmbNamn" min="-2" pref="144" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="btnSok" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="cmbAnsAgent" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="cmbPlats" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="cmbAnsAgent" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="cmbPlats" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="txtRasInfo" min="-2" pref="152" max="-2" attributes="0"/>
+                                          <Component id="btnSpara" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="cmbRas" min="-2" pref="152" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                                      </Group>
+                                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="txtRasInfo" min="-2" pref="152" max="-2" attributes="0"/>
-                                  <Component id="btnSpara" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="cmbRas" min="-2" pref="152" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnValjRas" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -146,10 +149,7 @@
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtAlienID" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnSok" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="btnSok" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="pswLosen" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -157,8 +157,8 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtNamn" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblNamn" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblID" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -178,11 +178,12 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblRas" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbRas" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="cmbRas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnValjRas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnValjRas" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblRasInfo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtRasInfo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -196,8 +197,11 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="lblPersInfo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Component id="lblAlienID" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblAlienNamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbNamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -217,11 +221,11 @@
         <Property name="text" type="java.lang.String" value="Uppdatera alien"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNamn">
+    <Component class="javax.swing.JTextField" name="txtID">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblNamn">
+    <Component class="javax.swing.JLabel" name="lblID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Namn"/>
+        <Property name="text" type="java.lang.String" value="ID"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTelefon">
@@ -305,9 +309,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblPersInfo">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblAlienID">
+    <Component class="javax.swing.JLabel" name="lblAlienNamn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="AlienID"/>
+        <Property name="text" type="java.lang.String" value="Namn"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtRasInfo">
@@ -319,13 +323,11 @@
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnValjRas">
       <Properties>
-        <Property name="text" type="java.lang.String" value="V&#xe4;lj ras"/>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj ny ras"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnValjRasMouseClicked"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtAlienID">
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnSok">
       <Properties>
@@ -357,6 +359,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTillbakaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbNamn">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
