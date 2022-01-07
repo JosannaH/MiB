@@ -255,7 +255,8 @@ public class TaBortAgent extends javax.swing.JFrame {
      * @param evt
      */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-       if(Validering.txtFaltHarSiffror(txtAgentID)){
+      if(Validering.textFaltHarVarde(txtAgentID)){
+        if(Validering.txtFaltHarSiffror(txtAgentID)){
         // Hämtar agentId som användaren söker efter
         soktID = txtAgentID.getText().trim();
 
@@ -284,6 +285,10 @@ public class TaBortAgent extends javax.swing.JFrame {
             s.getAliensForAnsvaigAgent(soktID, txtAreaAliens);
         }
        }
+      }
+      else {
+            JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+        }
     }//GEN-LAST:event_btnSokMouseClicked
     /**
      * Tar bort agenten från tabellen agent, uppdaterar aliens med nya ansvariga
