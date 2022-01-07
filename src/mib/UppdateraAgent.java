@@ -10,7 +10,7 @@ import oru.inf.InfException;
 
 /**
  *
- * @author luna
+ * @author Josanna, Linda & Lisa
  */
 public class UppdateraAgent extends javax.swing.JFrame {
 
@@ -21,7 +21,6 @@ public class UppdateraAgent extends javax.swing.JFrame {
     /**
      * Creates new form UppdateraAgent
      */
-
     public UppdateraAgent(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
@@ -39,25 +38,25 @@ public class UppdateraAgent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblRubrik = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         btnSok = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lblLosen = new javax.swing.JLabel();
         txtLosenord = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lblNamn = new javax.swing.JLabel();
         txtNamn = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        lblTele = new javax.swing.JLabel();
         txtTelefon = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblBehorighet = new javax.swing.JLabel();
         cmbAdmin = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
+        lblDatum = new javax.swing.JLabel();
         txtAnsDat = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        lblAnsvar = new javax.swing.JLabel();
         lblErrorEmpty = new javax.swing.JLabel();
         btnSpara = new javax.swing.JButton();
         cmbOmrade = new javax.swing.JComboBox<>();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnTillbaka = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         menuInget = new javax.swing.JMenu();
@@ -66,10 +65,10 @@ public class UppdateraAgent extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
-        jLabel1.setText("UPPDATERA BEFINTLIGA AGENTUPPGIFTER");
+        lblRubrik.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
+        lblRubrik.setText("UPPDATERA BEFINTLIGA AGENTUPPGIFTER");
 
-        jLabel2.setText("Agent-ID");
+        lblID.setText("Agent-ID");
 
         btnSok.setText("Sök");
         btnSok.addActionListener(new java.awt.event.ActionListener() {
@@ -78,43 +77,20 @@ public class UppdateraAgent extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Lösenord");
+        lblLosen.setText("Lösenord");
 
-        jLabel4.setText("Benämning");
+        lblNamn.setText("Benämning");
 
-        txtNamn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNamnActionPerformed(evt);
-            }
-        });
+        lblTele.setText("Telefon");
 
-        jLabel6.setText("Telefon");
-
-        txtTelefon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTelefonActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Behörigheter");
+        lblBehorighet.setText("Behörigheter");
 
         cmbAdmin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administratör", "Agentstandard" }));
         cmbAdmin.setToolTipText("");
-        cmbAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbAdminActionPerformed(evt);
-            }
-        });
 
-        jLabel8.setText("Anställningsdatum");
+        lblDatum.setText("Anställningsdatum");
 
-        txtAnsDat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAnsDatActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setText("Områdesansvar");
+        lblAnsvar.setText("Områdesansvar");
 
         lblErrorEmpty.setText("* Inga tomma fält får finnas vid sparning.");
 
@@ -127,10 +103,10 @@ public class UppdateraAgent extends javax.swing.JFrame {
 
         cmbOmrade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Svealand", "Götaland", "Norrland" }));
 
-        jToggleButton1.setText("Gå tillbaka");
-        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseClicked(evt);
+        btnTillbaka.setText("Gå tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
             }
         });
 
@@ -170,8 +146,8 @@ public class UppdateraAgent extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3))
+                                        .addComponent(lblID)
+                                        .addComponent(lblLosen))
                                     .addGap(81, 81, 81)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
@@ -184,11 +160,11 @@ public class UppdateraAgent extends javax.swing.JFrame {
                                     .addComponent(btnSpara))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel9))
+                                        .addComponent(lblNamn)
+                                        .addComponent(lblTele)
+                                        .addComponent(lblBehorighet)
+                                        .addComponent(lblDatum)
+                                        .addComponent(lblAnsvar))
                                     .addGap(31, 31, 31)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(cmbAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -198,47 +174,47 @@ public class UppdateraAgent extends javax.swing.JFrame {
                                         .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGap(206, 206, 206))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
+                            .addComponent(lblRubrik)
                             .addGap(118, 118, 118)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblErrorEmpty, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1)
+                        .addComponent(btnTillbaka)
                         .addGap(19, 19, 19))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblRubrik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblID)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSok))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(lblLosen)
                     .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(lblNamn)
                     .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
+                    .addComponent(lblTele)
                     .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(lblBehorighet)
                     .addComponent(cmbAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                    .addComponent(lblDatum)
                     .addComponent(txtAnsDat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                    .addComponent(lblAnsvar)
                     .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addComponent(btnSpara)
@@ -249,91 +225,92 @@ public class UppdateraAgent extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1)
+                        .addComponent(btnTillbaka)
                         .addGap(21, 21, 21))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtTelefonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonActionPerformed
-
-    private void cmbAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbAdminActionPerformed
-
-    private void txtNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNamnActionPerformed
-
-    private void txtAnsDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnsDatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAnsDatActionPerformed
-
+    /**
+     * Metoden söker upp information om angett agentID.
+     */
     private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
 
+        // Kontrollerar att fältet har ett värde samt att det består av siffror. 
         if (Validering.textFaltHarVarde(txtID)) {
-            if(Validering.txtFaltHarSiffror(txtID)){
-            String soktID = txtID.getText();
+            if (Validering.txtFaltHarSiffror(txtID)) {
+                String soktID = txtID.getText();
 
-            try {
+                // Hämtar information från databasen baserat på ifyllt ID.
+                try {
 
-                String los = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID =  '" + soktID + "'");
-                String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = '" + soktID + "'");
-                String tel = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID = '" + soktID + "'");
-                String admin = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID = '" + soktID + "'");
-                String ansdat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Agent_ID = '" + soktID + "'");
-                String omrID = idb.fetchSingle("SELECT Omrade FROM Agent WHERE Agent_ID = '" + soktID + "'");
-                String omr = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE Omrades_ID ='" + omrID + "'");
+                    String los = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID =  '" + soktID + "'");
+                    String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = '" + soktID + "'");
+                    String tel = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID = '" + soktID + "'");
+                    String admin = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID = '" + soktID + "'");
+                    String ansdat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Agent_ID = '" + soktID + "'");
+                    String omrID = idb.fetchSingle("SELECT Omrade FROM Agent WHERE Agent_ID = '" + soktID + "'");
+                    String omr = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE Omrades_ID ='" + omrID + "'");
 
-                txtLosenord.setText(los);
-                txtNamn.setText(namn);
-                txtTelefon.setText(tel);
-                txtAnsDat.setText(ansdat);
-                cmbOmrade.setSelectedItem(omr);
+                    // Fyller fälten med hämtad information. 
+                    txtLosenord.setText(los);
+                    txtNamn.setText(namn);
+                    txtTelefon.setText(tel);
+                    txtAnsDat.setText(ansdat);
+                    cmbOmrade.setSelectedItem(omr);
 
-                if (admin.contains("J")) {
-                    cmbAdmin.setSelectedItem("Administratör");
-                } else if (admin.contains("N")) {
-                    cmbAdmin.setSelectedItem("Agentstandard");
+                    // Kontrollerar om vald agenten är administratör och markerar detta i rullisten. 
+                    if (admin.contains("J")) {
+                        cmbAdmin.setSelectedItem("Administratör");
+                    } else if (admin.contains("N")) {
+                        cmbAdmin.setSelectedItem("Agentstandard");
+                    }
+                } // Om något inte fungerar visas ett felmeddelande.
+                catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande:" + e.getMessage());
                 }
-            } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-                System.out.println("Internt felmeddelande:" + e.getMessage());
             }
-            }
-        } else {
+        } // Om ID inte är ifyllt visas ett felmeddelande. 
+        else {
             JOptionPane.showMessageDialog(null, "AgentID måste vara ifyllt!");
         }
     }//GEN-LAST:event_btnSokActionPerformed
 
+    /**
+     * Metoden anropas när man trycker på sparaknappen.
+     *
+     * @param evt
+     */
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
 
+        // Kontrollerar att fälten har ifyllda värden. 
         if (Validering.textFaltHarVarde(txtID) && Validering.textFaltHarVarde(txtLosenord) && Validering.textFaltHarVarde(txtNamn) && Validering.textFaltHarVarde(txtTelefon) && Validering.textFaltHarVarde(txtAnsDat)) {
+            // Hämtar värden från fälten.
             String soktID = txtID.getText();
-
             String nyttNamn = txtNamn.getText();
             String nyttLosen = txtLosenord.getText();
             String nyttTele = txtTelefon.getText();
             String nyttOmrade = cmbOmrade.getSelectedItem().toString();
             String nyttAnsDat = txtAnsDat.getText();
             String nyttAdmin = cmbAdmin.getSelectedItem().toString();
-            
 
+            // Kontrollerar att lösenordet uppfyller nedanstående krav. 
             if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
 
                 try {
-                    
+                    // Hämtar områdesID från databasen. 
                     String omrID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + nyttOmrade + "'");
-                    
+
+                    // Uppdaterar agenttabellen med fältens angedda värden. 
                     idb.update("UPDATE Agent SET Namn = '" + nyttNamn + "' WHERE Agent_ID = '" + soktID + "'");
                     idb.update("UPDATE Agent SET Losenord = '" + nyttLosen + "' WHERE Agent_ID = '" + soktID + "'");
                     idb.update("UPDATE Agent SET Telefon = '" + nyttTele + "' WHERE Agent_ID = '" + soktID + "'");
                     idb.update("UPDATE Agent SET Anstallningsdatum = '" + nyttAnsDat + "' WHERE Agent_ID = '" + soktID + "'");
                     idb.update("UPDATE Agent SET Omrade = '" + omrID + "' WHERE Agent_ID = '" + soktID + "'");
-                    
+
+                    // Uppdaterar agentabellen med adminstatus.
                     if (nyttAdmin.contains("Administratör")) {
                         String ja = "J";
                         idb.update("UPDATE Agent SET Administrator = '" + ja + "'WHERE Agent_ID = '" + soktID + "'");
@@ -342,7 +319,9 @@ public class UppdateraAgent extends javax.swing.JFrame {
                         idb.update("UPDATE Agent SET Administrator = '" + nej + "' WHERE Agent_ID = '" + soktID + "'");
                     }
 
+                    // Utskrift när en uppdatering är genomförd. 
                     JOptionPane.showMessageDialog(null, "Lyckad uppdatering!");
+                    btnTillbakaActionPerformed(evt);
                 } catch (InfException e) {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
                     System.out.println("Internt felmeddelande" + e.getMessage());
@@ -355,23 +334,26 @@ public class UppdateraAgent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSparaActionPerformed
 
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
     private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
         setVisible(false);
         StartsidaAdmin startsidaAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
         startsidaAdmin.setVisible(true);
     }//GEN-LAST:event_menuStartsidaMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
 
-    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+    // Metoden gör nuvarande fönster osynligt och öppnar klassen AdminHanteraAgenter i nytt fönster.
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
         AdminHanteraAgenter hanteraAgent = new AdminHanteraAgenter(idb, anvId, anvTyp);
         hanteraAgent.setVisible(true);
-    }//GEN-LAST:event_jToggleButton1MouseClicked
+    }//GEN-LAST:event_btnTillbakaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,19 +362,19 @@ public class UppdateraAgent extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSok;
     private javax.swing.JButton btnSpara;
+    private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JComboBox<String> cmbAdmin;
     private javax.swing.JComboBox<String> cmbOmrade;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel lblAnsvar;
+    private javax.swing.JLabel lblBehorighet;
+    private javax.swing.JLabel lblDatum;
     private javax.swing.JLabel lblErrorEmpty;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblLosen;
+    private javax.swing.JLabel lblNamn;
+    private javax.swing.JLabel lblRubrik;
+    private javax.swing.JLabel lblTele;
     private javax.swing.JMenu menuInget;
     private javax.swing.JMenu menuInlogg;
     private javax.swing.JMenu menuLoggaUt;

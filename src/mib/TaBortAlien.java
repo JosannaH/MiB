@@ -358,7 +358,7 @@ public class TaBortAlien extends javax.swing.JFrame {
                     lblConfirm.setVisible(true);
 
                     /* Här arbetr vi med villkorssatser för att "söka" efter valt ID i våra listor.
-            Om ID finns i någon av dessa tillkommer viss information beroende på ras. */
+                    Om ID finns i någon av dessa tillkommer viss information beroende på ras. */
                     if (squidLista.contains(soktID)) {
                         String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + soktID + "'");
                         lblAlienRas.setText("Squid");
