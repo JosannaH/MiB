@@ -100,11 +100,13 @@ public class SQL extends javax.swing.JFrame {
             txtLista.append(a + " \t " + n + " \t\t" + t + "\n");
         }
     }
-/**
- * Fyll text area med aliens efter vald ras
- * @param valdRas
- * @param txtLista 
- */
+
+    /**
+     * Fyll text area med aliens efter vald ras
+     *
+     * @param valdRas
+     * @param txtLista
+     */
     public void fyllListaAlienRas(String valdRas, JTextArea txtLista) {
         txtLista.setText("");
         ArrayList<String> alienIDLista = new ArrayList<>();
@@ -159,39 +161,42 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
-    
+
     /**
-     * Fyll text area med lista på vilka aliens en specifik agent är ansvarig för
+     * Fyll text area med lista på vilka aliens en specifik agent är ansvarig
+     * för
+     *
      * @param agent_ID
-     * @param txtAreaAliens 
+     * @param txtAreaAliens
      */
-    public void getAliensForAnsvaigAgent(String agent_ID, JTextArea txtAreaAliens){
+    public void getAliensForAnsvaigAgent(String agent_ID, JTextArea txtAreaAliens) {
         txtAreaAliens.setText("");
         txtAreaAliens.append("Alien ID \t Namn \n");
-        
+
         ArrayList<HashMap<String, String>> hashID = new ArrayList<>();
         ArrayList<HashMap<String, String>> hashNamn = new ArrayList<>();
-        
-        try{
+
+        try {
             hashID = idb.fetchRows("SELECT alien_ID FROM alien WHERE ansvarig_agent = " + agent_ID + " ORDER BY alien_ID ASC");
             hashNamn = idb.fetchRows("SELECT namn FROM alien WHERE ansvarig_agent = " + agent_ID + " ORDER BY alien_ID ASC");
-        }
-        catch (InfException e) {
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: getAliensForAnsvarigAgent() " + e.getMessage());
         }
-        
+
         for (int i = 0; i < hashID.size(); i++) {
             txtAreaAliens.append(hashID.get(i).get("alien_ID") + "\t" + hashNamn.get(i).get("namn") + "\n");
         }
     }
 
     /**
-     * Fyll text area med lista över vilka aliens som registrerats under en viss tidsperiod
+     * Fyll text area med lista över vilka aliens som registrerats under en viss
+     * tidsperiod
+     *
      * @param franDatum
      * @param tillDatum
      * @param txtAreaListaDatum
-     * @param ordning 
+     * @param ordning
      */
     public void getRegistreringsdatum(String franDatum, String tillDatum, JTextArea txtAreaListaDatum, String ordning) {
 
@@ -199,21 +204,19 @@ public class SQL extends javax.swing.JFrame {
         String[] till = tillDatum.split("-");
         String franDatumString = "";
         String tillDatumString = "";
-        
+
         int franDatumInt = 0;
         int tillDatumInt = 0;
-        
-        try{
-        franDatumString = fran[0] + fran[1] + fran[2];
-        tillDatumString = till[0] + till[1] + till[2];
-        
-        franDatumInt = Integer.parseInt(franDatumString);
-        tillDatumInt = Integer.parseInt(tillDatumString);
-        }
-        catch(Exception e){
+
+        try {
+            franDatumString = fran[0] + fran[1] + fran[2];
+            tillDatumString = till[0] + till[1] + till[2];
+
+            franDatumInt = Integer.parseInt(franDatumString);
+            tillDatumInt = Integer.parseInt(tillDatumString);
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att datumen är korrekt ifyllda: ÅÅÅÅ-MM-DD");
         }
-     
 
         // töm textarea inför ny sökning
         txtAreaListaDatum.setText("");
@@ -223,7 +226,7 @@ public class SQL extends javax.swing.JFrame {
         ArrayList<String> listaDatum = new ArrayList<>();
         ArrayList<String> listaID = new ArrayList<>();
         ArrayList<String> listaNamn = new ArrayList<>();
-        
+
         String queryDatum;
         String queryID;
         String queryNamn;
@@ -260,14 +263,15 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande: getPlatser() " + e.getMessage());
         }
     }
-    
+
     /**
      * Visa områdeschef utifrån ett valt område, setText i en label
+     *
      * @param lblChef
-     * @param omrade 
+     * @param omrade
      */
-    public void getOmradeschef(JLabel lblChef, String omrade){
-         try {
+    public void getOmradeschef(JLabel lblChef, String omrade) {
+        try {
             String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + omrade + "'");
             String agentID = idb.fetchSingle("SELECT Agent_ID FROM omradeschef WHERE Omrade =" + omradesID);
             String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID =" + agentID);
@@ -278,118 +282,172 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
-    
+
     /**
      * Visa vilka kontor som finns i tabellen kontorschef, fyll combobox
-     * @param cmbKontor 
+     *
+     * @param cmbKontor
      */
-     public void getKontor(JComboBox cmbKontor){
-         ArrayList<String> kontorLista = new ArrayList<>();
-         String kontor = "";
-         // hämta alla kontor från DB
-         try {
-            kontorLista = idb.fetchColumn("SELECT kontorsbeteckning FROM kontorschef"); 
+    public void getKontor(JComboBox cmbKontor) {
+        ArrayList<String> kontorLista = new ArrayList<>();
+        String kontor = "";
+        // hämta alla kontor från DB
+        try {
+            kontorLista = idb.fetchColumn("SELECT kontorsbeteckning FROM kontorschef");
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: hämta kontor" + e.getMessage());
         }
-          // loopa igenom lista och lägg till alla kontor i drop down menyn 
-            for (int i = 0; i < kontorLista.size(); i++) {
-                kontor = kontorLista.get(i);
-                cmbKontor.addItem(kontor);        
-    }        
-}
-     /**
-      * Visa vilken agent som är chef över ett valt kontor, set text i en label
-      * @param kontor
-      * @param lblNuvChef 
-      */
-     public void getKontorschef(String kontor, JLabel lblNuvChef){
-         String chefID = "";
-         String chefNamn = "";
-         try{
-             chefID = idb.fetchSingle("SELECT agent_ID FROM kontorschef WHERE kontorsbeteckning = '" + kontor + "'");
-             chefNamn = idb.fetchSingle("SELECT namn FROM agent WHERE agent_ID = " + chefID);
-         }catch (InfException e) {
+        // loopa igenom lista och lägg till alla kontor i drop down menyn 
+        for (int i = 0; i < kontorLista.size(); i++) {
+            kontor = kontorLista.get(i);
+            cmbKontor.addItem(kontor);
+        }
+    }
+
+    /**
+     * Visa vilken agent som är chef över ett valt kontor, set text i en label
+     *
+     * @param kontor
+     * @param lblNuvChef
+     */
+    public void getKontorschef(String kontor, JLabel lblNuvChef) {
+        String chefID = "";
+        String chefNamn = "";
+        try {
+            chefID = idb.fetchSingle("SELECT agent_ID FROM kontorschef WHERE kontorsbeteckning = '" + kontor + "'");
+            chefNamn = idb.fetchSingle("SELECT namn FROM agent WHERE agent_ID = " + chefID);
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: hämta kontorschef" + e.getMessage());
         }
-         lblNuvChef.setText("Kontorschef för " + kontor + " är " + chefNamn);
-     }
-     
-     /**
-      * Uppdatera tabellen Omradeschef med en ny chef
-      * @param nyChefNamn
-      * @param omrade 
-      */
-     public void uppdateraOmradeschef(String nyChefNamn, String omrade, JLabel lblNyChef){
-         String nyChefID = "";
-         String omradeID = "";
-         try{
-             nyChefID = idb.fetchSingle("SELECT agent_ID FROM agent WHERE namn = '" + nyChefNamn + "'");
-             omradeID = idb.fetchSingle("SELECT omrades_ID FROM omrade WHERE benamning = '" + omrade + "'" );
-             // TODO Här kan if-sats behövas för att kontrollera om agent redan är chef.
-             idb.update("UPDATE omradeschef SET agent_ID = " + nyChefID + " WHERE omrade = " + omradeID);
-             
-         }catch (InfException e) {
+        lblNuvChef.setText("Kontorschef för " + kontor + " är " + chefNamn);
+    }
+
+    /**
+     * Uppdatera tabellen Omradeschef med en ny chef
+     *
+     * @param nyChefNamn
+     * @param omrade
+     */
+    public void uppdateraOmradeschef(String nyChefNamn, String omrade, JLabel lblNyChef) {
+        String nyChefID = "";
+        String omradeID = "";
+
+        // Två listor skapas för att kunna leta upp relevanta agent- och områdeID.
+        ArrayList<String> omradesChefsLista = new ArrayList<>();
+        ArrayList<String> omradesLista = new ArrayList();
+
+        try {
+            // Från databasen hämtas information om chefsID och områdesID.
+            nyChefID = idb.fetchSingle("SELECT agent_ID FROM agent WHERE namn = '" + nyChefNamn + "'");
+            omradeID = idb.fetchSingle("SELECT omrades_ID FROM omrade WHERE benamning = '" + omrade + "'");
+
+            // Listorna fylls med de ID som finns i databasen.
+            omradesChefsLista = idb.fetchColumn("SELECT agent_ID FROM omradeschef");
+            omradesLista = idb.fetchColumn("SELECT omrade FROM omradeschef");
+
+            // Då en agent endast kan vara chef för ett område kontrollerar man för detta nedan.
+            if (!omradesChefsLista.contains(nyChefID)) {
+
+                // Om ett område finns med i tabellen uppdateras den, om inte så lägger man till denna information.
+                if (omradesLista.contains(omradeID)) {
+                    idb.update("UPDATE omradeschef SET agent_ID = " + nyChefID + " WHERE omrade = " + omradeID);
+                    // Visar användaren vem som är ny chef. 
+                    lblNyChef.setVisible(true);
+                } else {
+                    idb.insert("INSERT INTO omradeschef VALUES (" + nyChefID + ", " + omradeID + ")");
+                    // Visar användaren vem som är ny chef. 
+                    lblNyChef.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, nyChefNamn + " är redan omradeschef!");
+            }
+
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: uppdateraOmradeschef() " + e.getMessage());
         }
-         lblNyChef.setText("Ny chef för " + omrade + " är " + nyChefNamn);
-     }
-     /**
-      * Uppdatera tabellen kontorschef med en ny chef
-      * @param nyChefNamn
-      * @param kontor 
-      */
-     public void uppdateraKontorschef(String nyChefNamn, String kontor, JLabel lblNyChef){
-         String nyChefID = "";
-         try{
-             nyChefID = idb.fetchSingle("SELECT agent_ID FROM agent WHERE namn = '" + nyChefNamn + "'");
-            
-             idb.update("UPDATE kontorschef SET agent_ID = " + nyChefID + " WHERE kontorsbeteckning = '" + kontor + "'");
-             
-         }catch (InfException e) {
+        // Visar användaren vem som är ny chef. 
+        lblNyChef.setText("Ny chef för " + omrade + " är " + nyChefNamn);
+    }
+
+    /**
+     * Uppdatera tabellen kontorschef med en ny chef
+     *
+     * @param nyChefNamn
+     * @param kontor
+     */
+    public void uppdateraKontorschef(String nyChefNamn, String kontor, JLabel lblNyChef) {
+        String nyChefID = "";
+
+        // Två listor skapas för att kunna leta upp relevant agentID och benämning.
+        ArrayList<String> chefsLista = new ArrayList<>();
+        ArrayList<String> kontorsLista = new ArrayList();
+
+        try {
+            // Från databasen hämtas information om chefsID.
+            nyChefID = idb.fetchSingle("SELECT agent_ID FROM agent WHERE namn = '" + nyChefNamn + "'");
+
+            // Listorna fylls med de ID  och kontorsnamn som finns i databasen.
+            chefsLista = idb.fetchColumn("SELECT agent_ID FROM kontorschef");
+            kontorsLista = idb.fetchColumn("SELECT kontorsbeteckning FROM kontorschef");
+
+            // Kontrollerar om agenten redan är kontorschef.
+            if (!chefsLista.contains(nyChefID)) {
+
+                // Om ett område finns med i tabellen uppdateras den, om inte så lägger man till denna information.
+                if (kontorsLista.contains(kontor)) {
+                    idb.update("UPDATE kontorschef SET agent_ID = " + nyChefID + " WHERE kontorsbeteckning = '" + kontor + "'");
+                    // Visar användaren vem som är ny chef. 
+                    lblNyChef.setVisible(true);
+                } else {
+                    idb.insert("INSERT INTO kontorschef VALUES (" + nyChefID + ", " + kontor + ")");
+                    // Visar användaren vem som är ny chef. 
+                    lblNyChef.setVisible(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, nyChefNamn + " är redan kontorschef!");
+            }
+
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: uppdateraKontorschef() " + e.getMessage());
+            System.out.println("Internt felmeddelande: uppdateraOmradeschef() " + e.getMessage());
         }
-         lblNyChef.setText("Ny chef för " + kontor + " är " + nyChefNamn);
-     }
-     
-     
-     public boolean arAdmin(String anvID){
-         boolean result = false;
-         String admin = "";
-         
-         try{
-         admin = idb.fetchSingle("SELECT administrator FROM agent WHERE agent_ID =" + anvID + "");
-         if (admin.equals("J")){
-           result = true;
-         }
-         }
-         catch (InfException e) {
+        // Visar användaren vem som är ny chef. 
+        lblNyChef.setText("Ny chef för " + kontor + " är " + nyChefNamn);
+    }
+
+    public boolean arAdmin(String anvID) {
+        boolean result = false;
+        String admin = "";
+
+        try {
+            admin = idb.fetchSingle("SELECT administrator FROM agent WHERE agent_ID =" + anvID + "");
+            if (admin.equals("J")) {
+                result = true;
+            }
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: arAdmin() " + e.getMessage());
-         }
-         
-         return result;
-     }
-     
-     public void tillStartsida(String anvId, String anvTyp){
+        }
+
+        return result;
+    }
+
+    public void tillStartsida(String anvId, String anvTyp) {
         setVisible(false);
         boolean arAdmin = arAdmin(anvId);
-        
-        if (anvTyp.equals("Alien")){
+
+        if (anvTyp.equals("Alien")) {
             StartsidaAlien a = new StartsidaAlien(idb, anvId, anvTyp);
             a.setVisible(true);
-        }
-        else if (arAdmin == true){
+        } else if (arAdmin == true) {
             StartsidaAdmin a = new StartsidaAdmin(idb, anvId, anvTyp);
             a.setVisible(true);
-        }
-        else{
+        } else {
             StartsidaAgent a = new StartsidaAgent(idb, anvId, anvTyp);
             a.setVisible(true);
         }
-     }
+    }
 }

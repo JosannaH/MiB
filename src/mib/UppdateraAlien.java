@@ -340,6 +340,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
 
         // Kontrollerar att fältet för alienID är ifyllt.
         if (Validering.textFaltHarVarde(txtAlienID)) {
+            if(Validering.txtFaltHarSiffror(txtAlienID)){
             String idText = txtAlienID.getText();
 
             try {
@@ -393,6 +394,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
+            }
         } else {
             JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
         }
@@ -403,7 +405,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
 
         // Kontrollerar att viktiga fält är ifyllda innan man kan lagra ny information.
         if (Validering.textFaltHarVarde(txtAlienID) && Validering.passwordHarVarde(pswLosen) && Validering.textFaltHarVarde(txtNamn)) {
-
+            
             String idText = txtAlienID.getText();
             String regRas = cmbRas.getSelectedItem().toString();
             String rasInfo = txtRasInfo.getText();
@@ -504,9 +506,11 @@ public class UppdateraAlien extends javax.swing.JFrame {
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
             }
+            
             else {
                     JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                 }
+            
 
         } else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");

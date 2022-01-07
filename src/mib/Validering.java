@@ -29,6 +29,17 @@ public class Validering {
         return resultat;
     }
     
+    public static boolean txtFaltHarSiffror(JTextField rutaAttKolla){
+        boolean resultat = true;
+        if(!rutaAttKolla.getText().matches("[0-9]")){
+            resultat = false;
+            JOptionPane.showMessageDialog(null, "Kontrollera att fältet består av siffror!");
+            
+        }
+        
+        return resultat;
+    }
+    
     public static boolean comboHarVarde(JComboBox boxAttKolla) {
         boolean resultat = true;
         

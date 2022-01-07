@@ -144,7 +144,7 @@ public class Inloggning extends javax.swing.JFrame {
 
         //Kontrollera om användarnamn och lösenord fylls i. 
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
-            
+            if(Validering.txtFaltHarSiffror(txtAnvandare)){
             //Kontrollera om anv valt Agent eller Alien i comboBox och spara SQL frågor utifrån det
             if (anvTyp.equals("Agent")) {
                 inloggTyp = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
@@ -186,7 +186,9 @@ public class Inloggning extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
-        } else { 
+            
+        }
+        }else { 
                  JOptionPane.showMessageDialog(null, "Fyll i användarnamn och lösenord");
         }
     }//GEN-LAST:event_btnLoggainActionPerformed

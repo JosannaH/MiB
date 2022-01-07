@@ -342,7 +342,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
      * Metod som anropas när användaren valt att bekräfta vem den nya chefen är
      */
     private void btnBekraftaValMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaValMouseClicked
-        lblNyChefAr.setVisible(true);
+        
         String nyChef = cmbNyChef.getSelectedItem().toString();
         SQL s = new SQL(idb);
         if (btnBekraftaVal.getText().equals("Bekräfta kontorschef")){
@@ -350,6 +350,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
         }
         else{
             s.uppdateraOmradeschef(nyChef, omradePlats, lblNyChefAr);
+            
         }
     }//GEN-LAST:event_btnBekraftaValMouseClicked
 
