@@ -57,7 +57,7 @@ public class SQL extends javax.swing.JFrame {
     }
 
     /**
-     * Hämta alla agenter och lägg till dem i en combobox
+     * Hämtar alla agenter och lägger till dem i en combobox
      */
     public void agent(JComboBox x) {
         try {
@@ -71,6 +71,40 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
+    
+    /**
+     * Hämtar all utrustning och lägger till dem i en combobox
+     */
+    public void utrustning(JComboBox x) {
+        try {
+            ArrayList<String> utrustningsLista = idb.fetchColumn("SELECT benamning FROM utrustning ORDER BY namn");
+            for (int i = 0; i < utrustningsLista.size(); i++) {
+                String agentNamn = utrustningsLista.get(i);
+                x.addItem(agentNamn);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+    }
+    
+    /**
+     * Hämtar alla aliens och lägger till dem i en combobox
+     */
+    public void alien(JComboBox x) {
+        try {
+            ArrayList<String> alienLista = idb.fetchColumn("SELECT namn FROM alien ORDER BY namn");
+            for (int i = 0; i < alienLista.size(); i++) {
+                String agentNamn = alienLista.get(i);
+                x.addItem(agentNamn);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+    }
+    
+    
 
     /**
      * Fyll TextArea med lista över aliens från en vald plats
