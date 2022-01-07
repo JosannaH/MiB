@@ -171,10 +171,11 @@ public class StartsidaAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUtrustningMouseClicked
     /**
      * Logga ut och gå tillbaka till inloggningsfönstret
-     * @param evt 
+     *
+     * @param evt
      */
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
-            setVisible(false);
+        setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
