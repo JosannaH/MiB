@@ -23,6 +23,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
     ArrayList<String> squidLista;
     ArrayList<String> bogloditeLista;
     ArrayList<String> wormLista;
+    String idText = "";
 
     public UppdateraAlien(InfDB idb, String anvId, String anvTyp) {
         initComponents();
@@ -34,6 +35,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
         SQL s = new SQL(idb);
         s.agent(cmbAnsAgent);
         s.plats(cmbPlats);
+        s.alien(cmbNamn);
 
         // Anropas för att dölja nedanstående rader tills dess att man har valt ras.
         doljText(txtRasInfo);
@@ -61,7 +63,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitel = new javax.swing.JLabel();
-        txtNamn = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
         lblID = new javax.swing.JLabel();
         txtTelefon = new javax.swing.JTextField();
         lblTelefon = new javax.swing.JLabel();
@@ -115,11 +117,11 @@ public class UppdateraAlien extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
         jLabel7.setText("MiB REGISTRERINGSSERVICE");
 
-        lblAlienNamn.setText("AlienID");
+        lblAlienNamn.setText("Namn");
 
         lblRasInfo.setText("Rasinfo");
 
-        btnValjRas.setText("Välj ras");
+        btnValjRas.setText("Välj ny ras");
         btnValjRas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnValjRasMouseClicked(evt);
@@ -201,26 +203,28 @@ public class UppdateraAlien extends javax.swing.JFrame {
                                     .addComponent(lblAnsvarigAgent)
                                     .addComponent(lblLosen))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnValjRas)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(pswLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(cmbNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnSok))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(cmbAnsAgent, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(cmbPlats, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(63, 63, 63)))
-                                    .addComponent(txtRasInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSpara))
-                                .addGap(110, 110, 110)))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(pswLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(cmbNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(btnSok))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(cmbAnsAgent, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(cmbPlats, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txtRasInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnSpara))
+                                        .addGap(110, 110, 110))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnValjRas)
+                                        .addGap(79, 79, 79)))))
                         .addComponent(jLabel1)
                         .addGap(56, 56, 56))))
             .addGroup(layout.createSequentialGroup()
@@ -254,7 +258,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                                     .addComponent(lblLosen))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -271,10 +275,10 @@ public class UppdateraAlien extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblRas)
-                                    .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnValjRas)
-                                .addGap(8, 8, 8)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnValjRas)))
+                                .addGap(49, 49, 49)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblRasInfo)
                                     .addComponent(txtRasInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -321,7 +325,8 @@ public class UppdateraAlien extends javax.swing.JFrame {
      *
      */
     private void btnValjRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValjRasMouseClicked
-        // Hämtar information från markerat alternativ i rullisten. 
+
+// Hämtar information från markerat alternativ i rullisten. 
         String ras = cmbRas.getSelectedItem().toString();
 
         // Via en villkorssats visas tillhörande information om rasen. 
@@ -348,69 +353,63 @@ public class UppdateraAlien extends javax.swing.JFrame {
      * @param evt
      */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
+        // Dölj fält inför ny sökning
+        doljText(txtRasInfo);
+        doljLabel(lblRasInfo);
 
-        // Kontrollerar att fältet för alienID är ifyllt.
-        if (Validering.textFaltHarVarde(txtAlienID)) {
-            if (Validering.txtFaltHarSiffror(txtAlienID)) {
-                String idText = txtAlienID.getText();
+        String namn = cmbNamn.getSelectedItem().toString();
 
-                try {
+        try {
 
-                    // Koden nedan hämtar information baserat på det ID man har angett.
-                    txtAlienID.setText(idText);
+            idText = idb.fetchSingle("SELECT alien_ID FROM alien WHERE namn ='" + namn + "'");
+            // Koden nedan hämtar information baserat på det ID man har angett.
+            txtID.setText(idText);
 
-                    String losen = idb.fetchSingle("SELECT Losenord FROM alien WHERE Alien_ID ='" + idText + "'");
-                    pswLosen.setText(losen);
+            String losen = idb.fetchSingle("SELECT Losenord FROM alien WHERE Alien_ID ='" + idText + "'");
+            pswLosen.setText(losen);
 
-                    String namn = idb.fetchSingle("SELECT Namn FROM alien WHERE Alien_ID ='" + idText + "'");
-                    txtNamn.setText(namn);
+            String telefon = idb.fetchSingle("SELECT Telefon FROM alien WHERE Alien_ID ='" + idText + "'");
+            txtTelefon.setText(telefon);
 
-                    String telefon = idb.fetchSingle("SELECT Telefon FROM alien WHERE Alien_ID ='" + idText + "'");
-                    txtTelefon.setText(telefon);
+            String platsID = idb.fetchSingle("SELECT Plats FROM alien WHERE Alien_ID ='" + idText + "'");
+            String platsNamn = idb.fetchSingle("SELECT Benamning FROM plats WHERE Plats_ID ='" + platsID + "'");
+            cmbPlats.setSelectedItem(platsNamn);
 
-                    String platsID = idb.fetchSingle("SELECT Plats FROM alien WHERE Alien_ID ='" + idText + "'");
-                    String platsNamn = idb.fetchSingle("SELECT Benamning FROM plats WHERE Plats_ID ='" + platsID + "'");
-                    cmbPlats.setSelectedItem(platsNamn);
+            String agent = idb.fetchSingle("SELECT Ansvarig_Agent FROM alien WHERE Alien_ID ='" + idText + "'");
+            String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + agent + "'");
+            cmbAnsAgent.setSelectedItem(agentNamn);
 
-                    String agent = idb.fetchSingle("SELECT Ansvarig_Agent FROM alien WHERE Alien_ID ='" + idText + "'");
-                    String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + agent + "'");
-                    cmbAnsAgent.setSelectedItem(agentNamn);
+            // Nedan använder man ArrayList för att hämta information kopplat till den ras som alienID är kopplat till.
+            if (squidLista.contains(idText)) {
+                cmbRas.setSelectedItem("Squid");
 
-                    // Nedan använder man ArrayList för att hämta information kopplat till den ras som alienID är kopplat till.
-                    if (squidLista.contains(idText)) {
-                        cmbRas.setSelectedItem("Squid");
+                String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + idText + "'");
+                txtRasInfo.setText(antalArmar);
+                txtRasInfo.setVisible(true);
 
-                        String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + idText + "'");
-                        txtRasInfo.setText(antalArmar);
-                        txtRasInfo.setVisible(true);
+                lblRasInfo.setVisible(true);
+                lblRasInfo.setText("Antal Armar");
+            } else if (bogloditeLista.contains(idText)) {
+                cmbRas.setSelectedItem("Boglodite");
 
-                        lblRasInfo.setVisible(true);
-                        lblRasInfo.setText("Antal Armar");
-                    } else if (bogloditeLista.contains(idText)) {
-                        cmbRas.setSelectedItem("Boglodite");
+                String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + idText + "'");
+                txtRasInfo.setText(antalBoogies);
+                txtRasInfo.setVisible(true);
 
-                        String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + idText + "'");
-                        txtRasInfo.setText(antalBoogies);
-                        txtRasInfo.setVisible(true);
-
-                        lblRasInfo.setVisible(true);
-                        lblRasInfo.setText("Antal Boogies");
-                    } else if (wormLista.contains(idText)) {
-                        cmbRas.setSelectedItem("Worm");
-                    } else {
-                        cmbRas.setSelectedItem("Ingen");
-                    }
-
-                } // Om något går fel visas ett felmeddelande. 
-                catch (InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    System.out.println("Internt felmeddelande" + e.getMessage());
-                }
+                lblRasInfo.setVisible(true);
+                lblRasInfo.setText("Antal Boogies");
+            } else if (wormLista.contains(idText)) {
+                cmbRas.setSelectedItem("Worm");
+            } else {
+                cmbRas.setSelectedItem("Ingen");
             }
-        } // Felmeddelande visas om ID inte är ifyllt.
-        else {
-            JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
+
+        } // Om något går fel visas ett felmeddelande. 
+        catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage());
         }
+
     }//GEN-LAST:event_btnSokMouseClicked
 
     /**
@@ -421,9 +420,8 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
 
         // Kontrollerar att viktiga fält är ifyllda innan man kan lagra ny information.
-        if (Validering.textFaltHarVarde(txtAlienID) && Validering.passwordHarVarde(pswLosen) && Validering.textFaltHarVarde(txtNamn)) {
+        if (Validering.passwordHarVarde(pswLosen) && Validering.textFaltHarVarde(txtID)) {
 
-            String idText = txtAlienID.getText();
             String regRas = cmbRas.getSelectedItem().toString();
             String rasInfo = txtRasInfo.getText();
             String regLosenord = pswLosen.getText();
@@ -570,10 +568,9 @@ public class UppdateraAlien extends javax.swing.JFrame {
      * Metoden uppdaterar tabellen alien med den information som finns i fälten.
      */
     private void uppdatera() {
-        String idText = txtAlienID.getText();
 
         String regLosenord = pswLosen.getText();
-        String regNamn = txtNamn.getText();
+        String regNamn = txtID.getText();
         String regTelefon = txtTelefon.getText();
         String regPlats = cmbPlats.getSelectedItem().toString();
         String regAnsAgent = cmbAnsAgent.getSelectedItem().toString();
@@ -627,7 +624,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private javax.swing.JMenu menuBarLoggaUt;
     private javax.swing.JMenu menuBarStartsida;
     private javax.swing.JPasswordField pswLosen;
-    private javax.swing.JTextField txtNamn;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtRasInfo;
     private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
