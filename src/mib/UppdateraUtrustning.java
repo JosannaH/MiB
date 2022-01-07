@@ -224,7 +224,7 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
                                     .addComponent(btnSok)
                                     .addComponent(lblUtrustningsID))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
@@ -296,6 +296,7 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
 
         // Kontrollerar att fältet för alienID är ifyllt.
         if (Validering.textFaltHarVarde(txtUtrustningID)) {
+            if(Validering.txtFaltHarSiffror(txtUtrustningID)){
             String idText = txtUtrustningID.getText();
 
             try {
@@ -343,6 +344,7 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
+            }
             }
         } else {
             JOptionPane.showMessageDialog(null, "UtrustningsID måste vara ifyllt!");

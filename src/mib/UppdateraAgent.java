@@ -275,6 +275,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
     private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
 
         if (Validering.textFaltHarVarde(txtID)) {
+            if(Validering.txtFaltHarSiffror(txtID)){
             String soktID = txtID.getText();
 
             try {
@@ -301,6 +302,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande:" + e.getMessage());
+            }
             }
         } else {
             JOptionPane.showMessageDialog(null, "AgentID måste vara ifyllt!");

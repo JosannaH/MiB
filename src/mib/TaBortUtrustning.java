@@ -57,7 +57,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         txtTyp = new javax.swing.JTextField();
         txtSpec = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSok = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -108,10 +108,10 @@ public class TaBortUtrustning extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Sök");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSok.setText("Sök");
+        btnSok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSokActionPerformed(evt);
             }
         });
 
@@ -172,7 +172,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                                     .addComponent(txtBenamning, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtSpec))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
+                                .addComponent(btnSok))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(88, 88, 88)
                                 .addComponent(jButton1)))
@@ -187,7 +187,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton2))
+                    .addComponent(btnSok))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -210,7 +210,11 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
+    
+    if(Validering.textFaltHarVarde(txtID)){                                   
+       if(Validering.txtFaltHarSiffror(txtID)){
+
 // Sökning
 
     
@@ -258,7 +262,11 @@ public class TaBortUtrustning extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
     }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }
+        } else {
+            JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+        }
+    }//GEN-LAST:event_btnSokActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //radera
@@ -341,9 +349,9 @@ public class TaBortUtrustning extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSok;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
