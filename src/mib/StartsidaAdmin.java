@@ -5,9 +5,7 @@
 package mib;
 
 import oru.inf.InfDB;
-import javax.swing.JOptionPane;
-import oru.inf.InfDB;
-import oru.inf.InfException;
+
 /**
  *
  * @author luna
@@ -20,13 +18,8 @@ public class StartsidaAdmin extends javax.swing.JFrame {
     private InfDB idb;
     private String anvId;
     private String anvTyp;
-    
-    public StartsidaAdmin(InfDB idb) {
-        initComponents();
-        this.idb = idb;
-    }
-    
-        public StartsidaAdmin(InfDB idb, String anvId, String anvTyp) {
+
+    public StartsidaAdmin(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
         this.anvId = anvId;
@@ -45,11 +38,10 @@ public class StartsidaAdmin extends javax.swing.JFrame {
         lblAdminBild = new javax.swing.JLabel();
         lblRubrik = new javax.swing.JLabel();
         btnAndraLosen = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnAlien = new javax.swing.JButton();
+        btnUtrustning = new javax.swing.JButton();
+        btnAgenter = new javax.swing.JButton();
+        lblHantera = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuInget = new javax.swing.JMenu();
         menuInlogg = new javax.swing.JMenu();
@@ -69,31 +61,29 @@ public class StartsidaAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Aliens");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAlien.setText("Aliens");
+        btnAlien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btnAlienMouseClicked(evt);
             }
         });
 
-        jButton3.setText("Utrustning");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnUtrustning.setText("Utrustning");
+        btnUtrustning.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                btnUtrustningMouseClicked(evt);
             }
         });
 
-        jButton4.setText("Agenter");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnAgenter.setText("Agenter");
+        btnAgenter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnAgenterActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Områdeschefer");
-
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Hantera ...");
+        lblHantera.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        lblHantera.setText("Hantera ...");
 
         menuInget.setText("                                                                                                                                                                                                        ");
         jMenuBar1.add(menuInget);
@@ -127,12 +117,11 @@ public class StartsidaAdmin extends javax.swing.JFrame {
                             .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(lblHantera)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnAgenter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAlien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(78, 78, 78))))
         );
         layout.setVerticalGroup(
@@ -143,37 +132,35 @@ public class StartsidaAdmin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
+                        .addComponent(lblHantera)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
+                        .addComponent(btnAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(lblAdminBild, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                        .addContainerGap(104, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnAgenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgenterActionPerformed
         setVisible(false);
-        AdminHanteraAgenter adminHanteraAgenter = new AdminHanteraAgenter (idb, anvId, anvTyp);
-        adminHanteraAgenter.setVisible(true);    }//GEN-LAST:event_jButton4ActionPerformed
+        AdminHanteraAgenter adminHanteraAgenter = new AdminHanteraAgenter(idb, anvId, anvTyp);
+        adminHanteraAgenter.setVisible(true);    }//GEN-LAST:event_btnAgenterActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btnAlienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlienMouseClicked
         setVisible(false);
-        HanteraAliensAdmin adminHanteraAlien = new HanteraAliensAdmin (idb, anvId, anvTyp);
+        HanteraAliensAdmin adminHanteraAlien = new HanteraAliensAdmin(idb, anvId, anvTyp);
         adminHanteraAlien.setVisible(true);
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_btnAlienMouseClicked
 
     private void btnAndraLosenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAndraLosenMouseClicked
         setVisible(false);
@@ -181,11 +168,11 @@ public class StartsidaAdmin extends javax.swing.JFrame {
         andraLosenord.setVisible(true);
     }//GEN-LAST:event_btnAndraLosenMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void btnUtrustningMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUtrustningMouseClicked
         setVisible(false);
         HanteraUtrustningAdmin hantera = new HanteraUtrustningAdmin(idb, anvId, anvTyp);
         hantera.setVisible(true);
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_btnUtrustningMouseClicked
 
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
@@ -196,17 +183,15 @@ public class StartsidaAdmin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgenter;
+    private javax.swing.JButton btnAlien;
     private javax.swing.JButton btnAndraLosen;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnUtrustning;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblAdminBild;
+    private javax.swing.JLabel lblHantera;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JMenu menuInget;
     private javax.swing.JMenu menuInlogg;
