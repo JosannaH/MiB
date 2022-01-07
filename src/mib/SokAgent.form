@@ -17,7 +17,7 @@
             <Property name="text" type="java.lang.String" value="                                                                                                                                                           "/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
+        <Menu class="javax.swing.JMenu" name="menuInoggadSom">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inloggad som Admin"/>
           </Properties>
@@ -67,12 +67,12 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblBenamning" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblBehorigheter" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTelefon" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblOmrade" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblLosenord" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAnstDatum" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -86,11 +86,11 @@
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAgentID" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="txtSoktID" min="-2" pref="102" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblRubrik" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="338" max="-2" attributes="0"/>
@@ -108,42 +108,42 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="41" max="-2" attributes="0"/>
+              <Component id="lblRubrik" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAgentID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtSoktID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnSok" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblBenamning" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblBenamningSvar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblTelefonSvar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblBehorigheter" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblBehorigheterSvar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="36" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblOmradeSvar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLosenordSvar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAnstDatum" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblAnsDatSvar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
@@ -154,7 +154,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblRubrik">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Hiragino Maru Gothic ProN" size="24" style="0"/>
@@ -162,22 +162,22 @@
         <Property name="text" type="java.lang.String" value="MiB AGENTS&#xd6;K"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="lblAgentID">
       <Properties>
         <Property name="text" type="java.lang.String" value="Agent-ID"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="lblLosenord">
       <Properties>
         <Property name="text" type="java.lang.String" value="L&#xf6;senord:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="lblBehorigheter">
       <Properties>
         <Property name="text" type="java.lang.String" value="Beh&#xf6;righeter:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="lblBenamning">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ben&#xe4;mning:"/>
       </Properties>
@@ -192,17 +192,17 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtSoktID">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
+    <Component class="javax.swing.JLabel" name="lblTelefon">
       <Properties>
         <Property name="text" type="java.lang.String" value="Telefon:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
+    <Component class="javax.swing.JLabel" name="lblAnstDatum">
       <Properties>
         <Property name="text" type="java.lang.String" value="Anst&#xe4;llningsdatum:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="lblOmrade">
       <Properties>
         <Property name="text" type="java.lang.String" value="Omr&#xe5;de:"/>
       </Properties>
