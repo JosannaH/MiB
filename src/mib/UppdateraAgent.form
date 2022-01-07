@@ -93,9 +93,12 @@
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="cmbAdmin" alignment="0" max="32767" attributes="0"/>
                                       <Component id="txtTelefon" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="txtID" alignment="0" max="32767" attributes="0"/>
                                       <Component id="txtAnsDat" alignment="0" max="32767" attributes="0"/>
                                       <Component id="cmbOmrade" min="-2" pref="192" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lblVisaId" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -135,7 +138,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblVisaId" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -166,7 +169,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                      <EmptySpace pref="39" max="32767" attributes="0"/>
                       <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
@@ -208,8 +211,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Agent-ID"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtID">
     </Component>
     <Component class="javax.swing.JLabel" name="lblTele">
       <Properties>
@@ -293,6 +294,11 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblVisaId">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="             "/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

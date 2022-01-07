@@ -17,6 +17,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
     private InfDB idb;
     private String anvId;
     private String anvTyp;
+    String agentID = "";
 
     /**
      * Creates new form UppdateraAgent
@@ -46,7 +47,6 @@ public class UppdateraAgent extends javax.swing.JFrame {
         lblLosen = new javax.swing.JLabel();
         txtLosenord = new javax.swing.JTextField();
         lblID = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
         lblTele = new javax.swing.JLabel();
         txtTelefon = new javax.swing.JTextField();
         lblBehorighet = new javax.swing.JLabel();
@@ -59,6 +59,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
         cmbOmrade = new javax.swing.JComboBox<>();
         btnTillbaka = new javax.swing.JToggleButton();
         cmbNamn = new javax.swing.JComboBox<>();
+        lblVisaId = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         menuInget = new javax.swing.JMenu();
@@ -111,6 +112,8 @@ public class UppdateraAgent extends javax.swing.JFrame {
                 btnTillbakaActionPerformed(evt);
             }
         });
+
+        lblVisaId.setText("             ");
 
         menuStartsida.setText("Gå till startsida");
         menuStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -171,9 +174,11 @@ public class UppdateraAgent extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(cmbAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtID)
                                         .addComponent(txtAnsDat)
-                                        .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblVisaId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(19, 19, 19)))))
                             .addGap(206, 206, 206))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(lblRubrik)
@@ -201,7 +206,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblID)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblVisaId))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTele)
@@ -226,7 +231,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
                         .addComponent(lblErrorEmpty)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addComponent(btnTillbaka)
                         .addGap(21, 21, 21))))
         );
@@ -246,16 +251,16 @@ public class UppdateraAgent extends javax.swing.JFrame {
                 try {
 
                     String los = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Namn =  '" + namn + "'");
-                    String id = idb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn =  '" + namn + "'");
+                    agentID = idb.fetchSingle("SELECT Agent_ID FROM Agent WHERE Namn =  '" + namn + "'");
                     String tel = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Namn =  '" + namn + "'");
                     String admin = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Namn =  '" + namn + "'");
                     String ansdat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Namn =  '" + namn + "'");
                     String omrID = idb.fetchSingle("SELECT Omrade FROM Agent WHERE Namn =  '" + namn + "'");
-                    String omr = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE Namn =  '" + namn + "'");
+                    String omr = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE omrades_ID =  '" + omrID + "'");
 
                     // Fyller fälten med hämtad information. 
                     txtLosenord.setText(los);
-                    txtID.setText(id);
+                    lblVisaId.setText(agentID);
                     txtTelefon.setText(tel);
                     txtAnsDat.setText(ansdat);
                     cmbOmrade.setSelectedItem(omr);
@@ -283,10 +288,8 @@ public class UppdateraAgent extends javax.swing.JFrame {
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
 
         // Kontrollerar att fälten har ifyllda värden. 
-        if (Validering.textFaltHarVarde(txtID) && Validering.textFaltHarVarde(txtLosenord) && Validering.textFaltHarVarde(txtID) && Validering.textFaltHarVarde(txtTelefon) && Validering.textFaltHarVarde(txtAnsDat)) {
+        if (Validering.textFaltHarVarde(txtLosenord)&& Validering.textFaltHarVarde(txtAnsDat)) {
             // Hämtar värden från fälten.
-            String soktID = txtID.getText();
-            String nyttNamn = txtID.getText();
             String nyttLosen = txtLosenord.getText();
             String nyttTele = txtTelefon.getText();
             String nyttOmrade = cmbOmrade.getSelectedItem().toString();
@@ -301,19 +304,18 @@ public class UppdateraAgent extends javax.swing.JFrame {
                     String omrID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + nyttOmrade + "'");
 
                     // Uppdaterar agenttabellen med fältens angedda värden. 
-                    idb.update("UPDATE Agent SET Namn = '" + nyttNamn + "' WHERE Agent_ID = '" + soktID + "'");
-                    idb.update("UPDATE Agent SET Losenord = '" + nyttLosen + "' WHERE Agent_ID = '" + soktID + "'");
-                    idb.update("UPDATE Agent SET Telefon = '" + nyttTele + "' WHERE Agent_ID = '" + soktID + "'");
-                    idb.update("UPDATE Agent SET Anstallningsdatum = '" + nyttAnsDat + "' WHERE Agent_ID = '" + soktID + "'");
-                    idb.update("UPDATE Agent SET Omrade = '" + omrID + "' WHERE Agent_ID = '" + soktID + "'");
+                    idb.update("UPDATE Agent SET Losenord = '" + nyttLosen + "' WHERE Agent_ID = '" + agentID + "'");
+                    idb.update("UPDATE Agent SET Telefon = '" + nyttTele + "' WHERE Agent_ID = '" + agentID + "'");
+                    idb.update("UPDATE Agent SET Anstallningsdatum = '" + nyttAnsDat + "' WHERE Agent_ID = '" + agentID + "'");
+                    idb.update("UPDATE Agent SET Omrade = '" + omrID + "' WHERE Agent_ID = '" + agentID + "'");
 
                     // Uppdaterar agentabellen med adminstatus.
                     if (nyttAdmin.contains("Administratör")) {
                         String ja = "J";
-                        idb.update("UPDATE Agent SET Administrator = '" + ja + "'WHERE Agent_ID = '" + soktID + "'");
+                        idb.update("UPDATE Agent SET Administrator = '" + ja + "'WHERE Agent_ID = '" + agentID + "'");
                     } else if (nyttAdmin.contains("Agentstandard")) {
                         String nej = "N";
-                        idb.update("UPDATE Agent SET Administrator = '" + nej + "' WHERE Agent_ID = '" + soktID + "'");
+                        idb.update("UPDATE Agent SET Administrator = '" + nej + "' WHERE Agent_ID = '" + agentID + "'");
                     }
 
                     // Utskrift när en uppdatering är genomförd. 
@@ -373,12 +375,12 @@ public class UppdateraAgent extends javax.swing.JFrame {
     private javax.swing.JLabel lblNamn;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JLabel lblTele;
+    private javax.swing.JLabel lblVisaId;
     private javax.swing.JMenu menuInget;
     private javax.swing.JMenu menuInlogg;
     private javax.swing.JMenu menuLoggaUt;
     private javax.swing.JMenu menuStartsida;
     private javax.swing.JTextField txtAnsDat;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtLosenord;
     private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
