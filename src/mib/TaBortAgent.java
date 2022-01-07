@@ -271,15 +271,14 @@ public class TaBortAgent extends javax.swing.JFrame {
         lblNamn.setText(agentNamn);
 
         // Kolla om agent är ansvarig över någon alien
-        Validering val = new Validering();
-        if (val.agentHarAlien(soktID, idb) == true) {
+        SQL s = new SQL(idb);
+        if (s.agentHarAlien(soktID, idb) == true) {
             // Visa info och val gällande att byta ansvarig agent
             cmbNyAnsvarig.setVisible(true);
             txtAreaAliens.setVisible(true);
             lblDennaAgent.setText("Denna agent är ansvarig över en eller flera aliens.");
             lblVanligenAnge.setText("Vänligen ange en ny ansvarig agent för dessa aliens:");
             // fyll combobox med agenter att välja mellan
-            SQL s = new SQL(idb);
             s.agent(cmbNyAnsvarig);
             // visa vilka aliens som agenten är ansvarig för
             s.getAliensForAnsvaigAgent(soktID, txtAreaAliens);

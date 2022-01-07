@@ -25,12 +25,14 @@ public class SQL extends javax.swing.JFrame {
     /**
      * Hämta alla områden och lägg till dom i en combobox
      */
-    public void omraden(JComboBox x) {
+    public void omraden(JComboBox omrade) {
         try {
+            // Hämta alla omraden och spara i lista
             ArrayList<String> omradeLista = idb.fetchColumn("SELECT Benamning FROM omrade ORDER BY Benamning");
+            // Loopa igenom lista och lägg till dom i combobox, en efter en
             for (int i = 0; i < omradeLista.size(); i++) {
                 String omradesNamn = omradeLista.get(i);
-                x.addItem(omradesNamn);
+                omrade.addItem(omradesNamn);
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -41,12 +43,12 @@ public class SQL extends javax.swing.JFrame {
     /**
      * Hämta alla platser och lägg till dem i en combobox
      */
-    public void plats(JComboBox x) {
+    public void plats(JComboBox plats) {
         try {
             ArrayList<String> platsLista = idb.fetchColumn("SELECT Benamning FROM plats ORDER BY Benamning");
             for (int i = 0; i < platsLista.size(); i++) {
                 String omradesNamn = platsLista.get(i);
-                x.addItem(omradesNamn);
+                plats.addItem(omradesNamn);
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -80,10 +82,12 @@ public class SQL extends javax.swing.JFrame {
         //Tömmer TextArea så att användaren kan göra flera sökningar utan
         // att listan blir längre och längre
         txtLista.setText("");
+        // Skapar listor att spara data i
         ArrayList<HashMap<String, String>> alienIDLista = new ArrayList<>();
         ArrayList<HashMap<String, String>> namnLista = new ArrayList<>();
         ArrayList<HashMap<String, String>> telefonLista = new ArrayList<>();
         try {
+            // Hämtar alien info från alien-tabellen och sparar i listor
             alienIDLista = idb.fetchRows("SELECT alien_ID from alien WHERE plats = " + valdPlatsID);
             namnLista = idb.fetchRows("SELECT namn from alien WHERE plats = " + valdPlatsID);
             telefonLista = idb.fetchRows("SELECT telefon from alien WHERE plats = " + valdPlatsID);
@@ -91,51 +95,16 @@ public class SQL extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: fyllLista() " + e.getMessage());
         }
+        // Lägger till en rubrik högst upp i listan
         txtLista.append("AlienID \t Namn \t\t Telefon \n");
-
+        // Loopar igenom ID-listan och plockar ut motsvarande info från dom två andra listorna
         for (int i = 0; i < alienIDLista.size(); i++) {
             String a = alienIDLista.get(i).get("alien_ID");
             String n = namnLista.get(i).get("namn");
             String t = telefonLista.get(i).get("telefon");
-
+            // Lägger till info i textArea
             txtLista.append(a + " \t " + n + " \t\t" + t + "\n");
         }
-    }
-
-    public boolean namnFinnsInteAgent(JTextField rutaAttKolla) {
-        boolean resultat = true;
-        String namn = rutaAttKolla.getText();
-
-        try {
-            ArrayList<String> namnLista = idb.fetchColumn("SELECT namn FROM agent");
-            if (namnLista.contains(namn)) {
-                resultat = false;
-                JOptionPane.showMessageDialog(null, "Namnet på agenten finns redan!");
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande" + e.getMessage());
-
-        }
-        return resultat;
-    }
-    
-    public boolean namnFinnsInteAlien(JTextField rutaAttKolla) {
-        boolean resultat = true;
-        String namn = rutaAttKolla.getText();
-
-        try {
-            ArrayList<String> namnLista = idb.fetchColumn("SELECT namn FROM alien");
-            if (namnLista.contains(namn)) {
-                resultat = false;
-                JOptionPane.showMessageDialog(null, "Namnet på alien finns redan!");
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande" + e.getMessage());
-
-        }
-        return resultat;
     }
 
     /**
@@ -145,6 +114,7 @@ public class SQL extends javax.swing.JFrame {
      * @param txtLista
      */
     public void fyllListaAlienRas(String valdRas, JTextArea txtLista) {
+        // nollställ textarea inför en ny sökning
         txtLista.setText("");
         ArrayList<String> alienIDLista = new ArrayList<>();
         ArrayList<HashMap<String, String>> namnLista = new ArrayList<>();
@@ -186,7 +156,9 @@ public class SQL extends javax.swing.JFrame {
      */
     public void getPlatser(String valtOmrade, JComboBox cmbPlats) {
         try {
+            // Hämta ID för valt område
             String valtOmradeID = idb.fetchSingle("SELECT omrades_ID FROM omrade WHERE benamning = '" + valtOmrade + "'");
+            // Spara alla platser som finns i området
             ArrayList<HashMap<String, String>> listaPlatser = idb.fetchRows("SELECT Benamning FROM plats WHERE Finns_I = " + valtOmradeID + "");
             // loopa igenom lista och lägg till alla områden i drop down menyn 
             for (int i = 0; i < listaPlatser.size(); i++) {
@@ -198,6 +170,26 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
+    
+    public static boolean agentHarAlien(String soktID, InfDB idb){
+        boolean resultat = true;
+        String count = "";
+        
+        try{
+              // Kolla om agenten är ansvarig för några Aliens
+               count = idb.fetchSingle("SELECT count(alien_ID) FROM alien WHERE ansvarig_agent = " + soktID);
+        }
+            catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande: agentHarAlien() " + e.getMessage());
+        }
+        // om agenten inte är ansvarig förnågra aliens, returnera false, annars true
+        if(count.equals("0")){
+            resultat = false;
+        }
+        return resultat;
+        
+    }
 
     /**
      * Fyll text area med lista på vilka aliens en specifik agent är ansvarig
@@ -207,6 +199,7 @@ public class SQL extends javax.swing.JFrame {
      * @param txtAreaAliens
      */
     public void getAliensForAnsvaigAgent(String agent_ID, JTextArea txtAreaAliens) {
+        // Töm textarea inför ny sökning
         txtAreaAliens.setText("");
         txtAreaAliens.append("Alien ID \t Namn \n");
 
@@ -487,4 +480,51 @@ public class SQL extends javax.swing.JFrame {
             a.setVisible(true);
         }
     }
+    /**
+ * Kontrollerar så att ett agentnamn inte redan finns i tabellen agent
+ * @param rutaAttKolla
+ * @return 
+ */
+    public boolean namnFinnsInteAgent(JTextField rutaAttKolla) {
+        boolean resultat = true;
+        // Hämtar namn som användaren angett
+        String namn = rutaAttKolla.getText();
+
+        try {
+            // Spara alla namn i en lista
+            ArrayList<String> namnLista = idb.fetchColumn("SELECT namn FROM agent");
+            // kolla om listan innehåller det aktuella namnet
+            if (namnLista.contains(namn)) {
+                // Om listan innehåller namnet returneras false
+                resultat = false;
+                JOptionPane.showMessageDialog(null, "Namnet på agenten finns redan!");
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage());
+        }
+        return resultat;
+    }
+    /**
+ * Kontrollerar så att ett agentnamn inte redan finns i tabellen agent
+ * @param rutaAttKolla
+ * @return 
+ */
+    public boolean namnFinnsInteAlien(JTextField rutaAttKolla) {
+        boolean resultat = true;
+        String namn = rutaAttKolla.getText();
+
+        try {
+            ArrayList<String> namnLista = idb.fetchColumn("SELECT namn FROM alien");
+            if (namnLista.contains(namn)) {
+                resultat = false;
+                JOptionPane.showMessageDialog(null, "Namnet på alien finns redan!");
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande" + e.getMessage());
+        }
+        return resultat;
+    }
+
 }

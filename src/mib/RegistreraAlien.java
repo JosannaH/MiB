@@ -2,8 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-// TODO Lägg till fler val vid registrering beroende på ras. Tex antal armar för Squid
-// TODO sätt alienID automatiskt -> räkna uppåt från senaste inlagda (Rosa har nummer 4)
 package mib;
 
 import java.time.LocalDateTime;
@@ -29,10 +27,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
     /**
      * Creates new form RegistreraAlien
      */
-    public RegistreraAlien() {
-        initComponents();
-    }
-
     // kontruktor som tar in information som bland annat används till den översta MenuBar
     public RegistreraAlien(InfDB idb, String anvId, String anvTyp) {
         initComponents();
@@ -40,15 +34,18 @@ public class RegistreraAlien extends javax.swing.JFrame {
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         nyttDatum();
+        // Fyller comboboxar med alternativ
         SQL s = new SQL(idb);
         s.plats(cmbPlats);
         s.agent(cmbAnsAgent);
+        // Visar ett autogenererat ID
         hamtaAlienID(regAlienID);
-        doljText(txtRasInfo);
-        doljLabel(lblRasInfo);
+        // Döljer comboboxar som endast ska synas för vissa raser
+        txtRasInfo.setVisible(false);
+        lblRasInfo.setVisible(false);
+        // Text som visas i manuBar
         menuBarInlogg.setText("Inloggad som " + anvTyp);
-        
-        
+
     }
 
     /**
@@ -66,22 +63,22 @@ public class RegistreraAlien extends javax.swing.JFrame {
         btnSpara = new javax.swing.JButton();
         txtTelefon = new javax.swing.JTextField();
         lblTelefon = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblRas = new javax.swing.JLabel();
         cmbRas = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
+        lblPlats = new javax.swing.JLabel();
         lblConfirm = new javax.swing.JLabel();
         cmbAnsAgent = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblAnsvarigAgent = new javax.swing.JLabel();
+        lblLosenord = new javax.swing.JLabel();
         psw1 = new javax.swing.JPasswordField();
-        jLabel7 = new javax.swing.JLabel();
+        lblRubrik = new javax.swing.JLabel();
         cmbPlats = new javax.swing.JComboBox<>();
         lblPersInfo = new javax.swing.JLabel();
         lblAktResInfo = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lblUpprepaLosen = new javax.swing.JLabel();
         psw2 = new javax.swing.JPasswordField();
         lblAlienID = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblDatum = new javax.swing.JLabel();
         txtDatum = new javax.swing.JTextField();
         lblAlienID2 = new javax.swing.JLabel();
         txtRasInfo = new javax.swing.JTextField();
@@ -111,55 +108,32 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
         lblTelefon.setText("Telefon");
 
-        jLabel2.setText("Ras");
+        lblRas.setText("Ras");
 
         cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Squid", "Worm", "Ingen" }));
-        cmbRas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbRasActionPerformed(evt);
-            }
-        });
 
-        jLabel3.setText("Plats");
+        lblPlats.setText("Plats");
 
         lblConfirm.setForeground(new java.awt.Color(0, 204, 0));
 
-        jLabel5.setText("Ansvarig agent");
+        lblAnsvarigAgent.setText("Ansvarig agent");
 
-        jLabel6.setText("Lösenord");
+        lblLosenord.setText("Lösenord");
 
-        psw1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                psw1ActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
-        jLabel7.setText("MiB REGISTRERINGSSERVICE");
+        lblRubrik.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
+        lblRubrik.setText("MiB REGISTRERINGSSERVICE");
 
         lblPersInfo.setText("Personlig information");
 
         lblAktResInfo.setText("Aktuell reseinfo");
 
-        jLabel11.setText("Upprepa lösenord");
-
-        psw2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                psw2ActionPerformed(evt);
-            }
-        });
+        lblUpprepaLosen.setText("Upprepa lösenord");
 
         lblAlienID.setText("AlienID");
 
-        jLabel1.setText("Dagens datum");
+        lblDatum.setText("Dagens datum");
 
         lblAlienID2.setText("ID");
-
-        txtRasInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRasInfoActionPerformed(evt);
-            }
-        });
 
         lblRasInfo.setText("Rasinfo");
 
@@ -167,11 +141,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
         tbValjRas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbValjRasMouseClicked(evt);
-            }
-        });
-        tbValjRas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbValjRasActionPerformed(evt);
             }
         });
 
@@ -214,7 +183,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(182, 182, 182)
-                .addComponent(jLabel7)
+                .addComponent(lblRubrik)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -232,7 +201,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
                                     .addComponent(txtNamn)
                                     .addComponent(txtTelefon)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblRas, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,9 +217,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
                                     .addComponent(lblAktResInfo)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel1))
+                                            .addComponent(lblPlats)
+                                            .addComponent(lblAnsvarigAgent)
+                                            .addComponent(lblDatum))
                                         .addGap(28, 28, 28)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,8 +228,8 @@ public class RegistreraAlien extends javax.swing.JFrame {
                                             .addComponent(lblDatumTips))))
                                 .addGap(41, 41, 41)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel11)
+                                    .addComponent(lblLosenord)
+                                    .addComponent(lblUpprepaLosen)
                                     .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(psw2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
@@ -279,7 +248,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7)
+                .addComponent(lblRubrik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitel)
                 .addGap(12, 12, 12)
@@ -299,24 +268,24 @@ public class RegistreraAlien extends javax.swing.JFrame {
                             .addComponent(lblAktResInfo)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
+                                .addComponent(lblPlats)
                                 .addComponent(cmbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5)
+                                .addComponent(lblAnsvarigAgent)
                                 .addComponent(cmbAnsAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(lblLosenord)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(psw1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11)
+                        .addComponent(lblUpprepaLosen)
                         .addGap(8, 8, 8)
                         .addComponent(psw2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(lblRas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tbValjRas)
                 .addGap(31, 31, 31)
@@ -339,94 +308,100 @@ public class RegistreraAlien extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
+                            .addComponent(lblDatum)
                             .addComponent(txtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(46, 46, 46))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * Spara all inmatad information i databasen
+     *
+     * @param evt
+     */
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-        // Utgår ifrån att det är klicket på sparaknappen som gör att all info sparas i DG
+        // Kollar om alla textfält som är obligatoriska har värden
         if (Validering.textFaltHarVarde(txtNamn) && Validering.textFaltHarVarde(txtDatum)
                 && Validering.comboHarVarde(cmbAnsAgent) && Validering.comboHarVarde(cmbRas) && Validering.comboHarVarde(cmbPlats) && Validering.passwordHarVarde(psw1) && Validering.passwordHarVarde(psw2)) {
+            // Kollar så att aliennamnet inte redan finns i databasen
             SQL s = new SQL(idb);
-            
-            if(s.namnFinnsInteAlien(txtNamn)){
-            String regNamn = txtNamn.getText();
+            if (s.namnFinnsInteAlien(txtNamn)) {
+                // Hämtar in alla värden som användaren fyllt i
+                String regNamn = txtNamn.getText();
+                String regTelefon = txtTelefon.getText();
+                String regPassword = psw1.getText();
+                String regPasswordCheck = psw2.getText();
+                String regPlats = cmbPlats.getSelectedItem().toString();
+                String regRas = cmbRas.getSelectedItem().toString();
+                String rasInfo = txtRasInfo.getText();
+                String regAnsAgent = cmbAnsAgent.getSelectedItem().toString();
+                String regAlienIDGet = lblAlienID2.getText();
+                int regAlienIDint = Integer.parseInt(regAlienIDGet);
+                String dagensDatum = txtDatum.getText();
 
-            String regTelefon = txtTelefon.getText();
+                // Kollar att de båda lösenordsinmatningar stämmer överens
+                if (regPassword.equals(regPasswordCheck)) {
+                    // Kollar att lösenordet har rätt längd
+                    if (regPassword.length() <= 6 && regPassword.length() >= 3) {
 
-            String regPassword = psw1.getText();
+                        try {
+                            //Hämtar ID för plats och ansvarig agent
+                            String platsID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning = '" + regPlats + "'");
+                            String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn = '" + regAnsAgent + "'");
+                            // Körs om alien är Boglodite, textfältet med rasinfo måste vara ifyllt
 
-            String regPasswordCheck = psw2.getText();
+                            if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
 
-            String regPlats = cmbPlats.getSelectedItem().toString();
+                                // lägger till alien i databasen, i tabellen för alien och i tabellen för rasen
+                                idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
+                                idb.insert("INSERT INTO Boglodite VALUES ('" + regAlienIDGet + "', '" + rasInfo + "')");
+                                JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
+                                // Användaren skickas tillbaka till föregående sida
+                                btnTillbakaActionPerformed(evt);
 
-            String regRas = cmbRas.getSelectedItem().toString();
-            //System.out.println(regRas);
-            String rasInfo = txtRasInfo.getText();
+                            } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
+                                idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
+                                idb.insert("INSERT INTO Squid VALUES ('" + regAlienIDGet + "', '" + rasInfo + "')");
+                                JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
+                                btnTillbakaActionPerformed(evt);
 
-            String regAnsAgent = cmbAnsAgent.getSelectedItem().toString();
-            //Här behöver vi hämta Agent_ID baserat på namnet
+                                // Ingen rasinfo behöver fyllas i för rasen Worm
+                            } else if (regRas.equals("Worm")) {
+                                idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
+                                idb.insert("INSERT INTO Worm VALUES ('" + regAlienIDGet + "')");
+                                JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
+                                btnTillbakaActionPerformed(evt);
 
-            String regAlienIDGet = lblAlienID2.getText();
-            int regAlienIDint = Integer.parseInt(regAlienIDGet);
+                                // Om alien inte har någon ras så läggs den endast i i tabellen Alien, inte i någon rastabell
+                            } else if (regRas.equals("Ingen")) {
+                                // lägger till alien i databasen
+                                idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
+                                JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
+                                btnTillbakaActionPerformed(evt);
 
-            String dagensDatum = txtDatum.getText();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+                            }
 
-            if (regPassword.equals(regPasswordCheck)) {
-                if (regPassword.length() <= 6 && regPassword.length() >= 3) {
-
-                    try {
-
-                        String platsID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning = '" + regPlats + "'");
-                        String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn = '" + regAnsAgent + "'");
-
-                        if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
-                            // lägger till alien i databasen
-                            idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
-                            idb.insert("INSERT INTO Boglodite VALUES ('" + regAlienIDGet + "', '" + rasInfo + "')");
-                            JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
-                            btnTillbakaActionPerformed(evt);
-                        } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
-                            // lägger till alien i databasen
-                            idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
-                            idb.insert("INSERT INTO Squid VALUES ('" + regAlienIDGet + "', '" + rasInfo + "')");
-                            JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
-                            btnTillbakaActionPerformed(evt);
-                        } else if (regRas.equals("Worm")) {
-                            // lägger till alien i databasen
-                            idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
-                            idb.insert("INSERT INTO Worm VALUES ('" + regAlienIDGet + "')");
-                            JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
-                            btnTillbakaActionPerformed(evt);
-                        } else if (regRas.equals("Ingen")) {
-                            // lägger till alien i databasen
-                            idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
-                            JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
-                            btnTillbakaActionPerformed(evt);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+                        } catch (InfException e) {
+                            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att alla fält är korrekt ifyllda");
+                            System.out.println("Internt felmeddelande" + e.getMessage());
                         }
-
-                    } catch (InfException e) {
-                        JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att alla fält är korrekt ifyllda");
-                        System.out.println("Internt felmeddelande" + e.getMessage());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                 }
-
             }
-        } 
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
     }//GEN-LAST:event_btnSparaActionPerformed
-
+    /**
+     * Metod för att generera ett ID automatiskt
+     *
+     * @param regAlienID
+     */
     private void hamtaAlienID(String regAlienID) {
 
         try {
@@ -439,31 +414,12 @@ public class RegistreraAlien extends javax.swing.JFrame {
         }
     }
 
-    private void doljText(JTextField textAttDolja) {
-        textAttDolja.setVisible(false);
-    }
-
-    private void doljLabel(JLabel labelAttDolja) {
-        labelAttDolja.setVisible(false);
-    }
-
-
-    private void psw1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psw1ActionPerformed
-
-    }//GEN-LAST:event_psw1ActionPerformed
-
-    private void psw2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psw2ActionPerformed
-
-    }//GEN-LAST:event_psw2ActionPerformed
-
-    private void txtRasInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRasInfoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRasInfoActionPerformed
-
-    private void tbValjRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbValjRasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbValjRasActionPerformed
-
+    /**
+     * När knappen välj ras klickas på så visas eventuellt individuell rasinfo
+     * som ska fyllas i beroende vilken ras alien är
+     *
+     * @param evt
+     */
     private void tbValjRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbValjRasMouseClicked
         String ras = cmbRas.getSelectedItem().toString();
 
@@ -477,31 +433,32 @@ public class RegistreraAlien extends javax.swing.JFrame {
             lblRasInfo.setVisible(true);
             lblRasInfo.setText("Antal Armar");
         } else {
-            doljText(txtRasInfo);
-            doljLabel(lblRasInfo);
+            txtRasInfo.setVisible(false);
+            lblRasInfo.setVisible(false);
         }
     }//GEN-LAST:event_tbValjRasMouseClicked
-
-    private void cmbRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbRasActionPerformed
 
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
         SQL s = new SQL(idb);
         s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
-
+    /**
+     * Går tillbaka till startsidan. Olika sidor beroende på om agenten är admin
+     * eller inte
+     *
+     * @param evt
+     */
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         SQL s = new SQL(idb);
+        // anropar en metod som kollar om agent är admin eller inte
         boolean admin = s.arAdmin(anvId);
         setVisible(false);
-        
-        if(admin){
+
+        if (admin) {
             HanteraAliensAdmin h = new HanteraAliensAdmin(idb, anvId, anvTyp);
             h.setVisible(true);
-        }
-        else{
+        } else {
             HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
             h.setVisible(true);
         }
@@ -512,7 +469,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
         Inloggning i = new Inloggning(idb);
         i.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
-
+    /**
+     * Autogenererar dagens datum som förifyllt
+     */
     private void nyttDatum() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDateTime time = LocalDateTime.now();
@@ -528,24 +487,24 @@ public class RegistreraAlien extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbAnsAgent;
     private javax.swing.JComboBox<String> cmbPlats;
     private javax.swing.JComboBox<String> cmbRas;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblAktResInfo;
     private javax.swing.JLabel lblAlienID;
     private javax.swing.JLabel lblAlienID2;
+    private javax.swing.JLabel lblAnsvarigAgent;
     private javax.swing.JLabel lblConfirm;
+    private javax.swing.JLabel lblDatum;
     private javax.swing.JLabel lblDatumTips;
+    private javax.swing.JLabel lblLosenord;
     private javax.swing.JLabel lblNamn;
     private javax.swing.JLabel lblPersInfo;
+    private javax.swing.JLabel lblPlats;
+    private javax.swing.JLabel lblRas;
     private javax.swing.JLabel lblRasInfo;
+    private javax.swing.JLabel lblRubrik;
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTitel;
+    private javax.swing.JLabel lblUpprepaLosen;
     private javax.swing.JMenu menuBarInlogg;
     private javax.swing.JMenu menuBarLoggaUt;
     private javax.swing.JMenu menuBarStartsida;
