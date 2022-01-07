@@ -68,7 +68,7 @@ public class ListaAliensRas extends javax.swing.JFrame {
 
         lblRas.setText("Välj ras:");
 
-        cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Squid", "Worm", "Ingen ras" }));
+        cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bologdite", "Squid", "Worm", "Ingen ras" }));
         cmbRas.setToolTipText("");
 
         btnRas.setText("Välj");
@@ -198,7 +198,7 @@ public class ListaAliensRas extends javax.swing.JFrame {
             wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
 
             // Beroende på vilken ras en väljer fylls fältet med information om tillhörande aliens.
-            if (valdRas.equals("Boglodite")) {
+            if (valdRas.equals("Bologdite")) {
 
                 //Loopar igenom listan för att hämta och skriva ut informationen. 
                 for (int i = 0; i < bogloditeLista.size(); i++) {
