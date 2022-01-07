@@ -38,16 +38,16 @@ public class SokAgent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblRubrik = new javax.swing.JLabel();
+        lblAgentID = new javax.swing.JLabel();
+        lblLosenord = new javax.swing.JLabel();
+        lblBehorigheter = new javax.swing.JLabel();
+        lblBenamning = new javax.swing.JLabel();
         btnSok = new javax.swing.JButton();
         txtSoktID = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblTelefon = new javax.swing.JLabel();
+        lblAnstDatum = new javax.swing.JLabel();
+        lblOmrade = new javax.swing.JLabel();
         lblBenamningSvar = new javax.swing.JLabel();
         lblLosenordSvar = new javax.swing.JLabel();
         lblBehorigheterSvar = new javax.swing.JLabel();
@@ -58,21 +58,21 @@ public class SokAgent extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        menuInoggadSom = new javax.swing.JMenu();
         menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
-        jLabel1.setText("MiB AGENTSÖK");
+        lblRubrik.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
+        lblRubrik.setText("MiB AGENTSÖK");
 
-        jLabel2.setText("Agent-ID");
+        lblAgentID.setText("Agent-ID");
 
-        jLabel3.setText("Lösenord:");
+        lblLosenord.setText("Lösenord:");
 
-        jLabel4.setText("Behörigheter:");
+        lblBehorigheter.setText("Behörigheter:");
 
-        jLabel5.setText("Benämning:");
+        lblBenamning.setText("Benämning:");
 
         btnSok.setText("SÖK");
         btnSok.addActionListener(new java.awt.event.ActionListener() {
@@ -81,11 +81,11 @@ public class SokAgent extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Telefon:");
+        lblTelefon.setText("Telefon:");
 
-        jLabel7.setText("Anställningsdatum:");
+        lblAnstDatum.setText("Anställningsdatum:");
 
-        jLabel8.setText("Område:");
+        lblOmrade.setText("Område:");
 
         lblBenamningSvar.setText("-");
 
@@ -117,8 +117,8 @@ public class SokAgent extends javax.swing.JFrame {
         jMenu2.setText("                                                                                                                                                           ");
         jMenuBar1.add(jMenu2);
 
-        jMenu4.setText("Inloggad som Admin");
-        jMenuBar1.add(jMenu4);
+        menuInoggadSom.setText("Inloggad som Admin");
+        jMenuBar1.add(menuInoggadSom);
 
         menuLoggaUt.setText("Logga ut");
         menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,12 +144,12 @@ public class SokAgent extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel7))
+                                    .addComponent(lblBenamning)
+                                    .addComponent(lblBehorigheter)
+                                    .addComponent(lblTelefon)
+                                    .addComponent(lblOmrade)
+                                    .addComponent(lblLosenord)
+                                    .addComponent(lblAnstDatum))
                                 .addGap(42, 42, 42)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblBenamningSvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -160,10 +160,10 @@ public class SokAgent extends javax.swing.JFrame {
                                     .addComponent(lblAnsDatSvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
+                                    .addComponent(lblAgentID)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtSoktID, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel1)))
+                                .addComponent(lblRubrik)))
                         .addGap(338, 338, 338))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
@@ -174,36 +174,36 @@ public class SokAgent extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblAgentID)
                     .addComponent(txtSoktID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnSok)
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(lblBenamning)
                     .addComponent(lblBenamningSvar))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(lblTelefon)
                     .addComponent(lblTelefonSvar))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(lblBehorigheter)
                     .addComponent(lblBehorigheterSvar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                    .addComponent(lblOmrade)
                     .addComponent(lblOmradeSvar))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(lblLosenord)
                     .addComponent(lblLosenordSvar))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(lblAnstDatum)
                     .addComponent(lblAnsDatSvar))
                 .addGap(58, 58, 58)
                 .addComponent(btnTillbaka)
@@ -213,22 +213,29 @@ public class SokAgent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Sökning av egenten utförs
+     * @param evt 
+     */
     private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
+        // Kollar om användaren fyllt i textfält
         if (Validering.textFaltHarVarde(txtSoktID)) {
+            // Kollar om textfält innehåller rätt typ av värde, dvs siffror
             if (Validering.txtFaltHarSiffror(txtSoktID)) {
                 try {
                     String soktID = txtSoktID.getText();
+                    //Spara alla agentID i lista
                     ArrayList<String> agentnLista = idb.fetchColumn("SELECT agent_ID FROM agent");
-
+                    // Om listan innehåller den sökta agenten körs nedanstående kod
                     if (agentnLista.contains(soktID)) {
-
+                        // Hämta info från databas om den aktuella agenten
                         String agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID + "");
                         String agentTelefon = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID = " + soktID + "");
                         String agentBehorighet = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID = " + soktID + "");
                         String agentOmrade = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE Omrades_ID IN(SELECT Omrade FROM Agent WHERE Agent_ID = " + soktID + ")");
                         String agentLosenord = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID = " + soktID + "");
                         String agentAnsDat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Agent_ID = " + soktID + "");
-
+                        // Skriv ut info om agenten som hittades i databasen
                         lblBenamningSvar.setText(agentNamn);
                         lblTelefonSvar.setText(agentTelefon);
                         lblOmradeSvar.setText(agentOmrade);
@@ -240,7 +247,6 @@ public class SokAgent extends javax.swing.JFrame {
                         } else if (agentBehorighet.contains("N")) {
                             lblBehorigheterSvar.setText("Agentstandard");
                         }
-
                     } else {
                         JOptionPane.showMessageDialog(null, "AgentID finns inte!");
                     }
@@ -280,23 +286,23 @@ public class SokAgent extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSok;
     private javax.swing.JButton btnTillbaka;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblAgentID;
     private javax.swing.JLabel lblAnsDatSvar;
+    private javax.swing.JLabel lblAnstDatum;
+    private javax.swing.JLabel lblBehorigheter;
     private javax.swing.JLabel lblBehorigheterSvar;
+    private javax.swing.JLabel lblBenamning;
     private javax.swing.JLabel lblBenamningSvar;
+    private javax.swing.JLabel lblLosenord;
     private javax.swing.JLabel lblLosenordSvar;
+    private javax.swing.JLabel lblOmrade;
     private javax.swing.JLabel lblOmradeSvar;
+    private javax.swing.JLabel lblRubrik;
+    private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTelefonSvar;
+    private javax.swing.JMenu menuInoggadSom;
     private javax.swing.JMenu menuLoggaUt;
     private javax.swing.JMenu menuStartsida;
     private javax.swing.JTextField txtSoktID;
