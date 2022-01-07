@@ -226,9 +226,10 @@ public class RegistreraAgent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * När användaren trycker på knappen utförs kontroller på alla fält och den nya
-     * agenten registreras om allt är rätt ifyllt
-     * @param evt 
+     * När användaren trycker på knappen utförs kontroller på alla fält och den
+     * nya agenten registreras om allt är rätt ifyllt
+     *
+     * @param evt
      */
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
         // Kollar att alla fält och comboboxar har är ifyllda
@@ -284,7 +285,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnRegActionPerformed
-   
+
     /**
      * Gå tillbaka till föregående sida
      *
@@ -295,7 +296,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
         AdminHanteraAgenter hantera = new AdminHanteraAgenter(idb, anvId, anvTyp);
         hantera.setVisible(true);
     }//GEN-LAST:event_btnTillbakaActionPerformed
-   
+
     /**
      * Gå till startsida för administratörer
      *
@@ -306,7 +307,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
         StartsidaAdmin startAdm = new StartsidaAdmin(idb, anvId, anvTyp);
         startAdm.setVisible(true);
     }//GEN-LAST:event_menuStartsidaMouseClicked
-    
+
     /**
      * Logga ut och gå tillbaka till inloggningssidan
      *
@@ -317,7 +318,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
-    
+
     /**
      * Hämta ilket ID som det nya agenten ska få
      *

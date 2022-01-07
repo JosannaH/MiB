@@ -14,7 +14,6 @@ import oru.inf.InfException;
  */
 public class AndraLosenord extends javax.swing.JFrame {
 
-   
     private InfDB idb;
     private String anvId;
     private String anvTyp;
@@ -193,7 +192,7 @@ public class AndraLosenord extends javax.swing.JFrame {
 
     //Denna metod avser att genomföra de ändringar som fyllts i när en klickar på knappen "Spara nytt lösenord".
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
-        
+
         //Lokala variabler som används för att hämta det som användaren har skrivit in i de olika fälten.
         String anvandare = txtAnvandare.getText();
         String nuvLosen = pwNuvLosen.getText();
@@ -202,36 +201,34 @@ public class AndraLosenord extends javax.swing.JFrame {
 
         //If-sats som kollar att alla fält är ifyllda.
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pwNuvLosen) && Validering.textFaltHarVarde(pwNyttLosen)) {
-             if(Validering.txtFaltHarSiffror(txtAnvandare)){
-            try {
-                //Lösenordet som tillhör individen hämtas ur databasen.
-                losenFranDB = idb.fetchSingle("SELECT Losenord FROM " + anvTyp + " WHERE " + anvTyp + "_ID=" + anvandare);
-                if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
+            if (Validering.txtFaltHarSiffror(txtAnvandare)) {
+                try {
+                    //Lösenordet som tillhör individen hämtas ur databasen.
+                    losenFranDB = idb.fetchSingle("SELECT Losenord FROM " + anvTyp + " WHERE " + anvTyp + "_ID=" + anvandare);
+                    if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
 
-                    //Jämför det inmatade, nuvarande lösenordet med lösenordet från databasen.
-                    if (nuvLosen.equals(losenFranDB)) {
-                        //Här ändras (uppdateras) lösenordet i databasen om fältet med det nuvarande lösenordet stämmer överens med agent-id:t.
-                        idb.fetchSingle("UPDATE " + anvTyp + " SET Losenord = '" + nyttLosen + "' where " + anvTyp + "_ID=" + anvandare);
-                        JOptionPane.showMessageDialog(null, "Ditt lösenord är ändrat!");
-                        //När lösenordet ändrats skickas en per automatik tillbaka till föregående ruta.
-                        btnTillbakaActionPerformed(evt); } 
-                    
-                    //Om det nuvarande lösenordet och agent-id:t inte stämmer överens ändras inte lösenordet och användaren möts av denna ruta.
-                    else {
-                    JOptionPane.showMessageDialog(null, "Användare och nuvarande lösenord stämmer inte överens");
+                        //Jämför det inmatade, nuvarande lösenordet med lösenordet från databasen.
+                        if (nuvLosen.equals(losenFranDB)) {
+                            //Här ändras (uppdateras) lösenordet i databasen om fältet med det nuvarande lösenordet stämmer överens med agent-id:t.
+                            idb.fetchSingle("UPDATE " + anvTyp + " SET Losenord = '" + nyttLosen + "' where " + anvTyp + "_ID=" + anvandare);
+                            JOptionPane.showMessageDialog(null, "Ditt lösenord är ändrat!");
+                            //När lösenordet ändrats skickas en per automatik tillbaka till föregående ruta.
+                            btnTillbakaActionPerformed(evt);
+                        } //Om det nuvarande lösenordet och agent-id:t inte stämmer överens ändras inte lösenordet och användaren möts av denna ruta.
+                        else {
+                            JOptionPane.showMessageDialog(null, "Användare och nuvarande lösenord stämmer inte överens");
+                        }
+                        //Om det nuvarande lösenordet är korrekt, men det nya lösenordet inte uppfyller längdkraven möts användaren av denna ruta.
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                     }
-                    //Om det nuvarande lösenordet är korrekt, men det nya lösenordet inte uppfyller längdkraven möts användaren av denna ruta.
-                } else {
-                    JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
-                } 
-            //Om något går fel i koden och den inte kan köras som tänkt får användaren upp denna ruta istället och ingenting händer i databasen.
-            } catch (InfException e) {
-                JOptionPane.showMessageDialog(null, "Något gick fel!");
-                System.out.println("Internt felmeddelande" + e.getMessage());
+                    //Om något går fel i koden och den inte kan köras som tänkt får användaren upp denna ruta istället och ingenting händer i databasen.
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande" + e.getMessage());
+                }
             }
-        }
-    }
-        //Om inte alla fält är ifyllda (som valideringsklassen kontrollerar) får användaren upp denna dialogruta.
+        } //Om inte alla fält är ifyllda (som valideringsklassen kontrollerar) får användaren upp denna dialogruta.
         else {
             JOptionPane.showMessageDialog(null, "Alla fält måste fyllas i");
         }
@@ -239,7 +236,7 @@ public class AndraLosenord extends javax.swing.JFrame {
 
     //Via den här metoden kommer en tillbaka till startsidan vid klickning.
     private void menuTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTillStartsidaMouseClicked
-       setVisible(false);
+        setVisible(false);
         SQL s = new SQL(idb);
         s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuTillStartsidaMouseClicked
@@ -253,7 +250,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosen;
     private javax.swing.JToggleButton btnTillbaka;

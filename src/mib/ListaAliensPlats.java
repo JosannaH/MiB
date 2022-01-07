@@ -14,7 +14,6 @@ import oru.inf.InfException;
  *
  * @author Josanna, Linda & Lisa.
  */
-
 public class ListaAliensPlats extends javax.swing.JFrame {
 
     private InfDB idb;
@@ -187,17 +186,16 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
-   //Skickar användaren tillbaka till föregående sida baserat på om den inloggade är admin eller vanlig agent.
+    //Skickar användaren tillbaka till föregående sida baserat på om den inloggade är admin eller vanlig agent.
     private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
         SQL s = new SQL(idb);
         boolean admin = s.arAdmin(anvId);
         setVisible(false);
-        
-        if(admin){
+
+        if (admin) {
             HanteraAliensAdmin h = new HanteraAliensAdmin(idb, anvId, anvTyp);
             h.setVisible(true);
-        }
-        else{
+        } else {
             HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
             h.setVisible(true);
         }
@@ -218,7 +216,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         SQL sql = new SQL(idb);
         sql.getPlatser(valtOmrade, cmbPlats);
     }//GEN-LAST:event_btnOmradeMouseClicked
-    
+
     //Metod som avser att bekräfta den valda platsen.
     private void btnPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlatsMouseClicked
         //Sparar användarens val av plats. 
@@ -227,7 +225,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         try {
             //Hämtar ID:t för den valda platsen.
             valdPlatsID = idb.fetchSingle("SELECT plats_ID from plats WHERE benamning = '" + valdPlats + "'");
-            
+
             //Om ID:t för platsen i fråga inte kan hämtas (undantag) dyker denna dialogruta upp.
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");

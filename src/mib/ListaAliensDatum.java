@@ -208,12 +208,11 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         SQL s = new SQL(idb);
         boolean admin = s.arAdmin(anvId);
         setVisible(false);
-        
-        if(admin){
+
+        if (admin) {
             HanteraAliensAdmin h = new HanteraAliensAdmin(idb, anvId, anvTyp);
             h.setVisible(true);
-        }
-        else{
+        } else {
             HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
             h.setVisible(true);
         }
@@ -226,29 +225,28 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
-   //Metod som avser att söka fram de aliens mellan ett datumintervall.
+    //Metod som avser att söka fram de aliens mellan ett datumintervall.
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
         //If-sats som kontrollerar att fälten har värden vid klickning på sök-knappen. 
         if (Validering.textFaltHarVarde(txtFran) && Validering.textFaltHarVarde(txtTill)) {
-        txtLista.setText(""); //Rensar textArea inför sökningen, om en gjort en tidigare sökning.
-        String franDatum = txtFran.getText().trim();  //ta bort aventuella mellanslag efter datumen som kan skapa problem.
-        String tillDatum = txtTill.getText().trim();
-        
-        //Använder en metod från vår SQL-klass för att se vilken ordning som aliens ska listas i.
-        String ordning = cmbOrdning.getSelectedItem().toString();
-        SQL sql = new SQL(idb);
-        sql.getRegistreringsdatum(franDatum, tillDatum, txtLista, ordning);
-         }
-        //Är inte alla fält ifyllda enligt valideringen ovan kommer denna dialog att visas.
-         else {
+            txtLista.setText(""); //Rensar textArea inför sökningen, om en gjort en tidigare sökning.
+            String franDatum = txtFran.getText().trim();  //ta bort aventuella mellanslag efter datumen som kan skapa problem.
+            String tillDatum = txtTill.getText().trim();
+
+            //Använder en metod från vår SQL-klass för att se vilken ordning som aliens ska listas i.
+            String ordning = cmbOrdning.getSelectedItem().toString();
+            SQL sql = new SQL(idb);
+            sql.getRegistreringsdatum(franDatum, tillDatum, txtLista, ordning);
+        } //Är inte alla fält ifyllda enligt valideringen ovan kommer denna dialog att visas.
+        else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
     }//GEN-LAST:event_btnSokMouseClicked
 
     //Metod som tillhör knappen "ordna".
     private void btnOrdnaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOrdnaMouseClicked
-     //Denna kör samma kod som Sök-knappen, men representeras av knappen "ordna" för att underlätta för användaren.
-     btnSokMouseClicked(evt);
+        //Denna kör samma kod som Sök-knappen, men representeras av knappen "ordna" för att underlätta för användaren.
+        btnSokMouseClicked(evt);
     }//GEN-LAST:event_btnOrdnaMouseClicked
 
     /**
