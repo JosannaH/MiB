@@ -42,11 +42,10 @@ public class GorTillAdmin extends javax.swing.JFrame {
         lblAgentID = new javax.swing.JLabel();
         btnSok = new javax.swing.JButton();
         txtAgentID = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblNamnVisa = new javax.swing.JLabel();
         btnGorTillAdmin = new javax.swing.JButton();
         lblAngeLosen = new javax.swing.JLabel();
         txtLosenord = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
         lblNamn = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuBarTillStartsida = new javax.swing.JMenu();
@@ -77,7 +76,7 @@ public class GorTillAdmin extends javax.swing.JFrame {
 
         txtAgentID.setToolTipText("");
 
-        jLabel1.setText("Namn:");
+        lblNamnVisa.setText("Namn:");
 
         btnGorTillAdmin.setText("Gör till administratör");
         btnGorTillAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -125,18 +124,6 @@ public class GorTillAdmin extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnGaTillbaka))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(lblAgentID, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAgentID, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(btnSok)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(lblAngeLosen, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -149,9 +136,21 @@ public class GorTillAdmin extends javax.swing.JFrame {
                         .addGap(193, 193, 193)
                         .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(174, 174, 174)
+                                .addComponent(lblAgentID, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(185, 185, 185)
+                                .addComponent(lblNamnVisa, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtAgentID, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25)
+                                .addComponent(btnSok))
+                            .addComponent(lblNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,15 +159,14 @@ public class GorTillAdmin extends javax.swing.JFrame {
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(89, 89, 89)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNamn)
                     .addComponent(lblAgentID)
                     .addComponent(txtAgentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSok))
                 .addGap(32, 32, 32)
-                .addComponent(jLabel1)
-                .addGap(56, 56, 56)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNamnVisa)
+                    .addComponent(lblNamn))
+                .addGap(62, 62, 62)
                 .addComponent(lblAngeLosen)
                 .addGap(32, 32, 32)
                 .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,12 +272,11 @@ public class GorTillAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnGaTillbaka;
     private javax.swing.JButton btnGorTillAdmin;
     private javax.swing.JButton btnSok;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JLabel lblAgentID;
     private javax.swing.JLabel lblAngeLosen;
     private javax.swing.JLabel lblNamn;
+    private javax.swing.JLabel lblNamnVisa;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuBarInloggadSom;
