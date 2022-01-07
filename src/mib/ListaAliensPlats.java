@@ -12,13 +12,11 @@ import oru.inf.InfException;
 
 /**
  *
- * @author Josanna
+ * @author Josanna, Linda & Lisa.
  */
+
 public class ListaAliensPlats extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ListaAlienPlats
-     */
     private InfDB idb;
     private String anvId;
     private String anvTyp;
@@ -127,39 +125,40 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnGaTillbaka)
+                .addContainerGap(567, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 82, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnOmrade)))
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cmbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnPlats))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnOmrade)))
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cmbPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPlats)))
-                .addGap(122, 122, 122))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnGaTillbaka))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(3, 3, 3)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(95, 95, 95))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -173,7 +172,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
                     .addComponent(btnPlats))
                 .addGap(51, 51, 51)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(btnGaTillbaka)
                 .addGap(32, 32, 32))
         );
@@ -181,22 +180,14 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Logga ut högst upp i MenuBar
-     *
-     * @param evt
-     */
+    //Logga ut-knapp som skickar användaren tillbaka till inloggningsfönstret.
     private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
-    /**
-     * Gå tillbaka till föregående sida
-     *
-     * @param evt
-     */
+   //Skickar användaren tillbaka till föregående sida baserat på om den inloggade är admin eller vanlig agent.
     private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
         SQL s = new SQL(idb);
         boolean admin = s.arAdmin(anvId);
@@ -212,68 +203,56 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
 
-    /**
-     * Gå till startsidan i MenuBar
-     *
-     * @param evt
-     */
+    //Skickar användaren till startsidan.
     private void menuBarTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarTillStartsidaMouseClicked
         setVisible(false);
         SQL s = new SQL(idb);
         s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
-    /**
-     * Bekräfta valt område och hämta dess platser
-     *
-     * @param evt
-     */
+    //Bekräfta valet av område och hämtar dess platser.
     private void btnOmradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOmradeMouseClicked
-        // Gör så att anv kan trycka på Välj område flera gånger utan att fler och fler
-        // platser läggs till i cmbPlats
+        // Gör så att användaren kan trycka på "Välj område" flera gånger utan att dubletter läggs till i cmbPlats-boxen.
         cmbPlats.removeAllItems();
         String valtOmrade = cmbOmrade.getSelectedItem().toString();
         SQL sql = new SQL(idb);
         sql.getPlatser(valtOmrade, cmbPlats);
     }//GEN-LAST:event_btnOmradeMouseClicked
-    /**
-     * Bekräfta vald plats och visa lista i TextArea
-     *
-     * @param evt
-     */
+    
+    //Metod som avser att bekräfta den valda platsen.
     private void btnPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPlatsMouseClicked
-        // Sparar användarens val av plats 
+        //Sparar användarens val av plats. 
         String valdPlats = cmbPlats.getSelectedItem().toString();
         String valdPlatsID = "";
         try {
-            //hämta ID för vald plats
+            //Hämtar ID:t för den valda platsen.
             valdPlatsID = idb.fetchSingle("SELECT plats_ID from plats WHERE benamning = '" + valdPlats + "'");
             
+            //Om ID:t för platsen i fråga inte kan hämtas (undantag) dyker denna dialogruta upp.
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: valdPlatsID i btnPlatsMouseClicked() " + e.getMessage());
         }
-        // Gör om ID till int
+        //Här gör vi om Plats-ID:t till en int.
         int valdPlatsIDint = Integer.parseInt(valdPlatsID);
-        //Använd metod som finns i klassen SQL
+        //Här använder vi oss av en färdig metod som finns i klassen SQL.
         SQL sql = new SQL(idb);
         sql.fyllListaAlienPlats(valdPlatsIDint, txtLista);
     }//GEN-LAST:event_btnPlatsMouseClicked
 
-    /**
-     * Hämta alla områden och lägg till dom i ComboBox
-     */
+    //Hämtar alla områden och lägger till dem i combo-boxen.
     private void getOmraden() {
         try {
-            // Hämta alla områden, spara i hashmap
+            //Hämtar alla områden, sparas i HashMap
             ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade");
 
-            // loopa igenom lista och lägg till alla områden i drop down menyn 
+            //Loopar igenom listan och lägger till alla områden i drop-down menyn.
             for (int i = 0; i < listaOmraden.size(); i++) {
 
                 String omrade = listaOmraden.get(i).get("Benamning");
                 cmbOmrade.addItem(omrade);
             }
+            //Om ett undantag uppstår visas denna dialog istället.
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: getOmraden() " + e.getMessage());
