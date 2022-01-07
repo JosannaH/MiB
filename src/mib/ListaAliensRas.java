@@ -11,16 +11,14 @@ import oru.inf.InfException;
 
 /**
  *
- * @author Josanna
+ * @author Josanna, Linda & Lisa
  */
 public class ListaAliensRas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ListaAlienRas
-     */
     private InfDB idb;
     private String anvId;
     private String anvTyp;
+    //Vi skapar 3 ArrayList för att kunna orientera oss i squid-, worm- och bogloditetabellerna.
     ArrayList<String> squidLista;
     ArrayList<String> bogloditeLista;
     ArrayList<String> wormLista;
@@ -113,37 +111,39 @@ public class ListaAliensRas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(lblRas, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnRas))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnGaTillbaka))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(156, Short.MAX_VALUE))
+                        .addGap(143, 143, 143)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblRas, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(btnRas))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRas)
                     .addComponent(lblRas))
-                .addGap(51, 51, 51)
+                .addGap(37, 37, 37)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(btnGaTillbaka)
@@ -153,27 +153,20 @@ public class ListaAliensRas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Logga ut högst upp i MenuBar
-     *
-     * @param evt
-     */
+    //Logga ut-knapp som tar användaren tillbaka till inloggningssidan.
     private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
-    /**
-     * Gå tillbaka till föregående sida
-     *
-     * @param evt
-     */
+    //Tillbaka-knapp som tar användaren till det föregående fönstret baserat på om denne är vanlig agent eller admin.
     private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
         SQL s = new SQL(idb);
         boolean admin = s.arAdmin(anvId);
         setVisible(false);
         
+        //Två olika fönster
         if(admin){
             HanteraAliensAdmin h = new HanteraAliensAdmin(idb, anvId, anvTyp);
             h.setVisible(true);
@@ -184,38 +177,30 @@ public class ListaAliensRas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
 
-    /**
-     * Gå till startsidan i MenuBar
-     *
-     * @param evt
-     */
+    //Knapp som skickar användaren tillbaka till startsidan.
     private void menuBarTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarTillStartsidaMouseClicked
         setVisible(false);
         SQL s = new SQL(idb);
         s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
-    /**
-     * Bekräfta vald ras och visa lista i TextArea
-     *
-     * @param evt
-     */
+    //Bekräfta valet av ras och visa detta i text-area:n.
     private void btnRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRasMouseClicked
         txtLista.setText("");
         String valdRas = cmbRas.getSelectedItem().toString();
-        // Listans rubriker
+        //Listans olika rubriker.
         txtLista.append("AlienID \t Namn \t\t Telefon \n");
         try {
 
-            // Fyller listor med information om varje ras.
+            //Fyller listorna med information om varje ras.
             bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
             squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
             wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
 
-            // Beroende på vilken ras man väljer fylls fältet med information om tillhörande aliens.
+            // Beroende på vilken ras en väljer fylls fältet med information om tillhörande aliens.
             if (valdRas.equals("Boglodite")) {
 
-                // Loopar igenom listan för att hämta och skriva ut informationen. 
+                //Loopar igenom listan för att hämta och skriva ut informationen. 
                 for (int i = 0; i < bogloditeLista.size(); i++) {
                     String ID = bogloditeLista.get(i);
                     String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
@@ -241,9 +226,9 @@ public class ListaAliensRas extends javax.swing.JFrame {
                     String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
                     txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
                 }
-            } /* Om en alien inte hör till någon ras ska man kunna söka upp dessa. 
-            Det gör man genom att skapa två listor - en med alla aliens och en för alla som tillhör en ras. */ else {
-
+            } /* Om en alien inte hör till någon ras alls ska en kunna söka upp dessa också. 
+            Det gör vi genom att skapa två listor - en med alla aliens, och en för alla som tillhör en ras. */  
+            else {
                 ArrayList<String> rasLista = new ArrayList<>();
                 rasLista.addAll(bogloditeLista);
                 rasLista.addAll(squidLista);
@@ -251,20 +236,19 @@ public class ListaAliensRas extends javax.swing.JFrame {
 
                 ArrayList<String> alienLista = idb.fetchColumn("SELECT alien_ID FROM alien");
 
-                // Loopar igenom listan med alla aliens och undersöker vilka alienID som inte finns med i raslistan.
+                //Loopar igenom listan med alla aliens och undersöker vilka alienID som inte finns med i den raslistan.
                 for (int i = 0; i < alienLista.size(); i++) {
                     String ID = alienLista.get(i);
 
-                    // Om alien inte tillhör en ras så listas de i alternativet "Ingen ras".
+                    //Om alien inte tillhör en ras så listas de i alternativet "Ingen ras".
                     if (!rasLista.contains(ID)) {
                         String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
                         String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
                         txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
                     }
                 }
-
             }
-
+            //Om ett undantag uppstår visas detta meddelande.
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());

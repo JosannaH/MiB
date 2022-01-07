@@ -219,7 +219,7 @@ public class HanteraAliens extends javax.swing.JFrame {
         startsidaAgent.setVisible(true);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
 
-    //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. En blir utloggad och kommer tillbaka till inloggningsfönstret.
     private void manuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manuBarLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
@@ -247,7 +247,6 @@ public class HanteraAliens extends javax.swing.JFrame {
         ras.setVisible(true);
     }//GEN-LAST:event_btnListaAlienRasMouseClicked
 
-    
     /**
      * @param args the command line arguments
      */

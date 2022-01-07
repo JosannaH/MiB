@@ -12,13 +12,10 @@ import oru.inf.InfException;
 
 /**
  *
- * @author Josanna
+ * @author Josanna, Linda & Lisa.
  */
 public class ListaAliensDatum extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ListaAlienDatum
-     */
     private InfDB idb;
     private String anvId;
     private String anvTyp;
@@ -135,36 +132,38 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnGaTillbaka)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(150, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnGaTillbaka))
+                        .addGap(37, 37, 37)
+                        .addComponent(lblListaAliens, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblFran, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblFranTip, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFran, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(70, 70, 70)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTill, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTillTip, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTill, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSok))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFran, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFranTip, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFran, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(70, 70, 70))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(cmbOrdning, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnOrdna)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbOrdning, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnOrdna)))))
-                .addContainerGap(118, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTill, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                    .addComponent(lblTillTip, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblTill, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSok)))))
+                .addGap(118, 118, 118))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,22 +196,14 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Logga ut högst upp i MenuBar
-     *
-     * @param evt
-     */
+    //Metod som skickar användaren till inloggningssidan vid klick på logga ut-knappen.
     private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
-    /**
-     * Gå tillbaka till föregående sida
-     *
-     * @param evt
-     */
+    //Metod som skickar tillbaka användaren till föregående sida baserat på om denna är vanlig agent eller admin.
     private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
         SQL s = new SQL(idb);
         boolean admin = s.arAdmin(anvId);
@@ -228,43 +219,37 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
 
-    /**
-     * Gå till startsidan i MenuBar
-     *
-     * @param evt
-     */
+    //Metod som skickar användaren till startsidan vid klick på knappen.
     private void menuBarTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarTillStartsidaMouseClicked
         setVisible(false);
         SQL s = new SQL(idb);
         s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
-   /**
-     * Sök aliens efter valt registreringsintervall
-     *
-     * @param evt
-     */
+   //Metod som avser att söka fram de aliens mellan ett datumintervall.
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-         if (Validering.textFaltHarVarde(txtFran) && Validering.textFaltHarVarde(txtTill)) {
-        txtLista.setText(""); //rensar textArea inför sökningen
-        String franDatum = txtFran.getText().trim();  //ta bort aventuella mellanslag efter datumet
+        //If-sats som kontrollerar att fälten har värden vid klickning på sök-knappen. 
+        if (Validering.textFaltHarVarde(txtFran) && Validering.textFaltHarVarde(txtTill)) {
+        txtLista.setText(""); //Rensar textArea inför sökningen, om en gjort en tidigare sökning.
+        String franDatum = txtFran.getText().trim();  //ta bort aventuella mellanslag efter datumen som kan skapa problem.
         String tillDatum = txtTill.getText().trim();
         
+        //Använder en metod från vår SQL-klass för att se vilken ordning som aliens ska listas i.
         String ordning = cmbOrdning.getSelectedItem().toString();
         SQL sql = new SQL(idb);
         sql.getRegistreringsdatum(franDatum, tillDatum, txtLista, ordning);
          }
+        //Är inte alla fält ifyllda enligt valideringen ovan kommer denna dialog att visas.
          else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
     }//GEN-LAST:event_btnSokMouseClicked
 
+    //Metod som tillhör knappen "ordna".
     private void btnOrdnaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOrdnaMouseClicked
-       
-        // kör samma kod som Sök-knappen
-        btnSokMouseClicked(evt);
+     //Denna kör samma kod som Sök-knappen, men representeras av knappen "ordna" för att underlätta för användaren.
+     btnSokMouseClicked(evt);
     }//GEN-LAST:event_btnOrdnaMouseClicked
-
 
     /**
      * @param args the command line arguments

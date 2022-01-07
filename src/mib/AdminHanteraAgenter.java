@@ -26,7 +26,6 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
 
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -209,6 +208,7 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         radera.setVisible(true);
     }//GEN-LAST:event_btnRaderaActionPerformed
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen UppdateraChefer i nytt fönster.
     private void btnUppdateraChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraChefActionPerformed
         setVisible(false);
         UppdateraChefer u = new UppdateraChefer(idb, anvId, anvTyp);
@@ -222,22 +222,20 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         startsidaAdmin.setVisible(true);
     }//GEN-LAST:event_menuStartsidaMouseClicked
 
-    //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. En blir utloggad och kommer tillbaka till inloggningsfönstret.
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
-
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen UppdateraAgent i nytt fönster.
     private void btnUppdateraAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraAgentActionPerformed
         setVisible(false);
         UppdateraAgent updAgent = new UppdateraAgent(idb, anvId, anvTyp);
         updAgent.setVisible(true);
     }//GEN-LAST:event_btnUppdateraAgentActionPerformed
 
-    /*
-    Öppnar fönstret Gör till administratör
-    */
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen GorTillAdmin i nytt fönster.
     private void btnAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdminMouseClicked
         setVisible(false);
         GorTillAdmin g = new GorTillAdmin(idb, anvId, anvTyp);

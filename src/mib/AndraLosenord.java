@@ -10,13 +10,11 @@ import oru.inf.InfException;
 
 /**
  *
- * @author Josanna
+ * @author Josanna, Linda & Lisa
  */
 public class AndraLosenord extends javax.swing.JFrame {
 
-    /**
-     * Creates new form StartsidaAgent
-     */
+   
     private InfDB idb;
     private String anvId;
     private String anvTyp;
@@ -186,57 +184,66 @@ public class AndraLosenord extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+//Denna metod avser att ta användaren tillbaka till startsidan.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
         SQL s = new SQL(idb);
         s.tillStartsida(anvId, anvTyp);
-       
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
+    //Denna metod avser att genomföra de ändringar som fyllts i när en klickar på knappen "Spara nytt lösenord".
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
-
+        
+        //Lokala variabler som används för att hämta det som användaren har skrivit in i de olika fälten.
         String anvandare = txtAnvandare.getText();
         String nuvLosen = pwNuvLosen.getText();
         String nyttLosen = pwNyttLosen.getText();
         String losenFranDB = "";
 
-        //Kollar att alla fält är ifyllda
+        //If-sats som kollar att alla fält är ifyllda.
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pwNuvLosen) && Validering.textFaltHarVarde(pwNyttLosen)) {
              if(Validering.txtFaltHarSiffror(txtAnvandare)){
             try {
-                // Lösen för individen hämtas ur databasen
+                //Lösenordet som tillhör individen hämtas ur databasen.
                 losenFranDB = idb.fetchSingle("SELECT Losenord FROM " + anvTyp + " WHERE " + anvTyp + "_ID=" + anvandare);
                 if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
 
-                    //jämför inmatat nuvarande lösenord med lösenord från databas
+                    //Jämför det inmatade, nuvarande lösenordet med lösenordet från databasen.
                     if (nuvLosen.equals(losenFranDB)) {
-                        // ändrar lösenordet i databasen
+                        //Här ändras (uppdateras) lösenordet i databasen om fältet med det nuvarande lösenordet stämmer överens med agent-id:t.
                         idb.fetchSingle("UPDATE " + anvTyp + " SET Losenord = '" + nyttLosen + "' where " + anvTyp + "_ID=" + anvandare);
                         JOptionPane.showMessageDialog(null, "Ditt lösenord är ändrat!");
-                        btnTillbakaActionPerformed(evt);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Användare och nuvarande lösenord stämmer inte överens");
+                        //När lösenordet ändrats skickas en per automatik tillbaka till föregående ruta.
+                        btnTillbakaActionPerformed(evt); } 
+                    
+                    //Om det nuvarande lösenordet och agent-id:t inte stämmer överens ändras inte lösenordet och användaren möts av denna ruta.
+                    else {
+                    JOptionPane.showMessageDialog(null, "Användare och nuvarande lösenord stämmer inte överens");
                     }
+                    //Om det nuvarande lösenordet är korrekt, men det nya lösenordet inte uppfyller längdkraven möts användaren av denna ruta.
                 } else {
                     JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
-                }
+                } 
+            //Om något går fel i koden och den inte kan köras som tänkt får användaren upp denna ruta istället och ingenting händer i databasen.
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
         }
-        }else {
+    }
+        //Om inte alla fält är ifyllda (som valideringsklassen kontrollerar) får användaren upp denna dialogruta.
+        else {
             JOptionPane.showMessageDialog(null, "Alla fält måste fyllas i");
         }
     }//GEN-LAST:event_btnAndraLosenActionPerformed
 
+    //Via den här metoden kommer en tillbaka till startsidan vid klickning.
     private void menuTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTillStartsidaMouseClicked
        setVisible(false);
         SQL s = new SQL(idb);
         s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuTillStartsidaMouseClicked
-
+    //Via den här metoden loggas en ut och kommer tillbaka till den första inloggningsrutan.
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
@@ -246,8 +253,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndraLosen;
     private javax.swing.JToggleButton btnTillbaka;

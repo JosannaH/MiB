@@ -10,15 +10,12 @@ import oru.inf.InfException;
 
 /**
  *
- * @author Lisa
+ * @author Josanna, Linda & Lisa.
  */
 public class Inloggning extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Inloggning
-     */
     private InfDB idb;
-    // Att spara ID och typ i, för att skicka med till andra klasser
+    // Varabler att spara ID och användartyp i för att skicka med till andra klasser.
     private String anvTyp;
     private String anvId;
     
@@ -63,11 +60,6 @@ public class Inloggning extends javax.swing.JFrame {
         lblLosen.setText("Lösenord");
 
         cmbList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agent", "Alien" }));
-        cmbList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbListActionPerformed(evt);
-            }
-        });
 
         btnLoggain.setText("Logga in");
         btnLoggain.addActionListener(new java.awt.event.ActionListener() {
@@ -131,21 +123,22 @@ public class Inloggning extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Inloggningsmetod som ska skicka användaren till ett nytt fönster baserat på om denne är alien, agent eller admin.
     private void btnLoggainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggainActionPerformed
 
-        // Hämtar värden som användaren matat in
+        //Hämtar de värden som användaren matat in i användarnamns-rutan.
         anvId = txtAnvandare.getText();
         String losenord = pswlosen.getText();
-        //Variabler att spara SQL frågor i
+        //Variabler för att spara våra SQL-frågor i.
         String inloggTyp = "";
         String losenTyp = "";
-        //Hämta värde från comboBox/rullist.
+        //Hämta värde från comboBox:en/rullisten och gör det värdet till en String.
         anvTyp = cmbList.getSelectedItem().toString();
 
-        //Kontrollera om användarnamn och lösenord fylls i. 
+        //If-sats för att kontrollera om användarnamn och lösenord fyllts i. 
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
             if(Validering.txtFaltHarSiffror(txtAnvandare)){
-            //Kontrollera om anv valt Agent eller Alien i comboBox och spara SQL frågor utifrån det
+            //Kontrollera om anvädaren valt Agent eller Alien i comboBox:en och sparar SQL-frågor utifrån det valet.
             if (anvTyp.equals("Agent")) {
                 inloggTyp = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
                 losenTyp = "SELECT Losenord FROM agent WHERE Agent_ID=";
@@ -155,7 +148,6 @@ public class Inloggning extends javax.swing.JFrame {
                 losenTyp = "SELECT Losenord FROM alien WHERE Alien_ID=";
             }
             try {
-
                 String anvFranDatabas = idb.fetchSingle(inloggTyp + anvId);
                 String losenFranDatabas = idb.fetchSingle(losenTyp + anvId);
                 String adminStatus = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID=" + anvId);
@@ -163,7 +155,8 @@ public class Inloggning extends javax.swing.JFrame {
                 //Kontrollerar att användare/lösenord stämmer överens.
                 if (anvId.equals(anvFranDatabas) && losenord.equals(losenFranDatabas)) {
 
-                    //Här kontrolleras om man är alien/agent/admin och startsida skapas baserat på detta.
+                    //Här kontrolleras om man är alien/agent/admin och startsidan som öppnas är baserat på detta.
+                    //Det finns alltså tre olika startsidor för vanliga agenter, administratörer och aliens.
                     if (anvTyp.equals("Agent") && adminStatus.equals("J")) {
                         setVisible(false);
                         StartsidaAdmin startAdmin = new StartsidaAdmin(idb, anvId, anvTyp);
@@ -179,23 +172,24 @@ public class Inloggning extends javax.swing.JFrame {
                         StartsidaAlien startAlien= new StartsidaAlien(idb, anvId, anvTyp);
                         startAlien.setVisible(true);
                     }
-                } else {
+                } 
+                //Stämmer inte lösenordet överens med användat-ID:t (AlienID/AgentID) i databasen möts användaren av denna dialogruta.
+                else {
                     JOptionPane.showMessageDialog(null, "Lösenordet är fel!");
                 }
-            } catch (InfException e) {
+            } 
+            //Om något går fel i if-satsen (undantag) som kontrollerar inloggningstypen (Alien/Agent) kommer denna dialogruta upp.
+            catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
-            }
-            
-        }
-        }else { 
+            }    
+        }     
+    }
+        //Om fälten inte är ifyllda och saknas värden visas denna dialog.
+        else { 
                  JOptionPane.showMessageDialog(null, "Fyll i användarnamn och lösenord");
         }
     }//GEN-LAST:event_btnLoggainActionPerformed
-
-    private void cmbListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,16 +206,5 @@ public class Inloggning extends javax.swing.JFrame {
     private javax.swing.JLabel rubrikAgentInlogg;
     private javax.swing.JTextField txtAnvandare;
     // End of variables declaration//GEN-END:variables
-
-//Metoder
-    /*
-    public String getAnvandarID(){
-        return getAnvandare;
-    }
-    
-    public String getAnvandarTyp(){
-        return getTyp;
-    }
-    */
 
 }

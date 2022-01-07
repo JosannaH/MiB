@@ -67,11 +67,6 @@ public class HanteraUtrustningAdmin extends javax.swing.JFrame {
                 btnRegistreraNyAlienMouseClicked(evt);
             }
         });
-        btnRegistreraNyAlien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistreraNyAlienActionPerformed(evt);
-            }
-        });
 
         btnUppdatera.setText("Uppdatera utrustning");
         btnUppdatera.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -79,21 +74,11 @@ public class HanteraUtrustningAdmin extends javax.swing.JFrame {
                 btnUppdateraMouseClicked(evt);
             }
         });
-        btnUppdatera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUppdateraActionPerformed(evt);
-            }
-        });
 
         btnTaBort.setText("Ta bort utrustning");
         btnTaBort.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTaBortMouseClicked(evt);
-            }
-        });
-        btnTaBort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaBortActionPerformed(evt);
             }
         });
 
@@ -201,24 +186,10 @@ public class HanteraUtrustningAdmin extends javax.swing.JFrame {
 
     //Metoden gör nuvarande fönster osynligt och öppnar klassen TaBortAlien i nytt fönster.
     private void btnTaBortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortMouseClicked
-        //setVisible(false);
-        //TaBortUtrustning taBort = new TaBortUtrustning(idb, anvId, anvTyp);
-        //taBort.setVisible(true);
-    }//GEN-LAST:event_btnTaBortMouseClicked
-
-    private void btnRegistreraNyAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraNyAlienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistreraNyAlienActionPerformed
-
-    private void btnUppdateraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUppdateraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUppdateraActionPerformed
-
-    private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
         setVisible(false);
-        TaBortUtrustning tabortutrustning = new TaBortUtrustning(idb, anvId, anvTyp);
-        tabortutrustning.setVisible(true);
-    }//GEN-LAST:event_btnTaBortActionPerformed
+        TaBortUtrustning taBort = new TaBortUtrustning(idb, anvId, anvTyp);
+        taBort.setVisible(true);
+    }//GEN-LAST:event_btnTaBortMouseClicked
 
     /**
      * @param args the command line arguments
