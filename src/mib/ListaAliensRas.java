@@ -5,7 +5,6 @@
 package mib;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -22,11 +21,9 @@ public class ListaAliensRas extends javax.swing.JFrame {
     private InfDB idb;
     private String anvId;
     private String anvTyp;
-
-    public ListaAliensRas(InfDB idb) {
-        initComponents();
-        this.idb = idb;
-    }
+    ArrayList<String> squidLista;
+    ArrayList<String> bogloditeLista;
+    ArrayList<String> wormLista;
 
     public ListaAliensRas(InfDB idb, String anvId, String anvTyp) {
         initComponents();
@@ -34,7 +31,7 @@ public class ListaAliensRas extends javax.swing.JFrame {
         this.anvId = anvId;
         this.anvTyp = anvTyp;
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
-        
+
     }
 
     /**
@@ -73,7 +70,7 @@ public class ListaAliensRas extends javax.swing.JFrame {
 
         lblRas.setText("Välj ras:");
 
-        cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Squid", "Worm" }));
+        cmbRas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boglodite", "Squid", "Worm", "Ingen ras" }));
         cmbRas.setToolTipText("");
 
         btnRas.setText("Välj");
@@ -173,9 +170,18 @@ public class ListaAliensRas extends javax.swing.JFrame {
      * @param evt
      */
     private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
+        SQL s = new SQL(idb);
+        boolean admin = s.arAdmin(anvId);
         setVisible(false);
-        HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
-        hanteraAliens.setVisible(true);
+        
+        if(admin){
+            HanteraAliensAdmin h = new HanteraAliensAdmin(idb, anvId, anvTyp);
+            h.setVisible(true);
+        }
+        else{
+            HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
+            h.setVisible(true);
+        }
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
 
     /**
@@ -185,42 +191,85 @@ public class ListaAliensRas extends javax.swing.JFrame {
      */
     private void menuBarTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarTillStartsidaMouseClicked
         setVisible(false);
-        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
-        startsidaAgent.setVisible(true);
+        SQL s = new SQL(idb);
+        s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
-   /**
+    /**
      * Bekräfta vald ras och visa lista i TextArea
      *
      * @param evt
      */
     private void btnRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRasMouseClicked
-        // Sparar användarens val av ras
+        txtLista.setText("");
         String valdRas = cmbRas.getSelectedItem().toString();
-        SQL sql = new SQL(idb);
-        // fyller textarean med aliens av vald ras
-        sql.fyllListaAlienRas(valdRas, txtLista);
-    }//GEN-LAST:event_btnRasMouseClicked
-
-    /**
-     * Hämta alla områden och lägg till dom i ComboBox
-     */
-    private void getOmraden() {
+        // Listans rubriker
+        txtLista.append("AlienID \t Namn \t\t Telefon \n");
         try {
-            // Hämta alla områden, spara i hashmap
-            ArrayList<HashMap<String, String>> listaOmraden = idb.fetchRows("SELECT Benamning FROM omrade");
 
-            // loopa igenom lista och lägg till alla områden i drop down menyn 
-            for (int i = 0; i < listaOmraden.size(); i++) {
+            // Fyller listor med information om varje ras.
+            bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+            squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+            wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
 
-                String omrade = listaOmraden.get(i).get("Benamning");
-                //cmbOmrade.addItem(omrade);
+            // Beroende på vilken ras man väljer fylls fältet med information om tillhörande aliens.
+            if (valdRas.equals("Boglodite")) {
+
+                // Loopar igenom listan för att hämta och skriva ut informationen. 
+                for (int i = 0; i < bogloditeLista.size(); i++) {
+                    String ID = bogloditeLista.get(i);
+                    String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
+                    String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
+                    txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
+                }
+
+            } else if (valdRas.equals("Squid")) {
+
+                // Loopar igenom listan för att hämta och skriva ut informationen. 
+                for (int i = 0; i < squidLista.size(); i++) {
+                    String ID = squidLista.get(i);
+                    String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
+                    String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
+                    txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
+                }
+            } else if (valdRas.equals("Worm")) {
+
+                // Loopar igenom listan för att hämta och skriva ut informationen. 
+                for (int i = 0; i < wormLista.size(); i++) {
+                    String ID = squidLista.get(i);
+                    String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
+                    String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
+                    txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
+                }
+            } /* Om en alien inte hör till någon ras ska man kunna söka upp dessa. 
+            Det gör man genom att skapa två listor - en med alla aliens och en för alla som tillhör en ras. */ else {
+
+                ArrayList<String> rasLista = new ArrayList<>();
+                rasLista.addAll(bogloditeLista);
+                rasLista.addAll(squidLista);
+                rasLista.addAll(wormLista);
+
+                ArrayList<String> alienLista = idb.fetchColumn("SELECT alien_ID FROM alien");
+
+                // Loopar igenom listan med alla aliens och undersöker vilka alienID som inte finns med i raslistan.
+                for (int i = 0; i < alienLista.size(); i++) {
+                    String ID = alienLista.get(i);
+
+                    // Om alien inte tillhör en ras så listas de i alternativet "Ingen ras".
+                    if (!rasLista.contains(ID)) {
+                        String namn = idb.fetchSingle("SELECT namn FROM alien WHERE alien_ID = " + ID);
+                        String telefon = idb.fetchSingle("SELECT telefon FROM alien WHERE alien_ID = " + ID);
+                        txtLista.append(ID + " \t " + namn + " \t\t" + telefon + "\n");
+                    }
+                }
+
             }
+
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande: getOmraden() " + e.getMessage());
+            System.out.println("Internt felmeddelande" + e.getMessage());
         }
-    }
+    }//GEN-LAST:event_btnRasMouseClicked
 
     /**
      * @param args the command line arguments

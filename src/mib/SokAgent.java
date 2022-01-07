@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author luna
@@ -17,6 +18,7 @@ public class SokAgent extends javax.swing.JFrame {
     private InfDB idb;
     private String anvId;
     private String anvTyp;
+
     /**
      * Creates new form SokAgent
      */
@@ -41,7 +43,7 @@ public class SokAgent extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSok = new javax.swing.JButton();
         txtSoktID = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -52,9 +54,12 @@ public class SokAgent extends javax.swing.JFrame {
         lblTelefonSvar = new javax.swing.JLabel();
         lblOmradeSvar = new javax.swing.JLabel();
         lblAnsDatSvar = new javax.swing.JLabel();
+        btnTillbaka = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuStartsida = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,10 +74,10 @@ public class SokAgent extends javax.swing.JFrame {
 
         jLabel5.setText("Benämning:");
 
-        jButton1.setText("SÖK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSok.setText("SÖK");
+        btnSok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSokActionPerformed(evt);
             }
         });
 
@@ -94,11 +99,34 @@ public class SokAgent extends javax.swing.JFrame {
 
         lblAnsDatSvar.setText("-");
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        btnTillbaka.setText("Gå tillbaka");
+        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTillbakaActionPerformed(evt);
+            }
+        });
 
-        jMenu2.setText("Edit");
+        menuStartsida.setText("Tillbaka till startsida");
+        menuStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuStartsidaMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuStartsida);
+
+        jMenu2.setText("                                                                                                                                                           ");
         jMenuBar1.add(jMenu2);
+
+        jMenu4.setText("Inloggad som Admin");
+        jMenuBar1.add(jMenu4);
+
+        menuLoggaUt.setText("Logga ut");
+        menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuLoggaUtMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuLoggaUt);
 
         setJMenuBar(jMenuBar1);
 
@@ -110,7 +138,7 @@ public class SokAgent extends javax.swing.JFrame {
                 .addContainerGap(293, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnSok)
                         .addGap(399, 399, 399))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -137,6 +165,10 @@ public class SokAgent extends javax.swing.JFrame {
                                     .addComponent(txtSoktID, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jLabel1)))
                         .addGap(338, 338, 338))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(btnTillbaka)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +180,7 @@ public class SokAgent extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtSoktID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnSok)
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -173,59 +205,81 @@ public class SokAgent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(lblAnsDatSvar))
-                .addGap(101, 101, 101))
+                .addGap(58, 58, 58)
+                .addComponent(btnTillbaka)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
-    try {
-            
-    String soktID = txtSoktID.getText();
-    
-    String agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID +"");
-    String agentTelefon = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID = " + soktID +"");
-    String agentBehorighet = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID = " + soktID +"");
-    String agentOmrade = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE Omrades_ID IN(SELECT Omrade FROM Agent WHERE Agent_ID = " + soktID +")");
-    String agentLosenord = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID = " + soktID + "");
-    String agentAnsDat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Agent_ID = " + soktID +"");
-    
-    lblBenamningSvar.setText(agentNamn);
-    lblTelefonSvar.setText(agentTelefon);
-    lblOmradeSvar.setText(agentOmrade);
-    lblLosenordSvar.setText(agentLosenord);
-    lblAnsDatSvar.setText(agentAnsDat);
-    
-    
-    
-    if (agentBehorighet.contains("J")) {
-    lblBehorigheterSvar.setText("Administratör");
-    }
-    
-    else if (agentBehorighet.contains("N")) {
-    lblBehorigheterSvar.setText("Agentstandard");
-    }
-    
-    
-    
-    }
-    
-    catch (InfException e){
-            JOptionPane.showMessageDialog(null, "Något gick fel!");
-            System.out.println("Internt felmeddelande:" + e.getMessage());  
-    }
+    private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
+        if (Validering.textFaltHarVarde(txtSoktID)) {
+            if (Validering.txtFaltHarSiffror(txtSoktID)) {
+                try {
+                    String soktID = txtSoktID.getText();
+                    ArrayList<String> agentnLista = idb.fetchColumn("SELECT agent_ID FROM agent");
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+                    if (agentnLista.contains(soktID)) {
+
+                        String agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID = " + soktID + "");
+                        String agentTelefon = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID = " + soktID + "");
+                        String agentBehorighet = idb.fetchSingle("SELECT Administrator FROM Agent WHERE Agent_ID = " + soktID + "");
+                        String agentOmrade = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE Omrades_ID IN(SELECT Omrade FROM Agent WHERE Agent_ID = " + soktID + ")");
+                        String agentLosenord = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID = " + soktID + "");
+                        String agentAnsDat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Agent_ID = " + soktID + "");
+
+                        lblBenamningSvar.setText(agentNamn);
+                        lblTelefonSvar.setText(agentTelefon);
+                        lblOmradeSvar.setText(agentOmrade);
+                        lblLosenordSvar.setText(agentLosenord);
+                        lblAnsDatSvar.setText(agentAnsDat);
+
+                        if (agentBehorighet.contains("J")) {
+                            lblBehorigheterSvar.setText("Administratör");
+                        } else if (agentBehorighet.contains("N")) {
+                            lblBehorigheterSvar.setText("Agentstandard");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "AgentID finns inte!");
+                    }
+                } catch (InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    System.out.println("Internt felmeddelande:" + e.getMessage());
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
+        }
+
+    }//GEN-LAST:event_btnSokActionPerformed
+
+    private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
+        setVisible(false);
+        StartsidaAdmin startAdm = new StartsidaAdmin(idb, anvId, anvTyp);
+        startAdm.setVisible(true);
+    }//GEN-LAST:event_menuStartsidaMouseClicked
+
+    private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
+        setVisible(false);
+        Inloggning inlogg = new Inloggning(idb);
+        inlogg.setVisible(true);
+    }//GEN-LAST:event_menuLoggaUtMouseClicked
+
+    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+        setVisible(false);
+        AdminHanteraAgenter hantera = new AdminHanteraAgenter(idb, anvId, anvTyp);
+        hantera.setVisible(true);
+    }//GEN-LAST:event_btnTillbakaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSok;
+    private javax.swing.JButton btnTillbaka;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -234,8 +288,8 @@ public class SokAgent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblAnsDatSvar;
     private javax.swing.JLabel lblBehorigheterSvar;
@@ -243,6 +297,8 @@ public class SokAgent extends javax.swing.JFrame {
     private javax.swing.JLabel lblLosenordSvar;
     private javax.swing.JLabel lblOmradeSvar;
     private javax.swing.JLabel lblTelefonSvar;
+    private javax.swing.JMenu menuLoggaUt;
+    private javax.swing.JMenu menuStartsida;
     private javax.swing.JTextField txtSoktID;
     // End of variables declaration//GEN-END:variables
 }

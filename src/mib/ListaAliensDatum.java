@@ -67,7 +67,7 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblListaAliens.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        lblListaAliens.setText("Lista aliens efter plats");
+        lblListaAliens.setText("Lista aliens efter datum");
 
         btnGaTillbaka.setText("Gå tillbaka");
         btnGaTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,16 +148,16 @@ public class ListaAliensDatum extends javax.swing.JFrame {
                         .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblFran, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblFranTip, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                    .addComponent(txtFran, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(lblFranTip, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFran, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(70, 70, 70)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTill, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTill, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTillTip, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)
+                                    .addComponent(lblTillTip, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTill, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addComponent(btnSok))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -214,9 +214,18 @@ public class ListaAliensDatum extends javax.swing.JFrame {
      * @param evt
      */
     private void btnGaTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGaTillbakaMouseClicked
+        SQL s = new SQL(idb);
+        boolean admin = s.arAdmin(anvId);
         setVisible(false);
-        HanteraAliens hanteraAliens = new HanteraAliens(idb, anvId, anvTyp);
-        hanteraAliens.setVisible(true);
+        
+        if(admin){
+            HanteraAliensAdmin h = new HanteraAliensAdmin(idb, anvId, anvTyp);
+            h.setVisible(true);
+        }
+        else{
+            HanteraAliens h = new HanteraAliens(idb, anvId, anvTyp);
+            h.setVisible(true);
+        }
     }//GEN-LAST:event_btnGaTillbakaMouseClicked
 
     /**
@@ -226,8 +235,8 @@ public class ListaAliensDatum extends javax.swing.JFrame {
      */
     private void menuBarTillStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarTillStartsidaMouseClicked
         setVisible(false);
-        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
-        startsidaAgent.setVisible(true);
+        SQL s = new SQL(idb);
+        s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
    /**
@@ -236,6 +245,7 @@ public class ListaAliensDatum extends javax.swing.JFrame {
      * @param evt
      */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
+         if (Validering.textFaltHarVarde(txtFran) && Validering.textFaltHarVarde(txtTill)) {
         txtLista.setText(""); //rensar textArea inför sökningen
         String franDatum = txtFran.getText().trim();  //ta bort aventuella mellanslag efter datumet
         String tillDatum = txtTill.getText().trim();
@@ -243,6 +253,10 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         String ordning = cmbOrdning.getSelectedItem().toString();
         SQL sql = new SQL(idb);
         sql.getRegistreringsdatum(franDatum, tillDatum, txtLista, ordning);
+         }
+         else {
+            JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+        }
     }//GEN-LAST:event_btnSokMouseClicked
 
     private void btnOrdnaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOrdnaMouseClicked

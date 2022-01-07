@@ -438,7 +438,7 @@
         <Property name="text" type="java.lang.String" value="G&#xe5; tillbaka"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTillbakaActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTillbakaMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

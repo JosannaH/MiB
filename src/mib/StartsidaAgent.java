@@ -34,7 +34,6 @@ public class StartsidaAgent extends javax.swing.JFrame {
 
         lblAgentBild = new javax.swing.JLabel();
         lblRubrik = new javax.swing.JLabel();
-        btnLoggaUt = new javax.swing.JToggleButton();
         btnHanteraAliens = new javax.swing.JButton();
         btnAndraLosenord = new javax.swing.JButton();
         btnUtrustning = new javax.swing.JButton();
@@ -44,6 +43,7 @@ public class StartsidaAgent extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,13 +52,6 @@ public class StartsidaAgent extends javax.swing.JFrame {
 
         lblRubrik.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         lblRubrik.setText("Välkommen Agent!");
-
-        btnLoggaUt.setText("Logga ut");
-        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoggaUtActionPerformed(evt);
-            }
-        });
 
         btnHanteraAliens.setText("Hantera aliens");
         btnHanteraAliens.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -91,11 +84,19 @@ public class StartsidaAgent extends javax.swing.JFrame {
         menuBar.add(jMenu1);
         menuBar.add(jMenu2);
 
-        jMenu5.setText("                                                                                                                                   ");
+        jMenu5.setText("                                                                                                                           ");
         menuBar.add(jMenu5);
 
         jMenu3.setText("Inloggad som Agent");
         menuBar.add(jMenu3);
+
+        menuLoggaUt.setText("Logga ut");
+        menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuLoggaUtMouseClicked(evt);
+            }
+        });
+        menuBar.add(menuLoggaUt);
 
         setJMenuBar(menuBar);
 
@@ -106,9 +107,6 @@ public class StartsidaAgent extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnLoggaUt)
-                        .addGap(17, 17, 17))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnUtrustning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,20 +136,11 @@ public class StartsidaAgent extends javax.swing.JFrame {
                         .addComponent(btnUtrustning)
                         .addGap(18, 18, 18)
                         .addComponent(btnChef)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                .addComponent(btnLoggaUt)
-                .addGap(14, 14, 14))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    // Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
-    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
-        setVisible(false);
-        Inloggning inlogg = new Inloggning(idb);
-        inlogg.setVisible(true);
-    }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     // Metoden gör nuvarande fönster osynligt och öppnar klassen HanteraAliens i nytt fönster.
     private void btnHanteraAliensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHanteraAliensMouseClicked
@@ -180,6 +169,15 @@ public class StartsidaAgent extends javax.swing.JFrame {
         RegistreraNyUtrustning utrustning = new RegistreraNyUtrustning(idb, anvId, anvTyp);
         utrustning.setVisible(true);
     }//GEN-LAST:event_btnUtrustningMouseClicked
+    /**
+     * Logga ut och gå tillbaka till inloggningsfönstret
+     * @param evt 
+     */
+    private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
+            setVisible(false);
+        Inloggning inlogg = new Inloggning(idb);
+        inlogg.setVisible(true);
+    }//GEN-LAST:event_menuLoggaUtMouseClicked
 
     /**
      * @param args the command line arguments
@@ -189,7 +187,6 @@ public class StartsidaAgent extends javax.swing.JFrame {
     private javax.swing.JButton btnAndraLosenord;
     private javax.swing.JButton btnChef;
     private javax.swing.JButton btnHanteraAliens;
-    private javax.swing.JToggleButton btnLoggaUt;
     private javax.swing.JButton btnUtrustning;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -198,5 +195,6 @@ public class StartsidaAgent extends javax.swing.JFrame {
     private javax.swing.JLabel lblAgentBild;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuLoggaUt;
     // End of variables declaration//GEN-END:variables
 }

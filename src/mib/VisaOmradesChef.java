@@ -104,10 +104,6 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTillbaka)
-                .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -129,7 +125,10 @@ public class VisaOmradesChef extends javax.swing.JFrame {
                                 .addGap(35, 35, 35)
                                 .addComponent(lblChef)))
                         .addGap(38, 38, 38)
-                        .addComponent(lblNorden)))
+                        .addComponent(lblNorden))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(btnTillbaka)))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,9 +138,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
                 .addComponent(lblRubrikOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblNorden)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(btnTillbaka)
-                .addGap(14, 14, 14))
+                .addGap(14, 56, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -151,7 +148,9 @@ public class VisaOmradesChef extends javax.swing.JFrame {
                 .addComponent(btnSokOmrade)
                 .addGap(46, 46, 46)
                 .addComponent(lblChef)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTillbaka)
+                .addContainerGap())
         );
 
         pack();

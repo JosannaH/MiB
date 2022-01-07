@@ -10,13 +10,21 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="                                                                                                                                   "/>
+            <Property name="text" type="java.lang.String" value="                                                                                                                           "/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Inloggad som Agent"/>
           </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuLoggaUt">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Logga ut"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuLoggaUtMouseClicked"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
@@ -47,10 +55,6 @@
           <Group type="102" attributes="0">
               <EmptySpace pref="83" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnLoggaUt" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnUtrustning" max="32767" attributes="0"/>
@@ -88,9 +92,7 @@
                       <Component id="btnChef" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="118" max="32767" attributes="0"/>
-              <Component id="btnLoggaUt" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <EmptySpace pref="157" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -111,14 +113,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="V&#xe4;lkommen Agent!"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="btnLoggaUt">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Logga ut"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoggaUtActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnHanteraAliens">
       <Properties>

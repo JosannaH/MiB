@@ -144,13 +144,14 @@ public class HanteraAliens extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTillbaka)
-                .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
-                .addGap(242, 242, 242)
-                .addComponent(lblRubrik)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(242, 242, 242)
+                        .addComponent(lblRubrik))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(btnTillbaka)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -159,6 +160,10 @@ public class HanteraAliens extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 163, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(btnRegistreraNyAlien)
@@ -172,13 +177,9 @@ public class HanteraAliens extends javax.swing.JFrame {
                         .addComponent(btnListaAlienRas)
                         .addGap(18, 18, 18)
                         .addComponent(btnListaAlienDatum)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblAgentBild, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTillbaka)
-                        .addGap(14, 14, 14))))
+                        .addGap(23, 23, 23))))
         );
 
         pack();
@@ -208,7 +209,7 @@ public class HanteraAliens extends javax.swing.JFrame {
     //Metoden gör nuvarande fönster osynligt och öppnar klassen SokAlien i nytt fönster.
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
         setVisible(false);
-        SokAlien sokAlien = new SokAlien(idb);
+        SokAlien sokAlien = new SokAlien(idb, anvId, anvTyp);
         sokAlien.setVisible(true);    }//GEN-LAST:event_btnSokMouseClicked
 
     //Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
@@ -246,6 +247,7 @@ public class HanteraAliens extends javax.swing.JFrame {
         ras.setVisible(true);
     }//GEN-LAST:event_btnListaAlienRasMouseClicked
 
+    
     /**
      * @param args the command line arguments
      */

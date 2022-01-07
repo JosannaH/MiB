@@ -165,9 +165,9 @@ public class TaBortAlien extends javax.swing.JFrame {
         });
 
         btnTillbaka.setText("Gå tillbaka");
-        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTillbakaActionPerformed(evt);
+        btnTillbaka.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTillbakaMouseClicked(evt);
             }
         });
 
@@ -322,7 +322,8 @@ public class TaBortAlien extends javax.swing.JFrame {
 
     // Metoden söker upp information om vald agent.
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-
+       if(Validering.textFaltHarVarde(txtSokID)){                                   
+       if(Validering.txtFaltHarSiffror(txtSokID)){
         try {
 
             squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
@@ -397,14 +398,12 @@ public class TaBortAlien extends javax.swing.JFrame {
             lblError.setVisible(true);
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
+       }
+       }
+       else {
+            JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
+        }
     }//GEN-LAST:event_btnSokMouseClicked
-
-    // Metoden gör nuvarande fönster osynligt och öppnar klassen HanteraAliensAdmin i nytt fönster.
-    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        setVisible(false);
-        HanteraAliensAdmin hanteraAliens = new HanteraAliensAdmin(idb, anvId, anvTyp);
-        hanteraAliens.setVisible(true);
-    }//GEN-LAST:event_btnTillbakaActionPerformed
 
     // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
     private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
@@ -427,7 +426,7 @@ public class TaBortAlien extends javax.swing.JFrame {
         if (Validering.textFaltHarVarde(txtSokID)) {
 
             // Om txtSokID är ifyllt sker en dubbelkontroll för om man verkligen vill radera informationen. Detta görs med metoden showConfirmDialog. 
-            int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort vald alien?", "Ta bort alien..", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int input = JOptionPane.showConfirmDialog(null, "Vill du verkligen radera vald alien?", "Är du säker?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             // Metoden använder 0 och 1 som input på svar. 0 = ja. Om detta väljs så går metoden vidare och raderar informationen. 
             if (input == 0) {
@@ -450,6 +449,7 @@ public class TaBortAlien extends javax.swing.JFrame {
                     } else if (wormLista.contains(alienID)) {
                         idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + alienID + "'");
                     }
+                    btnTillbakaMouseClicked(evt);
 
                 } catch (InfException e) {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -460,6 +460,12 @@ public class TaBortAlien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
         }
     }//GEN-LAST:event_btnRaderaMouseClicked
+
+    private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
+        setVisible(false);
+        HanteraAliensAdmin hanteraAliens = new HanteraAliensAdmin(idb, anvId, anvTyp);
+        hanteraAliens.setVisible(true);
+    }//GEN-LAST:event_btnTillbakaMouseClicked
 
     /**
      * @param args the command line arguments

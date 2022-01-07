@@ -4,11 +4,42 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
+    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="menuStartsida">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tillbaka till startsida"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuStartsidaMouseClicked"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuInget">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="                                                                                                                                                                                   "/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuInlogg">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Inloggad som administrat&#xf6;r"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuLoggaUt">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Logga ut"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuLoggaUtMouseClicked"/>
+          </Events>
+        </Menu>
+      </SubComponents>
+    </Menu>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
   <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -27,14 +58,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="351" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="269" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="367" max="-2" attributes="0"/>
+                      <Component id="btnReg" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="534" pref="534" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -45,26 +85,25 @@
                           <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblID" min="-2" pref="87" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtNamnSvar" alignment="1" max="32767" attributes="0"/>
-                              <Component id="txtTelefonSvar" max="32767" attributes="0"/>
-                              <Component id="txtLosen2" max="32767" attributes="0"/>
-                              <Component id="cmbAdminSvar" max="32767" attributes="0"/>
-                              <Component id="cmbOmradeSvar" pref="87" max="32767" attributes="0"/>
-                              <Component id="txtAnsDatumSvar" max="32767" attributes="0"/>
-                              <Component id="txtLosen1" max="32767" attributes="0"/>
-                          </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblID" pref="87" max="32767" attributes="0"/>
+                          <Component id="txtNamnSvar" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtTelefonSvar" max="32767" attributes="0"/>
+                          <Component id="cmbAdminSvar" max="32767" attributes="0"/>
+                          <Component id="cmbOmradeSvar" pref="87" max="32767" attributes="0"/>
+                          <Component id="txtAnsDatumSvar" max="32767" attributes="0"/>
+                          <Component id="jLabel3" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtLosen1" max="32767" attributes="0"/>
+                          <Component id="txtLosen2" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="367" max="-2" attributes="0"/>
-                      <Component id="btnReg" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="351" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="350" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,19 +142,23 @@
                   <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtAnsDatumSvar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtLosen1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtLosen2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtLosen1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtLosen2" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Component id="btnReg" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="90" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <Component id="btnTillbaka" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -220,6 +263,19 @@
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
         <Property name="text" type="java.lang.String" value="Uppdatera l&#xf6;senord"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTillbaka">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="G&#xe5; tillbaka"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTillbakaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xc5;&#xc5;&#xc5;&#xc5;-MM-DD"/>
       </Properties>
     </Component>
   </SubComponents>
