@@ -62,7 +62,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
 
         lblTitel = new javax.swing.JLabel();
         txtNamn = new javax.swing.JTextField();
-        lblNamn = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         txtTelefon = new javax.swing.JTextField();
         lblTelefon = new javax.swing.JLabel();
         lblRas = new javax.swing.JLabel();
@@ -76,15 +76,15 @@ public class UppdateraAlien extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         cmbPlats = new javax.swing.JComboBox<>();
         lblPersInfo = new javax.swing.JLabel();
-        lblAlienID = new javax.swing.JLabel();
+        lblAlienNamn = new javax.swing.JLabel();
         txtRasInfo = new javax.swing.JTextField();
         lblRasInfo = new javax.swing.JLabel();
         btnValjRas = new javax.swing.JToggleButton();
-        txtAlienID = new javax.swing.JTextField();
         btnSok = new javax.swing.JToggleButton();
         btnSpara = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         btnTillbaka = new javax.swing.JToggleButton();
+        cmbNamn = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         menuBarInget = new javax.swing.JMenu();
@@ -96,7 +96,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
         lblTitel.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblTitel.setText("Uppdatera alien");
 
-        lblNamn.setText("Namn");
+        lblID.setText("ID");
 
         lblTelefon.setText("Telefon");
 
@@ -115,7 +115,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
         jLabel7.setText("MiB REGISTRERINGSSERVICE");
 
-        lblAlienID.setText("AlienID");
+        lblAlienNamn.setText("AlienID");
 
         lblRasInfo.setText("Rasinfo");
 
@@ -193,8 +193,8 @@ public class UppdateraAlien extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblNamn)
-                                    .addComponent(lblAlienID)
+                                    .addComponent(lblID)
+                                    .addComponent(lblAlienNamn)
                                     .addComponent(lblRas, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblRasInfo)
                                     .addComponent(lblPlats)
@@ -209,8 +209,8 @@ public class UppdateraAlien extends javax.swing.JFrame {
                                             .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtAlienID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(cmbNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(btnSok))
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                 .addComponent(cmbAnsAgent, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -247,9 +247,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtAlienID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSok))
+                                .addComponent(btnSok)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(pswLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,7 +255,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,8 +284,10 @@ public class UppdateraAlien extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(lblPersInfo)
-                        .addGap(13, 13, 13)
-                        .addComponent(lblAlienID)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblAlienNamn)
+                            .addComponent(cmbNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTillbaka)))
                 .addComponent(lblConfirm)
@@ -605,16 +605,17 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JToggleButton btnValjRas;
     private javax.swing.JComboBox<String> cmbAnsAgent;
+    private javax.swing.JComboBox<String> cmbNamn;
     private javax.swing.JComboBox<String> cmbPlats;
     private javax.swing.JComboBox<String> cmbRas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JLabel lblAlienID;
+    private javax.swing.JLabel lblAlienNamn;
     private javax.swing.JLabel lblAnsvarigAgent;
     private javax.swing.JLabel lblConfirm;
+    private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblLosen;
-    private javax.swing.JLabel lblNamn;
     private javax.swing.JLabel lblPersInfo;
     private javax.swing.JLabel lblPlats;
     private javax.swing.JLabel lblRas;
@@ -626,7 +627,6 @@ public class UppdateraAlien extends javax.swing.JFrame {
     private javax.swing.JMenu menuBarLoggaUt;
     private javax.swing.JMenu menuBarStartsida;
     private javax.swing.JPasswordField pswLosen;
-    private javax.swing.JTextField txtAlienID;
     private javax.swing.JTextField txtNamn;
     private javax.swing.JTextField txtRasInfo;
     private javax.swing.JTextField txtTelefon;
