@@ -57,13 +57,45 @@ public class SQL extends javax.swing.JFrame {
     }
 
     /**
-     * Hämta alla agenter och lägg till dem i en combobox
+     * Hämtar alla agenter och lägger till dem i en combobox
      */
     public void agent(JComboBox x) {
         try {
             ArrayList<String> agentLista = idb.fetchColumn("SELECT namn FROM agent ORDER BY namn");
             for (int i = 0; i < agentLista.size(); i++) {
-                String agentNamn = agentLista.get(i);
+                String namn = agentLista.get(i);
+                x.addItem(namn);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+    }
+
+    /**
+     * Hämtar all utrustning och lägger till dem i en combobox
+     */
+    public void utrustning(JComboBox x) {
+        try {
+            ArrayList<String> utrustningsLista = idb.fetchColumn("SELECT Benamning FROM utrustning");
+            for (int i = 0; i < utrustningsLista.size(); i++) {
+                String namn = utrustningsLista.get(i);
+                x.addItem(namn);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+    }
+
+    /**
+     * Hämtar alla aliens och lägger till dem i en combobox
+     */
+    public void alien(JComboBox x) {
+        try {
+            ArrayList<String> alienLista = idb.fetchColumn("SELECT namn FROM alien ORDER BY namn");
+            for (int i = 0; i < alienLista.size(); i++) {
+                String agentNamn = alienLista.get(i);
                 x.addItem(agentNamn);
             }
         } catch (InfException e) {
@@ -170,26 +202,27 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
     }
+
     /**
      * Kolla om agenten är ansvarig över någon alien
+     *
      * @param soktID
      * @param idb
-     * @return 
+     * @return
      */
-    public static boolean agentHarAlien(String soktID, InfDB idb){
+    public static boolean agentHarAlien(String soktID, InfDB idb) {
         boolean resultat = true;
         String count = "";
-        
-        try{
-              // Kolla hur många aliens en agent är ansvarig över
-               count = idb.fetchSingle("SELECT count(alien_ID) FROM alien WHERE ansvarig_agent = " + soktID);
-        }
-            catch (InfException e) {
+
+        try {
+            // Kolla hur många aliens en agent är ansvarig över
+            count = idb.fetchSingle("SELECT count(alien_ID) FROM alien WHERE ansvarig_agent = " + soktID);
+        } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: agentHarAlien() " + e.getMessage());
         }
         // om agenten inte är ansvarig förnågra aliens, returnera false, annars true
-        if(count.equals("0")){
+        if (count.equals("0")) {
             resultat = false;
         }
         return resultat;
@@ -254,7 +287,7 @@ public class SQL extends javax.swing.JFrame {
 
             franDatumInt = Integer.parseInt(franDatumString);
             tillDatumInt = Integer.parseInt(tillDatumString);
-            
+
             // Fånga upp tex indexOUtOfBounds pga felinmatning från användaren, eller om användaren inte skrivit siffror och 
             // då inte går att göra parseInt
         } catch (Exception e) {
@@ -273,7 +306,7 @@ public class SQL extends javax.swing.JFrame {
         String queryDatum;
         String queryID;
         String queryNamn;
-        
+
         // Olika frågor ska ställas till databasen beroende på i vilken ordning användaren vill lista aliens
         if (ordning.equals("Äldsta först")) {
             queryDatum = "SELECT date_format(Registreringsdatum, '%Y%m%d') FROM alien ORDER BY Registreringsdatum ASC";
@@ -291,7 +324,7 @@ public class SQL extends javax.swing.JFrame {
             listaDatum = idb.fetchColumn(queryDatum);
             listaID = idb.fetchColumn(queryID);
             listaNamn = idb.fetchColumn(queryNamn);
-            
+
             // Loopa igenom datumlistan och skriv ut info i textarea för de datumDB som håller sig inom önskat spann
             for (int i = 0; i < listaDatum.size(); i++) {
                 // Datum från databasen som ska jämföras med datumspann som användaren angett
@@ -475,8 +508,9 @@ public class SQL extends javax.swing.JFrame {
 
     /**
      * Kollar om en agent är administratör
+     *
      * @param anvID
-     * @return 
+     * @return
      */
     public boolean arAdmin(String anvID) {
         boolean result = false;
@@ -495,9 +529,11 @@ public class SQL extends javax.swing.JFrame {
     }
 
     /**
-     * Skickar tillbaka användaren till startsida, olika sidor beroende på användartyp
+     * Skickar tillbaka användaren till startsida, olika sidor beroende på
+     * användartyp
+     *
      * @param anvId
-     * @param anvTyp 
+     * @param anvTyp
      */
     public void tillStartsida(String anvId, String anvTyp) {
         setVisible(false);
@@ -515,12 +551,13 @@ public class SQL extends javax.swing.JFrame {
             a.setVisible(true);
         }
     }
-    
+
     /**
- * Kontrollerar så att ett agentnamn inte redan finns i tabellen agent
- * @param rutaAttKolla
- * @return 
- */
+     * Kontrollerar så att ett agentnamn inte redan finns i tabellen agent
+     *
+     * @param rutaAttKolla
+     * @return
+     */
     public boolean namnFinnsInteAgent(JTextField rutaAttKolla) {
         boolean resultat = true;
         // Hämtar namn som användaren angett
@@ -541,11 +578,13 @@ public class SQL extends javax.swing.JFrame {
         }
         return resultat;
     }
+
     /**
- * Kontrollerar så att ett agentnamn inte redan finns i tabellen agent
- * @param rutaAttKolla
- * @return 
- */
+     * Kontrollerar så att ett agentnamn inte redan finns i tabellen agent
+     *
+     * @param rutaAttKolla
+     * @return
+     */
     public boolean namnFinnsInteAlien(JTextField rutaAttKolla) {
         boolean resultat = true;
         //Hämtar namn som användaren angett

@@ -299,7 +299,7 @@ public class TaBortAgent extends javax.swing.JFrame {
             // Tar in lösenordet som användaren angett
             String losenord = txtLosenord.getText().trim();
             String losenordDB = "";
-            
+
             // Lista att spara ev aliens som agenten är ansvarig för
             ArrayList<HashMap<String, String>> harAnsvar = new ArrayList<>();
 

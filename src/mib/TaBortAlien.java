@@ -35,6 +35,9 @@ public class TaBortAlien extends javax.swing.JFrame {
         lblAntalArmarSvar.setVisible(false);
         lblConfirm.setVisible(false);
         lblError.setVisible(false);
+        
+        SQL s = new SQL(idb);
+        s.alien(cmbNamn);
 
     }
 
@@ -48,12 +51,11 @@ public class TaBortAlien extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitel = new javax.swing.JLabel();
-        lblSokID = new javax.swing.JLabel();
-        txtSokID = new javax.swing.JTextField();
+        lblNamn = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         lblAlienLosenord = new javax.swing.JLabel();
-        lblAlienNamn = new javax.swing.JLabel();
+        lblAlienID = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblAlienTelefon = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -72,6 +74,7 @@ public class TaBortAlien extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnRadera = new javax.swing.JToggleButton();
         btnTillbaka = new javax.swing.JToggleButton();
+        cmbNamn = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         menuInget = new javax.swing.JMenu();
@@ -83,21 +86,21 @@ public class TaBortAlien extends javax.swing.JFrame {
         lblTitel.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
         lblTitel.setText("MiB ");
 
-        lblSokID.setText("AlienID:");
+        lblNamn.setText("Namn");
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel1.setText("Lösenord:");
         jLabel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        jLabel2.setText("Namn:");
-        jLabel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblID.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        lblID.setText("ID:");
+        lblID.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         lblAlienLosenord.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         lblAlienLosenord.setText("**********");
 
-        lblAlienNamn.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        lblAlienNamn.setText("-");
+        lblAlienID.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        lblAlienID.setText("-");
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         jLabel5.setText("Telefon:");
@@ -213,25 +216,6 @@ public class TaBortAlien extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblConfirm)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(54, 54, 54)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(lblTitel)
-                                                    .addGap(9, 9, 9))
-                                                .addComponent(jLabel3))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblSokID)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtSokID, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnSok))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,15 +237,34 @@ public class TaBortAlien extends javax.swing.JFrame {
                                         .addComponent(lblAntalArmarSvar)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
+                                        .addComponent(lblID)
                                         .addComponent(jLabel5))
                                     .addGap(66, 66, 66)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lblAlienTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lblAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(lblAlienID, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(214, 214, 214)
-                                .addComponent(lblBoogies)))))
+                                .addComponent(lblBoogies))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(205, 205, 205)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblConfirm)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblTitel)
+                                            .addGap(9, 9, 9))
+                                        .addComponent(jLabel3))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblNamn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cmbNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSok)))))
                 .addContainerGap(218, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -273,15 +276,15 @@ public class TaBortAlien extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSokID)
-                    .addComponent(txtSokID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSok))
+                    .addComponent(lblNamn)
+                    .addComponent(btnSok)
+                    .addComponent(cmbNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblConfirm)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lblAlienNamn))
+                    .addComponent(lblID)
+                    .addComponent(lblAlienID))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -322,9 +325,7 @@ public class TaBortAlien extends javax.swing.JFrame {
 
     // Metoden söker upp information om vald agent.
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-        // Kontrollerar att sökfältet har ett värde samt att värdet besgår av siffror. 
-        if (Validering.textFaltHarVarde(txtSokID)) {
-            if (Validering.txtFaltHarSiffror(txtSokID)) {
+
                 try {
 
                     // Listorna fylls på med ID-värden om de olika raserna. 
@@ -332,8 +333,10 @@ public class TaBortAlien extends javax.swing.JFrame {
                     bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
                     wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
 
+                    String namn = cmbNamn.getSelectedItem().toString();
+                    
                     // Lokala variabler för fälten.
-                    String soktID = txtSokID.getText();
+                    String soktID = idb.fetchSingle("SELECT alien_ID FROM alien WHERE namn = '" + namn + "'");
                     int soktIDint = Integer.parseInt(soktID);
 
                     // Nästlad SQL-fråga för att kunna visa namnet på agenten i stället för dess AgentID.
@@ -349,7 +352,7 @@ public class TaBortAlien extends javax.swing.JFrame {
 
                     // Här anger vi vad vi vill ska stå i våra labels, det vill säga informationen om den eftersökta alien.
                     lblAlienLosenord.setText(alienLosenord);
-                    lblAlienNamn.setText(alienNamn);
+                    lblAlienID.setText(alienNamn);
                     lblAlienTelefon.setText(alienTelefon);
                     lblAlienPlats.setText(alienPlats);
                     lblAnsvarigAgent.setText(alienAgentNamn);
@@ -406,11 +409,6 @@ public class TaBortAlien extends javax.swing.JFrame {
                     lblError.setVisible(true);
                     System.out.println("Internt felmeddelande:" + e.getMessage());
                 }
-            }
-        } //Om fältet för sökt ID är ifyllt visas en ruta med information för användaren. 
-        else {
-            JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
-        }
     }//GEN-LAST:event_btnSokMouseClicked
 
     // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
@@ -430,16 +428,16 @@ public class TaBortAlien extends javax.swing.JFrame {
     // Metoden raderar information om det valda ID:t som man har sökt upp.
     private void btnRaderaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRaderaMouseClicked
 
-        // Här kontrollerar man att fältet txtSokID är ifyllt innan man får vidare och raderar informationen. 
-        if (Validering.textFaltHarVarde(txtSokID)) {
-
             // Om txtSokID är ifyllt sker en dubbelkontroll för om man verkligen vill radera informationen. Detta görs med metoden showConfirmDialog. 
             int input = JOptionPane.showConfirmDialog(null, "Vill du verkligen radera vald alien?", "Är du säker?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             // Metoden använder 0 och 1 som input på svar. 0 = ja. Om detta väljs så går metoden vidare och raderar informationen. 
             if (input == 0) {
                 try {
-                    String alienID = txtSokID.getText();
+                    
+                    String namn = cmbNamn.getSelectedItem().toString();
+                    
+                    String alienID = idb.fetchSingle("SELECT alien_ID FROM alien WHERE namn = '" + namn + "'");
 
                     // Här raderas information från tabellen alien.
                     idb.delete("DELETE FROM alien WHERE Alien_ID = '" + alienID + "'");
@@ -457,6 +455,7 @@ public class TaBortAlien extends javax.swing.JFrame {
                     } else if (wormLista.contains(alienID)) {
                         idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + alienID + "'");
                     }
+                    JOptionPane.showMessageDialog(null, "Vald alien är raderad!");
                     btnTillbakaMouseClicked(evt);
 
                 } //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
@@ -465,10 +464,7 @@ public class TaBortAlien extends javax.swing.JFrame {
                     System.out.println("Internt felmeddelande" + e.getMessage());
                 }
             }
-        } //Om fältet för sökt ID är ifyllt visas en ruta med information för användaren. 
-        else {
-            JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
-        }
+        
     }//GEN-LAST:event_btnRaderaMouseClicked
 // Metoden gör nuvarande fönster osynligt och öppnar klassen HanteraAliensAdmin i nytt fönster. Denna metod gör så att man blir utloggad.
     private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
@@ -485,16 +481,16 @@ public class TaBortAlien extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnRadera;
     private javax.swing.JButton btnSok;
     private javax.swing.JToggleButton btnTillbaka;
+    private javax.swing.JComboBox<String> cmbNamn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblAlienID;
     private javax.swing.JLabel lblAlienLosenord;
-    private javax.swing.JLabel lblAlienNamn;
     private javax.swing.JLabel lblAlienPlats;
     private javax.swing.JLabel lblAlienRas;
     private javax.swing.JLabel lblAlienTelefon;
@@ -505,12 +501,12 @@ public class TaBortAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblBoogiesSvar;
     private javax.swing.JLabel lblConfirm;
     private javax.swing.JLabel lblError;
-    private javax.swing.JLabel lblSokID;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblNamn;
     private javax.swing.JLabel lblTitel;
     private javax.swing.JMenu menuInget;
     private javax.swing.JMenu menuInlogg;
     private javax.swing.JMenu menuLoggaUt;
     private javax.swing.JMenu menuStartsida;
-    private javax.swing.JTextField txtSokID;
     // End of variables declaration//GEN-END:variables
 }

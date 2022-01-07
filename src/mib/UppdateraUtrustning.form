@@ -57,16 +57,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
-                      <Component id="lblRubrik" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
-                      <Component id="lblTitel" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
+              <Component id="lblRubrik" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="185" max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -84,30 +76,35 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblEgenskap" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTelefon" min="-2" pref="83" max="-2" attributes="0"/>
+                          <Component id="lblID" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblNamn" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUtrustningsID" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtUtrustningID" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="cmbNamn" min="-2" pref="150" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Component id="btnSok" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="btnSpara" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbUtrustningsTyp" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <Component id="cmbUtrustningsTyp" alignment="0" pref="152" max="32767" attributes="0"/>
                                   <Component id="btnValjTyp" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtEgenskapInfo" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
-                                  <Component id="txtNamn" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="txtEgenskapInfo" alignment="0" pref="152" max="32767" attributes="0"/>
+                                  <Component id="txtID" alignment="1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" pref="179" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
+              <Component id="lblTitel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -130,14 +127,17 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtUtrustningID" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnSok" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblUtrustningsID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cmbNamn" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblNamn" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Component id="txtNamn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="lblID" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtID" pref="24" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -179,11 +179,9 @@
         <Property name="text" type="java.lang.String" value="Uppdatera utrustning"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNamn">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblNamn">
+    <Component class="javax.swing.JLabel" name="lblID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Namn"/>
+        <Property name="text" type="java.lang.String" value="ID"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTelefon">
@@ -223,9 +221,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblPersInfo">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblUtrustningsID">
+    <Component class="javax.swing.JLabel" name="lblNamn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="UtrustningsID"/>
+        <Property name="text" type="java.lang.String" value="Namn"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEgenskapInfo">
@@ -242,8 +240,6 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnValjTypMouseClicked"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtUtrustningID">
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnSok">
       <Properties>
@@ -275,6 +271,18 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTillbakaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbNamn">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtID">
     </Component>
   </SubComponents>
 </Form>
