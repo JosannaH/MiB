@@ -79,11 +79,7 @@
                               </Group>
                           </Group>
                           <Component id="jLabel3" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="327" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                              <Component id="txtAgentID" min="-2" pref="94" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="327" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -95,8 +91,6 @@
                               <Component id="lblAngeLosen" alignment="0" pref="383" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cmbNyAnsvarig" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
@@ -109,8 +103,12 @@
                           <Component id="lblRubrik" min="-2" pref="176" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
+                      <Component id="cmbNyAnsvarig" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="154" max="32767" attributes="0"/>
+              <EmptySpace pref="329" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -131,21 +129,15 @@
                   <Component id="lblVisaNamn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="lblDennaAgent" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblVanligenAnge" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="cmbNyAnsvarig" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Component id="lblDennaAgent" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblVanligenAnge" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="cmbNyAnsvarig" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" min="-2" pref="194" max="-2" attributes="0"/>
-                  <Component id="txtAgentID" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jScrollPane1" min="-2" pref="194" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="lblAngeLosen" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -188,11 +180,6 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSokMouseClicked"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtAgentID">
-      <Properties>
-        <Property name="toolTipText" type="java.lang.String" value=""/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblVisaNamn">
       <Properties>
