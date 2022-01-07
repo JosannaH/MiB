@@ -32,7 +32,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
         lblInfo.setVisible(false);
         txtSpec.setVisible(false);
-        
+
         SQL s = new SQL(idb);
         s.utrustning(cmbNamn);
     }
@@ -202,105 +202,105 @@ public class TaBortUtrustning extends javax.swing.JFrame {
 
     // Sökning
     private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
-        
-                try {
-                    String namn = cmbNamn.getSelectedItem().toString();
-                    
-                    // Fyller på listorna med utrustningsID från utrustningstabellerna. 
-                    vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
-                    teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
-                    kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
 
-                    // Hämtar information från sökfältet. 
-                    String soktID = idb.fetchSingle("SELECT Utrustnings_ID FROM utrustning WHERE benamning = '" + namn + "'");
-                    int soktIDint = Integer.parseInt(soktID);
+        try {
+            String namn = cmbNamn.getSelectedItem().toString();
 
-                    // Hämtar information från från namnfältet. 
-                    String benamning = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID=" + soktIDint + "");
-                    txtBenamning.setText(benamning);
+            // Fyller på listorna med utrustningsID från utrustningstabellerna. 
+            vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
+            teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
+            kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
 
-                    // Villkorssatser för att hämta information från utrustningstabellerna. 
-                    if (vapenLista.contains(soktID)) {
-                        // Sätter rubrik och textfält synligt för användaren. Rubriken får namnet som utrustningens egenskap.
-                        lblInfo.setVisible(true);
-                        lblInfo.setText("Kaliber");
-                        txtSpec.setVisible(true);
-                        // Hämtar information om utrustningens egenskap.
-                        String vapenKaliber = idb.fetchSingle("SELECT Kaliber FROM Vapen WHERE Utrustnings_ID=" + soktIDint + "");
-                        txtSpec.setText(vapenKaliber);
-                        txtTyp.setText("Vapen");
-                    } else if (teknikLista.contains(soktID)) {
-                        // Sätter rubrik och textfält synligt för användaren. Rubriken får namnet som utrustningens egenskap.
-                        lblInfo.setVisible(true);
-                        lblInfo.setText("Kraftkälla");
-                        txtSpec.setVisible(true);
-                        // Hämtar information om utrustningens egenskap.
-                        String kraftkalla = idb.fetchSingle("SELECT Kraftkalla FROM Teknik WHERE Utrustnings_ID=" + soktIDint + "");
-                        txtSpec.setText(kraftkalla);
-                        txtTyp.setText("Teknik");
-                    } else if (kommunikationsLista.contains(soktID)) {
-                        // Sätter rubrik och textfält synligt för användaren. Rubriken får namnet som utrustningens egenskap.
-                        lblInfo.setVisible(true);
-                        lblInfo.setText("Överföringsteknik");
-                        txtSpec.setVisible(true);
-                        // Hämtar information om utrustningens egenskap.
-                        String overforingsTeknik = idb.fetchSingle("SELECT Overforingsteknik FROM Kommunikation WHERE Utrustnings_ID=" + soktIDint + "");
-                        txtSpec.setText(overforingsTeknik);
-                        txtTyp.setText("Kommunikation");
-                    }
-                    // Visar information om att något inte fungerar. 
-                } catch (InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    System.out.println("Internt felmeddelande:" + e.getMessage());
-                }
-                   
+            // Hämtar information från sökfältet. 
+            String soktID = idb.fetchSingle("SELECT Utrustnings_ID FROM utrustning WHERE benamning = '" + namn + "'");
+            int soktIDint = Integer.parseInt(soktID);
+
+            // Hämtar information från från namnfältet. 
+            String benamning = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID=" + soktIDint + "");
+            txtBenamning.setText(benamning);
+
+            // Villkorssatser för att hämta information från utrustningstabellerna. 
+            if (vapenLista.contains(soktID)) {
+                // Sätter rubrik och textfält synligt för användaren. Rubriken får namnet som utrustningens egenskap.
+                lblInfo.setVisible(true);
+                lblInfo.setText("Kaliber");
+                txtSpec.setVisible(true);
+                // Hämtar information om utrustningens egenskap.
+                String vapenKaliber = idb.fetchSingle("SELECT Kaliber FROM Vapen WHERE Utrustnings_ID=" + soktIDint + "");
+                txtSpec.setText(vapenKaliber);
+                txtTyp.setText("Vapen");
+            } else if (teknikLista.contains(soktID)) {
+                // Sätter rubrik och textfält synligt för användaren. Rubriken får namnet som utrustningens egenskap.
+                lblInfo.setVisible(true);
+                lblInfo.setText("Kraftkälla");
+                txtSpec.setVisible(true);
+                // Hämtar information om utrustningens egenskap.
+                String kraftkalla = idb.fetchSingle("SELECT Kraftkalla FROM Teknik WHERE Utrustnings_ID=" + soktIDint + "");
+                txtSpec.setText(kraftkalla);
+                txtTyp.setText("Teknik");
+            } else if (kommunikationsLista.contains(soktID)) {
+                // Sätter rubrik och textfält synligt för användaren. Rubriken får namnet som utrustningens egenskap.
+                lblInfo.setVisible(true);
+                lblInfo.setText("Överföringsteknik");
+                txtSpec.setVisible(true);
+                // Hämtar information om utrustningens egenskap.
+                String overforingsTeknik = idb.fetchSingle("SELECT Overforingsteknik FROM Kommunikation WHERE Utrustnings_ID=" + soktIDint + "");
+                txtSpec.setText(overforingsTeknik);
+                txtTyp.setText("Kommunikation");
+            }
+            // Visar information om att något inte fungerar. 
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+
     }//GEN-LAST:event_btnSokActionPerformed
 
     // Radera
     private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
 
-            // Här sker en dubbelkontroll för om man verkligen vill radera informationen. Detta görs med metoden showConfirmDialog. 
-            int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort vald utrustning?", "Ta bort utrustning..", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        // Här sker en dubbelkontroll för om man verkligen vill radera informationen. Detta görs med metoden showConfirmDialog. 
+        int input = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort vald utrustning?", "Ta bort utrustning..", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-            // Metoden använder 0 och 1 som input på svar. 0 = ja. Om detta väljs så går metoden vidare och raderar informationen. 
-            if (input == 0) {
-                try {
-                    
-                    String namn = cmbNamn.getSelectedItem().toString();
-                    String soktID = idb.fetchSingle("SELECT Utrustnings_ID from utrustning WHERE benamning = '" + namn + "'");
+        // Metoden använder 0 och 1 som input på svar. 0 = ja. Om detta väljs så går metoden vidare och raderar informationen. 
+        if (input == 0) {
+            try {
 
-                    // För att kunna kontrollera vilken tabell som sökt ID finns inom (Utrustningstyp) används tre ArrayLists där man lagrar information om värdena. 
-                    vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
-                    teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
-                    kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
+                String namn = cmbNamn.getSelectedItem().toString();
+                String soktID = idb.fetchSingle("SELECT Utrustnings_ID from utrustning WHERE benamning = '" + namn + "'");
 
-                    // Beroende på vilken tabell som används raderas värdena baserat på sökt ID. 
-                    if (vapenLista.contains(soktID)) {
-                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID + "");
-                        idb.delete("DELETE FROM Vapen WHERE Utrustnings_ID = " + soktID + "");
-                    } else if (teknikLista.contains(soktID)) {
-                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID + "");
-                        idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = " + soktID + "");
+                // För att kunna kontrollera vilken tabell som sökt ID finns inom (Utrustningstyp) används tre ArrayLists där man lagrar information om värdena. 
+                vapenLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen ORDER BY Utrustnings_ID");
+                teknikLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik ORDER BY Utrustnings_ID");
+                kommunikationsLista = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation ORDER BY Utrustnings_ID");
 
-                    } else if (kommunikationsLista.contains(soktID)) {
-                        idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID + "");
-                        idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = " + soktID + "");
+                // Beroende på vilken tabell som används raderas värdena baserat på sökt ID. 
+                if (vapenLista.contains(soktID)) {
+                    idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID + "");
+                    idb.delete("DELETE FROM Vapen WHERE Utrustnings_ID = " + soktID + "");
+                } else if (teknikLista.contains(soktID)) {
+                    idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID + "");
+                    idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = " + soktID + "");
 
-                    }
+                } else if (kommunikationsLista.contains(soktID)) {
+                    idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID + "");
+                    idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = " + soktID + "");
 
-                    idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID =" + soktID + "");
-
-                    // Skickar tillbaka användaren till tidigare sida.
-                    JOptionPane.showMessageDialog(null, "Utrustningen är raderad!");
-                    btnTillbakaActionPerformed(evt);
-
-                } // Visar felmeddelande om att något har gått fel. 
-                catch (InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    System.out.println("Internt felmeddelande" + e.getMessage());
                 }
+
+                idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID =" + soktID + "");
+
+                // Skickar tillbaka användaren till tidigare sida.
+                JOptionPane.showMessageDialog(null, "Utrustningen är raderad!");
+                btnTillbakaActionPerformed(evt);
+
+            } // Visar felmeddelande om att något har gått fel. 
+            catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Något gick fel!");
+                System.out.println("Internt felmeddelande" + e.getMessage());
             }
-        
+        }
+
     }//GEN-LAST:event_btnRaderaActionPerformed
 
     //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.
