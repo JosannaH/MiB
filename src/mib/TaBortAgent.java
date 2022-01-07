@@ -80,7 +80,7 @@ public class TaBortAgent extends javax.swing.JFrame {
             }
         });
 
-        lblAgentID.setText("Agent ID:");
+        lblAgentID.setText("Agent namn:");
 
         btnSok.setText("Sök");
         btnSok.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,7 +89,7 @@ public class TaBortAgent extends javax.swing.JFrame {
             }
         });
 
-        lblVisaNamn.setText("Namn:");
+        lblVisaNamn.setText("ID:");
 
         lblSvarID.setText("                      ");
 
