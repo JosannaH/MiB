@@ -75,36 +75,42 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblTelefon" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
-                                  <Component id="lblID" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblAlienNamn" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblRas" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                                   <Component id="lblRasInfo" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblPlats" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblAnsvarigAgent" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblLosen" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNyttNamn" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                              <Component id="pswLosen" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                                               <Component id="txtTelefon" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                              <Component id="txtID" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="cmbNamn" min="-2" pref="144" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="btnSok" min="-2" max="-2" attributes="0"/>
-                                              </Group>
                                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                   <Component id="cmbAnsAgent" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="cmbPlats" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="cmbNamn" max="32767" attributes="0"/>
+                                                      <Component id="txtNyttNamn" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="pswLosen" alignment="0" pref="150" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                  <Component id="btnSok" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="txtRasInfo" min="-2" pref="152" max="-2" attributes="0"/>
                                           <Component id="btnSpara" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="lblID" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txtID" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="cmbRas" min="-2" pref="152" max="-2" attributes="0"/>
@@ -118,20 +124,20 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-          </Group>
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="295" max="-2" attributes="0"/>
-                      <Component id="lblTitel" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
+                              <Component id="lblTitel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="237" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -148,48 +154,57 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Component id="btnSok" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="pswLosen" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblLosen" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnSok" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblID" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblPlats" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbPlats" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblAnsvarigAgent" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cmbAnsAgent" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblRas" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="cmbRas" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnValjRas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="lblLosen" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtNyttNamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblNyttNamn" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblTelefon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lblPlats" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cmbPlats" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblAnsvarigAgent" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cmbAnsAgent" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblRas" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="cmbRas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnValjRas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lblRasInfo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtRasInfo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                      <Component id="pswLosen" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblRasInfo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtRasInfo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -220,8 +235,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Uppdatera alien"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtID">
     </Component>
     <Component class="javax.swing.JLabel" name="lblID">
       <Properties>
@@ -369,6 +382,18 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNyttNamn">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNyttNamn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nytt namn"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtID">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="   "/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
