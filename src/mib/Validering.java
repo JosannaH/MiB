@@ -40,7 +40,7 @@ public class Validering {
         if (!rutaAttKolla.getText().matches("[0-9]")) {
             resultat = false;
             JOptionPane.showMessageDialog(null, "Kontrollera att fältet består av siffror!");
-
+            rutaAttKolla.requestFocus();
         }
 
         return resultat;

@@ -87,15 +87,11 @@
                           </Group>
                           <Component id="cmbUtrustningstyp" min="-2" pref="152" max="-2" attributes="0"/>
                           <Component id="txtBenamning" min="-2" pref="152" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="tbValjTyp" min="-2" pref="86" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblTypVald" pref="114" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="tbValjTyp" alignment="0" min="-2" pref="86" max="-2" attributes="0"/>
                           <Component id="txtEgenskap" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
                           <Component id="btnSpara" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace pref="59" max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                   </Group>
@@ -143,10 +139,7 @@
                                   <Component id="cmbUtrustningstyp" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tbValjTyp" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTypVald" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="tbValjTyp" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtEgenskap" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -266,11 +259,6 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Media/Vapen.png"/>
         </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblTypVald">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Vapen vald!"/>
       </Properties>
     </Component>
   </SubComponents>
