@@ -339,7 +339,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
                 String regAlienIDGet = lblAlienID2.getText();
                 int regAlienIDint = Integer.parseInt(regAlienIDGet);
                 String dagensDatum = txtDatum.getText();
-
+                
+                if(Validering.kollaDatumFormat(dagensDatum)){
+                    
                 // Kollar att de båda lösenordsinmatningar stämmer överens
                 if (regPassword.equals(regPasswordCheck)) {
                     // Kollar att lösenordet har rätt längd
@@ -350,9 +352,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
                             String platsID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning = '" + regPlats + "'");
                             String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn = '" + regAnsAgent + "'");
                             // Körs om alien är Boglodite, textfältet med rasinfo måste vara ifyllt
-
                             if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
-
                                 // lägger till alien i databasen, i tabellen för alien och i tabellen för rasen
                                 idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
                                 idb.insert("INSERT INTO Boglodite VALUES ('" + regAlienIDGet + "', '" + rasInfo + "')");
@@ -391,6 +391,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                     }
+                }
                 }
             }
         } else {
@@ -473,7 +474,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
      * Autogenererar dagens datum som förifyllt
      */
     private void nyttDatum() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime time = LocalDateTime.now();
         String date = dtf.format(time);
         txtDatum.setText(date);

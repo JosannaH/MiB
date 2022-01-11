@@ -73,4 +73,23 @@ public class Validering {
 
         return resultat;
     }
+    
+    public static boolean kollaDatumFormat(String datum){
+        boolean resultat = true;
+        
+        String[] d = datum.split("-");
+       
+        try {
+            for(int i = 0; i < d.length; i ++){
+            int j = Integer.parseInt(d[i]);
+            
+        }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att datumen är korrekt ifyllda: ÅÅÅÅ-MM-DD");
+            resultat = false;
+        }
+       
+        return resultat;
+    }
 }
