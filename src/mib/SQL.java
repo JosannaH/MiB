@@ -344,6 +344,7 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande: " + e.getMessage());
         }
     }
+    
 
     /**
      * Visa områdeschef utifrån ett valt område, setText i en label

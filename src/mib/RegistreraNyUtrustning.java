@@ -60,7 +60,6 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         tbValjTyp = new javax.swing.JToggleButton();
         btnGaTillbaka = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
-        lblTypVald = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuTillStart = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
@@ -111,8 +110,6 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/Vapen.png"))); // NOI18N
-
-        lblTypVald.setText("Vapen vald!");
 
         menuTillStart.setText("Till startsida");
         menuTillStart.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,13 +164,10 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                                 .addComponent(lblUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cmbUtrustningstyp, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtBenamning, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tbValjTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTypVald, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
+                            .addComponent(tbValjTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEgenskap, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSpara, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(86, 86, 86))
                     .addGroup(layout.createSequentialGroup()
@@ -211,9 +205,7 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                                     .addComponent(lblUtrustningsTyp)
                                     .addComponent(cmbUtrustningstyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(tbValjTyp)
-                                    .addComponent(lblTypVald))
+                                .addComponent(tbValjTyp)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtEgenskap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,12 +236,14 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
 
                 // Kontrollerar att man har fyllt i tillhörande information (egenskap) om valt vapen. 
                 if (regUtrustning.equals("Vapen") && Validering.textFaltHarVarde(txtEgenskap)) {
+                    if(Validering.txtFaltHarSiffror(txtEgenskap)){
                     // Metod som lägger till i tabellen Utrustning
                     laggTill();
                     // Läggs till i tabellen för utrustningstyp, i detta fallet Vapen
                     idb.insert("INSERT INTO Vapen VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
                     // Skickar tillbaka användaren till föregående sida
                     btnGaTillbakaActionPerformed(evt);
+                    }
 
                 } else if (regUtrustning.equals("Kommunikation") && Validering.textFaltHarVarde(txtEgenskap)) {
                     laggTill();
@@ -265,7 +259,7 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
                     laggTill();
                     btnGaTillbakaActionPerformed(evt);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+                    JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda! För vapen och kommunikation måste du trycka på knappen välj och fylla i tilläggsinformation!");
                 }
             } catch (InfException e) {
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -302,22 +296,17 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
             txtEgenskap.setVisible(true);
             lblEgenskap.setVisible(true);
             lblEgenskap.setText("Kaliber");
-            // Visa bekräftelse på vilken typ användaren valt i komboboxen
-            lblTypVald.setText("Vapen vald!");
         } else if (typ.equals("Kommunikation")) {
             txtEgenskap.setVisible(true);
             lblEgenskap.setVisible(true);
             lblEgenskap.setText("Överföringsteknik");
-            lblTypVald.setText("Kommunikation vald!");
         } else if (typ.equals("Teknik")) {
             txtEgenskap.setVisible(true);
             lblEgenskap.setVisible(true);
             lblEgenskap.setText("Kraftkälla");
-            lblTypVald.setText("Teknik vald!");
         } else {
             txtEgenskap.setVisible(false);
             lblEgenskap.setVisible(false);
-            lblTypVald.setText("Okänd vald!");
         }
     }//GEN-LAST:event_tbValjTypMouseClicked
 
@@ -396,7 +385,6 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
     private javax.swing.JLabel lblEgenskap;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JLabel lblTitel;
-    private javax.swing.JLabel lblTypVald;
     private javax.swing.JLabel lblUtrustning;
     private javax.swing.JLabel lblUtrustningID;
     private javax.swing.JLabel lblUtrustningsTyp;

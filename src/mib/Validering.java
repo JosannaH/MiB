@@ -40,7 +40,7 @@ public class Validering {
         if (!rutaAttKolla.getText().matches("[0-9]")) {
             resultat = false;
             JOptionPane.showMessageDialog(null, "Kontrollera att fältet består av siffror!");
-
+            rutaAttKolla.requestFocus();
         }
 
         return resultat;
@@ -71,6 +71,44 @@ public class Validering {
             losenordAttKolla.requestFocus();
         }
 
+        return resultat;
+    }
+    
+    public static boolean kollaDatumFormat(String datum){
+        boolean resultat = true;
+        
+        String[] d = datum.split("-");
+       
+        try {
+            for(int i = 0; i < d.length; i ++){
+            int j = Integer.parseInt(d[i]);
+            
+        }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att datumen är korrekt ifyllda: ÅÅÅÅ-MM-DD");
+            resultat = false;
+        }
+       
+        return resultat;
+    }
+    
+    public static boolean kollaTelefon(String telefon){
+        boolean resultat = true;
+        
+        String[] t = telefon.split("-");
+       
+        try {
+            for(int i = 0; i < t.length; i ++){
+            int j = Integer.parseInt(t[i]);
+            
+        }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att telefonnumret endast består av siffror!");
+            resultat = false;
+        }
+       
         return resultat;
     }
 }

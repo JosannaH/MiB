@@ -55,11 +55,17 @@ public class Inloggning extends javax.swing.JFrame {
 
         lblInlogg.setText("Inloggningstyp");
 
-        lblAnvandare.setText("Användarnamn");
+        lblAnvandare.setText("AnvändarID");
 
         lblLosen.setText("Lösenord");
 
         cmbList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agent", "Alien" }));
+
+        txtAnvandare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAnvandareActionPerformed(evt);
+            }
+        });
 
         btnLoggain.setText("Logga in");
         btnLoggain.addActionListener(new java.awt.event.ActionListener() {
@@ -82,9 +88,9 @@ public class Inloggning extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblAnvandare)
-                            .addComponent(lblInlogg)
-                            .addComponent(lblLosen, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(lblLosen, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblInlogg, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblAnvandare, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(pswlosen)
@@ -184,6 +190,10 @@ public class Inloggning extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Fyll i användarnamn och lösenord");
         }
     }//GEN-LAST:event_btnLoggainActionPerformed
+
+    private void txtAnvandareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnvandareActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAnvandareActionPerformed
 
     /**
      * @param args the command line arguments

@@ -67,7 +67,7 @@ public class AndraLosenord extends javax.swing.JFrame {
             }
         });
 
-        lblAnvandare.setText("Användarnamn:");
+        lblAnvandare.setText("AnvändarID:");
         lblAnvandare.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         lblNuvLosen.setText("Nuvarande lösenord:");
@@ -205,6 +205,8 @@ public class AndraLosenord extends javax.swing.JFrame {
                 try {
                     //Lösenordet som tillhör individen hämtas ur databasen.
                     losenFranDB = idb.fetchSingle("SELECT Losenord FROM " + anvTyp + " WHERE " + anvTyp + "_ID=" + anvandare);
+                    
+                    if(!nyttLosen.equals(nuvLosen)){
                     if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
 
                         //Jämför det inmatade, nuvarande lösenordet med lösenordet från databasen.
@@ -221,6 +223,10 @@ public class AndraLosenord extends javax.swing.JFrame {
                         //Om det nuvarande lösenordet är korrekt, men det nya lösenordet inte uppfyller längdkraven möts användaren av denna ruta.
                     } else {
                         JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
+                    }
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null, "Ditt nya lösenord är samma som ditt gamla! Vänligen välj ett annat!");
                     }
                     //Om något går fel i koden och den inte kan köras som tänkt får användaren upp denna ruta istället och ingenting händer i databasen.
                 } catch (InfException e) {

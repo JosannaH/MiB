@@ -33,9 +33,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblAnvandare" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblInlogg" min="-2" max="-2" attributes="0"/>
                           <Component id="lblLosen" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblInlogg" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAnvandare" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -100,7 +100,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblAnvandare">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Anv&#xe4;ndarnamn"/>
+        <Property name="text" type="java.lang.String" value="Anv&#xe4;ndarID"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLosen">
@@ -122,6 +122,9 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAnvandare">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAnvandareActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnLoggain">
       <Properties>

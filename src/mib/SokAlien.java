@@ -29,12 +29,13 @@ public class SokAlien extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        lblBoogies.setVisible(false);
-        lblBoogiesSvar.setVisible(false);
         lblAntalArmar.setVisible(false);
         lblAntalArmarSvar.setVisible(false);
         lblConfirm.setVisible(false);
         lblError.setVisible(false);
+        
+        SQL s = new SQL(idb);
+        s.alien(cmbNamn);
 
     }
 
@@ -48,12 +49,10 @@ public class SokAlien extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitel = new javax.swing.JLabel();
-        lblSokID = new javax.swing.JLabel();
-        txtSokID = new javax.swing.JTextField();
-        lblLosen = new javax.swing.JLabel();
         lblNamn = new javax.swing.JLabel();
+        lblLosen = new javax.swing.JLabel();
+        lblAlienID = new javax.swing.JLabel();
         lblAlienLosenord = new javax.swing.JLabel();
-        lblAlienNamn = new javax.swing.JLabel();
         lblTelefon = new javax.swing.JLabel();
         lblAlienTelefon = new javax.swing.JLabel();
         lblRas = new javax.swing.JLabel();
@@ -63,8 +62,6 @@ public class SokAlien extends javax.swing.JFrame {
         lblAlienRas = new javax.swing.JLabel();
         lblAlienPlats = new javax.swing.JLabel();
         lblAnsvarigAgent = new javax.swing.JLabel();
-        lblBoogies = new javax.swing.JLabel();
-        lblBoogiesSvar = new javax.swing.JLabel();
         lblAntalArmar = new javax.swing.JLabel();
         lblAntalArmarSvar = new javax.swing.JLabel();
         lblConfirm = new javax.swing.JLabel();
@@ -72,6 +69,8 @@ public class SokAlien extends javax.swing.JFrame {
         btnTillbaka = new javax.swing.JToggleButton();
         lblDatumlbl = new javax.swing.JLabel();
         lblDatum = new javax.swing.JLabel();
+        cmbNamn = new javax.swing.JComboBox<>();
+        lblID = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         menuInget = new javax.swing.JMenu();
@@ -83,21 +82,18 @@ public class SokAlien extends javax.swing.JFrame {
         lblTitel.setFont(new java.awt.Font("Hiragino Maru Gothic ProN", 0, 24)); // NOI18N
         lblTitel.setText("MiB ALIENSÖK");
 
-        lblSokID.setText("AlienID:");
+        lblNamn.setText("Namn");
 
         lblLosen.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         lblLosen.setText("Lösenord:");
         lblLosen.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblNamn.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        lblNamn.setText("Namn:");
-        lblNamn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblAlienID.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        lblAlienID.setText("ID");
+        lblAlienID.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         lblAlienLosenord.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         lblAlienLosenord.setText("**********");
-
-        lblAlienNamn.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        lblAlienNamn.setText("-");
 
         lblTelefon.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         lblTelefon.setText("Telefon:");
@@ -133,13 +129,6 @@ public class SokAlien extends javax.swing.JFrame {
         lblAnsvarigAgent.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         lblAnsvarigAgent.setText("-");
 
-        lblBoogies.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        lblBoogies.setText("Antal Boogies:");
-        lblBoogies.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        lblBoogiesSvar.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
-        lblBoogiesSvar.setText("-");
-
         lblAntalArmar.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         lblAntalArmar.setText("Antal Armar:");
         lblAntalArmar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -168,6 +157,8 @@ public class SokAlien extends javax.swing.JFrame {
 
         lblDatum.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         lblDatum.setText("-");
+
+        lblID.setText("-");
 
         menuStartsida.setText("Tillbaka till startsida");
         menuStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -200,40 +191,25 @@ public class SokAlien extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(btnTillbaka)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblTitel)
-                        .addGap(364, 364, 364))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(lblError))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(lblSokID)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSokID, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSok))
-                            .addComponent(lblConfirm))
-                        .addGap(262, 262, 262))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(232, 232, 232)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNamn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTelefon)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblAlienTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(21, 21, 21)
+                        .addComponent(lblError))
+                    .addComponent(lblConfirm))
+                .addGap(262, 262, 262))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblAlienID)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTelefon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblAlienTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblPlats)
@@ -249,30 +225,38 @@ public class SokAlien extends javax.swing.JFrame {
                             .addComponent(lblAlienPlats)
                             .addComponent(lblAnsvarigAgent)
                             .addComponent(lblAlienRas)
-                            .addComponent(lblDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(lblBoogies)))
-                .addGap(29, 29, 29)
-                .addComponent(lblBoogiesSvar)
+                            .addComponent(lblDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblNamn)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSok)
+                        .addGap(298, 298, 298))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblTitel)
+                        .addGap(324, 324, 324))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addComponent(lblTitel)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSokID)
-                    .addComponent(txtSokID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSok))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(lblConfirm)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNamn)
-                    .addComponent(lblAlienNamn))
+                    .addComponent(btnSok)
+                    .addComponent(cmbNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblConfirm)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAlienID)
+                    .addComponent(lblID))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefon)
@@ -292,9 +276,7 @@ public class SokAlien extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRas)
-                    .addComponent(lblAlienRas)
-                    .addComponent(lblBoogies)
-                    .addComponent(lblBoogiesSvar))
+                    .addComponent(lblAlienRas))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAntalArmar)
@@ -312,105 +294,6 @@ public class SokAlien extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-        // Kollar om användaren fyllt i ett ID att söka efter
-        if (Validering.textFaltHarVarde(txtSokID)) {
-            // Kollar om IDt består av siffror
-            if (Validering.txtFaltHarSiffror(txtSokID)) {
-                lblConfirm.setVisible(false);
-                lblError.setVisible(false);
-
-                try {
-                    //Hämta ID som användaren sökt efter
-                    String soktID = txtSokID.getText();
-                    // Spara alla alienID i en lista
-                    ArrayList<String> alienLista = idb.fetchColumn("SELECT alien_ID FROM alien");
-                    // Kolla om alienID existerar i databas
-                    if (alienLista.contains(soktID)) {
-                        // Hämta alla aliens i olika raser och spara i separata listor
-                        squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
-                        bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
-                        wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
-
-                        //Nästlad SQL-fråga för att kunna visa namnet på agenten i stället för dess AgentID.
-                        String alienAgentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID IN (SELECT Ansvarig_Agent FROM Alien where Alien_ID = " + soktID + ")");
-
-                        //Nästlad SQL-fråga för att kunna visa namnet på platsen istället för platsID.
-                        String alienPlats = idb.fetchSingle("SELECT Benamning FROM Plats WHERE Plats_ID IN(SELECT Plats from Alien where Alien_ID =" + soktID + ")");
-
-                        //SQL-frågor som hämtar aliens lösenord, namn och telefon från databasen.  
-                        String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktID + "");
-                        String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktID + "");
-                        String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktID + "");
-
-                        String datum = idb.fetchSingle("SELECT Registreringsdatum FROM alien WHERE Alien_ID = " + soktID + "");
-
-                        //Här anger vi vad vi vill ska stå i våra labels, det vill säga informationen om den eftersökta alien.
-                        lblAlienLosenord.setText(alienLosenord);
-                        lblAlienNamn.setText(alienNamn);
-                        lblAlienTelefon.setText(alienTelefon);
-                        lblAlienPlats.setText(alienPlats);
-                        lblAnsvarigAgent.setText(alienAgentNamn);
-                        lblDatum.setText(datum);
-
-                        //Här arbetr vi med villkorssatser för att "söka" efter det eftersökta ID:t i våra Arrayer.
-                        if (squidLista.contains(soktID)) {
-                            String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + soktID + "'");
-                            lblAlienRas.setText("Squid");
-
-                            lblAntalArmar.setVisible(true);
-                            lblAntalArmarSvar.setVisible(true);
-                            lblAntalArmarSvar.setText(antalArmar);
-
-                            lblBoogies.setVisible(false);
-                            lblBoogiesSvar.setVisible(false);
-                            lblConfirm.setVisible(true);
-
-                        } else if (bogloditeLista.contains(soktID)) {
-                            String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + soktID + "'");
-                            lblAlienRas.setText("Boglodite");
-
-                            lblBoogies.setVisible(true);
-                            lblBoogiesSvar.setVisible(true);
-                            lblBoogiesSvar.setText(antalBoogies);
-
-                            lblAntalArmar.setVisible(false);
-                            lblAntalArmarSvar.setVisible(false);
-                            lblConfirm.setVisible(true);
-                        } else if (wormLista.contains(soktID)) {
-                            lblAlienRas.setText("Worm");
-                            lblAntalArmar.setVisible(false);
-                            lblAntalArmarSvar.setVisible(false);
-                            lblBoogies.setVisible(false);
-                            lblBoogiesSvar.setVisible(false);
-                            lblConfirm.setVisible(true);
-
-                        } else {
-                            lblAlienRas.setText("Okänd");
-                            lblAntalArmar.setVisible(false);
-                            lblAntalArmarSvar.setVisible(false);
-                            lblBoogies.setVisible(false);
-                            lblBoogiesSvar.setVisible(false);
-                            lblConfirm.setVisible(true);
-                        }
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "AlienID finns inte!");
-                    }
-                } //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
-                catch (InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    lblError.setVisible(true);
-                    System.out.println("Internt felmeddelande:" + e.getMessage());
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "AlienID måste vara ifyllt!");
-        }
-
-
-    }//GEN-LAST:event_btnSokMouseClicked
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         SQL s = new SQL(idb);
@@ -438,6 +321,94 @@ public class SokAlien extends javax.swing.JFrame {
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
 
+    private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
+
+        lblConfirm.setVisible(false);
+        lblError.setVisible(false);
+
+        try {
+            
+            String namn = cmbNamn.getSelectedItem().toString();
+            
+                     
+            //Hämta ID som användaren sökt efter
+            String soktID = idb.fetchSingle("SELECT alien_ID FROM alien WHERE namn = '" + namn + "'");
+            // Spara alla alienID i en lista
+            ArrayList<String> alienLista = idb.fetchColumn("SELECT alien_ID FROM alien");
+            // Kolla om alienID existerar i databas
+            if (alienLista.contains(soktID)) {
+                // Hämta alla aliens i olika raser och spara i separata listor
+                squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+                bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+                wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+
+                //Nästlad SQL-fråga för att kunna visa namnet på agenten i stället för dess AgentID.
+                String alienAgentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID IN (SELECT Ansvarig_Agent FROM Alien where Alien_ID = " + soktID + ")");
+
+                //Nästlad SQL-fråga för att kunna visa namnet på platsen istället för platsID.
+                String alienPlats = idb.fetchSingle("SELECT Benamning FROM Plats WHERE Plats_ID IN(SELECT Plats from Alien where Alien_ID =" + soktID + ")");
+
+                //SQL-frågor som hämtar aliens lösenord, namn och telefon från databasen.
+                String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktID + "");
+                String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktID + "");
+                String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktID + "");
+
+                String datum = idb.fetchSingle("SELECT Registreringsdatum FROM alien WHERE Alien_ID = " + soktID + "");
+
+                //Här anger vi vad vi vill ska stå i våra labels, det vill säga informationen om den eftersökta alien.
+                lblAlienLosenord.setText(alienLosenord);
+                lblID.setText(soktID);
+                lblAlienTelefon.setText(alienTelefon);
+                lblAlienPlats.setText(alienPlats);
+                lblAnsvarigAgent.setText(alienAgentNamn);
+                lblDatum.setText(datum);
+
+                //Här arbetr vi med villkorssatser för att "söka" efter det eftersökta ID:t i våra Arrayer.
+                if (squidLista.contains(soktID)) {
+                    String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + soktID + "'");
+                    lblAlienRas.setText("Squid");
+
+                    lblAntalArmar.setText("Antal armar:");
+                    lblAntalArmar.setVisible(true);
+                    lblAntalArmarSvar.setVisible(true);
+                    lblAntalArmarSvar.setText(antalArmar);
+
+                    lblConfirm.setVisible(true);
+
+                } else if (bogloditeLista.contains(soktID)) {
+                    String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + soktID + "'");
+                    lblAlienRas.setText("Boglodite");
+
+                    lblAntalArmar.setText("Antal boogies:");
+                    lblAntalArmarSvar.setText(antalBoogies);
+                    lblAntalArmar.setVisible(true);
+                    lblAntalArmarSvar.setVisible(true);
+                    lblConfirm.setVisible(true);
+                } else if (wormLista.contains(soktID)) {
+                    lblAlienRas.setText("Worm");
+                    lblAntalArmar.setVisible(false);
+                    lblAntalArmarSvar.setVisible(false);
+                    lblConfirm.setVisible(true);
+
+                } else {
+                    lblAlienRas.setText("Okänd");
+                    lblAntalArmar.setVisible(false);
+                    lblAntalArmarSvar.setVisible(false);
+                    lblConfirm.setVisible(true);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "AlienID finns inte!");
+            }
+        } //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
+        catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+            lblError.setVisible(true);
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
+
+    }//GEN-LAST:event_btnSokMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -445,33 +416,31 @@ public class SokAlien extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSok;
     private javax.swing.JToggleButton btnTillbaka;
+    private javax.swing.JComboBox<String> cmbNamn;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblAgent;
+    private javax.swing.JLabel lblAlienID;
     private javax.swing.JLabel lblAlienLosenord;
-    private javax.swing.JLabel lblAlienNamn;
     private javax.swing.JLabel lblAlienPlats;
     private javax.swing.JLabel lblAlienRas;
     private javax.swing.JLabel lblAlienTelefon;
     private javax.swing.JLabel lblAnsvarigAgent;
     private javax.swing.JLabel lblAntalArmar;
     private javax.swing.JLabel lblAntalArmarSvar;
-    private javax.swing.JLabel lblBoogies;
-    private javax.swing.JLabel lblBoogiesSvar;
     private javax.swing.JLabel lblConfirm;
     private javax.swing.JLabel lblDatum;
     private javax.swing.JLabel lblDatumlbl;
     private javax.swing.JLabel lblError;
+    private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblLosen;
     private javax.swing.JLabel lblNamn;
     private javax.swing.JLabel lblPlats;
     private javax.swing.JLabel lblRas;
-    private javax.swing.JLabel lblSokID;
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTitel;
     private javax.swing.JMenu menuInget;
     private javax.swing.JMenu menuInlogg;
     private javax.swing.JMenu menuLoggaUt;
     private javax.swing.JMenu menuStartsida;
-    private javax.swing.JTextField txtSokID;
     // End of variables declaration//GEN-END:variables
 }
