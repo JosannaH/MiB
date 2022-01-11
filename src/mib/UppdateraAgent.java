@@ -60,6 +60,8 @@ public class UppdateraAgent extends javax.swing.JFrame {
         btnTillbaka = new javax.swing.JToggleButton();
         cmbNamn = new javax.swing.JComboBox<>();
         lblVisaId = new javax.swing.JLabel();
+        txtNyttNamn = new javax.swing.JTextField();
+        lblNyttNamn = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         menuInget = new javax.swing.JMenu();
@@ -115,6 +117,10 @@ public class UppdateraAgent extends javax.swing.JFrame {
 
         lblVisaId.setText("             ");
 
+        txtNyttNamn.setText("   ");
+
+        lblNyttNamn.setText("Nytt namn");
+
         menuStartsida.setText("Gå till startsida");
         menuStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -169,16 +175,18 @@ public class UppdateraAgent extends javax.swing.JFrame {
                                         .addComponent(lblTele)
                                         .addComponent(lblBehorighet)
                                         .addComponent(lblDatum)
-                                        .addComponent(lblAnsvar))
+                                        .addComponent(lblAnsvar)
+                                        .addComponent(lblNyttNamn))
                                     .addGap(31, 31, 31)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(cmbAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txtTelefon, javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(txtAnsDat)
-                                        .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cmbOmrade, 0, 192, Short.MAX_VALUE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(lblVisaId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGap(19, 19, 19)))))
+                                            .addGap(19, 19, 19))
+                                        .addComponent(txtNyttNamn))))
                             .addGap(206, 206, 206))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(lblRubrik)
@@ -203,7 +211,11 @@ public class UppdateraAgent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLosen)
                     .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNyttNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNyttNamn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblID)
                     .addComponent(lblVisaId))
@@ -231,7 +243,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
                         .addComponent(lblErrorEmpty)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addComponent(btnTillbaka)
                         .addGap(21, 21, 21))))
         );
@@ -257,13 +269,15 @@ public class UppdateraAgent extends javax.swing.JFrame {
                     String ansdat = idb.fetchSingle("SELECT Anstallningsdatum FROM Agent WHERE Namn =  '" + namn + "'");
                     String omrID = idb.fetchSingle("SELECT Omrade FROM Agent WHERE Namn =  '" + namn + "'");
                     String omr = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE omrades_ID =  '" + omrID + "'");
-
+                    
                     // Fyller fälten med hämtad information. 
                     txtLosenord.setText(los);
                     lblVisaId.setText(agentID);
                     txtTelefon.setText(tel);
                     txtAnsDat.setText(ansdat);
                     cmbOmrade.setSelectedItem(omr);
+                    txtNyttNamn.setText(namn);
+                    
 
                     // Kontrollerar om vald agenten är administratör och markerar detta i rullisten. 
                     if (admin.contains("J")) {
@@ -295,7 +309,9 @@ public class UppdateraAgent extends javax.swing.JFrame {
             String nyttOmrade = cmbOmrade.getSelectedItem().toString();
             String nyttAnsDat = txtAnsDat.getText();
             String nyttAdmin = cmbAdmin.getSelectedItem().toString();
+            String nyttNamn = txtNyttNamn.getText();
 
+            if(Validering.kollaDatumFormat(nyttAnsDat)){
             // Kontrollerar att lösenordet uppfyller nedanstående krav. 
             if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
 
@@ -308,7 +324,8 @@ public class UppdateraAgent extends javax.swing.JFrame {
                     idb.update("UPDATE Agent SET Telefon = '" + nyttTele + "' WHERE Agent_ID = '" + agentID + "'");
                     idb.update("UPDATE Agent SET Anstallningsdatum = '" + nyttAnsDat + "' WHERE Agent_ID = '" + agentID + "'");
                     idb.update("UPDATE Agent SET Omrade = '" + omrID + "' WHERE Agent_ID = '" + agentID + "'");
-
+                    idb.update("UPDATE Agent SET Namn = '" + nyttNamn + "' WHERE Agent_ID = '" + agentID + "'");
+                    
                     // Uppdaterar agentabellen med adminstatus.
                     if (nyttAdmin.contains("Administratör")) {
                         String ja = "J";
@@ -328,7 +345,8 @@ public class UppdateraAgent extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
             }
-        } else {
+        } 
+        }else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
     }//GEN-LAST:event_btnSparaActionPerformed
@@ -373,6 +391,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblLosen;
     private javax.swing.JLabel lblNamn;
+    private javax.swing.JLabel lblNyttNamn;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JLabel lblTele;
     private javax.swing.JLabel lblVisaId;
@@ -382,6 +401,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
     private javax.swing.JMenu menuStartsida;
     private javax.swing.JTextField txtAnsDat;
     private javax.swing.JTextField txtLosenord;
+    private javax.swing.JTextField txtNyttNamn;
     private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
 }

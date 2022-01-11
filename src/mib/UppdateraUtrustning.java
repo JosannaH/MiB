@@ -75,6 +75,8 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
         btnTillbaka = new javax.swing.JToggleButton();
         cmbNamn = new javax.swing.JComboBox<>();
         txtID = new javax.swing.JLabel();
+        txtNyttNamn = new javax.swing.JTextField();
+        lblNyttNamn = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         menuBarInget = new javax.swing.JMenu();
@@ -131,6 +133,10 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
             }
         });
 
+        txtNyttNamn.setText("   ");
+
+        lblNyttNamn.setText("Nytt namn");
+
         menuBarStartsida.setText("Gå till startsida");
         menuBarStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,31 +178,36 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
                             .addComponent(lblPersInfo)
                             .addComponent(btnTillbaka)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(lblTitel))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(90, 90, 90)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEgenskap)
-                            .addComponent(lblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblID)
-                            .addComponent(lblNamn))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblEgenskap)
+                                            .addComponent(lblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblNyttNamn))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnSpara)
+                                            .addComponent(cmbUtrustningsTyp, 0, 152, Short.MAX_VALUE)
+                                            .addComponent(btnValjTyp)
+                                            .addComponent(txtEgenskapInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                            .addComponent(txtNyttNamn))))
+                                .addGap(61, 61, 61)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblID)
+                                    .addComponent(lblNamn))
+                                .addGap(69, 69, 69)
                                 .addComponent(cmbNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
-                                .addComponent(btnSok))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnSpara)
-                                    .addComponent(cmbUtrustningsTyp, 0, 152, Short.MAX_VALUE)
-                                    .addComponent(btnValjTyp)
-                                    .addComponent(txtEgenskapInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                                    .addComponent(txtID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(61, 61, 61)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(295, 295, 295)
-                .addComponent(lblTitel)
+                                .addComponent(btnSok)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -215,6 +226,9 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 113, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnSok)
                                     .addComponent(lblNamn)
@@ -225,6 +239,10 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                                         .addGap(8, 8, 8)))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtNyttNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblNyttNamn))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblTelefon)
@@ -236,9 +254,8 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
                                     .addComponent(txtEgenskapInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblEgenskap))
                                 .addGap(20, 20, 20)
-                                .addComponent(btnSpara))
-                            .addComponent(jLabel1))
-                        .addGap(0, 85, Short.MAX_VALUE))
+                                .addComponent(btnSpara)
+                                .addGap(55, 55, 55))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTillbaka)
@@ -304,6 +321,7 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
             String idText = idb.fetchSingle("SELECT utrustnings_ID FROM utrustning WHERE benamning = '" + namn + "'");
             
             txtID.setText(idText);
+            txtNyttNamn.setText(namn);
 
             // Nedan använder man ArrayList för att hämta information kopplat till den ras som alienID är kopplat till.
             if (vapenLista.contains(idText)) {
@@ -360,6 +378,7 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
             String regUtrustningsID = idb.fetchSingle("SELECT utrustnings_ID FROM utrustning WHERE benamning = '" + namn + "'");
             // Kontrollerar att man har fyllt i tillhörande information (egenskap) om valt vapen. 
             if (regUtrustning.equals("Vapen") && Validering.textFaltHarVarde(txtEgenskapInfo)) {
+                if(Validering.txtFaltHarSiffror(txtEgenskapInfo)){
                 // Lägger till information i tabellen utrustning via metoden laggTill().
                 laggTill();
                 // Beroende på om ID redan finns uppdateras tabellen eller så läggs det till information och raderas från tidigare tabell.
@@ -373,6 +392,7 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
                     if (teknikLista.contains(regUtrustningsID)) {
                         idb.delete("DELETE FROM Teknik WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
                     }
+                }
                 }
             } else if (regUtrustning.equals("Kommunikation") && Validering.textFaltHarVarde(txtEgenskapInfo)) {
                 // Lägger till information i tabellen utrustning via metoden laggTill().
@@ -449,12 +469,10 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
     
     private void laggTill() {
-        String regBenamning = cmbNamn.getSelectedItem().toString();
+        String regBenamning = txtNyttNamn.getText();
         String regUtrustningsID = txtID.getText();
-        try {
-            
+        try {            
             idb.update("UPDATE Utrustning SET Benamning = '" + regBenamning + "' WHERE Utrustnings_ID = '" + regUtrustningsID + "'");
-            
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());
@@ -476,6 +494,7 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
     private javax.swing.JLabel lblEgenskap;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblNamn;
+    private javax.swing.JLabel lblNyttNamn;
     private javax.swing.JLabel lblPersInfo;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JLabel lblTelefon;
@@ -486,5 +505,6 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
     private javax.swing.JMenu menuBarStartsida;
     private javax.swing.JTextField txtEgenskapInfo;
     private javax.swing.JLabel txtID;
+    private javax.swing.JTextField txtNyttNamn;
     // End of variables declaration//GEN-END:variables
 }

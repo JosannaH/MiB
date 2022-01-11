@@ -92,4 +92,23 @@ public class Validering {
        
         return resultat;
     }
+    
+    public static boolean kollaTelefon(String telefon){
+        boolean resultat = true;
+        
+        String[] t = telefon.split("-");
+       
+        try {
+            for(int i = 0; i < t.length; i ++){
+            int j = Integer.parseInt(t[i]);
+            
+        }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att telefonnumret endast består av siffror!");
+            resultat = false;
+        }
+       
+        return resultat;
+    }
 }

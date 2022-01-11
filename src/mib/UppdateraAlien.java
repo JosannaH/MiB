@@ -452,7 +452,9 @@ public class UppdateraAlien extends javax.swing.JFrame {
 
                     // Kontrollerar att beroende på vilken ras man har angett måste även tillhörande fält vara ifyllt. Uppdaterar rastabellen med vald information.
                     if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
+                        if(Validering.txtFaltHarSiffror(txtRasInfo)){
                         uppdatera();
+                        
 
                         // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
                         if (bogloditeLista.contains(idText)) {
@@ -470,9 +472,11 @@ public class UppdateraAlien extends javax.swing.JFrame {
                                 idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
                             }
                         }
+                        }
 
                         // Kontrollerar att beroende på vilken ras man har angett måste även tillhörande fält vara ifyllt. Uppdaterar rastabellen med vald information.
                     } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
+                        if(Validering.txtFaltHarSiffror(txtRasInfo)){
                         uppdatera();
 
                         // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
@@ -490,6 +494,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
                             if (wormLista.contains(idText)) {
                                 idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
                             }
+                        }
                         }
 
                         // Uppdaterar rastabellen med vald information.

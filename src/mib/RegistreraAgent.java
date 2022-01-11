@@ -238,7 +238,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
                 && Validering.textFaltHarVarde(txtLosen1) && Validering.textFaltHarVarde(txtLosen2)) {
             SQL s = new SQL(idb);
             // Kollar så att agentnamnet inte redan finns
-            if (s.namnFinnsInteAgent(txtNamnSvar)) {
+            if (s.namnFinnsInteAgent(txtNamnSvar)) {            
 
                 // Hämtar alla användarinmatningar
                 String agentID = lblID.getText();
@@ -250,6 +250,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
                 String regLosen1 = txtLosen1.getText();
                 String regLosen2 = txtLosen2.getText();
                 // Kollar att användaren angett samma lösenord i båda textfields
+                if(Validering.kollaTelefon(regTel)){
                 if(Validering.kollaDatumFormat(regDatum)){
                 if (regLosen1.equals(regLosen2)) {
                     // Kollar att lösenordet har rätt längd
@@ -280,6 +281,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Lösenorden stämmer inte överens!");
                 }
+            }
             }
             }
         } else {

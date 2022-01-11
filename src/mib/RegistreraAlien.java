@@ -353,18 +353,22 @@ public class RegistreraAlien extends javax.swing.JFrame {
                             String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn = '" + regAnsAgent + "'");
                             // Körs om alien är Boglodite, textfältet med rasinfo måste vara ifyllt
                             if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
+                                if(Validering.txtFaltHarSiffror(txtRasInfo)){
                                 // lägger till alien i databasen, i tabellen för alien och i tabellen för rasen
                                 idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
                                 idb.insert("INSERT INTO Boglodite VALUES ('" + regAlienIDGet + "', '" + rasInfo + "')");
                                 JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
                                 // Användaren skickas tillbaka till föregående sida
                                 btnTillbakaActionPerformed(evt);
+                                }
 
                             } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
+                                if(Validering.txtFaltHarSiffror(txtRasInfo)){
                                 idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
                                 idb.insert("INSERT INTO Squid VALUES ('" + regAlienIDGet + "', '" + rasInfo + "')");
                                 JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
                                 btnTillbakaActionPerformed(evt);
+                                }
 
                                 // Ingen rasinfo behöver fyllas i för rasen Worm
                             } else if (regRas.equals("Worm")) {
