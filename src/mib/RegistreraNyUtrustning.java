@@ -61,7 +61,6 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuTillStart = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
-        menuBarInloggad = new javax.swing.JMenu();
         menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -117,11 +116,8 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         });
         jMenuBar1.add(menuTillStart);
 
-        jMenu1.setText("                                                                                                                                   ");
+        jMenu1.setText("                                                                                                                                                                               ");
         jMenuBar1.add(jMenu1);
-
-        menuBarInloggad.setText("Inloggad som XXX");
-        jMenuBar1.add(menuBarInloggad);
 
         menuLoggaUt.setText("Logga ut");
         menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -403,7 +399,6 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
     private javax.swing.JLabel lblUtrustning;
     private javax.swing.JLabel lblUtrustningID;
     private javax.swing.JLabel lblUtrustningsTyp;
-    private javax.swing.JMenu menuBarInloggad;
     private javax.swing.JMenu menuLoggaUt;
     private javax.swing.JMenu menuTillStart;
     private javax.swing.JToggleButton tbValjTyp;

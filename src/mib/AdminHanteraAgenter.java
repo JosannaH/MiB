@@ -21,8 +21,6 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuInlogg.setText("");
-
     }
 
     /**
@@ -47,7 +45,6 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         menuInget = new javax.swing.JMenu();
-        menuInlogg = new javax.swing.JMenu();
         menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,11 +118,8 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         });
         jMenuBar1.add(menuStartsida);
 
-        menuInget.setText("                                                                                                                                               ");
+        menuInget.setText("                                                                                                                                                                                  ");
         jMenuBar1.add(menuInget);
-
-        menuInlogg.setText("Inloggad som administratör");
-        jMenuBar1.add(menuInlogg);
 
         menuLoggaUt.setText("Logga ut");
         menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -276,7 +270,6 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
     private javax.swing.JLabel lblBild;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JMenu menuInget;
-    private javax.swing.JMenu menuInlogg;
     private javax.swing.JMenu menuLoggaUt;
     private javax.swing.JMenu menuStartsida;
     // End of variables declaration//GEN-END:variables
