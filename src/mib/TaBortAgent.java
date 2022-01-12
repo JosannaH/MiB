@@ -249,7 +249,12 @@ public class TaBortAgent extends javax.swing.JFrame {
      * Sök agent utifrån ID
      */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-
+        txtAreaAliens.setText("");
+        cmbNyAnsvarig.setVisible(false);
+        lblDennaAgent.setVisible(false);
+        lblVanligenAnge.setVisible(false);
+        lblDennaAgent.setVisible(false);
+        cmbNyAnsvarig.removeAllItems();
         // Hämtar agentnamn som användaren söker efter
         String soktNamn = cmbAgenter.getSelectedItem().toString();
 
@@ -270,6 +275,8 @@ public class TaBortAgent extends javax.swing.JFrame {
             // Visa info och val gällande att byta ansvarig agent
             cmbNyAnsvarig.setVisible(true);
             txtAreaAliens.setVisible(true);
+            lblDennaAgent.setVisible(true);
+            lblVanligenAnge.setVisible(true);
             lblDennaAgent.setText("Denna agent är ansvarig över en eller flera aliens.");
             lblVanligenAnge.setText("Vänligen ange en ny ansvarig agent för dessa aliens:");
             // fyll combobox med agenter att välja mellan
@@ -285,9 +292,10 @@ public class TaBortAgent extends javax.swing.JFrame {
      * agenten
      */
     private void btnTaBortAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortAgentMouseClicked
-
-        if (cmbNyAnsvarig.equals(anvId)) {
-// Kollar om lösenord är ifyllt
+        String namn = cmbAgenter.getSelectedItem().toString();
+        // kollar så att agenten inte försöker ta bort sig själv
+        if (!agentensID.equals(anvId)) {
+            // Kollar om lösenord är ifyllt
             if (Validering.textFaltHarVarde(txtLosenord)) {
                 // Tar in lösenordet som användaren angett
                 String losenord = txtLosenord.getText();
@@ -298,52 +306,53 @@ public class TaBortAgent extends javax.swing.JFrame {
 
                 String nyAnsvarig = "";
 
-                try {
-                    // Hämtar ev aliens som agent är ansvarig över från databasen
-                    harAnsvar = idb.fetchRows("SELECT alien_ID FROM alien WHERE ansvarig_agent = " + agentensID + " ORDER BY alien_ID ASC");
-                    // Om det finns aliens i listan så hämtas namnet på den agent som användaren vill ska bli ny ansvarig över dessa aliens
-                    if (!harAnsvar.isEmpty()) {
-                        nyAnsvarig = cmbNyAnsvarig.getSelectedItem().toString();
-                    }
-
-                    // Hämta lösen från DB att jämföra med det som användaren angett
-                    losenordDB = idb.fetchSingle("SELECT losenord FROM agent WHERE agent_ID =" + anvId);
-                } catch (InfException e) { // Fångar upp felaktiga databasfrågor
-                    JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    System.out.println("Internt felmeddelande: Hämta lösenord från DB" + e.getMessage());
-                }
-                // Kontrollera att användare angett rätt lösenord
-                if (losenord.equals(losenordDB)) {
+                nyAnsvarig = cmbNyAnsvarig.getSelectedItem().toString();
+                // Kolla så att den nya ansvariga inte är samma som den agent som ska tas bort
+                if (!nyAnsvarig.equals(namn)) {
                     try {
+                        // Hämtar ev aliens som agent är ansvarig över från databasen
+                        harAnsvar = idb.fetchRows("SELECT alien_ID FROM alien WHERE ansvarig_agent = " + agentensID + " ORDER BY alien_ID ASC");
 
-                        // hämta agentID för ny ansvarig agent
-                        String nyID = idb.fetchSingle("SELECT agent_ID FROM agent WHERE namn = '" + nyAnsvarig + "'");
-                        // uppdatera ansvarig agent för aliens
-                        idb.update("UPDATE alien SET ansvarig_agent = " + nyID + " WHERE ansvarig_agent = " + agentensID);
-                        //Ta bort agenten i relaterade tabeller
-                        idb.delete("DELETE FROM faltagent WHERE agent_ID = " + agentensID);
-                        idb.delete("DELETE FROM innehar_fordon WHERE agent_ID = " + agentensID);
-                        idb.delete("DELETE FROM innehar_utrustning WHERE agent_ID = " + agentensID);
-                        idb.delete("DELETE FROM kontorschef WHERE agent_ID = " + agentensID);
-                        idb.delete("DELETE FROM omradeschef WHERE agent_ID = " + agentensID);
-                        // Ta bort agenten från tabellen Agent
-                        idb.delete("DELETE FROM agent WHERE agent_ID = " + agentensID);
-                        // Bekräftelse till användaren att agenten tagits bort
-                        JOptionPane.showMessageDialog(null, agentNamn + " med ID " + agentensID + " är nu borttagen");
-                        // Skickar tillbaka anv till föregående sida
-                        btnGaTillbakaMouseClicked(evt);
-                    } catch (InfException e) {
+                        // Hämta lösen från DB att jämföra med det som användaren angett
+                        losenordDB = idb.fetchSingle("SELECT losenord FROM agent WHERE agent_ID =" + anvId);
+                    } catch (InfException e) { // Fångar upp felaktiga databasfrågor
                         JOptionPane.showMessageDialog(null, "Något gick fel!");
-                        System.out.println("Internt felmeddelande:" + e.getMessage());
+                        System.out.println("Internt felmeddelande: Hämta lösenord från DB" + e.getMessage());
+                    }
+                    // Kontrollera att användare angett rätt lösenord
+                    if (losenord.equals(losenordDB)) {
+                        try {
+                            // hämta agentID för ny ansvarig agent
+                            String nyID = idb.fetchSingle("SELECT agent_ID FROM agent WHERE namn = '" + nyAnsvarig + "'");
+                            // uppdatera ansvarig agent för aliens
+                            idb.update("UPDATE alien SET ansvarig_agent = " + nyID + " WHERE ansvarig_agent = " + agentensID);
+                            //Ta bort agenten i relaterade tabeller
+                            idb.delete("DELETE FROM faltagent WHERE agent_ID = " + agentensID);
+                            idb.delete("DELETE FROM innehar_fordon WHERE agent_ID = " + agentensID);
+                            idb.delete("DELETE FROM innehar_utrustning WHERE agent_ID = " + agentensID);
+                            idb.delete("DELETE FROM kontorschef WHERE agent_ID = " + agentensID);
+                            idb.delete("DELETE FROM omradeschef WHERE agent_ID = " + agentensID);
+                            // Ta bort agenten från tabellen Agent
+                            idb.delete("DELETE FROM agent WHERE agent_ID = " + agentensID);
+                            // Bekräftelse till användaren att agenten tagits bort
+                            JOptionPane.showMessageDialog(null, namn + " med ID " + agentensID + " är nu borttagen");
+                            // Skickar tillbaka anv till föregående sida
+                            btnGaTillbakaMouseClicked(evt);
+                        } catch (InfException e) {
+                            JOptionPane.showMessageDialog(null, "Något gick fel!");
+                            System.out.println("Internt felmeddelande:" + e.getMessage());
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Du har angett fel lösenord, försök igen.");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Du har angett fel lösenord, försök igen.");
+                    JOptionPane.showMessageDialog(null, "Den nya ansvariga agenten kan inte vara samma som den agent du vill ta bort.");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Du måste fylla i ditt lösenord!");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Du kan inte redera dig själv, be någon annan att göra det!");
+            JOptionPane.showMessageDialog(null, "Du kan inte radera dig själv, be någon annan att göra det!");
         }
     }//GEN-LAST:event_btnTaBortAgentMouseClicked
 
