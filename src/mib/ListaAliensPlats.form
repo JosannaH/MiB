@@ -15,12 +15,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="                                                                                 "/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="menuBarInloggadSom">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Inloggad som XXX"/>
+            <Property name="text" type="java.lang.String" value="                                                                                                                                                   "/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuBarLoggaUt">

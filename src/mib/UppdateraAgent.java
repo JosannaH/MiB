@@ -24,7 +24,6 @@ public class UppdateraAgent extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuInlogg.setText("Inloggad som " + anvTyp);
 
         // Gör rubriken osynlig vid uppstart av denna klass.
         lblErrorEmpty.setVisible(false);
@@ -67,7 +66,6 @@ public class UppdateraAgent extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         menuInget = new javax.swing.JMenu();
-        menuInlogg = new javax.swing.JMenu();
         menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -131,11 +129,8 @@ public class UppdateraAgent extends javax.swing.JFrame {
         });
         jMenuBar1.add(menuStartsida);
 
-        menuInget.setText("                                                                                                                                    ");
+        menuInget.setText("                                                                                                                                                                              ");
         jMenuBar1.add(menuInget);
-
-        menuInlogg.setText("Inloggad som Admin");
-        jMenuBar1.add(menuInlogg);
 
         menuLoggaUt.setText("Logga ut");
         menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -403,7 +398,6 @@ public class UppdateraAgent extends javax.swing.JFrame {
     private javax.swing.JLabel lblTele;
     private javax.swing.JLabel lblVisaId;
     private javax.swing.JMenu menuInget;
-    private javax.swing.JMenu menuInlogg;
     private javax.swing.JMenu menuLoggaUt;
     private javax.swing.JMenu menuStartsida;
     private javax.swing.JTextField txtAnsDat;

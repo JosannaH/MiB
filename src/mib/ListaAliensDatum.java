@@ -27,7 +27,6 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuBarInloggadSom.setText("Inloggad som " + anvTyp);
     }
 
     /**
@@ -55,7 +54,6 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         menuBarTillStartsida = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        menuBarInloggadSom = new javax.swing.JMenu();
         menuBarLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,11 +107,8 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         });
         menuBar.add(menuBarTillStartsida);
 
-        jMenu5.setText("                                                                                 ");
+        jMenu5.setText("                                                                                                                                                 ");
         menuBar.add(jMenu5);
-
-        menuBarInloggadSom.setText("Inloggad som XXX");
-        menuBar.add(menuBarInloggadSom);
 
         menuBarLoggaUt.setText("Logga ut");
         menuBarLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -263,7 +258,6 @@ public class ListaAliensDatum extends javax.swing.JFrame {
     private javax.swing.JLabel lblTill;
     private javax.swing.JLabel lblTillTip;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenu menuBarInloggadSom;
     private javax.swing.JMenu menuBarLoggaUt;
     private javax.swing.JMenu menuBarTillStartsida;
     private javax.swing.JTextField txtFran;

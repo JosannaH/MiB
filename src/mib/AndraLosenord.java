@@ -23,7 +23,6 @@ public class AndraLosenord extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuInloggad.setText("Inloggad som " + anvTyp);
     }
 
     /**
@@ -49,7 +48,6 @@ public class AndraLosenord extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuTillStartsida = new javax.swing.JMenu();
         menuInget = new javax.swing.JMenu();
-        menuInloggad = new javax.swing.JMenu();
         menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,11 +87,8 @@ public class AndraLosenord extends javax.swing.JFrame {
         });
         jMenuBar1.add(menuTillStartsida);
 
-        menuInget.setText("                                                                                                              ");
+        menuInget.setText("                                                                                                                                      ");
         jMenuBar1.add(menuInget);
-
-        menuInloggad.setText("Inloggad som XXX");
-        jMenuBar1.add(menuInloggad);
 
         menuLoggaUt.setText("Logga ut");
         menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -271,7 +266,6 @@ public class AndraLosenord extends javax.swing.JFrame {
     private javax.swing.JLabel lblNyttLosen;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JMenu menuInget;
-    private javax.swing.JMenu menuInloggad;
     private javax.swing.JMenu menuLoggaUt;
     private javax.swing.JMenu menuTillStartsida;
     private javax.swing.JPasswordField pwNuvLosen;

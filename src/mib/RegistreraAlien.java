@@ -41,8 +41,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
         // Döljer comboboxar som endast ska synas för vissa raser
         txtRasInfo.setVisible(false);
         lblRasInfo.setVisible(false);
-        // Text som visas i manuBar
-        menuBarInlogg.setText("Inloggad som " + anvTyp);
     }
 
     /**
@@ -86,7 +84,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         menuBarTomt = new javax.swing.JMenu();
-        menuBarInlogg = new javax.swing.JMenu();
         menuBarLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -158,11 +155,8 @@ public class RegistreraAlien extends javax.swing.JFrame {
         });
         jMenuBar1.add(menuBarStartsida);
 
-        menuBarTomt.setText("                                                                                                               ");
+        menuBarTomt.setText("                                                                                                                                                         ");
         jMenuBar1.add(menuBarTomt);
-
-        menuBarInlogg.setText("Inloggad som Agent");
-        jMenuBar1.add(menuBarInlogg);
 
         menuBarLoggaUt.setText("Logga ut");
         menuBarLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -526,7 +520,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTitel;
     private javax.swing.JLabel lblUpprepaLosen;
-    private javax.swing.JMenu menuBarInlogg;
     private javax.swing.JMenu menuBarLoggaUt;
     private javax.swing.JMenu menuBarStartsida;
     private javax.swing.JMenu menuBarTomt;

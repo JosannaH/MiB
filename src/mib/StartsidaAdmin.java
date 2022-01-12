@@ -24,7 +24,6 @@ public class StartsidaAdmin extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuInlogg.setText("Inloggad som " + anvTyp);
     }
 
     /**
@@ -45,7 +44,6 @@ public class StartsidaAdmin extends javax.swing.JFrame {
         lblHantera = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuInget = new javax.swing.JMenu();
-        menuInlogg = new javax.swing.JMenu();
         menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,11 +84,8 @@ public class StartsidaAdmin extends javax.swing.JFrame {
         lblHantera.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         lblHantera.setText("Hantera ...");
 
-        menuInget.setText("                                                                                                                                                                                                        ");
+        menuInget.setText("                                                                                                                                                                                                                                                    ");
         jMenuBar1.add(menuInget);
-
-        menuInlogg.setText("Inloggad som Admin");
-        jMenuBar1.add(menuInlogg);
 
         menuLoggaUt.setText("Logga ut");
         menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -198,7 +193,6 @@ public class StartsidaAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblHantera;
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JMenu menuInget;
-    private javax.swing.JMenu menuInlogg;
     private javax.swing.JMenu menuLoggaUt;
     // End of variables declaration//GEN-END:variables
 }
