@@ -308,49 +308,52 @@ public class UppdateraAgent extends javax.swing.JFrame {
             String nyttAnsDat = txtAnsDat.getText();
             String nyttAdmin = cmbAdmin.getSelectedItem().toString();
             String nyttNamn = txtNyttNamn.getText();
+            SQL s = new SQL(idb);
+            // Kollar om det redan finns en agent med det nya namnet
+            if (s.namnFinnsInteAgent(txtNyttNamn)) {
+                // Kontrollerar att datum har rätt format.
+                if (Validering.kollaDatumFormat(nyttAnsDat)) {
+                    // Kontrollerar att lösenordet uppfyller nedanstående krav. 
 
-            // Kontrollerar att datum har rätt format.
-            if (Validering.kollaDatumFormat(nyttAnsDat)) {
-                // Kontrollerar att lösenordet uppfyller nedanstående krav. 
+                    if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
 
-                if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
+                        try {
+                            // Hämtar områdesID från databasen. 
+                            String omrID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + nyttOmrade + "'");
 
-                    try {
-                        // Hämtar områdesID från databasen. 
-                        String omrID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + nyttOmrade + "'");
+                            // Uppdaterar agenttabellen med fältens angedda värden. 
+                            idb.update("UPDATE Agent SET Losenord = '" + nyttLosen + "' WHERE Agent_ID = '" + agentID + "'");
+                            idb.update("UPDATE Agent SET Telefon = '" + nyttTele + "' WHERE Agent_ID = '" + agentID + "'");
+                            idb.update("UPDATE Agent SET Anstallningsdatum = '" + nyttAnsDat + "' WHERE Agent_ID = '" + agentID + "'");
+                            idb.update("UPDATE Agent SET Omrade = '" + omrID + "' WHERE Agent_ID = '" + agentID + "'");
+                            idb.update("UPDATE Agent SET Namn = '" + nyttNamn + "' WHERE Agent_ID = '" + agentID + "'");
 
-                        // Uppdaterar agenttabellen med fältens angedda värden. 
-                        idb.update("UPDATE Agent SET Losenord = '" + nyttLosen + "' WHERE Agent_ID = '" + agentID + "'");
-                        idb.update("UPDATE Agent SET Telefon = '" + nyttTele + "' WHERE Agent_ID = '" + agentID + "'");
-                        idb.update("UPDATE Agent SET Anstallningsdatum = '" + nyttAnsDat + "' WHERE Agent_ID = '" + agentID + "'");
-                        idb.update("UPDATE Agent SET Omrade = '" + omrID + "' WHERE Agent_ID = '" + agentID + "'");
-                        idb.update("UPDATE Agent SET Namn = '" + nyttNamn + "' WHERE Agent_ID = '" + agentID + "'");
+                            // Uppdaterar agentabellen med adminstatus.
+                            if (nyttAdmin.contains("Administratör")) {
+                                String ja = "J";
+                                idb.update("UPDATE Agent SET Administrator = '" + ja + "'WHERE Agent_ID = '" + agentID + "'");
+                            } else if (nyttAdmin.contains("Agentstandard")) {
+                                String nej = "N";
+                                idb.update("UPDATE Agent SET Administrator = '" + nej + "' WHERE Agent_ID = '" + agentID + "'");
+                            }
 
-                        // Uppdaterar agentabellen med adminstatus.
-                        if (nyttAdmin.contains("Administratör")) {
-                            String ja = "J";
-                            idb.update("UPDATE Agent SET Administrator = '" + ja + "'WHERE Agent_ID = '" + agentID + "'");
-                        } else if (nyttAdmin.contains("Agentstandard")) {
-                            String nej = "N";
-                            idb.update("UPDATE Agent SET Administrator = '" + nej + "' WHERE Agent_ID = '" + agentID + "'");
+                            // Utskrift när en uppdatering är genomförd. 
+                            JOptionPane.showMessageDialog(null, "Lyckad uppdatering!");
+                            btnTillbakaActionPerformed(evt);
+                        } // Felmeddelande skrivs ut till användaren om att något gick fel.
+                        catch (InfException e) {
+                            JOptionPane.showMessageDialog(null, "Något gick fel!");
+                            System.out.println("Internt felmeddelande" + e.getMessage());
                         }
-
-                        // Utskrift när en uppdatering är genomförd. 
-                        JOptionPane.showMessageDialog(null, "Lyckad uppdatering!");
-                        btnTillbakaActionPerformed(evt);
-                    } // Felmeddelande skrivs ut till användaren om att något gick fel.
-                    catch (InfException e) {
-                        JOptionPane.showMessageDialog(null, "Något gick fel!");
-                        System.out.println("Internt felmeddelande" + e.getMessage());
+                    } // Felmeddelande om att lösenordet har skrivits in fel. 
+                    else {
+                        JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                     }
-                } // Felmeddelande om att lösenordet har skrivits in fel. 
-                else {
-                    JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                 }
+            } // Information till användaren om att alla fält behöver ha ett värde.
+            else {
+                JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
             }
-        } // Information till användaren om att alla fält behöver ha ett värde.
-        else {
-            JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
     }//GEN-LAST:event_btnSparaActionPerformed
 
