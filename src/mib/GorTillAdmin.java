@@ -235,8 +235,7 @@ public class GorTillAdmin extends javax.swing.JFrame {
         try {
             //Här hämtas lösenordet från databasen för att jämföra med det inmatade.
             losenordDB = idb.fetchSingle("SELECT losenord FROM agent WHERE agent_ID =" + anvId);
-        } 
-        //Kan inte lösenordet hämtas visas denna dialogruta.
+        } //Kan inte lösenordet hämtas visas denna dialogruta.
         catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: Hämta lösenord från DB" + e.getMessage());
