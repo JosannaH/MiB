@@ -13,16 +13,19 @@ import oru.inf.InfException;
  * @author Josanna, Linda & Lisa
  */
 public class VisaOmradesChef extends javax.swing.JFrame {
-
+    
     private InfDB idb;
     private String anvId;
     private String anvTyp;
-
+    
     public VisaOmradesChef(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+
+        // Gör rubriken osynlig vid uppstart av klassen.
+        lblTele.setVisible(false);
 
         // Anropar en metod från klassen SQL. Metoden fyller rullisten områden med information från databasen.
         SQL s = new SQL(idb);
@@ -45,6 +48,8 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         btnSokOmrade = new javax.swing.JToggleButton();
         lblNorden = new javax.swing.JLabel();
         lblChef = new javax.swing.JLabel();
+        lblTele = new javax.swing.JLabel();
+        lblTelefon = new javax.swing.JLabel();
         menuBar1 = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -75,6 +80,10 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         lblNorden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/norden_karta.png"))); // NOI18N
 
         lblChef.setText("                    ");
+
+        lblTele.setText("Telefonnummer:");
+
+        lblTelefon.setText("     ");
 
         menuBarStartsida.setText("Gå till Startsida");
         menuBarStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,26 +119,32 @@ public class VisaOmradesChef extends javax.swing.JFrame {
                         .addGap(192, 192, 192)
                         .addComponent(lblRubrikOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(111, 111, 111)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(71, 71, 71)
-                                        .addComponent(btnSokOmrade))
+                                        .addGap(111, 111, 111)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(71, 71, 71)
+                                                .addComponent(btnSokOmrade))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblOmrade)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblOmrade)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cmbOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(lblChef)))
-                        .addGap(38, 38, 38)
-                        .addComponent(lblNorden))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(btnTillbaka)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                                        .addGap(35, 35, 35)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblChef)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblTele)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(lblTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNorden))
+                            .addComponent(btnTillbaka))))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,6 +163,10 @@ public class VisaOmradesChef extends javax.swing.JFrame {
                 .addComponent(btnSokOmrade)
                 .addGap(46, 46, 46)
                 .addComponent(lblChef)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTele)
+                    .addComponent(lblTelefon))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTillbaka)
                 .addContainerGap())
@@ -168,9 +187,13 @@ public class VisaOmradesChef extends javax.swing.JFrame {
             String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + omraden + "'");
             String agentID = idb.fetchSingle("SELECT Agent_ID FROM omradeschef WHERE Omrade =" + omradesID);
             String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID =" + agentID);
+            String tele = idb.fetchSingle("SELECT Telefon FROM agent WHERE Agent_ID =" + agentID);
 
-            // Gör rubriken synlig och fyller den med information om valt område. 
+            // Gör rubrik synlig och fyller den med information om valt område. 
+            lblTele.setVisible(true);
             lblChef.setText("Områdeschef för " + omraden + " är " + agentNamn + "");
+            lblTelefon.setText(tele);
+            
         } // Om något går fel visas information om detta.
         catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -185,18 +208,37 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuBarLoggaUtMouseClicked
 
-    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
+    /**
+     * Går tillbaka till startsidan. Metod som kontrollerar om användaren är
+     * admin eller agent anropas från klassen SQL.
+     *
+     * @param evt
+     */
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
-        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
-        startsidaAgent.setVisible(true);
+        SQL s = new SQL(idb);
+        s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
 
-    // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAgent i nytt fönster.
+    /**
+     * Går tillbaka till startsidan. Olika sidor beroende på om agenten är admin
+     * eller inte
+     *
+     * @param evt
+     */
     private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
+        SQL s = new SQL(idb);
+        // anropar en metod som kollar om agent är admin eller inte
+        boolean admin = s.arAdmin(anvId);
         setVisible(false);
-        StartsidaAgent startsidaAgent = new StartsidaAgent(idb, anvId, anvTyp);
-        startsidaAgent.setVisible(true);
+        
+        if (admin) {
+            AdminHanteraAgenter h = new AdminHanteraAgenter(idb, anvId, anvTyp);
+            h.setVisible(true);
+        } else {
+            StartsidaAgent h = new StartsidaAgent(idb, anvId, anvTyp);
+            h.setVisible(true);
+        }        
     }//GEN-LAST:event_btnTillbakaMouseClicked
 
     /**
@@ -213,6 +255,8 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     private javax.swing.JLabel lblNorden;
     private javax.swing.JLabel lblOmrade;
     private javax.swing.JLabel lblRubrikOmrade;
+    private javax.swing.JLabel lblTele;
+    private javax.swing.JLabel lblTelefon;
     private javax.swing.JMenuBar menuBar1;
     private javax.swing.JMenu menuBarLoggaUt;
     private javax.swing.JMenu menuBarStartsida;
