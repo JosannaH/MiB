@@ -39,7 +39,6 @@ public class StartsidaAlien extends javax.swing.JFrame {
         btnVisaChef = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,9 +70,6 @@ public class StartsidaAlien extends javax.swing.JFrame {
 
         jMenu5.setText("                                                                                                                                                             ");
         jMenuBar1.add(jMenu5);
-
-        jMenu3.setText("Inloggad som Alien");
-        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -150,7 +146,6 @@ public class StartsidaAlien extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnLoggaUt;
     private javax.swing.JToggleButton btnVisaChef;
     private javax.swing.JToggleButton btnandraLosen;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblAlienBild;

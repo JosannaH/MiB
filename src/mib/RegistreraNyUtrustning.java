@@ -30,8 +30,6 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         // Döljer fält som endast ska visas beroende på vilken typ av utrustning man valt att registrera
         txtEgenskap.setVisible(false);
         lblEgenskap.setVisible(false);
-        // Visar om du är inloggad som agent eller alien
-        menuBarInloggad.setText("Inloggad som " + anvTyp);
     }
 
     /**

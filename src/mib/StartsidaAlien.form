@@ -9,11 +9,6 @@
             <Property name="text" type="java.lang.String" value="                                                                                                                                                             "/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Inloggad som Alien"/>
-          </Properties>
-        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>

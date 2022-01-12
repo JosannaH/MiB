@@ -42,7 +42,6 @@ public class StartsidaAgent extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
         menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,11 +83,8 @@ public class StartsidaAgent extends javax.swing.JFrame {
         menuBar.add(jMenu1);
         menuBar.add(jMenu2);
 
-        jMenu5.setText("                                                                                                                           ");
+        jMenu5.setText("                                                                                                                                                              ");
         menuBar.add(jMenu5);
-
-        jMenu3.setText("Inloggad som Agent");
-        menuBar.add(jMenu3);
 
         menuLoggaUt.setText("Logga ut");
         menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -188,7 +184,6 @@ public class StartsidaAgent extends javax.swing.JFrame {
     private javax.swing.JButton btnUtrustning;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JLabel lblAgentBild;
     private javax.swing.JLabel lblRubrik;
