@@ -169,18 +169,20 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
             // Hämtar information från databasen.
             String chef = idb.fetchSingle("SELECT Agent_ID FROM omradeschef WHERE Omrade = '" + omrade + "'");
             String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID ='" + chef + "'");
+
             // Fyller fältet med den information som hämtats från databasen.
             lblChef2.setText(agentNamn);
 
             // Hämtar information från databasen.
             String namn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID = '" + chef + "'");
             String telefon = idb.fetchSingle("SELECT Telefon FROM agent WHERE Agent_ID = '" + chef + "'");
-            
+
             // Fyller fälten med den information som hämtats från databasen.
             lblChef2.setText(namn);
             lblTelefon2.setText(telefon);
 
-        } catch (InfException e) {
+        } // Felmeddelande skrivs ut för användaren om något går fel.
+        catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }

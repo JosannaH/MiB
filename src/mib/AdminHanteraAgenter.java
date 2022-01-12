@@ -45,6 +45,7 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         btnRadera = new javax.swing.JButton();
         btnUppdateraChef = new javax.swing.JButton();
         btnAdmin = new javax.swing.JButton();
+        btnOmradesChef = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         menuInget = new javax.swing.JMenu();
@@ -107,6 +108,13 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
             }
         });
 
+        btnOmradesChef.setText("Visa områdeschefer");
+        btnOmradesChef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOmradesChefActionPerformed(evt);
+            }
+        });
+
         menuStartsida.setText("Gå till startsida");
         menuStartsida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -141,16 +149,18 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
                     .addComponent(lblRubrik)
                     .addComponent(lblBild))
                 .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnRadera, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnRegistrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnUppdateraAgent, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
-                        .addComponent(btnSok, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnUppdateraChef, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnTillbaka))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRadera, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnRegistrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnUppdateraAgent, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+                            .addComponent(btnSok, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUppdateraChef, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnTillbaka))
+                    .addComponent(btnOmradesChef, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -172,7 +182,9 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
                         .addComponent(btnAdmin)
                         .addGap(18, 18, 18)
                         .addComponent(btnUppdateraChef)
-                        .addGap(46, 46, 46)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnOmradesChef)
+                        .addGap(18, 18, 18)
                         .addComponent(btnTillbaka))
                     .addComponent(lblBild))
                 .addContainerGap(43, Short.MAX_VALUE))
@@ -243,12 +255,19 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         g.setVisible(true);
     }//GEN-LAST:event_btnAdminMouseClicked
 
+    private void btnOmradesChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOmradesChefActionPerformed
+        setVisible(false);
+        VisaOmradesChef c = new VisaOmradesChef(idb, anvId, anvTyp);
+        c.setVisible(true);
+    }//GEN-LAST:event_btnOmradesChefActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnOmradesChef;
     private javax.swing.JButton btnRadera;
     private javax.swing.JButton btnRegistrera;
     private javax.swing.JButton btnSok;

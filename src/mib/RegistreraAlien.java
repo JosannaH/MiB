@@ -443,6 +443,10 @@ public class RegistreraAlien extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbValjRasMouseClicked
 
+    /**
+     * Går tillbaka till startsidan. Metod som kontrollerar om användaren är admin eller agent anropas från klassen SQL.
+     * @param evt 
+     */
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
         SQL s = new SQL(idb);

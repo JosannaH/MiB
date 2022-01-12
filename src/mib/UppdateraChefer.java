@@ -12,9 +12,6 @@ import oru.inf.InfDB;
  */
 public class UppdateraChefer extends javax.swing.JFrame {
 
-    /**
-     * Creates new form UppdateraChefer
-     */
     private InfDB idb;
     private String anvId;
     private String anvTyp;
@@ -25,6 +22,8 @@ public class UppdateraChefer extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+
+        // Menyfält fylls med information om vad du är inloggad som.
         menuBarInloggadSom.setText("Inloggad som " + anvTyp);
 
         // Döljer fönster som inte ska visas vid start.
@@ -296,7 +295,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
         // om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
         cmbNyChef.removeAllItems();
 
-        // hämta användarens val av område samt anropa metod för att visa vem som är chef där
+        // hämta användarens val av område samt anropa metod från klassen SQL för att visa vem som är chef där
         omradePlats = cmbOmrade.getSelectedItem().toString();
         SQL s = new SQL(idb);
         s.getOmradeschef(lblNuvChef, omradePlats);
@@ -313,7 +312,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
         setVisibleNyChef(true);
         btnBekraftaVal.setText("Bekräfta kontorschef");
 
-        //om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
+        // om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
         cmbNyChef.removeAllItems();
 
         // hämta användarens val av plats och visa vem som är chef där
@@ -330,9 +329,9 @@ public class UppdateraChefer extends javax.swing.JFrame {
         // dölj det som inte har med välja område att göra
         setVisibleUppdateraPlats(false);
         setVisibleNyChef(false);
-        //om en ändring redan gjorts så döljs den bekräftelsen inför en ny sökning
+        // om en ändring redan gjorts så döljs den bekräftelsen inför en ny sökning
         lblNyChefAr.setVisible(false);
-        //om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
+        // om comboboxen redan är ifylld så töms den för att det inte ska bli dubletter
         cmbOmrade.removeAllItems();
         // visa det som behövs för att användaren ska kunna välja område
         setVisibleUppdateraOmrade(true);
@@ -345,13 +344,16 @@ public class UppdateraChefer extends javax.swing.JFrame {
      */
     private void btnBekraftaValMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBekraftaValMouseClicked
 
+        // Hämtar information från ComboBox.
         String nyChef = cmbNyChef.getSelectedItem().toString();
+
         SQL s = new SQL(idb);
+
+        // Baserat på val uppdateras chef från metod i klassen SQL.
         if (btnBekraftaVal.getText().equals("Bekräfta kontorschef")) {
             s.uppdateraKontorschef(nyChef, omradePlats, lblNyChefAr);
         } else {
             s.uppdateraOmradeschef(nyChef, omradePlats, lblNyChefAr);
-
         }
     }//GEN-LAST:event_btnBekraftaValMouseClicked
 
@@ -368,6 +370,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
             btnValjOmrade.setVisible(false);
             cmbOmrade.setVisible(false);
         } else {
+            // visar områdesval-knapp, lbl och combobox
             lblOmrade.setVisible(true);
             btnValjOmrade.setVisible(true);
             cmbOmrade.setVisible(true);
@@ -387,6 +390,7 @@ public class UppdateraChefer extends javax.swing.JFrame {
             btnValjKontor.setVisible(false);
             cmbKontor.setVisible(false);
         } else {
+            // visar platsval-knapp, lbl och combobox
             lblKontor.setVisible(true);
             btnValjKontor.setVisible(true);
             cmbKontor.setVisible(true);
@@ -401,17 +405,18 @@ public class UppdateraChefer extends javax.swing.JFrame {
      */
     private void setVisibleNyChef(boolean bool) {
         if (bool == false) {
+            // dölj ev väljknapp, lbl och combobox
             lblNuvChef.setVisible(false);
             lblValjNy.setVisible(false);
             cmbNyChef.setVisible(false);
             btnBekraftaVal.setVisible(false);
         } else {
+            // visar väljknapp, lbl och combobox
             lblNuvChef.setVisible(true);
             lblValjNy.setVisible(true);
             cmbNyChef.setVisible(true);
             btnBekraftaVal.setVisible(true);
         }
-
     }
     /**
      * @param args the command line arguments
