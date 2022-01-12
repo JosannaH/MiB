@@ -205,28 +205,27 @@ public class AndraLosenord extends javax.swing.JFrame {
                 try {
                     //Lösenordet som tillhör individen hämtas ur databasen.
                     losenFranDB = idb.fetchSingle("SELECT Losenord FROM " + anvTyp + " WHERE " + anvTyp + "_ID=" + anvandare);
-                    
-                    //If-sats som kontrollerar att det nya lösenordet som angetts inte är detsamma som den nuvarande.
-                    if(!nyttLosen.equals(nuvLosen)){
-                    if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
 
-                        //Jämför det inmatade, nuvarande lösenordet med lösenordet från databasen.
-                        if (nuvLosen.equals(losenFranDB)) {
-                            //Här ändras (uppdateras) lösenordet i databasen om fältet med det nuvarande lösenordet stämmer överens med agent-id:t.
-                            idb.fetchSingle("UPDATE " + anvTyp + " SET Losenord = '" + nyttLosen + "' where " + anvTyp + "_ID=" + anvandare);
-                            JOptionPane.showMessageDialog(null, "Ditt lösenord är ändrat!");
-                            //När lösenordet ändrats skickas en per automatik tillbaka till föregående ruta.
-                            btnTillbakaActionPerformed(evt);
-                        } //Om det nuvarande lösenordet och agent-id:t inte stämmer överens ändras inte lösenordet och användaren möts av denna ruta.
-                        else {
-                            JOptionPane.showMessageDialog(null, "Användare och nuvarande lösenord stämmer inte överens");
+                    //If-sats som kontrollerar att det nya lösenordet som angetts inte är detsamma som den nuvarande.
+                    if (!nyttLosen.equals(nuvLosen)) {
+                        if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
+
+                            //Jämför det inmatade, nuvarande lösenordet med lösenordet från databasen.
+                            if (nuvLosen.equals(losenFranDB)) {
+                                //Här ändras (uppdateras) lösenordet i databasen om fältet med det nuvarande lösenordet stämmer överens med agent-id:t.
+                                idb.fetchSingle("UPDATE " + anvTyp + " SET Losenord = '" + nyttLosen + "' where " + anvTyp + "_ID=" + anvandare);
+                                JOptionPane.showMessageDialog(null, "Ditt lösenord är ändrat!");
+                                //När lösenordet ändrats skickas en per automatik tillbaka till föregående ruta.
+                                btnTillbakaActionPerformed(evt);
+                            } //Om det nuvarande lösenordet och agent-id:t inte stämmer överens ändras inte lösenordet och användaren möts av denna ruta.
+                            else {
+                                JOptionPane.showMessageDialog(null, "Användare och nuvarande lösenord stämmer inte överens");
+                            }
+                            //Om det nuvarande lösenordet är korrekt, men det nya lösenordet inte uppfyller längdkraven möts användaren av denna ruta.
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                         }
-                        //Om det nuvarande lösenordet är korrekt, men det nya lösenordet inte uppfyller längdkraven möts användaren av denna ruta.
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
-                    }
-                    }
-                    //Om det nya och det nuvarande lösenordet är identiska visas detta meddelande.
+                    } //Om det nya och det nuvarande lösenordet är identiska visas detta meddelande.
                     else {
                         JOptionPane.showMessageDialog(null, "Ditt nya lösenord är samma som ditt gamla! Vänligen välj ett annat!");
                     }
