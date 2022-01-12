@@ -15,20 +15,22 @@ import oru.inf.InfException;
  */
 public class TaBortAlien extends javax.swing.JFrame {
 
-    //Vi skapar 3 ArrayLists för att lagra de tre olika rasalternativen i.
+   
     private InfDB idb;
     private String anvId;
     private String anvTyp;
+    
+     //Vi skapar 3 ArrayLists för att lagra de tre olika rasalternativen i.
     ArrayList<String> squidLista;
     ArrayList<String> bogloditeLista;
     ArrayList<String> wormLista;
 
-   
     public TaBortAlien(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        
         //I konstruktorn anger vi att de rasunika fälten ska vara osynliga som default.
         lblBoogies.setVisible(false);
         lblBoogiesSvar.setVisible(false);
@@ -36,7 +38,7 @@ public class TaBortAlien extends javax.swing.JFrame {
         lblAntalArmarSvar.setVisible(false);
         lblConfirm.setVisible(false);
         lblError.setVisible(false);
-        
+
         // Metod anropas från klassen SQL för att fylla ComboBox med info.
         SQL s = new SQL(idb);
         s.alien(cmbNamn);
@@ -328,93 +330,93 @@ public class TaBortAlien extends javax.swing.JFrame {
     // Metoden söker upp information om vald agent.
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
 
-                try {
+        try {
 
-                    // ArrayListorna fylls på med ID-värden om de olika raserna. 
-                    squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
-                    bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
-                    wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+            // ArrayListorna fylls på med ID-värden om de olika raserna. 
+            squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+            bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+            wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
 
-                    // Valt värde hämtas från ComboBox.
-                    String namn = cmbNamn.getSelectedItem().toString();
-                    
-                    // Lokala variabler för fälten.
-                    String soktID = idb.fetchSingle("SELECT alien_ID FROM alien WHERE namn = '" + namn + "'");
-                    int soktIDint = Integer.parseInt(soktID);
+            // Valt värde hämtas från ComboBox.
+            String namn = cmbNamn.getSelectedItem().toString();
 
-                    // Nästlad SQL-fråga för att kunna visa namnet på agenten i stället för dess AgentID.
-                    String alienAgentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID IN (SELECT Ansvarig_Agent FROM Alien where Alien_ID = " + soktIDint + ")");
+            // Lokala variabler för fälten.
+            String soktID = idb.fetchSingle("SELECT alien_ID FROM alien WHERE namn = '" + namn + "'");
+            int soktIDint = Integer.parseInt(soktID);
 
-                    // Nästlad SQL-fråga för att kunna visa namnet på platsen istället för platsID.
-                    String alienPlats = idb.fetchSingle("SELECT Benamning FROM Plats WHERE Plats_ID IN(SELECT Plats from Alien where Alien_ID =" + soktIDint + ")");
+            // Nästlad SQL-fråga för att kunna visa namnet på agenten i stället för dess AgentID.
+            String alienAgentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID IN (SELECT Ansvarig_Agent FROM Alien where Alien_ID = " + soktIDint + ")");
 
-                    // SQL-frågor som hämtar aliens lösenord, namn och telefon från databasen.  
-                    String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktIDint + "");
-                    String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktIDint + "");
-                    String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktIDint + "");
+            // Nästlad SQL-fråga för att kunna visa namnet på platsen istället för platsID.
+            String alienPlats = idb.fetchSingle("SELECT Benamning FROM Plats WHERE Plats_ID IN(SELECT Plats from Alien where Alien_ID =" + soktIDint + ")");
 
-                    // Här anger vi vad vi vill ska stå i våra labels, det vill säga informationen om den eftersökta alien.
-                    lblAlienLosenord.setText(alienLosenord);
-                    lblAlienID.setText(alienNamn);
-                    lblAlienTelefon.setText(alienTelefon);
-                    lblAlienPlats.setText(alienPlats);
-                    lblAnsvarigAgent.setText(alienAgentNamn);
+            // SQL-frågor som hämtar aliens lösenord, namn och telefon från databasen.  
+            String alienLosenord = idb.fetchSingle("SELECT Losenord FROM Alien where Alien_ID = " + soktIDint + "");
+            String alienNamn = idb.fetchSingle("SELECT Namn FROM Alien where Alien_ID = " + soktIDint + "");
+            String alienTelefon = idb.fetchSingle("SELECT Telefon FROM Alien where Alien_ID = " + soktIDint + "");
 
-                    // Rubriken visas när sökningen går igenom som en bekräftelse för användaren. 
-                    lblConfirm.setVisible(true);
+            // Här anger vi vad vi vill ska stå i våra labels, det vill säga informationen om den eftersökta alien.
+            lblAlienLosenord.setText(alienLosenord);
+            lblAlienID.setText(alienNamn);
+            lblAlienTelefon.setText(alienTelefon);
+            lblAlienPlats.setText(alienPlats);
+            lblAnsvarigAgent.setText(alienAgentNamn);
 
-                    // Här arbetar vi med villkorssatser för att "söka" efter valt ID i våra listor.
-                    // Om ID finns i någon av dessa tillkommer viss information beroende på ras.
-                    if (squidLista.contains(soktID)) {
-                        String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + soktID + "'");
-                        lblAlienRas.setText("Squid");
+            // Rubriken visas när sökningen går igenom som en bekräftelse för användaren. 
+            lblConfirm.setVisible(true);
 
-                        // Rubriker görs synliga och osynliga för användaren.
-                        lblAntalArmar.setVisible(true);
-                        lblAntalArmarSvar.setVisible(true);
-                        lblAntalArmarSvar.setText(antalArmar);
-                        lblBoogies.setVisible(false);
-                        lblBoogiesSvar.setVisible(false);
+            // Här arbetar vi med villkorssatser för att "söka" efter valt ID i våra listor.
+            // Om ID finns i någon av dessa tillkommer viss information beroende på ras.
+            if (squidLista.contains(soktID)) {
+                String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + soktID + "'");
+                lblAlienRas.setText("Squid");
 
-                    } else if (bogloditeLista.contains(soktID)) {
-                        String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + soktID + "'");
-                        lblAlienRas.setText("Boglodite");
+                // Rubriker görs synliga och osynliga för användaren.
+                lblAntalArmar.setVisible(true);
+                lblAntalArmarSvar.setVisible(true);
+                lblAntalArmarSvar.setText(antalArmar);
+                lblBoogies.setVisible(false);
+                lblBoogiesSvar.setVisible(false);
 
-                        // Rubriker görs synliga och osynliga för användaren.
-                        lblBoogies.setVisible(true);
-                        lblBoogiesSvar.setVisible(true);
-                        lblBoogiesSvar.setText(antalBoogies);
-                        lblAntalArmar.setVisible(false);
-                        lblAntalArmarSvar.setVisible(false);
+            } else if (bogloditeLista.contains(soktID)) {
+                String antalBoogies = idb.fetchSingle("SELECT Antal_Boogies FROM boglodite WHERE Alien_ID = '" + soktID + "'");
+                lblAlienRas.setText("Boglodite");
 
-                    } else if (wormLista.contains(soktID)) {
-                        lblAlienRas.setText("Worm");
-                        
-                        // Rubriker görs synliga och osynliga för användaren.
-                        lblAntalArmar.setVisible(false);
-                        lblAntalArmarSvar.setVisible(false);
-                        lblBoogies.setVisible(false);
-                        lblBoogiesSvar.setVisible(false);
+                // Rubriker görs synliga och osynliga för användaren.
+                lblBoogies.setVisible(true);
+                lblBoogiesSvar.setVisible(true);
+                lblBoogiesSvar.setText(antalBoogies);
+                lblAntalArmar.setVisible(false);
+                lblAntalArmarSvar.setVisible(false);
 
-                    } else {
-                        // Rubriker görs synliga och osynliga för användaren.
-                        lblAlienRas.setText("Okänd");
-                        
-                        // Rubriker görs synliga och osynliga för användaren.
-                        lblAntalArmar.setVisible(false);
-                        lblAntalArmarSvar.setVisible(false);
-                        lblBoogies.setVisible(false);
-                        lblBoogiesSvar.setVisible(false);
-                    }
+            } else if (wormLista.contains(soktID)) {
+                lblAlienRas.setText("Worm");
 
-                } //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
-                catch (InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    
-                    // Rubrik görs synlig för användaren.
-                    lblError.setVisible(true);
-                    System.out.println("Internt felmeddelande:" + e.getMessage());
-                }
+                // Rubriker görs synliga och osynliga för användaren.
+                lblAntalArmar.setVisible(false);
+                lblAntalArmarSvar.setVisible(false);
+                lblBoogies.setVisible(false);
+                lblBoogiesSvar.setVisible(false);
+
+            } else {
+                // Rubriker görs synliga och osynliga för användaren.
+                lblAlienRas.setText("Okänd");
+
+                // Rubriker görs synliga och osynliga för användaren.
+                lblAntalArmar.setVisible(false);
+                lblAntalArmarSvar.setVisible(false);
+                lblBoogies.setVisible(false);
+                lblBoogiesSvar.setVisible(false);
+            }
+
+        } //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
+        catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel!");
+
+            // Rubrik görs synlig för användaren.
+            lblError.setVisible(true);
+            System.out.println("Internt felmeddelande:" + e.getMessage());
+        }
     }//GEN-LAST:event_btnSokMouseClicked
 
     // Metoden gör nuvarande fönster osynligt och öppnar klassen StartsidaAdmin i nytt fönster.
@@ -434,49 +436,49 @@ public class TaBortAlien extends javax.swing.JFrame {
     // Metoden raderar information om det valda ID:t som man har sökt upp.
     private void btnRaderaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRaderaMouseClicked
 
-            // En dubbelkontroll för om man verkligen vill radera informationen sker. Detta görs med metoden showConfirmDialog. 
-            int input = JOptionPane.showConfirmDialog(null, "Vill du verkligen radera vald alien?", "Är du säker?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        // En dubbelkontroll för om man verkligen vill radera informationen sker. Detta görs med metoden showConfirmDialog. 
+        int input = JOptionPane.showConfirmDialog(null, "Vill du verkligen radera vald alien?", "Är du säker?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-            // Metoden använder 0 och 1 som input på svar. 0 = ja. Om detta väljs så går metoden vidare och raderar informationen. 
-            if (input == 0) {
-                try {
-                    
-                    // Valt värde hämtas från ComboBox.
-                    String namn = cmbNamn.getSelectedItem().toString();
-                    
-                    // ID hämtas från databas baserat på valt värde i ComboBox.§
-                    String alienID = idb.fetchSingle("SELECT alien_ID FROM alien WHERE namn = '" + namn + "'");
+        // Metoden använder 0 och 1 som input på svar. 0 = ja. Om detta väljs så går metoden vidare och raderar informationen. 
+        if (input == 0) {
+            try {
 
-                    // Här raderas information från tabellen alien.
-                    idb.delete("DELETE FROM alien WHERE Alien_ID = '" + alienID + "'");
+                // Valt värde hämtas från ComboBox.
+                String namn = cmbNamn.getSelectedItem().toString();
 
-                    // För att kunna kontrollera vilken tabell som sökt ID finns inom (Ras) används tre ArrayLists där man lagrar information om värdena. 
-                    bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
-                    squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
-                    wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+                // ID hämtas från databas baserat på valt värde i ComboBox.§
+                String alienID = idb.fetchSingle("SELECT alien_ID FROM alien WHERE namn = '" + namn + "'");
 
-                    // Beroende på vilken tabell som används raderas värdena i rastabell baserat på sökt ID. 
-                    if (bogloditeLista.contains(alienID)) {
-                        idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + alienID + "'");
-                    } else if (squidLista.contains(alienID)) {
-                        idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + alienID + "'");
-                    } else if (wormLista.contains(alienID)) {
-                        idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + alienID + "'");
-                    }
-                    
-                    // Information skrivs ut till användaren om att det lyckades.
-                    JOptionPane.showMessageDialog(null, "Vald alien är raderad!");
-                    
-                    // Efter att ha raderat informationen skickas användaren tillbaka till sidan innan. 
-                    btnTillbakaMouseClicked(evt);
+                // Här raderas information från tabellen alien.
+                idb.delete("DELETE FROM alien WHERE Alien_ID = '" + alienID + "'");
 
-                } //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
-                catch (InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    System.out.println("Internt felmeddelande" + e.getMessage());
+                // För att kunna kontrollera vilken tabell som sökt ID finns inom (Ras) används tre ArrayLists där man lagrar information om värdena. 
+                bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
+                squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
+                wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
+
+                // Beroende på vilken tabell som används raderas värdena i rastabell baserat på sökt ID. 
+                if (bogloditeLista.contains(alienID)) {
+                    idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + alienID + "'");
+                } else if (squidLista.contains(alienID)) {
+                    idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + alienID + "'");
+                } else if (wormLista.contains(alienID)) {
+                    idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + alienID + "'");
                 }
+
+                // Information skrivs ut till användaren om att det lyckades.
+                JOptionPane.showMessageDialog(null, "Vald alien är raderad!");
+
+                // Efter att ha raderat informationen skickas användaren tillbaka till sidan innan. 
+                btnTillbakaMouseClicked(evt);
+
+            } //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
+            catch (InfException e) {
+                JOptionPane.showMessageDialog(null, "Något gick fel!");
+                System.out.println("Internt felmeddelande" + e.getMessage());
             }
-        
+        }
+
     }//GEN-LAST:event_btnRaderaMouseClicked
 // Metoden gör nuvarande fönster osynligt och öppnar klassen HanteraAliensAdmin i nytt fönster. Denna metod gör så att man blir utloggad.
     private void btnTillbakaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTillbakaMouseClicked
