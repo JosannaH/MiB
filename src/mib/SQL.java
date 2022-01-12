@@ -419,11 +419,11 @@ public class SQL extends javax.swing.JFrame {
             // Hämta först agent_ID för chefen och utifrån det hämtas sedan namnet på agenten
             chefID = idb.fetchSingle("SELECT agent_ID FROM kontorschef WHERE kontorsbeteckning = '" + kontor + "'");
             chefNamn = idb.fetchSingle("SELECT namn FROM agent WHERE agent_ID = " + chefID);
+            lblNuvChef.setText("Kontorschef för " + kontor + " är " + chefNamn);
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: hämta kontorschef" + e.getMessage());
         }
-        lblNuvChef.setText("Kontorschef för " + kontor + " är " + chefNamn);
     }
 
     /**
@@ -460,6 +460,9 @@ public class SQL extends javax.swing.JFrame {
                     idb.update("UPDATE omradeschef SET agent_ID = " + nyChefID + " WHERE omrade = " + omradeID);
                     // Visar användaren vem som är ny chef. 
                     lblNyChef.setVisible(true);
+                    // Visar användaren vem som är ny chef. 
+                    lblNyChef.setVisible(true);
+                    lblNyChef.setText("Ny chef för " + omrade + " är " + nyChefNamn);
                 } else {
                     idb.insert("INSERT INTO omradeschef VALUES (" + nyChefID + ", " + omradeID + ")");
                 }
@@ -471,9 +474,7 @@ public class SQL extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: uppdateraOmradeschef() " + e.getMessage());
         }
-        // Visar användaren vem som är ny chef. 
-        lblNyChef.setVisible(true);
-        lblNyChef.setText("Ny chef för " + omrade + " är " + nyChefNamn);
+        
     }
 
     /**
