@@ -456,7 +456,8 @@ public class UppdateraAlien extends javax.swing.JFrame {
             String regRas = cmbRas.getSelectedItem().toString();
             String rasInfo = txtRasInfo.getText();
             String regLosenord = pswLosen.getText();
-
+            SQL s = new SQL(idb);
+                if(s.namnFinnsInteAlien(txtNyttNamn))
             // Kontrollerar att lösenordet är korrekt ifyllt.
             if (regLosenord.length() <= 6 && regLosenord.length() >= 3) {
 
