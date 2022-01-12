@@ -457,53 +457,81 @@ public class UppdateraAlien extends javax.swing.JFrame {
             String rasInfo = txtRasInfo.getText();
             String regLosenord = pswLosen.getText();
             SQL s = new SQL(idb);
-                if(s.namnFinnsInteAlien(txtNyttNamn))
-            // Kontrollerar att lösenordet är korrekt ifyllt.
-            if (regLosenord.length() <= 6 && regLosenord.length() >= 3) {
+            if (s.namnFinnsInteAlien(txtNyttNamn)) // Kontrollerar att lösenordet är korrekt ifyllt.
+            {
+                if (regLosenord.length() <= 6 && regLosenord.length() >= 3) {
 
-                try {
+                    try {
 
-                    // Kontrollerar att beroende på vilken ras man har angett måste även tillhörande fält vara ifyllt. Uppdaterar rastabellen med vald information.
-                    if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
-                        if (Validering.txtFaltHarSiffror(txtRasInfo)) {
-                            // Tabeller uppdateras via metoden uppdatera() nedan. 
-                            uppdatera();
+                        // Kontrollerar att beroende på vilken ras man har angett måste även tillhörande fält vara ifyllt. Uppdaterar rastabellen med vald information.
+                        if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
+                            if (Validering.txtFaltHarSiffror(txtRasInfo)) {
+                                // Tabeller uppdateras via metoden uppdatera() nedan. 
+                                uppdatera();
 
-                            // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
-                            if (bogloditeLista.contains(idText)) {
-                                idb.update("UPDATE Boglodite SET Antal_Boogies = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+                                // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
+                                if (bogloditeLista.contains(idText)) {
+                                    idb.update("UPDATE Boglodite SET Antal_Boogies = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
 
-                                // Användaren skickas tillbaka till tidigare sida.
-                                btnTillbakaActionPerformed(evt);
-                            } else {
-                                idb.insert("INSERT INTO Boglodite VALUES ('" + idText + "', '" + rasInfo + "')");
+                                    // Användaren skickas tillbaka till tidigare sida.
+                                    btnTillbakaActionPerformed(evt);
+                                } else {
+                                    idb.insert("INSERT INTO Boglodite VALUES ('" + idText + "', '" + rasInfo + "')");
 
-                                // Användaren skickas tillbaka till tidigare sida.
-                                btnTillbakaActionPerformed(evt);
+                                    // Användaren skickas tillbaka till tidigare sida.
+                                    btnTillbakaActionPerformed(evt);
 
-                                // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
-                                if (squidLista.contains(idText)) {
-                                    idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
-                                }
-                                if (wormLista.contains(idText)) {
-                                    idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
+                                    // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
+                                    if (squidLista.contains(idText)) {
+                                        idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
+                                    }
+                                    if (wormLista.contains(idText)) {
+                                        idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
+                                    }
                                 }
                             }
-                        }
-                    } // Kontrollerar att beroende på vilken ras man har angett måste även tillhörande fält vara ifyllt. Uppdaterar rastabellen med vald information.
-                    else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
-                        if (Validering.txtFaltHarSiffror(txtRasInfo)) {
+                        } // Kontrollerar att beroende på vilken ras man har angett måste även tillhörande fält vara ifyllt. Uppdaterar rastabellen med vald information.
+                        else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
+                            if (Validering.txtFaltHarSiffror(txtRasInfo)) {
+                                // Tabeller uppdateras via metoden uppdatera() nedan. 
+                                uppdatera();
+
+                                // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
+                                if (squidLista.contains(idText)) {
+                                    idb.update("UPDATE Squid SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+
+                                    // Användaren skickas tillbaka till tidigare sida.
+                                    btnTillbakaActionPerformed(evt);
+                                } else {
+                                    idb.insert("INSERT INTO Squid VALUES ('" + idText + "', '" + rasInfo + "')");
+
+                                    // Användaren skickas tillbaka till tidigare sida.
+                                    btnTillbakaActionPerformed(evt);
+
+                                    // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
+                                    if (bogloditeLista.contains(idText)) {
+                                        idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
+                                    }
+                                    if (wormLista.contains(idText)) {
+                                        idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
+                                    }
+                                }
+                            }
+
+                            // Uppdaterar rastabellen med vald information.
+                        } else if (regRas.equals("Worm")) {
+
                             // Tabeller uppdateras via metoden uppdatera() nedan. 
                             uppdatera();
 
                             // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
-                            if (squidLista.contains(idText)) {
-                                idb.update("UPDATE Squid SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
+                            if (wormLista.contains(idText)) {
+                                idb.update("UPDATE Worm SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
 
                                 // Användaren skickas tillbaka till tidigare sida.
                                 btnTillbakaActionPerformed(evt);
                             } else {
-                                idb.insert("INSERT INTO Squid VALUES ('" + idText + "', '" + rasInfo + "')");
+                                idb.insert("INSERT INTO Worm VALUES ('" + idText + "')");
 
                                 // Användaren skickas tillbaka till tidigare sida.
                                 btnTillbakaActionPerformed(evt);
@@ -512,26 +540,16 @@ public class UppdateraAlien extends javax.swing.JFrame {
                                 if (bogloditeLista.contains(idText)) {
                                     idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
                                 }
-                                if (wormLista.contains(idText)) {
-                                    idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
+                                if (squidLista.contains(idText)) {
+                                    idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
                                 }
                             }
-                        }
 
-                        // Uppdaterar rastabellen med vald information.
-                    } else if (regRas.equals("Worm")) {
+                            // Uppdaterar rastabellen med vald information.
+                        } else if (regRas.equals("Ingen")) {
 
-                        // Tabeller uppdateras via metoden uppdatera() nedan. 
-                        uppdatera();
-
-                        // Om ID finns i tabellen ska man uppdatera annars lägger man till ny information.
-                        if (wormLista.contains(idText)) {
-                            idb.update("UPDATE Worm SET Antal_Armar = '" + rasInfo + "' WHERE Alien_ID = '" + idText + "'");
-
-                            // Användaren skickas tillbaka till tidigare sida.
-                            btnTillbakaActionPerformed(evt);
-                        } else {
-                            idb.insert("INSERT INTO Worm VALUES ('" + idText + "')");
+                            // Tabeller uppdateras via metoden uppdatera() nedan.
+                            uppdatera();
 
                             // Användaren skickas tillbaka till tidigare sida.
                             btnTillbakaActionPerformed(evt);
@@ -540,45 +558,28 @@ public class UppdateraAlien extends javax.swing.JFrame {
                             if (bogloditeLista.contains(idText)) {
                                 idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
                             }
+
                             if (squidLista.contains(idText)) {
                                 idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
                             }
+                            if (wormLista.contains(idText)) {
+                                idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
+                            }
+
+                        } // Om fälten ej är korrekt ifyllda visas felmeddelande.
+                        else {
+                            JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
                         }
 
-                        // Uppdaterar rastabellen med vald information.
-                    } else if (regRas.equals("Ingen")) {
-
-                        // Tabeller uppdateras via metoden uppdatera() nedan.
-                        uppdatera();
-
-                        // Användaren skickas tillbaka till tidigare sida.
-                        btnTillbakaActionPerformed(evt);
-
-                        // Nedan if-statement kontrollerar om information finns i övriga tabeller och tar bort den informationen.
-                        if (bogloditeLista.contains(idText)) {
-                            idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + idText + "'");
-                        }
-
-                        if (squidLista.contains(idText)) {
-                            idb.delete("DELETE FROM Squid WHERE Alien_ID = '" + idText + "'");
-                        }
-                        if (wormLista.contains(idText)) {
-                            idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + idText + "'");
-                        }
-
-                    } // Om fälten ej är korrekt ifyllda visas felmeddelande.
-                    else {
-                        JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+                    } // Om något går fel så visas ett felmeddelande.
+                    catch (InfException e) {
+                        JOptionPane.showMessageDialog(null, "Något gick fel!");
+                        System.out.println("Internt felmeddelande" + e.getMessage());
                     }
-
-                } // Om något går fel så visas ett felmeddelande.
-                catch (InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel!");
-                    System.out.println("Internt felmeddelande" + e.getMessage());
+                } // Om lösenordet inte är korrekt ifyllt visas ett felmeddelande. 
+                else {
+                    JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                 }
-            } // Om lösenordet inte är korrekt ifyllt visas ett felmeddelande. 
-            else {
-                JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
             }
 
         } // Om fälten ej är korrekt ifyllda visas felmeddelande.
