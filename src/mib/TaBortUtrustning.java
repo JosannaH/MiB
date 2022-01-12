@@ -18,6 +18,8 @@ public class TaBortUtrustning extends javax.swing.JFrame {
     private InfDB idb;
     private String anvId;
     private String anvTyp;
+
+    // 3 Listor skapas för att lagra information om värden i utrustningstabellerna.
     ArrayList<String> vapenLista;
     ArrayList<String> teknikLista;
     ArrayList<String> kommunikationsLista;
@@ -30,9 +32,12 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+
+        // Rutor som inledningsvis ska vara osynliga för användaren. 
         lblInfo.setVisible(false);
         txtSpec.setVisible(false);
 
+        // ComboBox för utrustning fylls vid start av klassen.
         SQL s = new SQL(idb);
         s.utrustning(cmbNamn);
     }
@@ -200,10 +205,13 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // Sökning
+    /**
+     * Metoden söker upp information om vald utrustning från ComboBox.
+     */
     private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
 
         try {
+            // Hämtar valt värde från ComboBox.
             String namn = cmbNamn.getSelectedItem().toString();
 
             // Fyller på listorna med utrustningsID från utrustningstabellerna. 
@@ -225,6 +233,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                 lblInfo.setVisible(true);
                 lblInfo.setText("Kaliber");
                 txtSpec.setVisible(true);
+
                 // Hämtar information om utrustningens egenskap.
                 String vapenKaliber = idb.fetchSingle("SELECT Kaliber FROM Vapen WHERE Utrustnings_ID=" + soktIDint + "");
                 txtSpec.setText(vapenKaliber);
@@ -234,6 +243,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                 lblInfo.setVisible(true);
                 lblInfo.setText("Kraftkälla");
                 txtSpec.setVisible(true);
+
                 // Hämtar information om utrustningens egenskap.
                 String kraftkalla = idb.fetchSingle("SELECT Kraftkalla FROM Teknik WHERE Utrustnings_ID=" + soktIDint + "");
                 txtSpec.setText(kraftkalla);
@@ -243,6 +253,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                 lblInfo.setVisible(true);
                 lblInfo.setText("Överföringsteknik");
                 txtSpec.setVisible(true);
+
                 // Hämtar information om utrustningens egenskap.
                 String overforingsTeknik = idb.fetchSingle("SELECT Overforingsteknik FROM Kommunikation WHERE Utrustnings_ID=" + soktIDint + "");
                 txtSpec.setText(overforingsTeknik);
@@ -256,7 +267,10 @@ public class TaBortUtrustning extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSokActionPerformed
 
-    // Radera
+    /**
+     * Raderar information från databasens tabeller om vald utrustning från
+     * ComboBox.
+     */
     private void btnRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaderaActionPerformed
 
         // Här sker en dubbelkontroll för om man verkligen vill radera informationen. Detta görs med metoden showConfirmDialog. 
@@ -265,7 +279,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         // Metoden använder 0 och 1 som input på svar. 0 = ja. Om detta väljs så går metoden vidare och raderar informationen. 
         if (input == 0) {
             try {
-
+                // Hämtar valt värde från ComboBox och genom detta hämtas ID från databas.
                 String namn = cmbNamn.getSelectedItem().toString();
                 String soktID = idb.fetchSingle("SELECT Utrustnings_ID from utrustning WHERE benamning = '" + namn + "'");
 
@@ -285,13 +299,15 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                 } else if (kommunikationsLista.contains(soktID)) {
                     idb.delete("DELETE FROM Innehar_utrustning WHERE Utrustnings_ID = " + soktID + "");
                     idb.delete("DELETE FROM Kommunikation WHERE Utrustnings_ID = " + soktID + "");
-
                 }
 
+                // Information om valt ID raderas från utrustningstabell.
                 idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID =" + soktID + "");
 
-                // Skickar tillbaka användaren till tidigare sida.
+                // Information till användaren om att det lyckades.
                 JOptionPane.showMessageDialog(null, "Utrustningen är raderad!");
+
+                // Skickar tillbaka användaren till tidigare sida.
                 btnTillbakaActionPerformed(evt);
 
             } // Visar felmeddelande om att något har gått fel. 
@@ -300,7 +316,6 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
         }
-
     }//GEN-LAST:event_btnRaderaActionPerformed
 
     //Metoden gör nuvarande fönster osynligt och öppnar klassen Inloggning i nytt fönster. Denna metod gör så att man blir utloggad.

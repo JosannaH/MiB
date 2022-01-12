@@ -453,8 +453,8 @@ public class RegistreraAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_tbValjRasMouseClicked
 
     /**
-     * Går tillbaka till startsidan. Olika sidor beroende på om agenten är admin
-     * eller inte
+     * Går tillbaka till startsidan. Metod som kontrollerar om användaren är admin eller agent anropas från klassen SQL.
+     * @param evt
      */
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
@@ -467,7 +467,7 @@ public class RegistreraAlien extends javax.swing.JFrame {
      */
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         SQL s = new SQL(idb);
-        /* Eftersom RegistreraAlien kan nås både av vanlig agent och av admin så 
+        /* Eftersom RegistreraAlien kan nås både av vanlig agent och av admin så
         måste användartypen kollas för att avgöra vilken sida användaren ska skickas tillbaka till
         En metod från klassen SQL används för detta
          */
