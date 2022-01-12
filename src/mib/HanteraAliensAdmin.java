@@ -239,24 +239,27 @@ public class HanteraAliensAdmin extends javax.swing.JFrame {
         taBort.setVisible(true);
     }//GEN-LAST:event_btnTaBortMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen SokAlien i nytt fönster.
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
         setVisible(false);
         SokAlien sokAlien = new SokAlien(idb, anvId, anvTyp);
         sokAlien.setVisible(true);
     }//GEN-LAST:event_btnSokMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen ListaAliensPlats i nytt fönster.
     private void btnListaPlatsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaPlatsMouseClicked
         setVisible(false);
         ListaAliensPlats listaAlien = new ListaAliensPlats(idb, anvId, anvTyp);
         listaAlien.setVisible(true);
     }//GEN-LAST:event_btnListaPlatsMouseClicked
 
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen ListaAliensRas i nytt fönster.
     private void btnListaAlienRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaAlienRasMouseClicked
         setVisible(false);
         ListaAliensRas ras = new ListaAliensRas(idb, anvId, anvTyp);
         ras.setVisible(true);
     }//GEN-LAST:event_btnListaAlienRasMouseClicked
-
+    //Metoden gör nuvarande fönster osynligt och öppnar klassen ListaAliensDatum i nytt fönster.
     private void btnListaAlienDatumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnListaAlienDatumMouseClicked
         setVisible(false);
         ListaAliensDatum datum = new ListaAliensDatum(idb, anvId, anvTyp);
