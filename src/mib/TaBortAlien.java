@@ -37,6 +37,7 @@ public class TaBortAlien extends javax.swing.JFrame {
         lblConfirm.setVisible(false);
         lblError.setVisible(false);
         
+        // Metod anropas från klassen SQL för att fylla ComboBox med info.
         SQL s = new SQL(idb);
         s.alien(cmbNamn);
 
@@ -329,11 +330,12 @@ public class TaBortAlien extends javax.swing.JFrame {
 
                 try {
 
-                    // Listorna fylls på med ID-värden om de olika raserna. 
+                    // ArrayListorna fylls på med ID-värden om de olika raserna. 
                     squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
                     bogloditeLista = idb.fetchColumn("SELECT Alien_ID FROM boglodite ORDER BY Alien_ID");
                     wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
 
+                    // Valt värde hämtas från ComboBox.
                     String namn = cmbNamn.getSelectedItem().toString();
                     
                     // Lokala variabler för fälten.
@@ -361,8 +363,8 @@ public class TaBortAlien extends javax.swing.JFrame {
                     // Rubriken visas när sökningen går igenom som en bekräftelse för användaren. 
                     lblConfirm.setVisible(true);
 
-                    /* Här arbetr vi med villkorssatser för att "söka" efter valt ID i våra listor.
-                    Om ID finns i någon av dessa tillkommer viss information beroende på ras. */
+                    // Här arbetar vi med villkorssatser för att "söka" efter valt ID i våra listor.
+                    // Om ID finns i någon av dessa tillkommer viss information beroende på ras.
                     if (squidLista.contains(soktID)) {
                         String antalArmar = idb.fetchSingle("SELECT Antal_Armar FROM squid WHERE Alien_ID = '" + soktID + "'");
                         lblAlienRas.setText("Squid");
@@ -371,7 +373,6 @@ public class TaBortAlien extends javax.swing.JFrame {
                         lblAntalArmar.setVisible(true);
                         lblAntalArmarSvar.setVisible(true);
                         lblAntalArmarSvar.setText(antalArmar);
-
                         lblBoogies.setVisible(false);
                         lblBoogiesSvar.setVisible(false);
 
@@ -383,13 +384,13 @@ public class TaBortAlien extends javax.swing.JFrame {
                         lblBoogies.setVisible(true);
                         lblBoogiesSvar.setVisible(true);
                         lblBoogiesSvar.setText(antalBoogies);
-
                         lblAntalArmar.setVisible(false);
                         lblAntalArmarSvar.setVisible(false);
 
                     } else if (wormLista.contains(soktID)) {
-                        // Rubriker görs synliga och osynliga för användaren.
                         lblAlienRas.setText("Worm");
+                        
+                        // Rubriker görs synliga och osynliga för användaren.
                         lblAntalArmar.setVisible(false);
                         lblAntalArmarSvar.setVisible(false);
                         lblBoogies.setVisible(false);
@@ -398,6 +399,8 @@ public class TaBortAlien extends javax.swing.JFrame {
                     } else {
                         // Rubriker görs synliga och osynliga för användaren.
                         lblAlienRas.setText("Okänd");
+                        
+                        // Rubriker görs synliga och osynliga för användaren.
                         lblAntalArmar.setVisible(false);
                         lblAntalArmarSvar.setVisible(false);
                         lblBoogies.setVisible(false);
@@ -407,6 +410,8 @@ public class TaBortAlien extends javax.swing.JFrame {
                 } //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
                 catch (InfException e) {
                     JOptionPane.showMessageDialog(null, "Något gick fel!");
+                    
+                    // Rubrik görs synlig för användaren.
                     lblError.setVisible(true);
                     System.out.println("Internt felmeddelande:" + e.getMessage());
                 }
@@ -429,15 +434,17 @@ public class TaBortAlien extends javax.swing.JFrame {
     // Metoden raderar information om det valda ID:t som man har sökt upp.
     private void btnRaderaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRaderaMouseClicked
 
-            // Om txtSokID är ifyllt sker en dubbelkontroll för om man verkligen vill radera informationen. Detta görs med metoden showConfirmDialog. 
+            // En dubbelkontroll för om man verkligen vill radera informationen sker. Detta görs med metoden showConfirmDialog. 
             int input = JOptionPane.showConfirmDialog(null, "Vill du verkligen radera vald alien?", "Är du säker?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             // Metoden använder 0 och 1 som input på svar. 0 = ja. Om detta väljs så går metoden vidare och raderar informationen. 
             if (input == 0) {
                 try {
                     
+                    // Valt värde hämtas från ComboBox.
                     String namn = cmbNamn.getSelectedItem().toString();
                     
+                    // ID hämtas från databas baserat på valt värde i ComboBox.§
                     String alienID = idb.fetchSingle("SELECT alien_ID FROM alien WHERE namn = '" + namn + "'");
 
                     // Här raderas information från tabellen alien.
@@ -448,7 +455,7 @@ public class TaBortAlien extends javax.swing.JFrame {
                     squidLista = idb.fetchColumn("SELECT Alien_ID FROM squid ORDER BY Alien_ID");
                     wormLista = idb.fetchColumn("SELECT Alien_ID FROM worm ORDER BY Alien_ID");
 
-                    // Beroende på vilken tabell som används raderas värdena baserat pp sökt ID. 
+                    // Beroende på vilken tabell som används raderas värdena i rastabell baserat på sökt ID. 
                     if (bogloditeLista.contains(alienID)) {
                         idb.delete("DELETE FROM Boglodite WHERE Alien_ID = '" + alienID + "'");
                     } else if (squidLista.contains(alienID)) {
@@ -456,7 +463,11 @@ public class TaBortAlien extends javax.swing.JFrame {
                     } else if (wormLista.contains(alienID)) {
                         idb.delete("DELETE FROM Worm WHERE Alien_ID = '" + alienID + "'");
                     }
+                    
+                    // Information skrivs ut till användaren om att det lyckades.
                     JOptionPane.showMessageDialog(null, "Vald alien är raderad!");
+                    
+                    // Efter att ha raderat informationen skickas användaren tillbaka till sidan innan. 
                     btnTillbakaMouseClicked(evt);
 
                 } //Hit kommer vi om det uppstår ett undantag, det vill säga att exempelvis villkorssatserna inte fungerar.
