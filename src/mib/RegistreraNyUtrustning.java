@@ -4,15 +4,13 @@
  */
 package mib;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
  *
- * @author Lisa
+ * @author Lisa, Linda, Josanna
  */
 public class RegistreraNyUtrustning extends javax.swing.JFrame {
 
@@ -22,7 +20,6 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
     private String anvTyp;
     private String regID;
 
-    // Kontruktor som tar in information som bland annat används till den översta MenuBar
     public RegistreraNyUtrustning(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
@@ -30,9 +27,10 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
         // Hämta ett autogenererad utrustningsID
         hamtaUtrustningsID(regID);
-        // Döljer fält som endast ska visas beroende på ilken typ av utrustning men valt att registrera
+        // Döljer fält som endast ska visas beroende på vilken typ av utrustning man valt att registrera
         txtEgenskap.setVisible(false);
         lblEgenskap.setVisible(false);
+        // Visar om du är inloggad som agent eller alien
         menuBarInloggad.setText("Inloggad som " + anvTyp);
     }
 
@@ -223,9 +221,11 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // Metoden anropas när man trycker på knappen spara.
+    /**
+     * Metoden anropas när man trycker på knappen spara.
+     */
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-        // Kontrollerar att vissa fält måste vara ifyllda för att kunna spara ny utrustning.
+        // Kontrollerar att obligatoriska fält är ifyllda för att kunna spara ny utrustning.
         if (Validering.textFaltHarVarde(txtBenamning) && Validering.comboHarVarde(cmbUtrustningstyp)) {
             // Hämtar användarinmatningen
             String regUtrustningsID = lblUtrustning.getText();
@@ -233,59 +233,74 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
             String regEgenskap = txtEgenskap.getText();
 
             try {
-
-                // Kontrollerar att man har fyllt i tillhörande information (egenskap) om valt vapen. 
+                // Kollar om typen vapen valts, och om egenskapsinfo fyllts i 
                 if (regUtrustning.equals("Vapen") && Validering.textFaltHarVarde(txtEgenskap)) {
-                    if(Validering.txtFaltHarSiffror(txtEgenskap)){
-                    // Metod som lägger till i tabellen Utrustning
-                    laggTill();
-                    // Läggs till i tabellen för utrustningstyp, i detta fallet Vapen
-                    idb.insert("INSERT INTO Vapen VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
-                    // Skickar tillbaka användaren till föregående sida
-                    btnGaTillbakaActionPerformed(evt);
+                    // Kollar att egenskapsinfo(kaliber) består av siffror
+                    if (Validering.txtFaltHarSiffror(txtEgenskap)) {
+                        // Metod som lägger till i tabellen Utrustning
+                        laggTill();
+                        // Läggs till i tabellen för utrustningstyp, i detta fallet Vapen
+                        idb.insert("INSERT INTO Vapen VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
+                        // Skickar tillbaka användaren till föregående sida
+                        btnGaTillbakaActionPerformed(evt);
                     }
-
+                    // Kollar om typen kommunikation valts och om egenskapsinfo är ifyllt
                 } else if (regUtrustning.equals("Kommunikation") && Validering.textFaltHarVarde(txtEgenskap)) {
+                    // Lägger till i tabellen Utrustning
                     laggTill();
+                    // Lägger till i tabellen Kommunikation
                     idb.insert("INSERT INTO Kommunikation VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
+                    // Skickar tillbaka användaren till föregående sida
                     btnGaTillbakaActionPerformed(evt);
 
                 } else if (regUtrustning.equals("Teknik") && Validering.textFaltHarVarde(txtEgenskap)) {
+                    // Lägger till i tabellen Utrustning
                     laggTill();
+                    // Lägger till i tabellen Teknik
                     idb.insert("INSERT INTO Teknik VALUES ('" + regUtrustningsID + "', '" + regEgenskap + "')");
+                    // Skickar tillbaka användaren till föregående sida
                     btnGaTillbakaActionPerformed(evt);
 
                 } else if (regUtrustning.equals("Okänd")) {
+                    // Lägger till i tabellen Utrustning
                     laggTill();
+                    // Skickar tillbaka användaren till föregående sida
                     btnGaTillbakaActionPerformed(evt);
-                } else {
+                } else { // Visas om egenskapsinfo inte är ifyllt på de typer som kräver det
                     JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda! För vapen och kommunikation måste du trycka på knappen välj och fylla i tilläggsinformation!");
                 }
-            } catch (InfException e) {
+            } catch (InfException e) { // Fångar upp om databasfrågorna inte lyckades
                 JOptionPane.showMessageDialog(null, "Något gick fel!");
                 System.out.println("Internt felmeddelande" + e.getMessage());
             }
-        } else {
+        } else {  // Körs om alla obligatoriska fält inte är ifyllda
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
 
 
     }//GEN-LAST:event_btnSparaActionPerformed
 
-    // Metoden lägger till utrustning i databasen. Metoden finns för att undvika att man repeterar samma sak i andra metoder. 
+    // Metoden lägger till utrustning i tabellen Utrustning i databasen. Metoden finns för att undvika att man 
+    //repeterar samma sak för de olika typerna i if-satsen
     private void laggTill() {
+        // Hämtar användarinmatning och det autogenererade ID:t
         String regBenamning = txtBenamning.getText();
         String regUtrustningsID = lblUtrustning.getText();
         try {
+            // Lägger till i tabellen Utrustning
             idb.insert("INSERT INTO Utrustning VALUES ('" + regUtrustningsID + "', '" + regBenamning + "')");
+            // Visar bekräftelse för användaren
             JOptionPane.showMessageDialog(null, "Ny utrustning är nu registrerad!");
-        } catch (InfException e) {
+        } catch (InfException e) { // Visas om databasfrågan inte lyckades
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());
         }
     }
 
-    // Metoden anropas när man väljer vilken typ av utrustning som man vill registrera. 
+    /**
+     * Metoden anropas när man väljer vilken typ av utrustning som man vill
+     * registrera.
+     */
     private void tbValjTypMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbValjTypMouseClicked
         // Hämta användarens val av vilken typ av utrustning det är
         String typ = cmbUtrustningstyp.getSelectedItem().toString();
@@ -313,8 +328,6 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
     /**
      * Gå tillbaka till startsida, olika beroende på om anv är admin eller
      * vanlig agent
-     *
-     * @param evt
      */
     private void menuTillStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTillStartMouseClicked
         setVisible(false);
@@ -329,13 +342,10 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
             StartsidaAgent a = new StartsidaAgent(idb, anvId, anvTyp);
             a.setVisible(true);
         }
-
     }//GEN-LAST:event_menuTillStartMouseClicked
 
     /**
      * Logga ut och gå tillbaka till inloggningsfönster
-     *
-     * @param evt
      */
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
@@ -343,10 +353,14 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
 
-    // Metdoden kontrollerar om du är administratör eller agent och skickar dig sedan tillbaka till rätt sida.
+    /**
+     * Gå tillbaka till föregående sida, olika beroende på om anv är agent eller
+     * admin
+     */
     private void btnGaTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGaTillbakaActionPerformed
         setVisible(false);
         SQL s = new SQL(idb);
+        // anropar metod som kolla om agenten är admin eller inte
         boolean arAdmin = s.arAdmin(anvId);
 
         if (arAdmin == true) {
@@ -358,7 +372,8 @@ public class RegistreraNyUtrustning extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGaTillbakaActionPerformed
 
-    /* Denna metod genererar ett ID för varje ny registrerad utrustning. För att det ska bli ett nytt ID som inte går att ändras anropas den i konstruktorn. 
+    /* Denna metod genererar ett ID för varje ny registrerad utrustning. 
+    För att det ska bli ett nytt ID som inte går att ändras anropas den i konstruktorn. 
     För att generera nytt ID i sifferordning anropas getAutoIncrement(). */
     private void hamtaUtrustningsID(String regID) {
 
