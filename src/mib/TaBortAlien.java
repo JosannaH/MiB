@@ -23,13 +23,14 @@ public class TaBortAlien extends javax.swing.JFrame {
     ArrayList<String> bogloditeLista;
     ArrayList<String> wormLista;
 
-    //I konstruktorn anger vi att de rasunika fälten ska vara osynliga som default.
+   
     public TaBortAlien(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        lblBoogies.setVisible(false); //rätt
+        //I konstruktorn anger vi att de rasunika fälten ska vara osynliga som default.
+        lblBoogies.setVisible(false);
         lblBoogiesSvar.setVisible(false);
         lblAntalArmar.setVisible(false);
         lblAntalArmarSvar.setVisible(false);
