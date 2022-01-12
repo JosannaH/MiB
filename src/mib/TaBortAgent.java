@@ -305,20 +305,31 @@ public class TaBortAgent extends javax.swing.JFrame {
                 ArrayList<HashMap<String, String>> harAnsvar = new ArrayList<>();
 
                 String nyAnsvarig = "";
-
-                nyAnsvarig = cmbNyAnsvarig.getSelectedItem().toString();
-                // Kolla så att den nya ansvariga inte är samma som den agent som ska tas bort
-                if (!nyAnsvarig.equals(namn)) {
+                
+                
+                
+               
                     try {
                         // Hämtar ev aliens som agent är ansvarig över från databasen
                         harAnsvar = idb.fetchRows("SELECT alien_ID FROM alien WHERE ansvarig_agent = " + agentensID + " ORDER BY alien_ID ASC");
 
+                        // Om det finns aliens i listan så hämtas namnet på den agent som användaren vill ska bli ny ansvarig över dessa aliens
+                        if (!harAnsvar.isEmpty()) {
+                            nyAnsvarig = cmbNyAnsvarig.getSelectedItem().toString();
+                            }
+                         
+                                        
+                        
                         // Hämta lösen från DB att jämföra med det som användaren angett
                         losenordDB = idb.fetchSingle("SELECT losenord FROM agent WHERE agent_ID =" + anvId);
                     } catch (InfException e) { // Fångar upp felaktiga databasfrågor
                         JOptionPane.showMessageDialog(null, "Något gick fel!");
                         System.out.println("Internt felmeddelande: Hämta lösenord från DB" + e.getMessage());
                     }
+                    
+                    // Kolla så att den nya ansvariga inte är samma som den agent som ska tas bort
+                    if (!nyAnsvarig.equals(namn)) {
+                            
                     // Kontrollera att användare angett rätt lösenord
                     if (losenord.equals(losenordDB)) {
                         try {
