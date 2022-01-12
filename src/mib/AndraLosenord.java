@@ -183,7 +183,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//Denna metod avser att ta användaren tillbaka till startsidan.
+    //Denna metod avser att ta användaren tillbaka till startsidan.
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
         SQL s = new SQL(idb);
@@ -206,6 +206,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                     //Lösenordet som tillhör individen hämtas ur databasen.
                     losenFranDB = idb.fetchSingle("SELECT Losenord FROM " + anvTyp + " WHERE " + anvTyp + "_ID=" + anvandare);
                     
+                    //If-sats som kontrollerar att det nya lösenordet som angetts inte är detsamma som den nuvarande.
                     if(!nyttLosen.equals(nuvLosen)){
                     if (nyttLosen.length() <= 6 && nyttLosen.length() >= 3) {
 
@@ -225,6 +226,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                     }
                     }
+                    //Om det nya och det nuvarande lösenordet är identiska visas detta meddelande.
                     else {
                         JOptionPane.showMessageDialog(null, "Ditt nya lösenord är samma som ditt gamla! Vänligen välj ett annat!");
                     }

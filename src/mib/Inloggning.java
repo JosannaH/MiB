@@ -61,12 +61,6 @@ public class Inloggning extends javax.swing.JFrame {
 
         cmbList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agent", "Alien" }));
 
-        txtAnvandare.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAnvandareActionPerformed(evt);
-            }
-        });
-
         btnLoggain.setText("Logga in");
         btnLoggain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +138,7 @@ public class Inloggning extends javax.swing.JFrame {
         //If-sats för att kontrollera om användarnamn och lösenord fyllts i. 
         if (Validering.textFaltHarVarde(txtAnvandare) && Validering.textFaltHarVarde(pswlosen)) {
             if (Validering.txtFaltHarSiffror(txtAnvandare)) {
-                //Kontrollera om anvädaren valt Agent eller Alien i comboBox:en och sparar SQL-frågor utifrån det valet.
+                //Kontrollerat om användaren valt Agent eller Alien i comboBox:en och sparar SQL-frågor utifrån det valet.
                 if (anvTyp.equals("Agent")) {
                     inloggTyp = "SELECT Agent_ID FROM agent WHERE Agent_ID=";
                     losenTyp = "SELECT Losenord FROM agent WHERE Agent_ID=";
@@ -152,6 +146,7 @@ public class Inloggning extends javax.swing.JFrame {
                     inloggTyp = "SELECT Alien_ID FROM alien WHERE Alien_ID=";
                     losenTyp = "SELECT Losenord FROM alien WHERE Alien_ID=";
                 }
+                //Här skapar vi variabler som avser att användas för att jämföra inmatningen med det som finns registrerat i databasen.
                 try {
                     String anvFranDatabas = idb.fetchSingle(inloggTyp + anvId);
                     String losenFranDatabas = idb.fetchSingle(losenTyp + anvId);
@@ -190,10 +185,6 @@ public class Inloggning extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Fyll i användarnamn och lösenord");
         }
     }//GEN-LAST:event_btnLoggainActionPerformed
-
-    private void txtAnvandareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnvandareActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAnvandareActionPerformed
 
     /**
      * @param args the command line arguments

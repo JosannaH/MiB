@@ -203,7 +203,7 @@ public class GorTillAdmin extends javax.swing.JFrame {
 
     //Metoden körs när en klickar på sök-knappen och hämtar information om agenten med det sökta ID:t. 
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
-        //Kontrollerar att textfältet vid sökningen är ifyllt.
+        //Kontrollerar att textfältet för AgentID vid sökningen är ifyllt.
         if (Validering.textFaltHarVarde(txtAgentID)) {
             if (Validering.txtFaltHarSiffror(txtAgentID)) {
                 //Hämtar det agent-ID som användaren söker efter i textrutan.
@@ -235,7 +235,8 @@ public class GorTillAdmin extends javax.swing.JFrame {
         try {
             //Här hämtas lösenordet från databasen för att jämföra med det inmatade.
             losenordDB = idb.fetchSingle("SELECT losenord FROM agent WHERE agent_ID =" + anvId);
-        } //Kan inte lösenordet hämtas visas denna dialogruta.
+        } 
+        //Kan inte lösenordet hämtas visas denna dialogruta.
         catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: Hämta lösenord från DB" + e.getMessage());

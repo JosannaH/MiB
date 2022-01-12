@@ -4,11 +4,8 @@
  */
 package mib;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
-import oru.inf.InfException;
 
 /**
  *
@@ -237,7 +234,8 @@ public class ListaAliensDatum extends javax.swing.JFrame {
             String ordning = cmbOrdning.getSelectedItem().toString();
             SQL sql = new SQL(idb);
             sql.getRegistreringsdatum(franDatum, tillDatum, txtLista, ordning);
-        } //Är inte alla fält ifyllda enligt valideringen ovan kommer denna dialog att visas.
+        } 
+        //Är inte alla fält ifyllda enligt valideringen ovan kommer denna dialog att visas.
         else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
