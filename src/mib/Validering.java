@@ -139,7 +139,7 @@ public class Validering {
             }
         } // Om fältet ej är korrekt ifyllt skrivs felmeddelande ut till användaren. 
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att telefonnumret endast består av siffror!");
+            JOptionPane.showMessageDialog(null, "Kontrollera att telefonnumret endast består av siffror och bindestreck!");
             System.out.println("Internt felmeddelande" + e.getMessage());
 
             // Boolean ändras till false om värdet ej är korrekt ifyllt.

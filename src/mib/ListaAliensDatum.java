@@ -217,7 +217,11 @@ public class ListaAliensDatum extends javax.swing.JFrame {
         s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarTillStartsidaMouseClicked
 
-    //Metod som avser att söka fram de aliens mellan ett datumintervall.
+    /**
+     * Metod som avser att söka fram de aliens mellan ett datumintervall.
+     *
+     * @param evt
+     */
     private void btnSokMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSokMouseClicked
         //If-sats som kontrollerar att fälten har värden vid klickning på sök-knappen. 
         if (Validering.textFaltHarVarde(txtFran) && Validering.textFaltHarVarde(txtTill)) {
@@ -225,14 +229,22 @@ public class ListaAliensDatum extends javax.swing.JFrame {
             String franDatum = txtFran.getText().trim();  //ta bort aventuella mellanslag efter datumen som kan skapa problem.
             String tillDatum = txtTill.getText().trim();
 
-            //Använder en metod från vår SQL-klass för att se vilken ordning som aliens ska listas i.
-            String ordning = cmbOrdning.getSelectedItem().toString();
-            SQL sql = new SQL(idb);
-            sql.getRegistreringsdatum(franDatum, tillDatum, txtLista, ordning);
+            // Kolla att datumen har rätt format
+            if (Validering.kollaDatumFormat(franDatum) && Validering.kollaDatumFormat(tillDatum)) {
+
+                // Sparar användarens val för i vilken datumordning hen vill se resultatet
+                String ordning = cmbOrdning.getSelectedItem().toString();
+                // Använder en metod för att hämta alla aliens som är registrerade mellan valda datum
+                SQL sql = new SQL(idb);
+                sql.getRegistreringsdatum(franDatum, tillDatum, txtLista, ordning);
+            } else {
+                JOptionPane.showMessageDialog(null, "Kontrollera att datumen är korrekt ifyllda: ÅÅÅÅ-MM-DD");
+            }
         } //Är inte alla fält ifyllda enligt valideringen ovan kommer denna dialog att visas.
         else {
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
+
     }//GEN-LAST:event_btnSokMouseClicked
 
     //Metod som tillhör knappen "ordna".
