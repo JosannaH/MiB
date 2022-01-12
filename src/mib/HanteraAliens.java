@@ -21,7 +21,7 @@ public class HanteraAliens extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuBarTomt.setText("Inloggad som " + anvTyp);
+        menuBarTomt.setText("");
     }
 
     /**

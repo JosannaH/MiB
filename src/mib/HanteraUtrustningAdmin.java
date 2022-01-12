@@ -21,9 +21,7 @@ public class HanteraUtrustningAdmin extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-
-        //Hämtar information om vem som är inloggad från inloggningssidan.
-        menuBarTomt.setText("Inloggad som " + anvTyp);
+        menuBarTomt.setText("");
     }
 
     /**

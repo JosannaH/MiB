@@ -23,7 +23,7 @@ public class HanteraAliensAdmin extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
 
         //Hämtar information om vem som är inloggad från inloggningssidan.
-        menuBarTomt.setText("Inloggad som " + anvTyp);
+        menuBarTomt.setText("");
     }
 
     /**

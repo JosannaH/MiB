@@ -23,7 +23,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuInloggad.setText("Inloggad som " + anvTyp);
+        menuInloggad.setText("");
     }
 
     /**

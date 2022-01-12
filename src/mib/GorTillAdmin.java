@@ -25,7 +25,7 @@ public class GorTillAdmin extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuBarInloggadSom.setText("Inloggad som " + anvTyp);
+        menuBarInloggadSom.setText("");
     }
 
     /**

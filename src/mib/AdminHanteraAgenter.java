@@ -21,7 +21,7 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuInlogg.setText("Inloggad som " + anvTyp);
+        menuInlogg.setText("");
 
     }
 
