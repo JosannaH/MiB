@@ -153,7 +153,7 @@ public class StartsidaAdmin extends javax.swing.JFrame {
 /*
  * Knappar som leder användaren vidare till andra sidor
  * @param evt 
- */
+     */
     private void btnAgenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgenterActionPerformed
         setVisible(false);
         AdminHanteraAgenter adminHanteraAgenter = new AdminHanteraAgenter(idb, anvId, anvTyp);
