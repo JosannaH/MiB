@@ -553,12 +553,15 @@ public class SQL extends javax.swing.JFrame {
     public void tillStartsida(String anvId, String anvTyp) {
         setVisible(false);
         // anropar metod för att kolla om agenten är admin
-        boolean arAdmin = arAdmin(anvId);
 
         if (anvTyp.equals("Alien")) {
             StartsidaAlien a = new StartsidaAlien(idb, anvId, anvTyp);
             a.setVisible(true);
-        } else if (arAdmin == true) {
+        } 
+        
+        else {
+        boolean arAdmin = arAdmin(anvId);
+        if (arAdmin == true) {
             StartsidaAdmin a = new StartsidaAdmin(idb, anvId, anvTyp);
             a.setVisible(true);
         } else {
@@ -566,7 +569,7 @@ public class SQL extends javax.swing.JFrame {
             a.setVisible(true);
         }
     }
-
+    }  
     /**
      * Kontrollerar så att ett agentnamn inte redan finns i tabellen agent
      *
