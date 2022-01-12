@@ -8,12 +8,12 @@ import oru.inf.InfDB;
 
 /**
  *
- * @author luna
+ * @author Linda, Lisa, Josanna
  */
 public class StartsidaAdmin extends javax.swing.JFrame {
 
     /**
-     * Creates new form StartsidaAgent
+     * Creates new form StartsidaAdmin
      */
     private InfDB idb;
     private String anvId;
@@ -150,7 +150,10 @@ public class StartsidaAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/*
+ * Knappar som leder användaren vidare till andra sidor
+ * @param evt 
+ */
     private void btnAgenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgenterActionPerformed
         setVisible(false);
         AdminHanteraAgenter adminHanteraAgenter = new AdminHanteraAgenter(idb, anvId, anvTyp);
