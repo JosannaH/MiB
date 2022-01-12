@@ -5,9 +5,6 @@
 package mib;
 
 import oru.inf.InfDB;
-import javax.swing.JOptionPane;
-import oru.inf.InfDB;
-import oru.inf.InfException;
 
 /**
  *
@@ -24,6 +21,7 @@ public class AdminHanteraAgenter extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        menuInlogg.setText("Inloggad som " + anvTyp);
 
     }
 

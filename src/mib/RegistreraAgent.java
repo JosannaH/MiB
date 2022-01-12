@@ -27,6 +27,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        menuInlogg.setText("Inloggad som " + anvTyp);
 
         // Anropar en metod som genererar nytt ID automatiskt. 
         //Hämtas i konstruktorn för att visas så fort klassens fönster visas.

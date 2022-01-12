@@ -30,6 +30,7 @@ public class TaBortAlien extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        menuInlogg.setText("Inloggad som " + anvTyp);
         
         //I konstruktorn anger vi att de rasunika fälten ska vara osynliga som default.
         lblBoogies.setVisible(false);

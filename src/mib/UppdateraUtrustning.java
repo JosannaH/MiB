@@ -31,6 +31,7 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        menuBarInlogg.setText("Inloggad som " + anvTyp);
 
         // Anropas för att dölja nedanstående rader tills dess att man har valt ras.
         doljText(txtEgenskapInfo);

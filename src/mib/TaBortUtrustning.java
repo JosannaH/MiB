@@ -32,6 +32,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        menuInlogg.setText("Inloggad som " + anvTyp);
 
         // Rutor som inledningsvis ska vara osynliga för användaren. 
         lblInfo.setVisible(false);

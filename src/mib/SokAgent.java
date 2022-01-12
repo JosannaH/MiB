@@ -26,6 +26,7 @@ public class SokAgent extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        menuInoggadSom.setText("Inloggad som " + anvTyp);
 
         SQL s = new SQL(idb);
         // Hämtar alla agentnamn och fyller combobox
