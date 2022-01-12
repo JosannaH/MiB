@@ -10,7 +10,7 @@ import oru.inf.InfException;
 
 /**
  *
- * @author luna
+ * @author Linda, Lisa, Josanna
  */
 public class RegistreraAgent extends javax.swing.JFrame {
 
@@ -28,9 +28,9 @@ public class RegistreraAgent extends javax.swing.JFrame {
         this.anvId = anvId;
         this.anvTyp = anvTyp;
 
-        // Anropar en metod som genererar nytt ID automatiskt. Hämtas i konstruktorn för att visas så fort klassens fönster visas.
+        // Anropar en metod som genererar nytt ID automatiskt. 
+        //Hämtas i konstruktorn för att visas så fort klassens fönster visas.
         hamtaAgentID(regAgentID);
-
     }
 
     /**
@@ -228,17 +228,17 @@ public class RegistreraAgent extends javax.swing.JFrame {
     /**
      * När användaren trycker på knappen utförs kontroller på alla fält och den
      * nya agenten registreras om allt är rätt ifyllt
-     *
-     * @param evt
      */
     private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
         // Kollar att alla fält och comboboxar har är ifyllda
+        // Telefonnummer får dock lämnas tomt
         if (Validering.textFaltHarVarde(txtNamnSvar) && Validering.textFaltHarVarde(txtAnsDatumSvar)
                 && Validering.comboHarVarde(cmbAdminSvar) && Validering.comboHarVarde(cmbOmradeSvar)
                 && Validering.textFaltHarVarde(txtLosen1) && Validering.textFaltHarVarde(txtLosen2)) {
+
             SQL s = new SQL(idb);
-            // Kollar så att agentnamnet inte redan finns
-            if (s.namnFinnsInteAgent(txtNamnSvar)) {            
+            // Kollar så att agentnamnet inte redan finns, metoden hämtas från SQL-klassen
+            if (s.namnFinnsInteAgent(txtNamnSvar)) {
 
                 // Hämtar alla användarinmatningar
                 String agentID = lblID.getText();
@@ -249,42 +249,48 @@ public class RegistreraAgent extends javax.swing.JFrame {
                 String regDatum = txtAnsDatumSvar.getText();
                 String regLosen1 = txtLosen1.getText();
                 String regLosen2 = txtLosen2.getText();
-                // Kollar att användaren angett samma lösenord i båda textfields
-                if(regTel.isEmpty() || Validering.kollaTelefon(regTel)){
-                if(Validering.kollaDatumFormat(regDatum)){
-                if (regLosen1.equals(regLosen2)) {
-                    // Kollar att lösenordet har rätt längd
-                    if (regLosen1.length() <= 6 && regLosen1.length() >= 3) {
-                        // Kollar om agenten ska vara administratör eller inte
-                        try {
-                            if (regAdmin.contains("Ja")) {
-                                regAdmin = "J";
-                            } else if (regAdmin.contains("Nej")) {
-                                regAdmin = "N";
-                            }
-                            // Hämtar ID för området som agenten ska tillhöra
-                            String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + regOmrade + "'");
-                            // Lägger till den nya agenten i tabellen Agent
-                            idb.insert("INSERT INTO Agent VALUES ('" + agentID + "', '" + regNamn + "', '" + regTel + "', '" + regDatum + "', '" + regAdmin + "','" + regLosen1 + "','" + omradesID + "')");
-                            JOptionPane.showMessageDialog(null, "En ny agent har registrerats!");
-                            // Användaren skickas automatiskt tillbaka till föregående sida
-                            btnTillbakaActionPerformed(evt);
 
-                            // Fångar bland annat upp om användaren skrivit en bokstav i ID-fältet eller fel format på datum (genom att det inte går att föra in i databasen)
-                        } catch (InfException e) {
-                            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att alla fält har korrekta värden.");
-                            System.out.println("Internt felmeddelande" + e.getMessage());
+                // Kollar så att eventuellt telefonnummer är rätt ifyllt 
+                // Godkänt innehåll är null eller att numret består av siffror och ev. "-"
+                if (regTel.isEmpty() || Validering.kollaTelefon(regTel)) {
+
+                    // Kollar att datumet är ifyllt i rätt format så att det går att lägga in i databasen
+                    if (Validering.kollaDatumFormat(regDatum)) {
+
+                        // Kollar att lösenord och lösenordskontroll matchar med varandra
+                        if (regLosen1.equals(regLosen2)) {
+                            // Kollar att lösenordet har rätt längd
+                            if (regLosen1.length() <= 6 && regLosen1.length() >= 3) {
+
+                                // Kollar om agenten ska vara admin eller inte
+                                if (regAdmin.contains("Ja")) {
+                                    regAdmin = "J";
+                                } else if (regAdmin.contains("Nej")) {
+                                    regAdmin = "N";
+                                }
+                                try {
+                                    // Hämtar ID för området som agenten ska tillhöra
+                                    String omradesID = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning = '" + regOmrade + "'");
+                                    // Lägger till den nya agenten i tabellen Agent och visar bekräftelse för användaren
+                                    idb.insert("INSERT INTO Agent VALUES ('" + agentID + "', '" + regNamn + "', '" + regTel + "', '" + regDatum + "', '" + regAdmin + "','" + regLosen1 + "','" + omradesID + "')");
+                                    JOptionPane.showMessageDialog(null, "En ny agent har registrerats!");
+                                    // Användaren skickas automatiskt tillbaka till föregående sida när en ny agent har registrerats
+                                    btnTillbakaActionPerformed(evt);
+
+                                } catch (InfException e) {  // Fångar upp fel vid registrering i databasen och meddelar användaren
+                                    JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att alla fält har korrekta värden.");
+                                    System.out.println("Internt felmeddelande" + e.getMessage());
+                                }
+                            } else { // fångar upp för kort/långt lösenord och meddelar användaren
+                                JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
+                            }
+                        } else { // fångar upp om lösenord och lösenordkontroll inte matchar och meddelar användaren
+                            JOptionPane.showMessageDialog(null, "Lösenorden stämmer inte överens!");
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Lösenorden stämmer inte överens!");
                 }
             }
-            }
-            }
-        } else {
+        } else {  // Fångar upp om valideringen inte godkänns vad gäller vilka fält som måste vara ifyllda för att agenten ska kunna registreras
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
 
@@ -292,8 +298,6 @@ public class RegistreraAgent extends javax.swing.JFrame {
 
     /**
      * Gå tillbaka till föregående sida
-     *
-     * @param evt
      */
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
@@ -303,8 +307,6 @@ public class RegistreraAgent extends javax.swing.JFrame {
 
     /**
      * Gå till startsida för administratörer
-     *
-     * @param evt
      */
     private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
         setVisible(false);
@@ -314,8 +316,6 @@ public class RegistreraAgent extends javax.swing.JFrame {
 
     /**
      * Logga ut och gå tillbaka till inloggningssidan
-     *
-     * @param evt
      */
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
@@ -324,7 +324,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_menuLoggaUtMouseClicked
 
     /**
-     * Hämta ilket ID som det nya agenten ska få
+     * Hämta vilket ID som det nya agenten ska få
      *
      * @param regAgentID
      */
@@ -334,7 +334,7 @@ public class RegistreraAgent extends javax.swing.JFrame {
             regAgentID = idb.getAutoIncrement("Agent", "Agent_ID");
             lblID.setText(regAgentID);
 
-        } catch (InfException e) {
+        } catch (InfException e) {  // Fångar upp om databasfrågan inte lyckades
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande" + e.getMessage());
         }

@@ -6,15 +6,13 @@ package mib;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
  *
- * @author luna
+ * @author Linda, Lisa, Josanna
  */
 public class RegistreraAlien extends javax.swing.JFrame {
 
@@ -27,14 +25,14 @@ public class RegistreraAlien extends javax.swing.JFrame {
     /**
      * Creates new form RegistreraAlien
      */
-    // kontruktor som tar in information som bland annat används till den översta MenuBar
     public RegistreraAlien(InfDB idb, String anvId, String anvTyp) {
         initComponents();
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        // Skriver ut dagens datum i textfield för datum
         nyttDatum();
-        // Fyller comboboxar med alternativ
+        // Fyller comboboxar med alternativ för plats ansvarig agent
         SQL s = new SQL(idb);
         s.plats(cmbPlats);
         s.agent(cmbAnsAgent);
@@ -45,7 +43,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
         lblRasInfo.setVisible(false);
         // Text som visas i manuBar
         menuBarInlogg.setText("Inloggad som " + anvTyp);
-
     }
 
     /**
@@ -317,13 +314,12 @@ public class RegistreraAlien extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 /**
      * Spara all inmatad information i databasen
-     *
-     * @param evt
      */
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
         // Kollar om alla textfält som är obligatoriska har värden
         if (Validering.textFaltHarVarde(txtNamn) && Validering.textFaltHarVarde(txtDatum)
-                && Validering.comboHarVarde(cmbAnsAgent) && Validering.comboHarVarde(cmbRas) && Validering.comboHarVarde(cmbPlats) && Validering.passwordHarVarde(psw1) && Validering.passwordHarVarde(psw2)) {
+                && Validering.comboHarVarde(cmbAnsAgent) && Validering.comboHarVarde(cmbRas) && Validering.comboHarVarde(cmbPlats)
+                && Validering.passwordHarVarde(psw1) && Validering.passwordHarVarde(psw2)) {
             // Kollar så att aliennamnet inte redan finns i databasen
             SQL s = new SQL(idb);
             if (s.namnFinnsInteAlien(txtNamn)) {
@@ -336,69 +332,84 @@ public class RegistreraAlien extends javax.swing.JFrame {
                 String regRas = cmbRas.getSelectedItem().toString();
                 String rasInfo = txtRasInfo.getText();
                 String regAnsAgent = cmbAnsAgent.getSelectedItem().toString();
-                String regAlienIDGet = lblAlienID2.getText();
-                int regAlienIDint = Integer.parseInt(regAlienIDGet);
+                String regAlienID = lblAlienID2.getText();
                 String dagensDatum = txtDatum.getText();
-                
-                if(Validering.kollaDatumFormat(dagensDatum)){
-                    
-                // Kollar att de båda lösenordsinmatningar stämmer överens
-                if (regPassword.equals(regPasswordCheck)) {
-                    // Kollar att lösenordet har rätt längd
-                    if (regPassword.length() <= 6 && regPassword.length() >= 3) {
 
-                        try {
-                            //Hämtar ID för plats och ansvarig agent
-                            String platsID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning = '" + regPlats + "'");
-                            String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn = '" + regAnsAgent + "'");
-                            // Körs om alien är Boglodite, textfältet med rasinfo måste vara ifyllt
-                            if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
-                                if(Validering.txtFaltHarSiffror(txtRasInfo)){
-                                // lägger till alien i databasen, i tabellen för alien och i tabellen för rasen
-                                idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
-                                idb.insert("INSERT INTO Boglodite VALUES ('" + regAlienIDGet + "', '" + rasInfo + "')");
-                                JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
-                                // Användaren skickas tillbaka till föregående sida
-                                btnTillbakaActionPerformed(evt);
+                // Kollar så att datum är inskrivet i rätt format
+                if (Validering.kollaDatumFormat(dagensDatum)) {
+
+                    // Kollar att de båda lösenordsinmatningar stämmer överens
+                    if (regPassword.equals(regPasswordCheck)) {
+
+                        // Kollar att lösenordet har rätt längd
+                        if (regPassword.length() <= 6 && regPassword.length() >= 3) {
+
+                            try {
+                                //Hämtar ID för plats och ansvarig agent
+                                String platsID = idb.fetchSingle("SELECT Plats_ID FROM plats WHERE Benamning = '" + regPlats + "'");
+                                String regAgentID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE namn = '" + regAnsAgent + "'");
+
+                                // Körs om alien är Boglodite, textfältet med rasinfo måste vara ifyllt
+                                if (regRas.equals("Boglodite") && Validering.textFaltHarVarde(txtRasInfo)) {
+                                    // Kollar så att textfältet med rasinfo är ifyllt med siffror
+                                    if (Validering.txtFaltHarSiffror(txtRasInfo)) {
+                                        // lägger till alien i databasen; i tabellen för alien och i tabellen för rasen
+                                        idb.insert("INSERT INTO Alien VALUES (" + regAlienID + ", '" + dagensDatum + "', '" + regPassword + "', '"
+                                                + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
+                                        idb.insert("INSERT INTO Boglodite VALUES ('" + regAlienID + "', '" + rasInfo + "')");
+                                        // Bekräftelse visas för användaren
+                                        JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
+                                        // Användaren skickas tillbaka till föregående sida
+                                        btnTillbakaActionPerformed(evt);
+                                    }
+
+                                    // Kollar om rasen är Squid och att rasinfo är ifyllt
+                                } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
+                                    // Kollar att rasinfo består av siffror
+                                    if (Validering.txtFaltHarSiffror(txtRasInfo)) {
+                                        //Lägger till ny alien i tabeller
+                                        idb.insert("INSERT INTO Alien VALUES (" + regAlienID + ", '" + dagensDatum + "', '" + regPassword + "', '"
+                                                + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
+                                        idb.insert("INSERT INTO Squid VALUES ('" + regAlienID + "', '" + rasInfo + "')");
+                                        //Visar bekräftelse till användaren
+                                        JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
+                                        //Skickar tillbaka användaren till föregående sida
+                                        btnTillbakaActionPerformed(evt);
+                                    }
+
+                                    // Kollar om rasen är Worm (ingen rasinfo behöver fyllas i för rasen Worm)
+                                } else if (regRas.equals("Worm")) {
+                                    // Lägger till alien i databasen
+                                    idb.insert("INSERT INTO Alien VALUES (" + regAlienID + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
+                                    idb.insert("INSERT INTO Worm VALUES ('" + regAlienID + "')");
+                                    // Visar bekräftelse för användaren
+                                    JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
+                                    //Skickar tillbaka användaren till föregående sida
+                                    btnTillbakaActionPerformed(evt);
+
+                                    // Om alien inte har någon ras så läggs den endast i i tabellen Alien, inte i någon rastabell
+                                } else if (regRas.equals("Ingen")) {
+                                    // lägger till alien i databasen
+                                    idb.insert("INSERT INTO Alien VALUES (" + regAlienID + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
+                                    JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
+                                    btnTillbakaActionPerformed(evt);
+
+                                    // Körs om rasinfo för Boglodite eller Squid inte är infyllt
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
                                 }
 
-                            } else if (regRas.equals("Squid") && Validering.textFaltHarVarde(txtRasInfo)) {
-                                if(Validering.txtFaltHarSiffror(txtRasInfo)){
-                                idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
-                                idb.insert("INSERT INTO Squid VALUES ('" + regAlienIDGet + "', '" + rasInfo + "')");
-                                JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
-                                btnTillbakaActionPerformed(evt);
-                                }
-
-                                // Ingen rasinfo behöver fyllas i för rasen Worm
-                            } else if (regRas.equals("Worm")) {
-                                idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
-                                idb.insert("INSERT INTO Worm VALUES ('" + regAlienIDGet + "')");
-                                JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
-                                btnTillbakaActionPerformed(evt);
-
-                                // Om alien inte har någon ras så läggs den endast i i tabellen Alien, inte i någon rastabell
-                            } else if (regRas.equals("Ingen")) {
-                                // lägger till alien i databasen
-                                idb.insert("INSERT INTO Alien VALUES (" + regAlienIDint + ", '" + dagensDatum + "', '" + regPassword + "', '" + regNamn + "', '" + regTelefon + "','" + platsID + "'," + regAgentID + ")");
-                                JOptionPane.showMessageDialog(null, "En ny alien är registrerad!");
-                                btnTillbakaActionPerformed(evt);
-
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+                            } catch (InfException e) {  // Körs om databasfrågorna inte lyckas
+                                JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att alla fält är korrekt ifyllda");
+                                System.out.println("Internt felmeddelande" + e.getMessage());
                             }
-
-                        } catch (InfException e) {
-                            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att alla fält är korrekt ifyllda");
-                            System.out.println("Internt felmeddelande" + e.getMessage());
+                        } else { // Körs om lösenordet är fel ifyllt
+                            JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                     }
                 }
-                }
             }
-        } else {
+        } else { // Körs om alla obigatoriska fält inte är ifyllda
             JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
     }//GEN-LAST:event_btnSparaActionPerformed
@@ -422,8 +433,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
     /**
      * När knappen välj ras klickas på så visas eventuellt individuell rasinfo
      * som ska fyllas i beroende vilken ras alien är
-     *
-     * @param evt
      */
     private void tbValjRasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbValjRasMouseClicked
         String ras = cmbRas.getSelectedItem().toString();
@@ -445,22 +454,23 @@ public class RegistreraAlien extends javax.swing.JFrame {
 
     /**
      * Går tillbaka till startsidan. Metod som kontrollerar om användaren är admin eller agent anropas från klassen SQL.
-     * @param evt 
+     * @param evt
      */
     private void menuBarStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarStartsidaMouseClicked
         setVisible(false);
         SQL s = new SQL(idb);
         s.tillStartsida(anvId, anvTyp);
     }//GEN-LAST:event_menuBarStartsidaMouseClicked
+
     /**
-     * Går tillbaka till startsidan. Olika sidor beroende på om agenten är admin
-     * eller inte
-     *
-     * @param evt
+     * Går tillbaka till föregående sida
      */
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         SQL s = new SQL(idb);
-        // anropar en metod som kollar om agent är admin eller inte
+        /* Eftersom RegistreraAlien kan nås både av vanlig agent och av admin så
+        måste användartypen kollas för att avgöra vilken sida användaren ska skickas tillbaka till
+        En metod från klassen SQL används för detta
+         */
         boolean admin = s.arAdmin(anvId);
         setVisible(false);
 
@@ -473,6 +483,9 @@ public class RegistreraAlien extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
+    /**
+     * Logga ut och gå till inloggningssida
+     */
     private void menuBarLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarLoggaUtMouseClicked
         setVisible(false);
         Inloggning i = new Inloggning(idb);
@@ -486,7 +499,6 @@ public class RegistreraAlien extends javax.swing.JFrame {
         LocalDateTime time = LocalDateTime.now();
         String date = dtf.format(time);
         txtDatum.setText(date);
-
     }
 
 

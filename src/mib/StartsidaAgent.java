@@ -169,11 +169,8 @@ public class StartsidaAgent extends javax.swing.JFrame {
         RegistreraNyUtrustning utrustning = new RegistreraNyUtrustning(idb, anvId, anvTyp);
         utrustning.setVisible(true);
     }//GEN-LAST:event_btnUtrustningMouseClicked
-    /**
-     * Logga ut och gå tillbaka till inloggningsfönstret
-     *
-     * @param evt
-     */
+
+    //Logga ut och gå tillbaka till inloggningsfönstret
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);

@@ -45,7 +45,9 @@ public class SQL extends javax.swing.JFrame {
      */
     public void plats(JComboBox plats) {
         try {
+            // Hämta alla platser och spara i lista
             ArrayList<String> platsLista = idb.fetchColumn("SELECT Benamning FROM plats ORDER BY Benamning");
+            // Loopa igenom lista och lägg till dom i combobox, en efter en
             for (int i = 0; i < platsLista.size(); i++) {
                 String omradesNamn = platsLista.get(i);
                 plats.addItem(omradesNamn);
@@ -61,7 +63,9 @@ public class SQL extends javax.swing.JFrame {
      */
     public void agent(JComboBox x) {
         try {
+            // Hämta alla agenter och spara i lista
             ArrayList<String> agentLista = idb.fetchColumn("SELECT namn FROM agent ORDER BY namn");
+            // Loopa igenom lista och lägg till dom i combobox, en efter en
             for (int i = 0; i < agentLista.size(); i++) {
                 String namn = agentLista.get(i);
                 x.addItem(namn);
@@ -77,7 +81,9 @@ public class SQL extends javax.swing.JFrame {
      */
     public void utrustning(JComboBox x) {
         try {
+            // Hämta all utrustning och spara i lista
             ArrayList<String> utrustningsLista = idb.fetchColumn("SELECT Benamning FROM utrustning");
+            // Loopa igenom lista och lägg till dom i combobox, en efter en
             for (int i = 0; i < utrustningsLista.size(); i++) {
                 String namn = utrustningsLista.get(i);
                 x.addItem(namn);
@@ -93,7 +99,9 @@ public class SQL extends javax.swing.JFrame {
      */
     public void alien(JComboBox x) {
         try {
+            // Hämta alla aliens och spara i lista
             ArrayList<String> alienLista = idb.fetchColumn("SELECT namn FROM alien ORDER BY namn");
+            // Loopa igenom lista och lägg till dom i combobox, en efter en
             for (int i = 0; i < alienLista.size(); i++) {
                 String agentNamn = alienLista.get(i);
                 x.addItem(agentNamn);
@@ -129,12 +137,12 @@ public class SQL extends javax.swing.JFrame {
         }
         // Lägger till en rubrik högst upp i listan
         txtLista.append("AlienID \t Namn \t\t Telefon \n");
-        // Loopar igenom ID-listan och plockar ut motsvarande info från dom två andra listorna
+        // Loopar igenom listorna och plockar ut info
         for (int i = 0; i < alienIDLista.size(); i++) {
             String a = alienIDLista.get(i).get("alien_ID");
             String n = namnLista.get(i).get("namn");
             String t = telefonLista.get(i).get("telefon");
-            // Lägger till info i textArea
+            // Lägger till info i textArea, rad för rad
             txtLista.append(a + " \t " + n + " \t\t" + t + "\n");
         }
     }
@@ -148,7 +156,8 @@ public class SQL extends javax.swing.JFrame {
     public void fyllListaAlienRas(String valdRas, JTextArea txtLista) {
         // nollställ textarea inför en ny sökning
         txtLista.setText("");
-        ArrayList<String> alienIDLista = new ArrayList<>();
+        // Skapar listor att spara info i
+        ArrayList<String> alienIDRasLista = new ArrayList<>();
         ArrayList<HashMap<String, String>> namnLista = new ArrayList<>();
         ArrayList<HashMap<String, String>> telefonLista = new ArrayList<>();
 
@@ -157,19 +166,19 @@ public class SQL extends javax.swing.JFrame {
         try {
 
             // hämta alla alienID i tabellen för vald ras
-            alienIDLista = idb.fetchColumn("SELECT alien_ID from " + valdRas);
+            alienIDRasLista = idb.fetchColumn("SELECT alien_ID from " + valdRas);
 
-            // loopa igenom alien-tabellen och spara info om aliens med IDn från alienIDLista
-            for (int i = 0; i < alienIDLista.size(); i++) {
+            // loopa igenom alien-tabellen och spara info om aliens med IDn från alienIDRasLista
+            for (int i = 0; i < alienIDRasLista.size(); i++) {
 
-                namnLista = idb.fetchRows("SELECT namn from alien WHERE alien_ID = " + alienIDLista.get(i));
-                telefonLista = idb.fetchRows("SELECT telefon from alien WHERE alien_ID = " + alienIDLista.get(i));
+                namnLista = idb.fetchRows("SELECT namn from alien WHERE alien_ID = " + alienIDRasLista.get(i));
+                telefonLista = idb.fetchRows("SELECT telefon from alien WHERE alien_ID = " + alienIDRasLista.get(i));
 
-                String a = alienIDLista.get(i);
+                String a = alienIDRasLista.get(i);
                 // tittar på indexplats 'i' i arraylisten och sedan under nyckeln 'namn' i hashmap
                 String n = namnLista.get(i).get("namn");
                 String t = telefonLista.get(i).get("telefon");
-
+                // Skriver ut info i textarea, en rad per loop
                 txtLista.append(a + " \t " + n + " \t\t" + t + "\n");
             }
         } catch (InfException e) {
@@ -215,7 +224,8 @@ public class SQL extends javax.swing.JFrame {
         String count = "";
 
         try {
-            // Kolla hur många aliens en agent är ansvarig över
+            // Kolla hur många aliens en agent är ansvarig över genom att räkna rader
+            // I databasen i vilka det aktuella agentID:t förekommer
             count = idb.fetchSingle("SELECT count(alien_ID) FROM alien WHERE ansvarig_agent = " + soktID);
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
@@ -241,20 +251,20 @@ public class SQL extends javax.swing.JFrame {
         // Skriv ut rubrik i textares
         txtAreaAliens.append("Alien ID \t Namn \n");
 
-        ArrayList<HashMap<String, String>> hashID = new ArrayList<>();
-        ArrayList<HashMap<String, String>> hashNamn = new ArrayList<>();
+        ArrayList<HashMap<String, String>> IdLista = new ArrayList<>();
+        ArrayList<HashMap<String, String>> namnLista = new ArrayList<>();
 
         try {
             // Hämta namn och ID för de aliens som har den specifika agenten som ansvarig
-            hashID = idb.fetchRows("SELECT alien_ID FROM alien WHERE ansvarig_agent = " + agent_ID + " ORDER BY alien_ID ASC");
-            hashNamn = idb.fetchRows("SELECT namn FROM alien WHERE ansvarig_agent = " + agent_ID + " ORDER BY alien_ID ASC");
+            IdLista = idb.fetchRows("SELECT alien_ID FROM alien WHERE ansvarig_agent = " + agent_ID + " ORDER BY alien_ID ASC");
+            namnLista = idb.fetchRows("SELECT namn FROM alien WHERE ansvarig_agent = " + agent_ID + " ORDER BY alien_ID ASC");
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande: getAliensForAnsvarigAgent() " + e.getMessage());
         }
         // Loopa igenom lista och skriv ut info i textarea
-        for (int i = 0; i < hashID.size(); i++) {
-            txtAreaAliens.append(hashID.get(i).get("alien_ID") + "\t" + hashNamn.get(i).get("namn") + "\n");
+        for (int i = 0; i < IdLista.size(); i++) {
+            txtAreaAliens.append(IdLista.get(i).get("alien_ID") + "\t" + namnLista.get(i).get("namn") + "\n");
         }
     }
 
@@ -268,23 +278,25 @@ public class SQL extends javax.swing.JFrame {
      * @param ordning
      */
     public void getRegistreringsdatum(String franDatum, String tillDatum, JTextArea txtAreaListaDatum, String ordning) {
+
         // Tar in användarinmatningen i en array. Användaren matar in ÅÅÅÅ-MM-DD, här splittas det upp så år, månad och dag hamnar
         // på varsin indexplats
         String[] fran = franDatum.split("-");
         String[] till = tillDatum.split("-");
-        // Variabler att spara datumDB i
+        // Variabler att spara datumet i Stringformat utan bildestreck
         String franDatumString = "";
         String tillDatumString = "";
 
-        // datumDB behöver göras om till int för att kunna jämföras större än/mindre än
+        // Variabler att spara datum i int-format för att kunna lista dem i datumordning i textarean
         int franDatumInt = 0;
         int tillDatumInt = 0;
 
         try {
-            // Sätt ihop datumet till rätt format, dvs ÅÅÅÅMMDD och spara i en String
+            // Sätt ihop datumet till ett format som går att parsa, dvs ÅÅÅÅMMDD
             franDatumString = fran[0] + fran[1] + fran[2];
             tillDatumString = till[0] + till[1] + till[2];
 
+            // Parsa string till int
             franDatumInt = Integer.parseInt(franDatumString);
             tillDatumInt = Integer.parseInt(tillDatumString);
 
@@ -299,15 +311,18 @@ public class SQL extends javax.swing.JFrame {
         // Listans rubriker
         txtAreaListaDatum.append("Reg. datum \t Alien ID \t Namn \n");
 
+        // Listor att spara info i
         ArrayList<String> listaDatum = new ArrayList<>();
         ArrayList<String> listaID = new ArrayList<>();
         ArrayList<String> listaNamn = new ArrayList<>();
 
+        // Variabler att spara SQL-frågor i
         String queryDatum;
         String queryID;
         String queryNamn;
 
-        // Olika frågor ska ställas till databasen beroende på i vilken ordning användaren vill lista aliens
+        /* Olika frågor ska ställas till databasen beroende på i vilken ordning användaren vill lista aliens
+        Talar också om i vilket format datumet ska hämtas för att kunna parsas till int*/
         if (ordning.equals("Äldsta först")) {
             queryDatum = "SELECT date_format(Registreringsdatum, '%Y%m%d') FROM alien ORDER BY Registreringsdatum ASC";
             queryID = "SELECT alien_ID FROM alien ORDER BY Registreringsdatum ASC";
@@ -329,6 +344,7 @@ public class SQL extends javax.swing.JFrame {
             for (int i = 0; i < listaDatum.size(); i++) {
                 // Datum från databasen som ska jämföras med datumspann som användaren angett
                 String datumDB = listaDatum.get(i);
+                // Parsa till int för att kunna jämföra med datumen som användaren skrivit in (och som redan har parsats)
                 int datumDBInt = Integer.parseInt(datumDB);
 
                 // om datumet är inom spannet så skrivs aliens info ut i textarea
@@ -339,12 +355,12 @@ public class SQL extends javax.swing.JFrame {
                     txtAreaListaDatum.append(datumDB + "\t" + id + "\t" + namn + "\n");
                 }
             }
-        } catch (InfException e) {
+        } catch (InfException e) { // Fångar upp fel i databasfrågorna
             JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att datumen är korrekt ifyllda: ÅÅÅÅ-MM-DD");
             System.out.println("Internt felmeddelande: " + e.getMessage());
         }
+
     }
-    
 
     /**
      * Visa områdeschef utifrån ett valt område, setText i en label
@@ -425,7 +441,7 @@ public class SQL extends javax.swing.JFrame {
         ArrayList<String> omradesLista = new ArrayList();
 
         try {
-            //Hämta agentens ID beserat på vilken agent användaren alt i comboboxen
+            //Hämta agentens ID beserat på vilken agent användaren valt i comboboxen
             nyChefID = idb.fetchSingle("SELECT agent_ID FROM agent WHERE namn = '" + nyChefNamn + "'");
             // Hämta områdesID utifrån vilket område användaren valt
             omradeID = idb.fetchSingle("SELECT omrades_ID FROM omrade WHERE benamning = '" + omrade + "'");
@@ -446,8 +462,6 @@ public class SQL extends javax.swing.JFrame {
                     lblNyChef.setVisible(true);
                 } else {
                     idb.insert("INSERT INTO omradeschef VALUES (" + nyChefID + ", " + omradeID + ")");
-                    // Visar användaren vem som är ny chef. 
-                    lblNyChef.setVisible(true);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, nyChefNamn + " är redan omradeschef!");
@@ -458,6 +472,7 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande: uppdateraOmradeschef() " + e.getMessage());
         }
         // Visar användaren vem som är ny chef. 
+        lblNyChef.setVisible(true);
         lblNyChef.setText("Ny chef för " + omrade + " är " + nyChefNamn);
     }
 
@@ -492,8 +507,6 @@ public class SQL extends javax.swing.JFrame {
                     lblNyChef.setVisible(true);
                 } else {
                     idb.insert("INSERT INTO kontorschef VALUES (" + nyChefID + ", " + kontor + ")");
-                    // Visar användaren vem som är ny chef. 
-                    lblNyChef.setVisible(true);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, nyChefNamn + " är redan kontorschef!");
@@ -504,6 +517,7 @@ public class SQL extends javax.swing.JFrame {
             System.out.println("Internt felmeddelande: uppdateraKontorschef() " + e.getMessage());
         }
         // Visar användaren vem som är ny chef. 
+        lblNyChef.setVisible(true);
         lblNyChef.setText("Ny chef för " + kontor + " är " + nyChefNamn);
     }
 
@@ -565,7 +579,7 @@ public class SQL extends javax.swing.JFrame {
         String namn = rutaAttKolla.getText();
 
         try {
-            // Spara alla namn i en lista
+            // Spara alla agentnamn i en lista
             ArrayList<String> namnLista = idb.fetchColumn("SELECT namn FROM agent");
             // kolla om listan innehåller det aktuella namnet
             if (namnLista.contains(namn)) {
@@ -581,7 +595,7 @@ public class SQL extends javax.swing.JFrame {
     }
 
     /**
-     * Kontrollerar så att ett agentnamn inte redan finns i tabellen agent
+     * Kontrollerar så att ett agentnamn inte redan finns i tabellen alien
      *
      * @param rutaAttKolla
      * @return

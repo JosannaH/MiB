@@ -28,6 +28,7 @@ public class SokAgent extends javax.swing.JFrame {
         this.anvTyp = anvTyp;
 
         SQL s = new SQL(idb);
+        // Hämtar alla agentnamn och fyller combobox
         s.agent(cmbNamn);
     }
 
@@ -211,13 +212,12 @@ public class SokAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Sökning av egenten utförs
-     *
-     * @param evt
+     * Sökning av agenten utförs
      */
     private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
 
         try {
+            // Spara användarens val av agent
             String namn = cmbNamn.getSelectedItem().toString();
 
             // Hämta info från databas om den aktuella agenten
@@ -234,6 +234,7 @@ public class SokAgent extends javax.swing.JFrame {
             lblLosenordSvar.setText(agentLosenord);
             lblAnsDatSvar.setText(agentAnsDat);
 
+            // Kollar om agent är admin och skriver ut rätt text
             if (agentBehorighet.contains("J")) {
                 lblBehorigheterSvar.setText("Administratör");
             } else if (agentBehorighet.contains("N")) {
@@ -244,22 +245,30 @@ public class SokAgent extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel!");
             System.out.println("Internt felmeddelande:" + e.getMessage());
         }
-
-
     }//GEN-LAST:event_btnSokActionPerformed
 
+    /**
+     * Till startsida
+     *
+     * @param evt
+     */
     private void menuStartsidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuStartsidaMouseClicked
         setVisible(false);
         StartsidaAdmin startAdm = new StartsidaAdmin(idb, anvId, anvTyp);
         startAdm.setVisible(true);
     }//GEN-LAST:event_menuStartsidaMouseClicked
 
+    /**
+     * Logga ut och gå till inloggningssida
+     */
     private void menuLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLoggaUtMouseClicked
         setVisible(false);
         Inloggning inlogg = new Inloggning(idb);
         inlogg.setVisible(true);
     }//GEN-LAST:event_menuLoggaUtMouseClicked
-
+    /**
+     * Gå tillbaka till föregående sida
+     */
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         setVisible(false);
         AdminHanteraAgenter hantera = new AdminHanteraAgenter(idb, anvId, anvTyp);
