@@ -4,6 +4,10 @@
  */
 package mib;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -76,17 +80,13 @@ public class Validering {
     
     public static boolean kollaDatumFormat(String datum){
         boolean resultat = true;
-        
-        String[] d = datum.split("-");
-       
+    
         try {
-            for(int i = 0; i < d.length; i ++){
-            int j = Integer.parseInt(d[i]);
+            Date formatter = new SimpleDateFormat("yyyy-mm-dd").parse(datum);
+
             
-        }
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att datumen är korrekt ifyllda: ÅÅÅÅ-MM-DD");
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel! Kontrollera att datum är korrekt ifyllt: ÅÅÅÅ-MM-DD");
             resultat = false;
         }
        
