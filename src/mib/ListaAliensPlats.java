@@ -237,7 +237,7 @@ public class ListaAliensPlats extends javax.swing.JFrame {
         SQL sql = new SQL(idb);
         sql.fyllListaAlienPlats(valdPlatsIDint, txtLista);
     }//GEN-LAST:event_btnPlatsMouseClicked
-
+ 
     //Hämtar alla områden och lägger till dem i combo-boxen.
     private void getOmraden() {
         try {
