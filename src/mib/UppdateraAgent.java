@@ -253,7 +253,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Metoden söker upp information om angett agentID.
+     * Metoden söker upp information om angett namn.
      */
     private void btnSokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSokActionPerformed
 
