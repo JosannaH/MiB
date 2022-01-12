@@ -23,6 +23,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        menuInlogg.setText("Inloggad som " + anvTyp);
 
         // Gör rubriken osynlig vid uppstart av klassen.
         lblTele.setVisible(false);
@@ -53,7 +54,7 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         menuBar1 = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        menuInlogg = new javax.swing.JMenu();
         menuBarLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,8 +97,8 @@ public class VisaOmradesChef extends javax.swing.JFrame {
         jMenu5.setText("                                                                                                            ");
         menuBar1.add(jMenu5);
 
-        jMenu3.setText("Inloggad som Agent");
-        menuBar1.add(jMenu3);
+        menuInlogg.setText("Inloggad som Agent");
+        menuBar1.add(menuInlogg);
 
         menuBarLoggaUt.setText("Logga ut");
         menuBarLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -249,7 +250,6 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnSokOmrade;
     private javax.swing.JToggleButton btnTillbaka;
     private javax.swing.JComboBox<String> cmbOmrade;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JLabel lblChef;
     private javax.swing.JLabel lblNorden;
@@ -260,5 +260,6 @@ public class VisaOmradesChef extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar1;
     private javax.swing.JMenu menuBarLoggaUt;
     private javax.swing.JMenu menuBarStartsida;
+    private javax.swing.JMenu menuInlogg;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,6 +23,7 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        menuInlogg.setText("Inloggad som " + anvTyp);
 
         // Metoden anropas i konstruktorn för att vid uppstart av denna klass vis information om inloggad aliens chef.
         visaChef();
@@ -49,7 +50,7 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
         menuBar1 = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        menuInlogg = new javax.swing.JMenu();
         menuBarLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,8 +87,8 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
         jMenu5.setText("                                                                                                                      ");
         menuBar1.add(jMenu5);
 
-        jMenu3.setText("Inloggad som Alien");
-        menuBar1.add(jMenu3);
+        menuInlogg.setText("Inloggad som Alien");
+        menuBar1.add(menuInlogg);
 
         menuBarLoggaUt.setText("Logga ut");
         menuBarLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -215,7 +216,6 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnTillbaka;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JLabel lblChef;
     private javax.swing.JLabel lblChef2;
@@ -228,5 +228,6 @@ public class VisaOmradesChefAlien extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar1;
     private javax.swing.JMenu menuBarLoggaUt;
     private javax.swing.JMenu menuBarStartsida;
+    private javax.swing.JMenu menuInlogg;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,6 +32,7 @@ public class UppdateraAlien extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        menuBarInlogg.setText("Inloggad som " + anvTyp);
 
         // Här anropas en metod från klassen SQL där man fyller rullister med information.
         SQL s = new SQL(idb);

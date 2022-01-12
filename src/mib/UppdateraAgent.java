@@ -24,6 +24,7 @@ public class UppdateraAgent extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
+        menuInlogg.setText("Inloggad som " + anvTyp);
 
         // Gör rubriken osynlig vid uppstart av denna klass.
         lblErrorEmpty.setVisible(false);
