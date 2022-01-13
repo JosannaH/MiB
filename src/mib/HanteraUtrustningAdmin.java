@@ -21,9 +21,6 @@ public class HanteraUtrustningAdmin extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-
-        //Hämtar information om vem som är inloggad från inloggningssidan.
-        menuBarTomt.setText("Inloggad som " + anvTyp);
     }
 
     /**
@@ -44,7 +41,6 @@ public class HanteraUtrustningAdmin extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         menuBarInget = new javax.swing.JMenu();
-        menuBarTomt = new javax.swing.JMenu();
         manuBarLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,11 +86,8 @@ public class HanteraUtrustningAdmin extends javax.swing.JFrame {
         });
         menuBar.add(menuBarStartsida);
 
-        menuBarInget.setText("                                                                                             ");
+        menuBarInget.setText("                                                                                                                                                 ");
         menuBar.add(menuBarInget);
-
-        menuBarTomt.setText("Inloggad som Administratör");
-        menuBar.add(menuBarTomt);
 
         manuBarLoggaUt.setText("Logga ut");
         manuBarLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -206,6 +199,5 @@ public class HanteraUtrustningAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuBarInget;
     private javax.swing.JMenu menuBarStartsida;
-    private javax.swing.JMenu menuBarTomt;
     // End of variables declaration//GEN-END:variables
 }

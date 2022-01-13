@@ -6,12 +6,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuInget">
           <Properties>
-            <Property name="text" type="java.lang.String" value="                                                                                                                                                                                                        "/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="menuInlogg">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Inloggad som Admin"/>
+            <Property name="text" type="java.lang.String" value="                                                                                                                                                                                                                                                    "/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuLoggaUt">

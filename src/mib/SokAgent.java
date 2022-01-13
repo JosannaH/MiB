@@ -26,7 +26,6 @@ public class SokAgent extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuInoggadSom.setText("Inloggad som " + anvTyp);
 
         SQL s = new SQL(idb);
         // Hämtar alla agentnamn och fyller combobox
@@ -62,7 +61,6 @@ public class SokAgent extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuStartsida = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        menuInoggadSom = new javax.swing.JMenu();
         menuLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,11 +116,8 @@ public class SokAgent extends javax.swing.JFrame {
         });
         jMenuBar1.add(menuStartsida);
 
-        jMenu2.setText("                                                                                                                                                           ");
+        jMenu2.setText("                                                                                                                                                                                                 ");
         jMenuBar1.add(jMenu2);
-
-        menuInoggadSom.setText("Inloggad som Admin");
-        jMenuBar1.add(menuInoggadSom);
 
         menuLoggaUt.setText("Logga ut");
         menuLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -300,7 +295,6 @@ public class SokAgent extends javax.swing.JFrame {
     private javax.swing.JLabel lblRubrik;
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTelefonSvar;
-    private javax.swing.JMenu menuInoggadSom;
     private javax.swing.JMenu menuLoggaUt;
     private javax.swing.JMenu menuStartsida;
     // End of variables declaration//GEN-END:variables

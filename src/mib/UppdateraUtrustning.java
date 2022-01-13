@@ -31,7 +31,6 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
         this.idb = idb;
         this.anvId = anvId;
         this.anvTyp = anvTyp;
-        menuBarInlogg.setText("Inloggad som " + anvTyp);
 
         // Anropas för att dölja nedanstående rader tills dess att man har valt ras.
         doljText(txtEgenskapInfo);
@@ -83,7 +82,6 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menuBarStartsida = new javax.swing.JMenu();
         menuBarInget = new javax.swing.JMenu();
-        menuBarInlogg = new javax.swing.JMenu();
         menuBarLoggaUt = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -148,11 +146,8 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
         });
         jMenuBar1.add(menuBarStartsida);
 
-        menuBarInget.setText("                                                                                                                ");
+        menuBarInget.setText("                                                                                                                                                                     ");
         jMenuBar1.add(menuBarInget);
-
-        menuBarInlogg.setText("Inloggad som Administratör");
-        jMenuBar1.add(menuBarInlogg);
 
         menuBarLoggaUt.setText("Logga ut");
         menuBarLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -510,7 +505,6 @@ public class UppdateraUtrustning extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefon;
     private javax.swing.JLabel lblTitel;
     private javax.swing.JMenu menuBarInget;
-    private javax.swing.JMenu menuBarInlogg;
     private javax.swing.JMenu menuBarLoggaUt;
     private javax.swing.JMenu menuBarStartsida;
     private javax.swing.JTextField txtEgenskapInfo;

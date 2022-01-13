@@ -14,12 +14,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuBarTomt">
           <Properties>
-            <Property name="text" type="java.lang.String" value="                                                                                                               "/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="menuBarInlogg">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Inloggad som Agent"/>
+            <Property name="text" type="java.lang.String" value="                                                                                                                                                         "/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuBarLoggaUt">
