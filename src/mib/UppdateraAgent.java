@@ -351,10 +351,11 @@ public class UppdateraAgent extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Lösenordet ska ha minst 3 tecken och som mest 6!");
                     }
                 }
-            } // Information till användaren om att alla fält behöver ha ett värde.
-            else {
-                JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
-            }
+            } 
+
+        } // Information till användaren om att alla fält behöver ha ett värde. 
+        else {
+            JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
         }
     }//GEN-LAST:event_btnSparaActionPerformed
 
