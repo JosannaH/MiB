@@ -116,7 +116,6 @@ public class Validering {
             // Värdet ändras till false om fältet ej är korrekt ifyllt.
             resultat = false;
         }
-
         return resultat;
     }
 
